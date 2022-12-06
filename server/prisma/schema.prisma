@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Pokemon {
+  id            Int            @id @unique @default(autoincrement()) @db.Integer
+  number        Int            @unique @db.Integer
+  name          String         @db.VarChar(50)
+  type          String[]
+  regionForm    Boolean        @default(false) @map("region_form")
+  typeSingle1   String         @map("type_single1") @db.VarChar(20)
+  typeSingle2   String         @map("type_single2") @db.VarChar(20)
+  PokemonRegion PokemonRegion?
+
+  @@map("pokemon")
+}
+
+model PokemonRegion {
+  id            Int      @id @unique @default(autoincrement()) @db.Integer
+  pokemon       Pokemon  @relation(fields: [pokemonNumber], references: [number])
+  pokemonNumber Int      @unique @default(autoincrement()) @map("pokemon_number") @db.Integer
+  region        String   @db.VarChar(20)
+  type          String[]
+  typeSingle1   String   @map("type_single1") @db.VarChar(20)
+  typeSingle2   String   @map("type_single2") @db.VarChar(20)
+
+  @@map("pokemon_region")
+}
+
+model TypeRelation {
+  id     Int      @id @unique @default(autoincrement()) @db.Integer
+  type   String   @db.VarChar(20)
+  strong String[]
+  weak   String[]
+
+  @@map("type_relation")
+}
