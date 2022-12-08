@@ -37,10 +37,11 @@ model PokemonRegion {
 }
 
 model TypeRelation {
-  id     Int    @id @unique @default(autoincrement()) @db.Integer
-  type   String @db.VarChar(20)
-  strong String
-  weak   String
+  id         Int     @id @unique @default(autoincrement()) @db.Integer
+  type       String  @db.VarChar(20)
+  strong     String?
+  weak       String?
+  invalidity String?
 
   @@map("type_relation")
 }
