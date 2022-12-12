@@ -1,22 +1,22 @@
 import React from 'react'
 import isEqual from 'fast-deep-equal'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-interface TagComponentProps{
+interface TagComponentProps {
   label: string
-
+  color: `#${string}`
 }
 
-const Tag = styled.div<TagComponentProps>`
-width: 1rem;
-height: 1rem;
-background-color: ${(props)=> props.label};
+const Tag = styled.div<Pick<TagComponentProps, 'color'>>`
+  width: 1rem;
+  height: 1rem;
+  background-color: ${(props) => props.color};
 `
 
-const TagComponent:React.FC<TagComponentProps> = (props)=> {
-  const {label} = props
+const TagComponent: React.FC<TagComponentProps> = (props) => {
+  const { label, color } = props
 
-  return (<Tag label={label}>{label}</Tag>)
+  return <Tag color={color}>{label}</Tag>
 }
 
 export default React.memo(TagComponent, isEqual)
