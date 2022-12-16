@@ -5,10 +5,11 @@ import styled from 'styled-components'
 interface ButtonComponentProps {
   onClick: () => void
   buttonType: 'default' | 'danger' | 'waring'
+  value: string
 }
 
 const Button = styled.button<Pick<ButtonComponentProps, 'buttonType'>>`
-  width: 5rem;
+  min-width: 5rem;
   height: 2rem;
   background-color: ${(props) => {
     switch (props.buttonType) {
@@ -26,6 +27,7 @@ const Button = styled.button<Pick<ButtonComponentProps, 'buttonType'>>`
   font-weight: 700;
   color: #ffffff;
   border: 0;
+  padding: 0 1rem;
 
   &:active {
     background-color: ${(props) => {
@@ -42,7 +44,7 @@ const Button = styled.button<Pick<ButtonComponentProps, 'buttonType'>>`
 `
 
 const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
-  const { buttonType, onClick } = props
+  const { buttonType, value, onClick } = props
 
   const handleClick = React.useCallback(() => {
     onClick()
@@ -50,7 +52,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
 
   return (
     <Button onClick={handleClick} buttonType={buttonType}>
-      Button
+      {value}
     </Button>
   )
 }

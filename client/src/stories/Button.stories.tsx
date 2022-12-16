@@ -16,6 +16,10 @@ export default {
       options: ['default', 'danger', 'waring'],
       defaultValue: 'default',
     },
+    value: {
+      defaultValue: 'Button',
+      type: 'string',
+    },
   },
 } as ComponentMeta<typeof Button>
 
