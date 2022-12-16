@@ -9,16 +9,19 @@ interface TagComponentProps {
 }
 
 const Tag = styled.div<{ color: TypesColor }>`
-  min-width: 1.5rem;
+  width: 2rem;
   height: 0.75rem;
-  padding: 0.25rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
   background-color: ${(props) => props.color};
 
   p {
+    width: 100%;
     font-size: 0.75rem;
+    text-align: center;
     margin: 0;
     height: 100%;
+    color: #ffffff;
   }
 `
 
