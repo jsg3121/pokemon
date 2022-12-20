@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 interface ButtonComponentProps {
   onClick: () => void
-  buttonType: 'default' | 'danger' | 'waring'
+  buttonType: 'default' | 'danger' | 'waring' | 'gray'
   value: string
 }
 
@@ -19,6 +19,8 @@ const Button = styled.button<Pick<ButtonComponentProps, 'buttonType'>>`
         return '#f84424'
       case 'waring':
         return '#f5b62e'
+      case 'gray':
+        return '#a0a0a0'
     }
   }};
   border-radius: 1rem;
@@ -38,6 +40,8 @@ const Button = styled.button<Pick<ButtonComponentProps, 'buttonType'>>`
           return '#c4351c'
         case 'waring':
           return '#ce9823'
+        case 'gray':
+          return '#727272'
       }
     }};
   }

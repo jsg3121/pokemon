@@ -8,14 +8,14 @@ interface TagComponentProps {
   label: string
 }
 
-const Tag = styled.div<{ color: TypesColor }>`
-  width: 2rem;
-  height: 0.75rem;
+const Tag = styled.p<{ color: TypesColor }>`
+  width: 3rem;
+  height: 1.25rem;
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
   background-color: ${(props) => props.color};
 
-  p {
+  & > p {
     width: 100%;
     font-size: 0.75rem;
     text-align: center;

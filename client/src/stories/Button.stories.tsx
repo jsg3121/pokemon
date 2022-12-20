@@ -13,7 +13,7 @@ export default {
     buttonType: {
       name: '버튼 타입',
       control: 'select',
-      options: ['default', 'danger', 'waring'],
+      options: ['default', 'danger', 'waring', 'gray'],
       defaultValue: 'default',
     },
     value: {
@@ -40,4 +40,9 @@ Danger.args = {
 export const Waring = Template.bind({})
 Waring.args = {
   buttonType: 'waring',
+}
+
+export const Gray = Template.bind({})
+Gray.args = {
+  buttonType: 'gray',
 }
