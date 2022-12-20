@@ -5,10 +5,12 @@ import styled from 'styled-components'
 interface InputComponentProps {
   defaultValue: string
   type: 'text' | 'password'
-  status: 'default' | 'danger' | 'waring'
+  status: 'default' | 'danger' | 'waring' | undefined
 }
 
-const Input = styled.input<{ status: string }>`
+const Input = styled.input<{
+  status: 'default' | 'danger' | 'waring' | undefined
+}>`
   border: ${(props) => {
     switch (props.status) {
       case 'waring':
@@ -24,6 +26,18 @@ const Input = styled.input<{ status: string }>`
   padding: 5px 0.75rem;
   border-radius: 0.75rem;
   font-size: 1rem;
+  color: ${(props) => {
+    switch (props.status) {
+      case 'waring':
+        return '#ffae00;'
+      case 'default':
+        return '#1378f4;'
+      case 'danger':
+        return '#ec2b09;'
+      default:
+        return '#333333'
+    }
+  }};
 `
 
 const InputComponent: React.FC<InputComponentProps> = (props) => {
