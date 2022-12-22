@@ -10,6 +10,11 @@ export default {
         disable: true,
       },
     },
+    onCancel: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as ComponentMeta<typeof Modal>
 

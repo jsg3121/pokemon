@@ -22,6 +22,7 @@ const Tag = styled.p<{ color: TypesColor }>`
     margin: 0;
     height: 100%;
     color: #ffffff;
+    line-height: 1.2;
   }
 `
 

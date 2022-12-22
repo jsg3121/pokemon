@@ -42,30 +42,10 @@ const Modal = styled.article<{ modalType: 'waring' | 'default' | 'danger' }>`
         }
       }};
       margin: 0 0 2rem;
-      color: ${(props) => {
-        switch (props.modalType) {
-          case 'default':
-            return '#4797f8'
-          case 'danger':
-            return '#f84424'
-          case 'waring':
-            return '#f5b62e'
-        }
-      }};
     }
     p {
       font-size: 1.2rem;
       font-weight: 500;
-      color: ${(props) => {
-        switch (props.modalType) {
-          case 'default':
-            return '#4797f8'
-          case 'danger':
-            return '#f84424'
-          case 'waring':
-            return '#f5b62e'
-        }
-      }};
     }
   }
 
