@@ -1,8 +1,9 @@
+import { changeType } from 'common'
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
 import ImageComponent from './Image.component'
-import { ReactComponent as Bug } from '../../assets/image/bug.svg'
+import TagComponent from './Tag.component'
 
 interface CardComponentProps {
   listNumber: number
@@ -16,15 +17,29 @@ const Card = styled.article`
   height: 20rem;
   border: 1px solid #cccccc;
   border-radius: 1rem;
+
+  .image--box {
+    width: 8rem;
+    margin: 0 auto;
+  }
 `
 
 const CardComponent: React.FC<CardComponentProps> = (props) => {
+  const { type } = props
+
+  const typeVal = React.useMemo(() => {
+    return changeType(type)
+  }, [type])
+
   return (
     <Card>
       <h1>title</h1>
-      <ImageComponent>
-        <Bug fill="red" />
-      </ImageComponent>
+      <div className="image--box">
+        <ImageComponent>
+          <img src="../../assets/image/bug.svg" alt="asdf" />
+        </ImageComponent>
+      </div>
+      <TagComponent label={type} />
     </Card>
   )
 }
