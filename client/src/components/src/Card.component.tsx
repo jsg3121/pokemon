@@ -1,45 +1,51 @@
-import { changeType } from 'common'
+import { getIconType } from 'common'
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
-import ImageComponent from './Image.component'
+import { IconColor } from 'types'
 import TagComponent from './Tag.component'
 
 interface CardComponentProps {
-  listNumber: number
+  pokemonNumber: number
   description: string
   name: string
   type: string
 }
 
-const Card = styled.article`
+const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
   width: 14rem;
   height: 20rem;
   border: 1px solid #cccccc;
   border-radius: 1rem;
+  padding: 1rem;
+  background: ${(props) => {
+    return `${
+      props.backgroundColor
+    } url(${require(`../../assets/image/${props.type}.svg`)}) no-repeat 95% 95%/62%`
+  }};
 
-  .image--box {
-    width: 8rem;
-    margin: 0 auto;
+  & > div {
+    width: 100%;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 `
 
 const CardComponent: React.FC<CardComponentProps> = (props) => {
-  const { type } = props
+  const { type, pokemonNumber } = props
 
   const typeVal = React.useMemo(() => {
-    return changeType(type)
+    return getIconType(type)
   }, [type])
 
   return (
-    <Card>
-      <h1>title</h1>
-      <div className="image--box">
-        <ImageComponent>
-          <img src="../../assets/image/bug.svg" alt="asdf" />
-        </ImageComponent>
+    <Card type={typeVal.type} backgroundColor={typeVal.color}>
+      <div>
+        <h1>No. {pokemonNumber.toString().padStart(3, '0')}</h1>
+        <TagComponent label={type} />
       </div>
-      <TagComponent label={type} />
     </Card>
   )
 }

@@ -14,13 +14,14 @@ const Tag = styled.p<{ color: TypesColor }>`
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
   background-color: ${(props) => props.color};
+  display: flex;
+  align-items: center;
 
-  & > p {
+  & > span {
     width: 100%;
     font-size: 0.75rem;
     text-align: center;
     margin: 0;
-    height: 100%;
     color: #ffffff;
     line-height: 1.2;
   }
@@ -35,7 +36,7 @@ const TagComponent: React.FC<TagComponentProps> = (props) => {
 
   return (
     <Tag color={color}>
-      <p>{type}</p>
+      <span>{type}</span>
     </Tag>
   )
 }
