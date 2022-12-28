@@ -7,17 +7,27 @@ interface ImageComponentProps {
 }
 
 const Picture = styled.picture`
-  width: 100%;
-  height: 100%;
+  text-align: center;
+
+  figure {
+    width: 100%;
+    height: 100%;
+
+    img {
+      height: 100%;
+    }
+  }
 `
 
 const ImageComponent: React.FC<ImageComponentProps> = (props) => {
   const { children } = props
 
   return (
-    <Picture>
-      <figure>{children}</figure>
-    </Picture>
+    <div className="image--container">
+      <Picture>
+        <figure>{children}</figure>
+      </Picture>
+    </div>
   )
 }
 

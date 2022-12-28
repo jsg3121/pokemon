@@ -12,7 +12,7 @@ export const changeType = (type: string) => {
         type: PokemonTypes.NORMAL,
         color: TypesColor.NORMAL,
       }
-    case '불':
+    case '불꽃':
       return {
         type: PokemonTypes.FIRE,
         color: TypesColor.FIRE,

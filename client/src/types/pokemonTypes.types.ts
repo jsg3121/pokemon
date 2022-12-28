@@ -1,6 +1,6 @@
 export enum PokemonTypes {
   NORMAL = '노말',
-  FIRE = '불',
+  FIRE = '불꽃',
   WATER = '물',
   GRASS = '풀',
   ELECTRIC = '전기',

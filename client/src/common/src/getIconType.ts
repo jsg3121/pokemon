@@ -12,7 +12,7 @@ export const getIconType = (type: string) => {
         type: IconTypes.NORMAL,
         color: IconColor.NORMAL,
       }
-    case '불':
+    case '불꽃':
       return {
         type: IconTypes.FIRE,
         color: IconColor.FIRE,
