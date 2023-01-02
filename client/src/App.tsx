@@ -1,10 +1,17 @@
-import { Tag } from './components'
+import { Home } from 'container'
+import styled from 'styled-components'
+
+const Main = styled.main`
+  width: 720px;
+  height: 100vh;
+  margin: 0 auto;
+`
 
 function App() {
   return (
-    <div className="App">
-      <Tag label="노말" />
-    </div>
+    <Main className="App">
+      <Home />
+    </Main>
   )
 }
 

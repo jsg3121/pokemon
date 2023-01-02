@@ -22,7 +22,7 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
   background: ${(props) => {
     return `${
       props.backgroundColor
-    } url(${require(`../../assets/image/${props.type}.svg`)}) no-repeat 95% 95%/62%`
+    } url(${require(`../../../assets/image/${props.type}.svg`)}) no-repeat 95% 95%/62%`
   }};
   position: relative;
   z-index: 1;

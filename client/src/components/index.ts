@@ -1,6 +1,2 @@
-export { default as Tag } from './src/Tag.component'
-export { default as Button } from './src/Button.component'
-export { default as Input } from './src/Input.component'
-export { default as Modal } from './src/Modal.component'
-export { default as Card } from './src/Card.component'
-export { default as Image } from './src/Image.component'
+export * from './src/common'
+export * from './src/background'

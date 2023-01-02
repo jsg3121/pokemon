@@ -1,8 +1,8 @@
+import { changeType } from 'common'
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
-import { changeType } from '../../common'
-import { TypesColor } from '../../types'
+import { TypesColor } from 'types'
 
 interface TagComponentProps {
   label: string
