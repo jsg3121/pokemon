@@ -80,7 +80,7 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
       </div>
       <ImageComponent>
         <img
-          src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemonNumber}.svg`}
+          src={`http://localhost:4000/image/${pokemonNumber}.png`}
           alt="pokemon_image"
         />
       </ImageComponent>

@@ -11,11 +11,10 @@ interface TagComponentProps {
 const Tag = styled.p<{ color: TypesColor }>`
   width: 3rem;
   height: 1.25rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0 0.5rem;
   border-radius: 0.5rem;
   background-color: ${(props) => props.color};
-  display: flex;
-  align-items: center;
+  text-align: center;
 
   & > span {
     width: 100%;
@@ -23,7 +22,7 @@ const Tag = styled.p<{ color: TypesColor }>`
     text-align: center;
     margin: 0;
     color: #ffffff;
-    line-height: 1.2;
+    line-height: 1.8;
   }
 `
 
