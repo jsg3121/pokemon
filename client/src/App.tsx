@@ -1,5 +1,5 @@
-import { Home } from 'container'
 import styled from 'styled-components'
+import { Home } from './container'
 
 const Main = styled.main`
   width: 720px;

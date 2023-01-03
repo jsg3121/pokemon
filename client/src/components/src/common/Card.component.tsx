@@ -1,8 +1,8 @@
-import { getIconType } from 'common'
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
-import { IconColor } from 'types'
+import { getIconType } from '../../../common'
+import { IconColor } from '../../../types'
 import ImageComponent from './Image.component'
 import TagComponent from './Tag.component'
 

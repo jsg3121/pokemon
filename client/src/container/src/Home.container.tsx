@@ -1,21 +1,23 @@
 import React from 'react'
-import isEqual from 'fast-deep-equal'
 import styled from 'styled-components'
-
-interface HomeContainerProps {}
+import { Footer } from '../../components'
 
 const Home = styled.section`
   width: 100%;
   height: 100vh;
   background-color: #d12727;
   border-radius: 1rem;
+  position: relative;
+  display: flex;
   overflow: hidden;
 `
 
-const HomeContainer: React.FC<HomeContainerProps> = (props) => {
-  const {} = props
-
-  return <Home></Home>
+const HomeContainer: React.FC = () => {
+  return (
+    <Home>
+      <Footer />
+    </Home>
+  )
 }
 
-export default React.memo(HomeContainer, isEqual)
+export default HomeContainer

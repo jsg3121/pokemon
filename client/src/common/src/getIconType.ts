@@ -1,4 +1,4 @@
-import { IconColor, IconTypes } from 'types'
+import { IconColor, IconTypes } from '../../types'
 
 /**
  * info : card 타입별 배경 아이콘
