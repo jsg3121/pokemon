@@ -10,6 +10,7 @@ const Home = styled.section`
   position: relative;
   display: flex;
   overflow: hidden;
+  box-shadow: 0 0 0 #ffffff, inset 0 0 0 #ffffff, inset -16px -15px 0 #b90000;
 `
 
 const HomeContainer: React.FC = () => {
