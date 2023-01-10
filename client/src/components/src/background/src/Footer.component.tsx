@@ -31,8 +31,11 @@ const Buttons = styled.div`
     width: 7rem;
     height: 7rem;
     background-color: #222222;
+    border-right: 1px solid #191919;
+    border-bottom: 1px solid #191919;
     border-radius: 50%;
-    box-shadow: 4px 3px 9px -1px #111111, inset 4px 3px 8px -4px #767676;
+    box-shadow: 4px 3px 9px -1px #e54747, inset 5px 1px 8px -4px #767676,
+      inset -6px -3px 5px -4px #050505;
   }
 
   .bg--button__dot {
@@ -48,7 +51,11 @@ const Buttons = styled.div`
       width: 0.8rem;
       height: 0.8rem;
       border-radius: 50%;
-      background-color: #333333;
+      background-color: #222222;
+      border-right: 1px solid #191919;
+      border-bottom: 1px solid #191919;
+      box-shadow: 4px 3px 9px -1px #e54747, inset 3px 2px 7px -4px #767676,
+        inset -6px -3px 5px -4px #050505;
     }
   }
 `
@@ -70,9 +77,12 @@ const Status = styled.div`
       width: 48%;
       height: 1rem;
       flex-shrink: 0;
+      border-radius: 0.2rem;
 
       &:first-child {
-        background-color: green;
+        background-color: #ff4d4d;
+        box-shadow: 4px 2px 5px -2px #bd0000, inset -2px -3px 0px #ff7474,
+          inset -2px -3px 0px #ff7474, inset 2px 3px 0px #ff7474;
       }
 
       &:last-child {
@@ -226,7 +236,7 @@ const FooterComponent: React.FC = () => {
         </Buttons>
         <Status>
           <div className="bg--status__alert">
-            <p>빨간 버튼</p>
+            <p></p>
             <p>파란 버튼</p>
           </div>
           <div className="bg--status__signal">초록 상태창</div>
