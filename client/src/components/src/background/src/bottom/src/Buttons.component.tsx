@@ -5,7 +5,7 @@ import styled from 'styled-components'
 interface ButtonsComponentProps {}
 
 const Buttons = styled.div`
-  width: 9rem;
+  width: 10rem;
   height: 100%;
   padding: 1rem;
 
@@ -19,6 +19,7 @@ const Buttons = styled.div`
     border-radius: 50%;
     box-shadow: 4px 3px 9px -1px #e54747, inset 5px 1px 8px -4px #767676,
       inset -6px -3px 5px -4px #050505;
+    margin: 0 auto;
   }
 
   .bg--button__dot {

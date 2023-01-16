@@ -6,7 +6,7 @@ import SignalComponent from './Signal.component'
 interface StatusComponentProps {}
 
 const Status = styled.div`
-  width: 17rem;
+  width: 18rem;
   height: 100%;
   padding: 1rem;
   .bg--status__alert {
