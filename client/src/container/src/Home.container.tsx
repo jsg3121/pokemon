@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Footer } from '../../components'
+import { Body, Footer, Header } from '../../components'
 
 const Home = styled.section`
   width: 100%;
@@ -9,6 +9,7 @@ const Home = styled.section`
   border-radius: 1rem;
   position: relative;
   display: flex;
+  flex-direction: column;
   overflow: hidden;
   border-right: 1px solid #750000;
   border-bottom: 1px solid #750000;
@@ -21,6 +22,8 @@ const Home = styled.section`
 const HomeContainer: React.FC = () => {
   return (
     <Home>
+      <Header />
+      <Body />
       <Footer />
     </Home>
   )
