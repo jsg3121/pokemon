@@ -9,28 +9,42 @@ const Header = styled.div`
   height: 10rem;
   background-color: #e32c2c;
   position: relative;
+  z-index: 20;
+`
 
-  &::before {
-    content: '';
-    width: 15rem;
-    height: 10rem;
+const HeaderFrist = styled.div`
+  width: 100%;
+  height: 10rem;
+  position: absolute;
+  z-index: 10;
+
+  & > i.header__bottom--first {
+    width: 14rem;
+    height: 3rem;
     background-color: #e32c2c;
-    border-top-right-radius: 6rem;
-    border-bottom-right-radius: 16rem;
+    border-bottom-right-radius: 8rem;
     position: absolute;
-    bottom: -4rem;
+    bottom: -3rem;
+    z-index: 2;
+    box-sizing: content-box;
   }
+`
 
-  &::after {
-    content: '';
-    width: 100%;
-    height: 10rem;
+const HeaderSeconds = styled.div`
+  width: 100%;
+  height: 10rem;
+  position: absolute;
+  z-index: 20;
+
+  & > i.header__bottom--second {
+    width: 31rem;
+    height: 3rem;
     background-color: #d12727;
-    border-top-left-radius: 10rem;
-    border-bottom-left-radius: 2rem;
+    border-top-left-radius: 8rem;
     position: absolute;
-    bottom: -6rem;
-    left: 13rem;
+    bottom: 0rem;
+    right: 0;
+    box-sizing: content-box;
   }
 `
 
@@ -66,14 +80,22 @@ const GemList = styled.div`
 
 const HeaderComponent: React.FC<HeaderComponentProps> = (props) => {
   return (
-    <Header>
-      <Gem className="header__gem" />
-      <GemList>
-        <i className="gem--red" />
-        <i className="gem--yellow" />
-        <i className="gem--green" />
-      </GemList>
-    </Header>
+    <>
+      <HeaderFrist>
+        <i className="header__bottom--first" />
+      </HeaderFrist>
+      <Header>
+        <Gem className="header__gem" />
+        <GemList>
+          <i className="gem--red" />
+          <i className="gem--yellow" />
+          <i className="gem--green" />
+        </GemList>
+      </Header>
+      <HeaderSeconds>
+        <i className="header__bottom--second" />
+      </HeaderSeconds>
+    </>
   )
 }
 
