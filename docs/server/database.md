@@ -1,19 +1,20 @@
 # 데이터베이스
+
 ----------------------------------------------------------------
+
 ## DB 정보
 
-  * DB : PostgreSQL
-  * Name : pokemon_database
+* DB : PostgreSQL
+* Name : pokemon_database
 
 ## ERD
 
 ```mermaid
 erDiagram
-	pokemon_info ||--o{ pokemon_region : pokemon_id
+ pokemon_info ||--o{ pokemon_region : pokemon_id
 ```
 
 * ### Pokemon_info table
-
 
 | key  | Name         | column         | type            | Default Data    | isNull |
 | :--: | :----------- | :------------- | :-------------- | :-------------- | :----- |
@@ -26,8 +27,6 @@ erDiagram
 |      | 진화 여부      | `is_evolution` | `boolean`       | `false`         | false  |
 |      | 첫 등장 세대    | `generation`   | `number`        |                 | true   |
 
-
-
 * ### Pokemon_region
 
 | key  | Name        | column         | type            | Default Data         | isNull |
@@ -38,4 +37,3 @@ erDiagram
 |      | 전체 타입     | `type`         | `Array<string>` |                      | false  |
 |      | 타입 1       | `type_single1` | `string`        |                      | false  |
 |      | 타입 2       | `type_single2` | `string`        |                      | true   |
-
