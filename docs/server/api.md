@@ -69,7 +69,26 @@ Pokemon List 조회
 
 **Code** : `200`
 
-**Result Data**
+**Type** :
+
+```typescript
+type PokemonList ={
+  code : number,
+  message: string,
+  data: {
+   id: number,
+   pokemonNumber: number,
+    name: string,
+    type: Array<string>,
+    typeSingle1: string,
+    typeSingle2?: string,
+    isEvolution: boolean,
+    isRegion: boolean
+ }[]
+}
+```
+
+**Result Data** :
 
 ```json
 {
@@ -116,6 +135,28 @@ Pokemon Detail 조회
 **State** : `Success`
 
 **Code** : `200`
+
+**Type** :
+
+```typescript
+type PokemonInfo ={
+  code: number,
+  message: string,
+  data: {
+    name: string,
+    type: Array<string>,
+    generation: number,
+    weak?: Array<string>,
+    strong?: Array<string>,
+    regionForm: {
+      region: string,
+      type: Array<string>,
+      weak?: Array<string>,
+      strong?: Array<string>
+    }
+  }
+}
+```
 
 **Result Data**
 
