@@ -4,6 +4,44 @@
 
 ## Pokemon 조회
 
+### 공통 Response
+
+**State** : `Fail`
+
+**Code** : `401`
+
+**Result Data**
+
+```json
+{
+  code : 401,
+  message: "Authorizaion Fail",
+  data : {
+    error: error
+  }
+}
+```
+
+---
+
+**State** : `Fail`
+
+**Code** : `400`
+
+**Result Data**
+
+```json
+{
+  code : 400,
+  message : "Bad Request",
+  data : {
+    error: error
+  }
+}
+```
+
+---
+
 ### Request
 
 Pokemon List 조회
@@ -24,8 +62,6 @@ Pokemon List 조회
 | name      | false    | string  |      |
 | evolution | false    | boolean |      |
 | type      | false    | string  |      |
-
----
 
 ### Response
 
@@ -64,36 +100,41 @@ Pokemon List 조회
 ```
 
 ---
+
+## pokemon 상세
+
+### Request
+
+Pokemon Detail 조회
+
+**URL** : `/api/v1/pokemon/list/:pokemonNumber`
+
+**Method** : `GET`
+
+### Response
+
 **State** : `Success`
 
-**Code** : `401`
+**Code** : `200`
 
 **Result Data**
 
 ```json
 {
-  code : 401,
-  message: "Authorizaion Fail",
+  code : 200,
+  message: "Sussess",
   data : {
-    error: error
-  }
-}
-```
-
----
-
-**State** : `Success`
-
-**Code** : `400`
-
-**Result Data**
-
-```json
-{
-  code : 400,
-  message : "Bad Request",
-  data : {
-    error: error
+    name : "이상해씨",
+    type :["풀", "독"],
+    generation: 1,
+    weak: ["불", "비행"],
+    strong: ["물"],
+    regionForm:{
+      region : "알로라",
+      type: ["페어리"],
+      weak: ["악"],
+      strong:["드래곤"]
+    }
   }
 }
 ```
