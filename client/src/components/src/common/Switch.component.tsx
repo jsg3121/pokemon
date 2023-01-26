@@ -9,8 +9,8 @@ interface SwitchComponentProps {
   disabled?: boolean
 }
 
-const Switch = styled.div`
-  padding: 0 0.5rem;
+const Switch = styled.div<{ disabled?: boolean }>`
+  width: max-content;
   position: relative;
 
   .switch__checkbox {
@@ -38,10 +38,32 @@ const Switch = styled.div`
     padding: 0.2rem;
     position: relative;
     transition: background-color 0.3s;
+    cursor: pointer;
+    overflow: hidden;
 
     p {
       margin: 0 0.3rem;
     }
+
+    ${(props) => {
+      if (props.disabled) {
+        return `
+          background-color: #dddddd !important;
+          cursor:not-allowed;
+          
+          &::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #90909079;
+            z-index: 10;
+          }
+        `
+      }
+    }}
   }
 `
 
@@ -55,9 +77,9 @@ const Ball = styled.span<{ value: boolean }>`
   position: relative;
   ${(props) => {
     if (props.value) {
-      return 'transform: translate(0, 0) rotate(-360deg);'
+      return 'transform: translate(2rem, 0) rotate(0);'
     } else {
-      return 'transform: translate(2rem, 0) rotate(0);;'
+      return 'transform: translate(0, 0) rotate(-360deg);'
     }
   }}
   transition: transform 0.3s, rotate 0.3s;
@@ -118,13 +140,14 @@ const SwitchComponent: React.FC<SwitchComponentProps> = (props) => {
   }, [onChange, value])
 
   return (
-    <Switch>
+    <Switch disabled={disabled}>
       <input
         type="checkbox"
         name={name}
         id={name}
         className="switch__checkbox"
         onChange={handleChange}
+        disabled={disabled}
       />
       <label htmlFor={name}>
         <Ball value={value}>
