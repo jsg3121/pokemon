@@ -9,7 +9,6 @@ export const runServer = () => {
   app.use(express.urlencoded({ extended: true }))
   app.use(express.json())
   app.use(express.static(__dirname + '/assets'))
-  console.log(__dirname)
 
   app.listen(PORT, () => {
     console.log(PORT)

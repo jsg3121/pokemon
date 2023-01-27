@@ -18,20 +18,22 @@ model Pokemon {
   regionForm    Boolean?       @default(false) @map("region_form")
   typeSingle1   String         @map("type_single1") @db.VarChar(20)
   typeSingle2   String?        @map("type_single2") @db.VarChar(20)
+  isEvolution   Int[]          @map("is_evolution") @db.Integer
+  generation    Int            @map("generation") @db.Integer
   PokemonRegion PokemonRegion?
 
   @@map("pokemon")
 }
 
 model PokemonRegion {
-  id            Int     @id @unique @default(autoincrement()) @db.Integer
-  pokemon       Pokemon @relation(fields: [pokemonId], references: [id])
-  pokemonId     Int     @unique @default(autoincrement()) @map("pokemon_id") @db.Integer
-  pokemonNumber Int     @map("pokemon_number")
-  region        String  @db.VarChar(20)
-  type          String
-  typeSingle1   String  @map("type_single1") @db.VarChar(20)
-  typeSingle2   String  @map("type_single2") @db.VarChar(20)
+  id            Int      @id @unique @default(autoincrement()) @db.Integer
+  pokemon       Pokemon  @relation(fields: [pokemonId], references: [id])
+  pokemonId     Int      @unique @default(autoincrement()) @map("pokemon_id") @db.Integer
+  pokemonNumber Int      @map("pokemon_number")
+  region        String   @db.VarChar(20)
+  type          String[]
+  typeSingle1   String   @map("type_single1") @db.VarChar(20)
+  typeSingle2   String   @map("type_single2") @db.VarChar(20)
 
   @@map("pokemon_region")
 }
