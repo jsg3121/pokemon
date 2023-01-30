@@ -11,31 +11,46 @@ datasource db {
 }
 
 model Pokemon {
-  id            Int            @id @unique @default(autoincrement()) @db.Integer
-  number        Int            @db.Integer
-  name          String         @db.VarChar(50)
-  type          String
-  regionForm    Boolean?       @default(false) @map("region_form")
-  typeSingle1   String         @map("type_single1") @db.VarChar(20)
-  typeSingle2   String?        @map("type_single2") @db.VarChar(20)
-  isEvolution   Int[]          @map("is_evolution") @db.Integer
-  generation    Int            @map("generation") @db.Integer
-  PokemonRegion PokemonRegion?
+  id            Int             @id @unique @default(autoincrement()) @db.Integer
+  number        Int             @unique @db.Integer
+  name          String          @db.VarChar(50)
+  type          String[]
+  isRegion      Boolean?        @default(false) @map("is_region")
+  isMega        Boolean?        @default(false) @map("is_mega")
+  typeSingle1   String          @map("type_single1") @db.VarChar(20)
+  typeSingle2   String?         @map("type_single2") @db.VarChar(20)
+  isEvolution   Boolean         @default(false) @map("is_evolution")
+  evolutionId   Int[]           @map("evolution_id") @db.Integer
+  generation    Int             @map("generation") @db.Integer
+  PokemonRegion PokemonRegion[]
+  PokemonMega   PokemonMega[]
 
   @@map("pokemon")
 }
 
 model PokemonRegion {
   id            Int      @id @unique @default(autoincrement()) @db.Integer
-  pokemon       Pokemon  @relation(fields: [pokemonId], references: [id])
-  pokemonId     Int      @unique @default(autoincrement()) @map("pokemon_id") @db.Integer
+  pokemon       Pokemon  @relation(fields: [pokemonId], references: [number])
+  pokemonId     Int      @map("pokemon_id") @db.Integer
   pokemonNumber Int      @map("pokemon_number")
   region        String   @db.VarChar(20)
   type          String[]
   typeSingle1   String   @map("type_single1") @db.VarChar(20)
-  typeSingle2   String   @map("type_single2") @db.VarChar(20)
+  typeSingle2   String?  @map("type_single2") @db.VarChar(20)
 
   @@map("pokemon_region")
+}
+
+model PokemonMega {
+  id            Int      @id @unique @default(autoincrement()) @db.Integer
+  pokemon       Pokemon  @relation(fields: [pokemonId], references: [number])
+  pokemonId     Int      @map("pokemon_id") @db.Integer
+  pokemonNumber Int      @map("pokemon_number")
+  type          String[]
+  typeSingle1   String   @map("type_single1") @db.VarChar(20)
+  typeSingle2   String?  @map("type_single2") @db.VarChar(20)
+
+  @@map("pokemon_mega")
 }
 
 model TypeRelation {
