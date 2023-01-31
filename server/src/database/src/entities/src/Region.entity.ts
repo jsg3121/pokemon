@@ -1,5 +1,4 @@
 import { Field, ID, ObjectType } from 'type-graphql'
-import { Pokemon } from './Pokemon.entity'
 
 @ObjectType()
 export class Region {
