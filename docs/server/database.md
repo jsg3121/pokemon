@@ -22,7 +22,7 @@ erDiagram
 |      | 도감 번호      | `number`       | `number`        |                 | false  |
 |      | 이름          | `name`         | `string`        |                 | false  |
 |      | 리전폼 여부     | `isRegion`     | `boolean`       | `false`         | false  |
-|      | 메가진화 여부   | `isMega`     | `boolean`       | `false`         | false  |
+|      | 메가진화 여부   | `isMega`       | `boolean`       | `false`         | false  |
 |      | 전체 타입      | `type`         | `Array<string>` |                 | false  |
 |      | 타입 1        | `type_single1` | `string`        |                 | false  |
 |      | 타입 2        | `type_single2` | `string`        |                 | true   |
