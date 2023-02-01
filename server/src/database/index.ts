@@ -1,1 +1,1 @@
-export * from './src/apolloServer'
+export * from './apolloServer'

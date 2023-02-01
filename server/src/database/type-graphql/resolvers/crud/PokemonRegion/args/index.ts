@@ -1,0 +1,14 @@
+export { AggregatePokemonRegionArgs } from "./AggregatePokemonRegionArgs";
+export { CreateManyPokemonRegionArgs } from "./CreateManyPokemonRegionArgs";
+export { CreateOnePokemonRegionArgs } from "./CreateOnePokemonRegionArgs";
+export { DeleteManyPokemonRegionArgs } from "./DeleteManyPokemonRegionArgs";
+export { DeleteOnePokemonRegionArgs } from "./DeleteOnePokemonRegionArgs";
+export { FindFirstPokemonRegionArgs } from "./FindFirstPokemonRegionArgs";
+export { FindFirstPokemonRegionOrThrowArgs } from "./FindFirstPokemonRegionOrThrowArgs";
+export { FindManyPokemonRegionArgs } from "./FindManyPokemonRegionArgs";
+export { FindUniquePokemonRegionArgs } from "./FindUniquePokemonRegionArgs";
+export { FindUniquePokemonRegionOrThrowArgs } from "./FindUniquePokemonRegionOrThrowArgs";
+export { GroupByPokemonRegionArgs } from "./GroupByPokemonRegionArgs";
+export { UpdateManyPokemonRegionArgs } from "./UpdateManyPokemonRegionArgs";
+export { UpdateOnePokemonRegionArgs } from "./UpdateOnePokemonRegionArgs";
+export { UpsertOnePokemonRegionArgs } from "./UpsertOnePokemonRegionArgs";

@@ -1,10 +1,13 @@
+import { PrismaClient } from '@prisma/client'
 import { Query, Resolver } from 'type-graphql'
-import { Pokemon } from '../../entities'
+import { Pokemon } from '../../../type-graphql'
+
+const prisma = new PrismaClient()
 
 @Resolver()
 export default class PokemonResolver {
-  @Query(() => [String])
+  @Query(() => [Pokemon])
   public async getList() {
-    return ['1', '2']
+    return prisma.pokemon.findMany()
   }
 }

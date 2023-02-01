@@ -1,0 +1,14 @@
+export { AggregateTypeRelationArgs } from "./AggregateTypeRelationArgs";
+export { CreateManyTypeRelationArgs } from "./CreateManyTypeRelationArgs";
+export { CreateOneTypeRelationArgs } from "./CreateOneTypeRelationArgs";
+export { DeleteManyTypeRelationArgs } from "./DeleteManyTypeRelationArgs";
+export { DeleteOneTypeRelationArgs } from "./DeleteOneTypeRelationArgs";
+export { FindFirstTypeRelationArgs } from "./FindFirstTypeRelationArgs";
+export { FindFirstTypeRelationOrThrowArgs } from "./FindFirstTypeRelationOrThrowArgs";
+export { FindManyTypeRelationArgs } from "./FindManyTypeRelationArgs";
+export { FindUniqueTypeRelationArgs } from "./FindUniqueTypeRelationArgs";
+export { FindUniqueTypeRelationOrThrowArgs } from "./FindUniqueTypeRelationOrThrowArgs";
+export { GroupByTypeRelationArgs } from "./GroupByTypeRelationArgs";
+export { UpdateManyTypeRelationArgs } from "./UpdateManyTypeRelationArgs";
+export { UpdateOneTypeRelationArgs } from "./UpdateOneTypeRelationArgs";
+export { UpsertOneTypeRelationArgs } from "./UpsertOneTypeRelationArgs";
