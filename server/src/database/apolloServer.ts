@@ -12,7 +12,7 @@ export const createApolloServer = async ({ app }) => {
   })
 
   await apolloServer.start()
-  apolloServer.applyMiddleware({ app, path: '/playground' })
+  apolloServer.applyMiddleware({ app, path: '/graphql' })
 
   return apolloServer
 }
