@@ -6,41 +6,76 @@ const prisma = new PrismaClient()
 
 @Resolver()
 export default class PokemonResolver {
+  /**
+   * @author 장선규
+   * @description 포켓몬 리스트 조회
+   * @returns {Array<Pokemon>}
+   */
   @Query(() => [Pokemon])
   public async getList(): Promise<Pokemon[]> {
-    return prisma.pokemon.findMany()
+    return await prisma.pokemon.findMany()
   }
 
+  /**
+   * @author 장선규
+   * @description 단일 포켓몬 정보 조회
+   * @param number 포켓몬 번호
+   * @returns {Pokemon}
+   */
   @Query(() => Pokemon)
   public async getSinglePokemon(
     @Arg('number') number: number
   ): Promise<Pokemon> {
-    return prisma.pokemon.findUnique({
+    return await prisma.pokemon.findUnique({
       where: {
         number,
       },
     })
   }
 
+  /**
+   * @author 장선규
+   * @description 포켓몬 리전폼 정보 조회
+   * @param number 포켓몬 번호
+   * @returns {PokemonRegion}
+   */
   @Query(() => PokemonRegion)
   public async getRegionForm(
     @Arg('number') number: number
-  ): Promise<PokemonRegion> {
-    return prisma.pokemonRegion.findUnique({
+  ): Promise<PokemonRegion | []> {
+    const data = await prisma.pokemonRegion.findUnique({
       where: {
         id: number,
       },
     })
+
+    if (data) {
+      return data
+    } else {
+      throw new Error('No data!!')
+    }
   }
 
+  /**
+   * @author 장선규
+   * @description 포켓몬 메가진화 정보 조회
+   * @param number 포켓몬 번호
+   * @returns {PokemonMega}
+   */
   @Query(() => PokemonMega)
   public async getMegaEvolution(
     @Arg('number') number: number
   ): Promise<PokemonMega> {
-    return prisma.pokemonMega.findUnique({
+    const data = await prisma.pokemonMega.findUnique({
       where: {
         id: number,
       },
     })
+
+    if (data) {
+      return data
+    } else {
+      throw new Error('No data!!')
+    }
   }
 }
