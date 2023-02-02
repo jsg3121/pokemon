@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { Arg, Query, Resolver } from 'type-graphql'
-import { Pokemon, PokemonMega, PokemonRegion } from '../../../type-graphql'
+import { Pokemon, PokemonMega, PokemonRegion } from '../../type-graphql'
 
 const prisma = new PrismaClient()
 
