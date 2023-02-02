@@ -2,32 +2,28 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { IntFieldUpdateOperationsInput } from "../inputs/IntFieldUpdateOperationsInput";
-import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
-import { PokemonMegaUpdatetypeInput } from "../inputs/PokemonMegaUpdatetypeInput";
-import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("PokemonMegaUpdateManyMutationInput", {
   isAbstract: true
 })
 export class PokemonMegaUpdateManyMutationInput {
-  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })
-  pokemonNumber?: IntFieldUpdateOperationsInput | undefined;
+  pokemonNumber?: number | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonMegaUpdatetypeInput, {
+  @TypeGraphQL.Field(_type => [String], {
     nullable: true
   })
-  type?: PokemonMegaUpdatetypeInput | undefined;
+  type?: string[] | undefined;
 
-  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  typeSingle1?: StringFieldUpdateOperationsInput | undefined;
+  typeSingle1?: string | undefined;
 
-  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  typeSingle2?: NullableStringFieldUpdateOperationsInput | undefined;
+  typeSingle2?: string | undefined;
 }

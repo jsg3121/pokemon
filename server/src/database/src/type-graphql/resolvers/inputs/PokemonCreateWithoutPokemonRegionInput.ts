@@ -2,8 +2,6 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { PokemonCreateevolutionIdInput } from "../inputs/PokemonCreateevolutionIdInput";
-import { PokemonCreatetypeInput } from "../inputs/PokemonCreatetypeInput";
 import { PokemonMegaCreateNestedManyWithoutPokemonInput } from "../inputs/PokemonMegaCreateNestedManyWithoutPokemonInput";
 
 @TypeGraphQL.InputType("PokemonCreateWithoutPokemonRegionInput", {
@@ -20,10 +18,10 @@ export class PokemonCreateWithoutPokemonRegionInput {
   })
   name!: string;
 
-  @TypeGraphQL.Field(_type => PokemonCreatetypeInput, {
+  @TypeGraphQL.Field(_type => [String], {
     nullable: true
   })
-  type?: PokemonCreatetypeInput | undefined;
+  type?: string[] | undefined;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
@@ -50,10 +48,10 @@ export class PokemonCreateWithoutPokemonRegionInput {
   })
   isEvolution?: boolean | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonCreateevolutionIdInput, {
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
     nullable: true
   })
-  evolutionId?: PokemonCreateevolutionIdInput | undefined;
+  evolutionId?: number[] | undefined;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false

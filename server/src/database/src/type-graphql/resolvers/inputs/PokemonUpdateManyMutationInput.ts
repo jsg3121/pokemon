@@ -2,65 +2,58 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { BoolFieldUpdateOperationsInput } from "../inputs/BoolFieldUpdateOperationsInput";
-import { IntFieldUpdateOperationsInput } from "../inputs/IntFieldUpdateOperationsInput";
-import { NullableBoolFieldUpdateOperationsInput } from "../inputs/NullableBoolFieldUpdateOperationsInput";
-import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
-import { PokemonUpdateevolutionIdInput } from "../inputs/PokemonUpdateevolutionIdInput";
-import { PokemonUpdatetypeInput } from "../inputs/PokemonUpdatetypeInput";
-import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("PokemonUpdateManyMutationInput", {
   isAbstract: true
 })
 export class PokemonUpdateManyMutationInput {
-  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })
-  number?: IntFieldUpdateOperationsInput | undefined;
+  number?: number | undefined;
 
-  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  name?: StringFieldUpdateOperationsInput | undefined;
+  name?: string | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonUpdatetypeInput, {
+  @TypeGraphQL.Field(_type => [String], {
     nullable: true
   })
-  type?: PokemonUpdatetypeInput | undefined;
+  type?: string[] | undefined;
 
-  @TypeGraphQL.Field(_type => NullableBoolFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
   })
-  isRegion?: NullableBoolFieldUpdateOperationsInput | undefined;
+  isRegion?: boolean | undefined;
 
-  @TypeGraphQL.Field(_type => NullableBoolFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
   })
-  isMega?: NullableBoolFieldUpdateOperationsInput | undefined;
+  isMega?: boolean | undefined;
 
-  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  typeSingle1?: StringFieldUpdateOperationsInput | undefined;
+  typeSingle1?: string | undefined;
 
-  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  typeSingle2?: NullableStringFieldUpdateOperationsInput | undefined;
+  typeSingle2?: string | undefined;
 
-  @TypeGraphQL.Field(_type => BoolFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
   })
-  isEvolution?: BoolFieldUpdateOperationsInput | undefined;
+  isEvolution?: boolean | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonUpdateevolutionIdInput, {
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
     nullable: true
   })
-  evolutionId?: PokemonUpdateevolutionIdInput | undefined;
+  evolutionId?: number[] | undefined;
 
-  @TypeGraphQL.Field(_type => IntFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })
-  generation?: IntFieldUpdateOperationsInput | undefined;
+  generation?: number | undefined;
 }

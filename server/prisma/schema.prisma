@@ -11,8 +11,9 @@ generator client {
 }
 
 generator typegraphql {
-  provider = "typegraphql-prisma"
-  output   = "../src/database/src/type-graphql"
+  provider        = "typegraphql-prisma"
+  output          = "../src/database/src/type-graphql"
+  useSimpleInputs = true
 }
 
 model Pokemon {

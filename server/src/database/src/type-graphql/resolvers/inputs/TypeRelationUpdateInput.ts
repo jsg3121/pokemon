@@ -2,30 +2,28 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { NullableStringFieldUpdateOperationsInput } from "../inputs/NullableStringFieldUpdateOperationsInput";
-import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType("TypeRelationUpdateInput", {
   isAbstract: true
 })
 export class TypeRelationUpdateInput {
-  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  type?: StringFieldUpdateOperationsInput | undefined;
+  type?: string | undefined;
 
-  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  strong?: NullableStringFieldUpdateOperationsInput | undefined;
+  strong?: string | undefined;
 
-  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  weak?: NullableStringFieldUpdateOperationsInput | undefined;
+  weak?: string | undefined;
 
-  @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
+  @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
-  invalidity?: NullableStringFieldUpdateOperationsInput | undefined;
+  invalidity?: string | undefined;
 }

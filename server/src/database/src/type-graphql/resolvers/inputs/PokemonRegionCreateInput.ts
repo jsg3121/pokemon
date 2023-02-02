@@ -3,7 +3,6 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { PokemonCreateNestedOneWithoutPokemonRegionInput } from "../inputs/PokemonCreateNestedOneWithoutPokemonRegionInput";
-import { PokemonRegionCreatetypeInput } from "../inputs/PokemonRegionCreatetypeInput";
 
 @TypeGraphQL.InputType("PokemonRegionCreateInput", {
   isAbstract: true
@@ -24,10 +23,10 @@ export class PokemonRegionCreateInput {
   })
   region!: string;
 
-  @TypeGraphQL.Field(_type => PokemonRegionCreatetypeInput, {
+  @TypeGraphQL.Field(_type => [String], {
     nullable: true
   })
-  type?: PokemonRegionCreatetypeInput | undefined;
+  type?: string[] | undefined;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
