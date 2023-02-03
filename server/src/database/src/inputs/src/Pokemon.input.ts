@@ -1,18 +1,17 @@
-import { Prisma } from '@prisma/client'
+import { Pokemon } from '@prisma/client'
 import { Field, InputType, Int } from 'type-graphql'
-import { Pokemon } from '../../type-graphql'
 
 @InputType('FilterData')
 export class FilterData {
-  @Field(() => Int)
-  generate?: number | undefined
+  @Field({ nullable: true })
+  generate?: number
 
-  @Field(() => String)
-  name?: string | undefined
+  // @Field(() => String)
+  // public name: string | undefined
 
-  @Field(() => Boolean)
-  evolution?: boolean | undefined
+  // @Field(() => Boolean)
+  // public evolution: boolean | undefined
 
-  @Field(() => [String])
-  type?: Prisma.StringNullableListFilter | undefined
+  // @Field(() => [String] || undefined)
+  // type?: Prisma.StringNullableListFilter | undefined
 }

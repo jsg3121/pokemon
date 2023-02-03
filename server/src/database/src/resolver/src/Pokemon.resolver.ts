@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client'
 import { Arg, Query, Resolver } from 'type-graphql'
-import { FilterData } from '../../inputs'
 import { Pokemon, PokemonMega, PokemonRegion } from '../../type-graphql'
 
 const prisma = new PrismaClient()
@@ -84,19 +83,32 @@ export default class PokemonResolver {
    * @author 장선규
    * @description 포켓몬 검색 필터
    * @param number 검색 필터 조건
-   * @returns {PokemonMega}
+   * @returns {Promise<Pokemon[]>}
    */
-  @Query(() => Pokemon)
+  @Query(() => [Pokemon], {
+    nullable: true,
+  })
   public async getPokemonFilter(
-    @Arg('FilterData') formData?: FilterData
+    @Arg('generation', { nullable: true }) generation: number,
+    @Arg('name', { nullable: true }) name: string,
+    @Arg('isEvolution', { nullable: true }) isEvolution: boolean,
+    @Arg('isRegion', { nullable: true }) isRegion: boolean,
+    @Arg('isMega', { nullable: true }) isMega: boolean
   ): Promise<Pokemon[]> {
-    return await prisma.pokemon.findMany({
+    const data = await prisma.pokemon.findMany({
       where: {
-        generation: formData.generate,
-        name: formData.name,
-        isEvolution: formData.evolution,
-        type: formData.type,
+        generation,
+        name,
+        isEvolution,
+        isMega,
+        isRegion,
       },
     })
+
+    if (data) {
+      return data
+    } else {
+      throw new Error('No data!!')
+    }
   }
 }
