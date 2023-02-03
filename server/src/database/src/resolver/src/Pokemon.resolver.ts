@@ -1,6 +1,11 @@
 import { PrismaClient } from '@prisma/client'
 import { Arg, Query, Resolver } from 'type-graphql'
-import { Pokemon, PokemonMega, PokemonRegion } from '../../type-graphql'
+import {
+  Pokemon,
+  PokemonMega,
+  PokemonRegion,
+  StringNullableListFilter,
+} from '../../type-graphql'
 
 const prisma = new PrismaClient()
 
@@ -99,6 +104,9 @@ export default class PokemonResolver {
       where: {
         generation,
         name,
+        type: {
+          has: '풀,독',
+        },
         isEvolution,
         isMega,
         isRegion,
