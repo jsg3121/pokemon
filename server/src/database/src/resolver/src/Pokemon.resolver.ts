@@ -96,6 +96,7 @@ export default class PokemonResolver {
   public async getPokemonFilter(
     @Arg('generation', { nullable: true }) generation: number,
     @Arg('name', { nullable: true }) name: string,
+    @Arg('type', () => [String], { nullable: true }) type: string[],
     @Arg('isEvolution', { nullable: true }) isEvolution: boolean,
     @Arg('isRegion', { nullable: true }) isRegion: boolean,
     @Arg('isMega', { nullable: true }) isMega: boolean
@@ -105,7 +106,7 @@ export default class PokemonResolver {
         generation,
         name,
         type: {
-          has: '풀,독',
+          hasEvery: type,
         },
         isEvolution,
         isMega,
