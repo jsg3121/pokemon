@@ -23,6 +23,7 @@ const Radio = styled.div`
     display: flex;
     align-items: center;
     position: relative;
+    height: 1.3rem;
 
     .ball {
       position: absolute;

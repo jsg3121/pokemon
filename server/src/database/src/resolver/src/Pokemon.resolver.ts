@@ -13,7 +13,7 @@ export default class PokemonResolver {
    */
   @Query(() => [Pokemon])
   public async getList(): Promise<Pokemon[]> {
-    return await prisma.pokemon.findMany()
+    return await prisma.pokemon.findMany({ orderBy: [{ number: 'asc' }] })
   }
 
   /**

@@ -3,14 +3,15 @@ import React from 'react'
 import styled from 'styled-components'
 import { getIconType } from '../../../common'
 import { IconColor } from '../../../types'
-import ImageComponent from './Image.component'
-import TagComponent from './Tag.component'
+import Image from './Image.component'
+import Tag from './Tag.component'
 
 interface CardComponentProps {
   pokemonNumber: number
-  description: string
   name: string
-  type: string
+  type: Array<string>
+  region?: boolean
+  mega?: boolean
 }
 
 const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
@@ -47,6 +48,16 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
     justify-content: space-between;
   }
 
+  .card--type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & p:last-child {
+      margin-left: 0.5rem;
+    }
+  }
+
   .image--container {
     width: 11rem;
     height: 10rem;
@@ -69,21 +80,25 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
   const { type, pokemonNumber, name } = props
 
   const typeVal = React.useMemo(() => {
-    return getIconType(type)
+    return getIconType(type[0])
   }, [type])
 
   return (
     <Card type={typeVal.type} backgroundColor={typeVal.color}>
       <div className="card--info">
         <h1>No. {pokemonNumber.toString().padStart(3, '0')}</h1>
-        <TagComponent label={type} />
+        <div className="card--type">
+          {type.map((item) => {
+            return <Tag label={item} />
+          })}
+        </div>
       </div>
-      <ImageComponent>
+      <Image>
         <img
           src={`http://localhost:4000/image/${pokemonNumber}.png`}
           alt="pokemon_image"
         />
-      </ImageComponent>
+      </Image>
       <div className="card--name">
         <h1>{name}</h1>
       </div>
