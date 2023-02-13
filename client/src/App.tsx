@@ -55,6 +55,8 @@ function App() {
               name={item.name}
               pokemonNumber={item.number}
               type={item.type}
+              region={item.isRegion ?? undefined}
+              mega={item.isMega ?? undefined}
             />
           )
         })}

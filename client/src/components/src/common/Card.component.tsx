@@ -20,11 +20,11 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
   border: 1px solid #cccccc;
   border-radius: 1rem;
   padding: 1rem;
-  background: ${(props) => {
+  /* background: ${(props) => {
     return `${
       props.backgroundColor
     } url(${require(`../../../assets/image/${props.type}.svg`)}) no-repeat 95% 95%/62%`
-  }};
+  }}; */
   position: relative;
   z-index: 1;
 
@@ -61,7 +61,7 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
   .image--container {
     width: 11rem;
     height: 10rem;
-    margin: 2rem auto 0;
+    margin: 3rem auto 0;
   }
 
   .card--name {
