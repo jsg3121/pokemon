@@ -42,6 +42,11 @@ const Switch = styled.div<{ disabled?: boolean }>`
     cursor: pointer;
     overflow: hidden;
 
+    .ball {
+      width: 1.3rem;
+      height: 1.3rem;
+    }
+
     p {
       margin: 0 0.3rem;
     }

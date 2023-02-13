@@ -26,14 +26,16 @@ const Radio = styled.div`
     height: 1.3rem;
 
     .ball {
+      width: 1.2rem;
+      height: 1.2rem;
       position: absolute;
       transform: scale(0);
       left: 0;
     }
 
     .radio__unchecked {
-      width: 1.3rem;
-      height: 1.3rem;
+      width: 1.2rem;
+      height: 1.2rem;
       border-radius: 50%;
       border: 1px solid black;
       position: absolute;

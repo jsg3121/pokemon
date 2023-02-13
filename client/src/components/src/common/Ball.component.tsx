@@ -7,8 +7,8 @@ interface BallComponentProps {
 }
 
 const Ball = styled.span<{ value: boolean }>`
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 100%;
+  height: 100%;
   display: block;
   border-radius: 50%;
   background-color: #ffffff;
@@ -25,11 +25,11 @@ const Ball = styled.span<{ value: boolean }>`
   will-change: transform;
 
   .ball--top {
-    width: 1.3rem;
-    height: 0.65rem;
+    width: 100%;
+    height: 50%;
     background-color: #ff0000;
-    border-top-left-radius: 0.65rem;
-    border-top-right-radius: 0.65rem;
+    border-top-left-radius: 10rem;
+    border-top-right-radius: 10rem;
     border-bottom: 1px solid #000000;
     position: absolute;
     top: 0;
@@ -40,11 +40,11 @@ const Ball = styled.span<{ value: boolean }>`
   }
 
   .ball--bottom {
-    width: 1.3rem;
-    height: 0.65rem;
+    width: 100%;
+    height: 50%;
     background-color: #ffffff;
-    border-bottom-left-radius: 0.65rem;
-    border-bottom-right-radius: 0.65rem;
+    border-bottom-left-radius: 10rem;
+    border-bottom-right-radius: 10rem;
     border-top: 1px solid #000000;
     position: absolute;
     bottom: 0;
@@ -55,8 +55,8 @@ const Ball = styled.span<{ value: boolean }>`
   }
 
   .ball--center {
-    width: 0.6rem;
-    height: 0.6rem;
+    width: 50%;
+    height: 50%;
     background-color: #ffffff;
     border: 2px solid #000000;
     border-radius: 50%;
