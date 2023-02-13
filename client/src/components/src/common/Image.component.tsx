@@ -23,11 +23,9 @@ const ImageComponent: React.FC<ImageComponentProps> = (props) => {
   const { children } = props
 
   return (
-    <div className="image--container">
-      <Picture>
-        <figure>{children}</figure>
-      </Picture>
-    </div>
+    <Picture>
+      <figure>{children}</figure>
+    </Picture>
   )
 }
 

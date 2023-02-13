@@ -2,7 +2,6 @@ import { gql, useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 import { Card } from './components'
-import { Home } from './container'
 import { Pokemon } from './graphql/inedex'
 
 const Main = styled.main`
