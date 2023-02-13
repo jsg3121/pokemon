@@ -6,9 +6,9 @@ import Ball from './Ball.component'
 interface CheckboxComponentProps {
   value: string
   label: string
-  disabled: boolean
-  checked: boolean
-  onChecked: (value: string) => boolean
+  disabled?: boolean
+  checked?: boolean
+  onChecked: (value: string) => void
 }
 
 const Checkbox = styled.div`
@@ -24,30 +24,40 @@ const Checkbox = styled.div`
     position: relative;
     height: 1.3rem;
 
-    .ball {
-      width: 1.2em;
-      height: 1.2rem;
-      position: absolute;
-      transform: scale(0);
-      left: 0;
-    }
-
-    .checkbox__unchecked {
+    .check__icon {
       width: 1rem;
       height: 1rem;
-      border-radius: 0.3rem;
-      border: 1px solid black;
-      position: absolute;
-      left: 0;
-      z-index: 10;
-      transform: scale(1);
-      transition: transform 0.3s;
-      will-change: transform;
+      position: relative;
+
+      .ball {
+        width: 1em;
+        height: 1rem;
+        position: absolute;
+        transform-origin: top left;
+        transform: scale(0) translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+      }
+
+      .checkbox__unchecked {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.3rem;
+        border: 1px solid black;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 10;
+        transform: scale(1) translate(-50%, -50%);
+        transform-origin: top left;
+        transition: transform 0.3s;
+        will-change: transform;
+      }
     }
 
     & > .checkbox__text {
       height: 100%;
-      margin-left: 1.5rem;
+      margin-left: 0.3rem;
       font-size: 1rem;
       line-height: 1.5;
     }
@@ -55,10 +65,10 @@ const Checkbox = styled.div`
 
   input:checked + label {
     .ball {
-      transform: scale(1);
+      transform: scale(1) translate(-50%, -50%);
     }
     .checkbox__unchecked {
-      transform: scale(0);
+      transform: scale(0) translate(-50%, -50%);
     }
   }
 
@@ -84,7 +94,7 @@ const Checkbox = styled.div`
 `
 
 const CheckboxComponent: React.FC<CheckboxComponentProps> = (props) => {
-  const { label, value, checked, disabled, onChecked } = props
+  const { label, value, checked = false, disabled = false, onChecked } = props
 
   const handleCheck = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,12 +110,14 @@ const CheckboxComponent: React.FC<CheckboxComponentProps> = (props) => {
         disabled={disabled}
         id={value}
         value={value}
-        checked={checked}
+        defaultChecked={checked}
         onChange={handleCheck}
       />
       <label htmlFor={value}>
-        <i className="checkbox__unchecked" />
-        <Ball value={checked} />
+        <div className="check__icon">
+          <i className="checkbox__unchecked" />
+          <Ball value={checked} />
+        </div>
         <span className="checkbox__text">{label}</span>
       </label>
     </Checkbox>
