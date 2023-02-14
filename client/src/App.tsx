@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { Filter, List } from './container'
+import { FilterProvider } from './context'
+import MobxProvider from './store/src/MobxProvider'
 
 const Main = styled.main`
   margin: 0 auto;
@@ -15,8 +17,12 @@ const Main = styled.main`
 function App() {
   return (
     <Main className="App">
-      <Filter />
-      <section>{/* <List /> */}</section>
+      <MobxProvider>
+        <FilterProvider>
+          <Filter />
+        </FilterProvider>
+        <section>{/* <List /> */}</section>
+      </MobxProvider>
     </Main>
   )
 }

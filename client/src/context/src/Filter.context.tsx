@@ -1,42 +1,43 @@
+import { observer } from 'mobx-react'
 import React from 'react'
+import { useMobxStore } from '../../hook'
+import { FilterStore } from '../../store'
 
 interface FilterContextProps {
   children: React.ReactNode
 }
 
 type ContextType = {
-  type: Array<string>
-  name: string
-  generation: number
-  isMega: boolean
-  isRegion: boolean
-  isEvolution: boolean
+  filter?: FilterStore
+  changeFilter?: (data: {
+    type: keyof FilterStore
+    value: string | number | boolean
+  }) => void
 }
 
-export const FilterContext = React.createContext<ContextType>({
-  type: [],
-  name: '',
-  generation: 0,
-  isMega: false,
-  isRegion: false,
-  isEvolution: false,
-})
+export const FilterContext = React.createContext<ContextType>({})
 
-export const FilterProvider: React.FC<FilterContextProps> = (props) => {
-  const { children } = props
+export const FilterProvider: React.FC<FilterContextProps> = observer(
+  (props) => {
+    const { children } = props
+    const { filter } = useMobxStore()
 
-  const initialValue = {
-    type: [],
-    name: '',
-    generation: 0,
-    isMega: false,
-    isRegion: false,
-    isEvolution: false,
+    const changeFilter = React.useCallback(
+      (data: { type: keyof FilterStore; value: string | number | boolean }) => {
+        filter.changeFilter(data)
+      },
+      [filter]
+    )
+
+    const initialValue = {
+      changeFilter,
+      filter,
+    }
+
+    return (
+      <FilterContext.Provider value={initialValue}>
+        {children}
+      </FilterContext.Provider>
+    )
   }
-
-  return (
-    <FilterContext.Provider value={initialValue}>
-      {children}
-    </FilterContext.Provider>
-  )
-}
+)

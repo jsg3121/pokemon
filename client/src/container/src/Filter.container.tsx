@@ -1,7 +1,8 @@
-import React from 'react'
+import { observer } from 'mobx-react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Checkbox } from '../../components'
-import { FilterProvider } from '../../context'
+import { FilterContext } from '../../context'
 import { PokemonTypes } from '../../types'
 
 const Filter = styled.header`
@@ -9,28 +10,40 @@ const Filter = styled.header`
   height: 10rem;
 `
 
-const FilterContainer: React.FC = () => {
-  const handleCheck = React.useCallback((val: string) => {
-    console.log(val)
-  }, [])
+const FilterContainer: React.FC = observer(() => {
+  const { changeFilter, filter } = useContext(FilterContext)
+
+  const handleTypeCheck = React.useCallback(
+    (value: string) => {
+      if (changeFilter) {
+        changeFilter({ type: 'type', value })
+      }
+    },
+    [changeFilter]
+  )
 
   return (
     <Filter>
-      <FilterProvider>
-        <div className="filter__type">
-          {Object.entries(PokemonTypes).map((key) => {
-            return (
-              <Checkbox
-                label={key[1]}
-                value={key[0].toLowerCase()}
-                onChecked={handleCheck}
-              />
-            )
-          })}
-        </div>
-      </FilterProvider>
+      <div className="filter__type">
+        {Object.entries(PokemonTypes).map((key) => {
+          return (
+            <Checkbox
+              key={key[0]}
+              label={key[1]}
+              value={key[0].toLowerCase()}
+              onChecked={handleTypeCheck}
+              disabled={
+                filter?.type.length === 2 &&
+                filter.type.indexOf(key[0].toLowerCase()) < 0
+                  ? true
+                  : false
+              }
+            />
+          )
+        })}
+      </div>
     </Filter>
   )
-}
+})
 
 export default FilterContainer
