@@ -29,8 +29,6 @@ export class FilterStore {
             this.type.splice(this.type.indexOf(value.toString()), 1)
           }
         }
-        console.log(this.type.length)
-
         return
 
       default:

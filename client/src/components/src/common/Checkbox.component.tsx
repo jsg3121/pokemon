@@ -12,7 +12,7 @@ interface CheckboxComponentProps {
 }
 
 const Checkbox = styled.div`
-  padding: 0 0.5rem;
+  width: fit-content;
 
   input {
     display: none;
