@@ -16,7 +16,7 @@ export default {
       options: ['default', 'danger', 'waring', 'gray'],
       defaultValue: 'default',
     },
-    value: {
+    label: {
       defaultValue: 'Button',
       type: 'string',
     },

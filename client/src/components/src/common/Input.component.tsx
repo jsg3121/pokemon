@@ -3,9 +3,11 @@ import isEqual from 'fast-deep-equal'
 import styled from 'styled-components'
 
 interface InputComponentProps {
-  defaultValue: string
   type: 'text' | 'password'
-  status: 'default' | 'danger' | 'waring' | undefined
+  defaultValue?: string
+  placeholder?: string
+  status?: 'default' | 'danger' | 'waring'
+  onChange: (value: string) => void
 }
 
 const Input = styled.input<{
@@ -41,9 +43,24 @@ const Input = styled.input<{
 `
 
 const InputComponent: React.FC<InputComponentProps> = (props) => {
-  const { defaultValue, type, status } = props
+  const { defaultValue, placeholder, type, status, onChange } = props
 
-  return <Input type={type} defaultValue={defaultValue} status={status} />
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange(e.target.value)
+    },
+    [onChange]
+  )
+
+  return (
+    <Input
+      type={type}
+      defaultValue={defaultValue}
+      status={status}
+      placeholder={placeholder}
+      onChange={handleChange}
+    />
+  )
 }
 
 export default React.memo(InputComponent, isEqual)

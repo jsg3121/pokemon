@@ -5,7 +5,7 @@ import styled from 'styled-components'
 interface ButtonComponentProps {
   onClick: () => void
   buttonType: 'default' | 'danger' | 'waring' | 'gray'
-  value: string
+  label: string
 }
 
 const Button = styled.button<Pick<ButtonComponentProps, 'buttonType'>>`
@@ -48,7 +48,7 @@ const Button = styled.button<Pick<ButtonComponentProps, 'buttonType'>>`
 `
 
 const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
-  const { buttonType, value, onClick } = props
+  const { buttonType, label, onClick } = props
 
   const handleClick = React.useCallback(() => {
     onClick()
@@ -56,7 +56,7 @@ const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
 
   return (
     <Button onClick={handleClick} buttonType={buttonType}>
-      {value}
+      {label}
     </Button>
   )
 }

@@ -24,11 +24,14 @@ export class FilterStore {
         if (this.type.length <= 2) {
           if (this.type.indexOf(value.toString()) === -1) {
             this.type.push(value.toString())
-            this.setTypeArray(this.type)
+            this.setTypeArray()
           } else {
             this.type.splice(this.type.indexOf(value.toString()), 1)
           }
         }
+        return
+      case 'name':
+        this.name = value.toString()
         return
 
       default:
@@ -47,7 +50,7 @@ export class FilterStore {
   }
 
   @action
-  private setTypeArray(arr: Array<string>) {
+  private setTypeArray() {
     const set = new Set(this.type)
     this.type = [...set]
   }

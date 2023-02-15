@@ -94,12 +94,12 @@ const ModalComponent: React.FC<ModalComponentProps> = (props) => {
               <ButtonComponent
                 buttonType="default"
                 onClick={handleClick}
-                value="OK"
+                label="OK"
               />
               <ButtonComponent
                 buttonType="gray"
                 onClick={handleCancel}
-                value="Cancle"
+                label="Cancle"
               />
             </>
           )}
@@ -108,7 +108,7 @@ const ModalComponent: React.FC<ModalComponentProps> = (props) => {
               <ButtonComponent
                 buttonType={modalType}
                 onClick={handleClick}
-                value="OK"
+                label="OK"
               />
             </>
           )}
