@@ -3,7 +3,7 @@ import { action, makeObservable, observable } from 'mobx'
 export class FilterStore {
   @observable public name: string = ''
   @observable public type: Array<string> = []
-  @observable public generation: number | 'all' = 'all'
+  @observable public generation: Array<number> = []
   @observable public isMega: boolean | null = null
   @observable public isRegion: boolean | null = null
   @observable public isEvolution: boolean | null = null
@@ -33,6 +33,20 @@ export class FilterStore {
       case 'name':
         this.name = value.toString()
         return
+      case 'generation':
+        if (value === 'all') {
+          this.generation = []
+        } else {
+          if (this.generation.indexOf(parseInt(value.toString(), 10)) === -1) {
+            this.generation.push(parseInt(value.toString(), 10))
+          } else {
+            this.generation.splice(
+              this.generation.indexOf(parseInt(value.toString(), 10)),
+              1
+            )
+          }
+        }
+        return
 
       default:
         break
@@ -41,7 +55,7 @@ export class FilterStore {
 
   @action
   public clear() {
-    this.generation = 0
+    this.generation = []
     this.isEvolution = null
     this.isMega = null
     this.isRegion = null
