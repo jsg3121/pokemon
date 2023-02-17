@@ -1,44 +1,17 @@
-import { gql, useQuery } from '@apollo/client'
+import { observer } from 'mobx-react'
 import React from 'react'
 import { Card } from '../../components'
-import { Pokemon } from '../../graphql/inedex'
+import { useMobxStore } from '../../hook'
 
-interface PokemonList {
-  getList: Array<Pokemon>
-}
-
-const GET_POKEMON = gql`
-  query getList {
-    getList {
-      id
-      number
-      name
-      type
-      isRegion
-      isMega
-      typeSingle1
-      typeSingle2
-      isEvolution
-      evolutionId
-      generation
-    }
-  }
-`
-
-const ListContainer: React.FC = () => {
-  const { data: { getList } = { getList: [] } } =
-    useQuery<PokemonList>(GET_POKEMON)
-
-  React.useEffect(() => {
-    if (getList) {
-      console.log(getList)
-    }
-  }, [getList])
+const ListContainer: React.FC = observer(() => {
+  const {
+    pokemonList: { pokemon },
+  } = useMobxStore()
 
   return (
     <>
-      {getList &&
-        getList.map((item) => {
+      {pokemon &&
+        pokemon.map((item) => {
           return (
             <Card
               key={item.number}
@@ -52,6 +25,5 @@ const ListContainer: React.FC = () => {
         })}
     </>
   )
-}
-
+})
 export default ListContainer
