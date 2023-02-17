@@ -1,6 +1,11 @@
 import { PrismaClient } from '@prisma/client'
-import { Arg, Query, Resolver } from 'type-graphql'
-import { Pokemon, PokemonMega, PokemonRegion } from '../../type-graphql'
+import { Arg, Float, Int, Query, Resolver } from 'type-graphql'
+import {
+  IntFilter,
+  Pokemon,
+  PokemonMega,
+  PokemonRegion,
+} from '../../type-graphql'
 
 const prisma = new PrismaClient()
 
@@ -89,16 +94,23 @@ export default class PokemonResolver {
     nullable: true,
   })
   public async getPokemonFilter(
-    @Arg('generation', { nullable: true }) generation: number,
+    @Arg('generation', () => [String], { nullable: true }) generation: string[],
     @Arg('name', { nullable: true }) name: string,
-    @Arg('type', () => [String], { nullable: true }) type: string[],
     @Arg('isEvolution', { nullable: true }) isEvolution: boolean,
     @Arg('isRegion', { nullable: true }) isRegion: boolean,
-    @Arg('isMega', { nullable: true }) isMega: boolean
+    @Arg('isMega', { nullable: true }) isMega: boolean,
+    @Arg('type', () => [String] || null, { nullable: true }) type: string[]
   ): Promise<Pokemon[]> {
+    const changeNumber = []
+    generation.forEach((item: string) => {
+      changeNumber.push(parseInt(item, 10))
+    })
+
     const data = await prisma.pokemon.findMany({
       where: {
-        generation,
+        generation: {
+          in: changeNumber,
+        },
         name,
         type: {
           hasEvery: type,
