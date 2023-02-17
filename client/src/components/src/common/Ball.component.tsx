@@ -14,13 +14,7 @@ const Ball = styled.span<{ value: boolean }>`
   background-color: #ffffff;
   border: 1px solid #aaaaaa;
   position: relative;
-  ${(props) => {
-    if (props.value) {
-      return 'transform: translate(2rem, 0) rotate(0);'
-    } else {
-      return 'transform: translate(0, 0) rotate(-360deg);'
-    }
-  }}
+
   transition: transform 0.3s, rotate 0.3s;
   will-change: transform;
 

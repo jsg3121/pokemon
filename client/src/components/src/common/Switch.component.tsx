@@ -2,11 +2,12 @@ import React from 'react'
 import isEqual from 'fast-deep-equal'
 import styled from 'styled-components'
 import Ball from './Ball.component'
+import { FilterStore } from '../../../store'
 
 interface SwitchComponentProps {
-  onChange: (value: boolean) => void
-  name: string
-  defaultValue?: boolean
+  onChange: (data: { name: keyof FilterStore; value: boolean }) => void
+  name: keyof FilterStore
+  value?: boolean
   disabled?: boolean
 }
 
@@ -18,12 +19,20 @@ const Switch = styled.div<{ disabled?: boolean }>`
     display: none;
 
     & + label {
-      background-color: #4797f8;
+      background-color: #dddddd;
+
+      .ball {
+        transform: translate(0, 0) rotate(-360deg);
+      }
     }
 
     &:checked {
       & + label {
-        background-color: #41e835;
+        background-color: #4797f8;
+
+        .ball {
+          transform: translate(2rem, 0) rotate(0);
+        }
       }
     }
   }
@@ -73,23 +82,21 @@ const Switch = styled.div<{ disabled?: boolean }>`
   }
 `
 const SwitchComponent: React.FC<SwitchComponentProps> = (props) => {
-  const { name, defaultValue, disabled, onChange } = props
-  const [value, setValue] = React.useState<boolean>(defaultValue ?? false)
+  const { name, value = false, disabled = false, onChange } = props
 
   const handleChange = React.useCallback(() => {
-    setValue(() => !value)
-    onChange(value)
-  }, [onChange, value])
+    onChange({ name, value })
+  }, [name, onChange, value])
 
   return (
     <Switch disabled={disabled}>
       <input
         type="checkbox"
-        name={name}
         id={name}
         className="switch__checkbox"
         onChange={handleChange}
         disabled={disabled}
+        defaultChecked={value}
       />
       <label htmlFor={name}>
         <Ball value={value} />

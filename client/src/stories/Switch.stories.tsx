@@ -5,7 +5,7 @@ export default {
   title: 'Component/Switch',
   component: Switch,
   argTypes: {
-    defaultValue: {
+    value: {
       table: {
         disable: true,
       },
@@ -24,6 +24,6 @@ const Template: ComponentStory<typeof Switch> = (props) => {
 
 export const Default = Template.bind({})
 Default.args = {
-  name: 'default',
+  name: 'isMega',
   disabled: false,
 }

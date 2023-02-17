@@ -48,8 +48,11 @@ export class FilterStore {
         }
         return
 
-      default:
-        break
+      case 'isEvolution':
+      case 'isMega':
+      case 'isRegion':
+        this[`${type}`] = Boolean(value)
+        return
     }
   }
 

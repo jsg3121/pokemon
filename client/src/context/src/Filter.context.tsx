@@ -34,6 +34,8 @@ export const FilterProvider: React.FC<FilterContextProps> = observer(
       filter,
     }
 
+    React.useEffect(() => {}, [filter])
+
     return (
       <FilterContext.Provider value={initialValue}>
         {children}
