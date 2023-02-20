@@ -22,7 +22,7 @@ type ContextType = {
   }) => void
 }
 
-const Filter_POKEMON = gql`
+const FILTER_POKEMON = gql`
   query GetPokemonFilter(
     $type: [String!]
     $isMega: Boolean
@@ -62,20 +62,17 @@ export const FilterProvider: React.FC<FilterContextProps> = observer(
     const { filter } = useMobxStore()
     const { pokemonList } = useMobxStore()
 
-    const { data: { getPokemonFilter } = { getPokemonFilter: [] }, refetch } =
-      useQuery<PokemonList>(Filter_POKEMON, {
-        variables: {
-          ...variablesCheck({ ...filter }),
-        },
+    const { data: { getPokemonFilter } = { getPokemonFilter: [] } } =
+      useQuery<PokemonList>(FILTER_POKEMON, {
+        variables: filter.setValidation(),
         fetchPolicy: 'no-cache',
       })
 
     const changeFilter = React.useCallback(
       (data: { type: keyof FilterStore; value: string | boolean }) => {
         filter.changeFilter(data)
-        pokemonList.setPokemonList(getPokemonFilter)
       },
-      [filter, getPokemonFilter, pokemonList]
+      [filter]
     )
 
     const initialValue = {
@@ -85,7 +82,7 @@ export const FilterProvider: React.FC<FilterContextProps> = observer(
 
     React.useEffect(() => {
       pokemonList.setPokemonList(getPokemonFilter)
-    }, [getPokemonFilter, pokemonList, refetch, filter])
+    }, [getPokemonFilter, pokemonList])
 
     return (
       <FilterContext.Provider value={initialValue}>

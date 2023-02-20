@@ -21,13 +21,11 @@ export class FilterStore {
 
     switch (type) {
       case 'type':
-        if (this.type.length <= 2) {
-          if (this.type.indexOf(value.toString()) === -1) {
-            this.type.push(value.toString())
-            this.setTypeArray()
-          } else {
-            this.type.splice(this.type.indexOf(value.toString()), 1)
-          }
+        if (this.type.indexOf(value.toString()) === -1) {
+          this.type = [...this.type, value.toString()]
+        } else {
+          const index = this.type.indexOf(value.toString())
+          this.type.splice(index, 1)
         }
         return
       case 'name':
@@ -35,9 +33,11 @@ export class FilterStore {
         return
       case 'generation':
         if (this.generation.indexOf(value.toString()) === -1) {
-          this.generation.push(value.toString())
+          this.generation = [...this.generation, value.toString()]
         } else {
-          this.generation.splice(this.generation.indexOf(value.toString()), 1)
+          const cut = [...this.generation]
+          cut.splice(this.generation.indexOf(value.toString()), 1)
+          this.generation = cut
         }
         return
 
@@ -60,8 +60,16 @@ export class FilterStore {
   }
 
   @action
-  private setTypeArray() {
-    const set = new Set(this.type)
-    this.type = [...set]
+  public setValidation() {
+    const variable = {
+      name: this.name,
+      generation: this.generation.length === 0 ? undefined : this.generation,
+      type: this.type.length === 0 ? undefined : this.type,
+      isMega: this.isMega,
+      isRegion: this.isRegion,
+      isEvolution: this.isEvolution,
+    }
+
+    return variable
   }
 }

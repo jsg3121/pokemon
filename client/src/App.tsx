@@ -31,8 +31,8 @@ const Main = styled.main`
 function App() {
   return (
     <Main className="App">
-      <div className="dashboard">
-        <MobxProvider>
+      <MobxProvider>
+        <div className="dashboard">
           <FilterProvider>
             <section className="section__filter">
               <Filter />
@@ -43,8 +43,8 @@ function App() {
               <List />
             </section>
           </ListProvider>
-        </MobxProvider>
-      </div>
+        </div>
+      </MobxProvider>
     </Main>
   )
 }
