@@ -6,8 +6,7 @@ import { Button, Input } from '../../../../components'
 import { FilterContext } from '../../../../context'
 
 const Search = styled.div`
-  width: 30rem;
-  height: 5rem;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;

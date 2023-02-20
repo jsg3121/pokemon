@@ -7,14 +7,17 @@ import { observer } from 'mobx-react'
 import styled from 'styled-components'
 
 const Types = styled.div`
-  width: 50rem;
-  height: 8rem;
+  width: 100%;
+  height: 14rem;
   padding: 1rem;
 
   .filter__type--title {
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
     font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #333333;
 
     span {
       font-size: 0.8rem;
@@ -25,9 +28,9 @@ const Types = styled.div`
   }
 
   & > div {
-    width: 50rem;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
   }
 `

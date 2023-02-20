@@ -5,11 +5,11 @@ import Ball from './Ball.component'
 
 interface RadioComponentProps {
   name: string
-  value: string
   label: string
-  disabled: boolean
-  checked: boolean
-  onChecked: (value: string) => boolean
+  value: string
+  checked?: boolean
+  disabled?: boolean
+  onChecked: (value: string) => void
 }
 
 const Radio = styled.div`
@@ -83,7 +83,7 @@ const Radio = styled.div`
 `
 
 const RadioComponent: React.FC<RadioComponentProps> = (props) => {
-  const { name, label, value, checked, disabled, onChecked } = props
+  const { name, label, value, checked = false, disabled, onChecked } = props
 
   const handleCheck = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,12 +98,12 @@ const RadioComponent: React.FC<RadioComponentProps> = (props) => {
         type="radio"
         name={name}
         disabled={disabled}
-        id={value}
+        id={`${name}__${value}`}
         value={value}
-        checked={checked}
+        defaultChecked={checked}
         onChange={handleCheck}
       />
-      <label htmlFor={value}>
+      <label htmlFor={`${name}__${value}`}>
         <i className="radio__unchecked" />
         <Ball value={checked} />
         <span className="radio__text">{label}</span>

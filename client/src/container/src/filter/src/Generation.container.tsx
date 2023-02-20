@@ -5,8 +5,8 @@ import { FilterContext } from '../../../../context'
 import { Checkbox } from '../../../../components'
 
 const Generation = styled.div`
-  width: 50rem;
-  height: 5rem;
+  width: 100%;
+  height: 10rem;
   padding: 1rem;
 
   .filter__generation--title {
@@ -16,15 +16,15 @@ const Generation = styled.div`
   }
 
   & > div {
-    width: 45rem;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
   }
 `
 
 const GenerationContainer: React.FC = () => {
-  const { changeFilter, filter } = React.useContext(FilterContext)
+  const { changeFilter } = React.useContext(FilterContext)
 
   const handleGenCheck = React.useCallback(
     (value: string) => {

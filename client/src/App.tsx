@@ -7,29 +7,44 @@ import MobxProvider from './store/src/MobxProvider'
 const Main = styled.main`
   margin: 0 auto;
 
-  section {
-    padding: 1rem;
+  .dashboard {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .section__filter {
+    width: 20rem;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .section__list {
+    width: calc(100% - 20rem);
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, auto));
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
   }
 `
 
 function App() {
   return (
     <Main className="App">
-      <MobxProvider>
-        <FilterProvider>
-          <section>
-            <Filter />
-          </section>
-        </FilterProvider>
-        <ListProvider>
-          <section>
-            <List />
-          </section>
-        </ListProvider>
-      </MobxProvider>
+      <div className="dashboard">
+        <MobxProvider>
+          <FilterProvider>
+            <section className="section__filter">
+              <Filter />
+            </section>
+          </FilterProvider>
+          <ListProvider>
+            <section className="section__list">
+              <List />
+            </section>
+          </ListProvider>
+        </MobxProvider>
+      </div>
     </Main>
   )
 }
