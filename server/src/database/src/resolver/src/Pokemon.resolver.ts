@@ -121,6 +121,11 @@ export default class PokemonResolver {
         isMega,
         isRegion,
       },
+      orderBy: [
+        {
+          number: 'asc',
+        },
+      ],
     })
 
     if (data) {

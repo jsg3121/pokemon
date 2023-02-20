@@ -1,12 +1,12 @@
 import { action, makeObservable, observable } from 'mobx'
 
 export class FilterStore {
-  @observable public name: string = ''
+  @observable public name: string | undefined = undefined
   @observable public type: Array<string> = []
-  @observable public generation: Array<number> = []
-  @observable public isMega: boolean | null = null
-  @observable public isRegion: boolean | null = null
-  @observable public isEvolution: boolean | null = null
+  @observable public generation: Array<string> = []
+  @observable public isMega: boolean | undefined = undefined
+  @observable public isRegion: boolean | undefined = undefined
+  @observable public isEvolution: boolean | undefined = undefined
 
   constructor() {
     makeObservable(this)
@@ -15,7 +15,7 @@ export class FilterStore {
   @action
   public changeFilter(data: {
     type: keyof FilterStore
-    value: string | number | boolean
+    value: string | boolean
   }) {
     const { type, value } = data
 
@@ -34,17 +34,10 @@ export class FilterStore {
         this.name = value.toString()
         return
       case 'generation':
-        if (value === 'all') {
-          this.generation = []
+        if (this.generation.indexOf(value.toString()) === -1) {
+          this.generation.push(value.toString())
         } else {
-          if (this.generation.indexOf(parseInt(value.toString(), 10)) === -1) {
-            this.generation.push(parseInt(value.toString(), 10))
-          } else {
-            this.generation.splice(
-              this.generation.indexOf(parseInt(value.toString(), 10)),
-              1
-            )
-          }
+          this.generation.splice(this.generation.indexOf(value.toString()), 1)
         }
         return
 
@@ -59,9 +52,9 @@ export class FilterStore {
   @action
   public clear() {
     this.generation = []
-    this.isEvolution = null
-    this.isMega = null
-    this.isRegion = null
+    this.isEvolution = undefined
+    this.isMega = undefined
+    this.isRegion = undefined
     this.name = ''
     this.type = []
   }
@@ -70,12 +63,5 @@ export class FilterStore {
   private setTypeArray() {
     const set = new Set(this.type)
     this.type = [...set]
-  }
-
-  private checkTypeLength() {
-    if (this.type.length === 2) {
-      return false
-    }
-    return true
   }
 }

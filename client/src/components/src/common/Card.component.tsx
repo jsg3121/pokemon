@@ -89,8 +89,8 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
         <div className="card--tag">
           <h1>No. {pokemonNumber.toString().padStart(3, '0')}</h1>
           <div className="card--type">
-            {type.map((item) => {
-              return <Tag label={item} />
+            {type.map((item, index) => {
+              return <Tag label={item} key={index} />
             })}
           </div>
         </div>

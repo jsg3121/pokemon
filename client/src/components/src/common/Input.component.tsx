@@ -13,6 +13,7 @@ interface InputComponentProps {
 const Input = styled.input<{
   status: 'default' | 'danger' | 'waring' | undefined
 }>`
+  width: 100%;
   border: ${(props) => {
     switch (props.status) {
       case 'waring':

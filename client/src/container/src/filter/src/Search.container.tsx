@@ -6,12 +6,16 @@ import { Button, Input } from '../../../../components'
 import { FilterContext } from '../../../../context'
 
 const Search = styled.div`
-  width: 20rem;
+  width: 30rem;
   height: 5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+
+  button {
+    margin-left: 1rem;
+  }
 `
 
 const SearchContainer: React.FC = observer(() => {

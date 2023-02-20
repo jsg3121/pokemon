@@ -11,10 +11,10 @@ const ListContainer: React.FC = observer(() => {
   return (
     <>
       {pokemon &&
-        pokemon.map((item) => {
+        pokemon.map((item, index) => {
           return (
             <Card
-              key={item.number}
+              key={index}
               name={item.name}
               pokemonNumber={item.number}
               type={item.type}

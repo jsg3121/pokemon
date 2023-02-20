@@ -6,7 +6,7 @@ import { FilterContext } from '../../../../context'
 import { FilterStore } from '../../../../store'
 
 const Switchs = styled.div`
-  width: 25rem;
+  width: 30rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,6 +14,10 @@ const Switchs = styled.div`
   .switch__item {
     display: flex;
     align-items: center;
+
+    p {
+      margin-right: 0.75rem;
+    }
   }
 `
 

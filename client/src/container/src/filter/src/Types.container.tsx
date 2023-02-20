@@ -48,7 +48,7 @@ const TypesContainer: React.FC = observer(() => {
     <Types className="filter__type">
       <p className="filter__type--title">
         Type
-        {filter && filter.type.length === 2 && (
+        {filter && filter.type?.length === 2 && (
           <span>최대 두 타입까지 선택할 수 있습니다.</span>
         )}
       </p>
@@ -58,11 +58,12 @@ const TypesContainer: React.FC = observer(() => {
             <Checkbox
               key={key[0]}
               label={key[1]}
-              value={key[0].toLowerCase()}
+              value={key[1]}
               onChecked={handleTypeCheck}
               disabled={
-                filter?.type.length === 2 &&
-                filter.type.indexOf(key[0].toLowerCase()) < 0
+                filter &&
+                filter.type.length === 2 &&
+                filter.type.indexOf(key[1]) < 0
                   ? true
                   : false
               }

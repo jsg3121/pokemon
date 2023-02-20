@@ -4,14 +4,17 @@ import { Generations, Search, Switchs, Types } from './filter'
 
 const Filter = styled.header`
   width: 100%;
-  height: 10rem;
+  height: 13rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 `
 
 const FilterContainer: React.FC = () => {
   return (
     <Filter>
       <Search />
-      <Switchs />
+      {/* <Switchs /> */}
       <Generations />
       <Types />
     </Filter>
