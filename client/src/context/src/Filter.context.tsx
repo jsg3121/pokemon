@@ -64,7 +64,9 @@ export const FilterProvider: React.FC<FilterContextProps> = observer(
 
     const { data: { getPokemonFilter } = { getPokemonFilter: [] } } =
       useQuery<PokemonList>(FILTER_POKEMON, {
-        variables: filter.setValidation(),
+        variables: {
+          ...variablesCheck({ ...filter }),
+        },
         fetchPolicy: 'no-cache',
       })
 

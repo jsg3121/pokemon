@@ -25,7 +25,9 @@ export class FilterStore {
           this.type = [...this.type, value.toString()]
         } else {
           const index = this.type.indexOf(value.toString())
-          this.type.splice(index, 1)
+          const cut = [...this.type]
+          cut.splice(index, 1)
+          this.type = [...cut]
         }
         return
       case 'name':
@@ -35,8 +37,9 @@ export class FilterStore {
         if (this.generation.indexOf(value.toString()) === -1) {
           this.generation = [...this.generation, value.toString()]
         } else {
+          const index = this.generation.indexOf(value.toString())
           const cut = [...this.generation]
-          cut.splice(this.generation.indexOf(value.toString()), 1)
+          cut.splice(index, 1)
           this.generation = cut
         }
         return
