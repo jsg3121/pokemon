@@ -1,9 +1,9 @@
-import React from 'react'
 import isEqual from 'fast-deep-equal'
-import { RadioGroup } from '../../../../components'
-import styled from 'styled-components'
 import { observer } from 'mobx-react'
-import { useMobxStore } from '../../../../hook'
+import React from 'react'
+import styled from 'styled-components'
+import { RadioGroup } from '../../../../components'
+import { FilterContext } from '../../../../context'
 import { FilterStore } from '../../../../store'
 
 const Radio = styled.div`
@@ -18,13 +18,15 @@ const RadioOptions = [
 ]
 
 const RadioContainer: React.FC = observer(() => {
-  const { filter } = useMobxStore()
+  const { changeFilter } = React.useContext(FilterContext)
 
   const handleSelect = React.useCallback(
     (data: { type: keyof FilterStore; value: string }) => {
-      filter.changeFilter(data)
+      if (changeFilter) {
+        changeFilter(data)
+      }
     },
-    [filter]
+    [changeFilter]
   )
 
   return (
