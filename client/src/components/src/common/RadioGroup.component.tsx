@@ -8,6 +8,7 @@ interface RadioComponentProps {
   title: string
   name: keyof FilterStore
   options: Array<{ label: string; value: string }>
+  defaultValue?: boolean
   onSelect: (data: { type: keyof FilterStore; value: string }) => void
 }
 
@@ -30,7 +31,7 @@ const RadioGroup = styled.div`
 `
 
 const RadioGroupComponent: React.FC<RadioComponentProps> = (props) => {
-  const { title, name, options, onSelect } = props
+  const { title, name, options, defaultValue, onSelect } = props
 
   const handleCheck = React.useCallback(
     (data: string) => {
@@ -52,6 +53,7 @@ const RadioGroupComponent: React.FC<RadioComponentProps> = (props) => {
               label={label}
               value={value}
               onChecked={handleCheck}
+              defaultChecked={defaultValue}
             />
           )
         })}

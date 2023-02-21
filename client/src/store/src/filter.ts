@@ -4,9 +4,10 @@ export class FilterStore {
   @observable public name: string | undefined = undefined
   @observable public type: Array<string> = []
   @observable public generation: Array<string> = []
-  @observable public isMega: boolean | undefined = undefined
-  @observable public isRegion: boolean | undefined = undefined
-  @observable public isEvolution: boolean | undefined = undefined
+  @observable public isMega: string | undefined = undefined
+  @observable public isRegion: string | undefined = undefined
+  @observable public isEvolution: string | undefined = undefined
+  @observable public keyword: string | undefined = undefined
 
   constructor() {
     makeObservable(this)
@@ -44,9 +45,7 @@ export class FilterStore {
       case 'isEvolution':
       case 'isMega':
       case 'isRegion':
-        const changeVal = this.changeSwitchValue(value)
-
-        this[`${type}`] = changeVal
+        this[`${type}`] = value
         return
     }
   }
@@ -57,8 +56,13 @@ export class FilterStore {
     this.isEvolution = undefined
     this.isMega = undefined
     this.isRegion = undefined
-    this.name = ''
+    this.name = undefined
     this.type = []
+  }
+
+  @action
+  public setKeyword(keyword: string) {
+    this.keyword = keyword
   }
 
   @action

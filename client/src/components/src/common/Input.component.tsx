@@ -1,8 +1,9 @@
-import React from 'react'
 import isEqual from 'fast-deep-equal'
+import React from 'react'
 import styled from 'styled-components'
 
-interface InputComponentProps {
+interface InputComponentProps
+  extends Pick<React.HTMLAttributes<HTMLInputElement>, 'onKeyPress'> {
   type: 'text' | 'password'
   defaultValue?: string
   placeholder?: string
@@ -45,6 +46,7 @@ const Input = styled.input<{
 
 const InputComponent: React.FC<InputComponentProps> = (props) => {
   const { defaultValue, placeholder, type, status, onChange } = props
+  const inputRef = React.useRef<HTMLInputElement>(null)
 
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,10 +55,19 @@ const InputComponent: React.FC<InputComponentProps> = (props) => {
     [onChange]
   )
 
+  React.useEffect(() => {
+    if (defaultValue === undefined) {
+      if (inputRef.current) {
+        inputRef.current.value = ''
+      }
+    }
+  }, [defaultValue])
+
   return (
     <Input
       type={type}
-      defaultValue={defaultValue}
+      ref={inputRef}
+      defaultValue={defaultValue ? defaultValue : ''}
       status={status}
       placeholder={placeholder}
       onChange={handleChange}

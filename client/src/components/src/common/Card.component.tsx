@@ -22,6 +22,13 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
   padding: 1rem;
   position: relative;
   z-index: 1;
+  background-color: #ffffff;
+  transition: transform 0.2s;
+  will-change: transform;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   .card--info {
     width: 100%;

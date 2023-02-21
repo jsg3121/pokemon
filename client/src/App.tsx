@@ -20,7 +20,7 @@ const Main = styled.main`
 
   .section__list {
     width: calc(100% - 20rem);
-    padding: 1rem;
+    padding: 2rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(14rem, auto));
     grid-column-gap: 1rem;

@@ -18,7 +18,7 @@ const RadioOptions = [
 ]
 
 const RadioContainer: React.FC = observer(() => {
-  const { changeFilter } = React.useContext(FilterContext)
+  const { filter, changeFilter } = React.useContext(FilterContext)
 
   const handleSelect = React.useCallback(
     (data: { type: keyof FilterStore; value: string }) => {
@@ -36,18 +36,21 @@ const RadioContainer: React.FC = observer(() => {
         name="isMega"
         options={RadioOptions}
         onSelect={handleSelect}
+        defaultValue={filter && filter.isMega !== undefined}
       />
       <RadioGroup
         title="리전폼"
         name="isRegion"
         options={RadioOptions}
         onSelect={handleSelect}
+        defaultValue={filter && filter.isRegion !== undefined}
       />
       <RadioGroup
         title="진화여부"
         name="isEvolution"
         options={RadioOptions}
         onSelect={handleSelect}
+        defaultValue={filter && filter.isEvolution !== undefined}
       />
     </Radio>
   )

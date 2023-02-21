@@ -63,6 +63,7 @@ const TypesContainer: React.FC = observer(() => {
               label={key[1]}
               value={key[1]}
               onChecked={handleTypeCheck}
+              defaultChecked={filter && filter.type.length !== 0}
               disabled={
                 filter &&
                 filter.type.length === 2 &&
