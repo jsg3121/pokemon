@@ -5,11 +5,11 @@ import Ball from './Ball.component'
 
 interface RadioComponentProps {
   name: string
-  value: string
   label: string
-  disabled: boolean
-  checked: boolean
-  onChecked: (value: string) => boolean
+  value: string
+  defaultChecked?: boolean
+  disabled?: boolean
+  onChecked: (value: string) => void
 }
 
 const Radio = styled.div`
@@ -83,7 +83,16 @@ const Radio = styled.div`
 `
 
 const RadioComponent: React.FC<RadioComponentProps> = (props) => {
-  const { name, label, value, checked, disabled, onChecked } = props
+  const {
+    name,
+    label,
+    value,
+    defaultChecked = false,
+    disabled,
+    onChecked,
+  } = props
+
+  const radioRef = React.useRef<HTMLInputElement>(null)
 
   const handleCheck = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,20 +101,29 @@ const RadioComponent: React.FC<RadioComponentProps> = (props) => {
     [onChecked]
   )
 
+  React.useEffect(() => {
+    if (!defaultChecked) {
+      if (radioRef.current) {
+        radioRef.current.checked = false
+      }
+    }
+  }, [defaultChecked])
+
   return (
     <Radio>
       <input
+        ref={radioRef}
         type="radio"
         name={name}
         disabled={disabled}
-        id={value}
+        id={`${name}__${value}`}
         value={value}
-        checked={checked}
+        defaultChecked={defaultChecked}
         onChange={handleCheck}
       />
-      <label htmlFor={value}>
+      <label htmlFor={`${name}__${value}`}>
         <i className="radio__unchecked" />
-        <Ball value={checked} />
+        <Ball value={defaultChecked} />
         <span className="radio__text">{label}</span>
       </label>
     </Radio>

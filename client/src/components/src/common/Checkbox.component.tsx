@@ -7,7 +7,7 @@ interface CheckboxComponentProps {
   value: string
   label: string
   disabled?: boolean
-  checked?: boolean
+  defaultChecked?: boolean
   onChecked: (value: string) => void
 }
 
@@ -94,7 +94,14 @@ const Checkbox = styled.div`
 `
 
 const CheckboxComponent: React.FC<CheckboxComponentProps> = (props) => {
-  const { label, value, checked = false, disabled = false, onChecked } = props
+  const {
+    label,
+    value,
+    defaultChecked = false,
+    disabled = false,
+    onChecked,
+  } = props
+  const checkboxRef = React.useRef<HTMLInputElement>(null)
 
   const handleCheck = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,20 +110,29 @@ const CheckboxComponent: React.FC<CheckboxComponentProps> = (props) => {
     [onChecked]
   )
 
+  React.useEffect(() => {
+    if (!defaultChecked) {
+      if (checkboxRef.current) {
+        checkboxRef.current.checked = false
+      }
+    }
+  }, [defaultChecked])
+
   return (
     <Checkbox>
       <input
+        ref={checkboxRef}
         type="checkbox"
         disabled={disabled}
         id={value}
         value={value}
-        defaultChecked={checked}
+        defaultChecked={defaultChecked}
         onChange={handleCheck}
       />
       <label htmlFor={value}>
         <div className="check__icon">
           <i className="checkbox__unchecked" />
-          <Ball value={checked} />
+          <Ball value={defaultChecked} />
         </div>
         <span className="checkbox__text">{label}</span>
       </label>

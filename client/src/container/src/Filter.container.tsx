@@ -1,19 +1,45 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Generations, Search, Switchs, Types } from './filter'
+import { Button } from '../../components'
+import { useMobxStore } from '../../hook'
+import { Generations, Radio, Search, Types } from './filter'
 
-const Filter = styled.header`
-  width: 100%;
-  height: 10rem;
+const Filter = styled.section`
+  width: 20rem;
+  height: 100vh;
+  border-right: 1px solid #333333;
+  padding-right: 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  .btn__reset {
+    width: 100%;
+    padding: 1rem 1rem 0 1rem;
+    text-align: right;
+
+    button {
+      width: 100%;
+    }
+  }
 `
 
 const FilterContainer: React.FC = () => {
+  const { filter } = useMobxStore()
+
+  const handleClick = React.useCallback(() => {
+    filter.clear()
+  }, [filter])
+
   return (
     <Filter>
+      <div className="btn__reset">
+        <Button label="검색 초기화" onClick={handleClick} buttonType="waring" />
+      </div>
       <Search />
-      <Switchs />
-      <Generations />
       <Types />
+      <Generations />
+      <Radio />
     </Filter>
   )
 }

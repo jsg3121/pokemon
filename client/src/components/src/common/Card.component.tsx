@@ -22,6 +22,13 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
   padding: 1rem;
   position: relative;
   z-index: 1;
+  background-color: #ffffff;
+  transition: transform 0.2s;
+  will-change: transform;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 
   .card--info {
     width: 100%;
@@ -89,8 +96,8 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
         <div className="card--tag">
           <h1>No. {pokemonNumber.toString().padStart(3, '0')}</h1>
           <div className="card--type">
-            {type.map((item) => {
-              return <Tag label={item} />
+            {type.map((item, index) => {
+              return <Tag label={item} key={index} />
             })}
           </div>
         </div>

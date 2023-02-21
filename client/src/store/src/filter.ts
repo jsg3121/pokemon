@@ -1,57 +1,51 @@
 import { action, makeObservable, observable } from 'mobx'
 
 export class FilterStore {
-  @observable public name: string = ''
+  @observable public name: string | undefined = undefined
   @observable public type: Array<string> = []
-  @observable public generation: Array<number> = []
-  @observable public isMega: boolean | null = null
-  @observable public isRegion: boolean | null = null
-  @observable public isEvolution: boolean | null = null
+  @observable public generation: Array<string> = []
+  @observable public isMega: string | undefined = undefined
+  @observable public isRegion: string | undefined = undefined
+  @observable public isEvolution: string | undefined = undefined
+  @observable public keyword: string | undefined = undefined
 
   constructor() {
     makeObservable(this)
   }
 
   @action
-  public changeFilter(data: {
-    type: keyof FilterStore
-    value: string | number | boolean
-  }) {
+  public changeFilter(data: { type: keyof FilterStore; value: string }) {
     const { type, value } = data
 
     switch (type) {
       case 'type':
-        if (this.type.length <= 2) {
-          if (this.type.indexOf(value.toString()) === -1) {
-            this.type.push(value.toString())
-            this.setTypeArray()
-          } else {
-            this.type.splice(this.type.indexOf(value.toString()), 1)
-          }
+        if (this.type.indexOf(value) === -1) {
+          this.type = [...this.type, value]
+        } else {
+          const index = this.type.indexOf(value)
+          const cut = [...this.type]
+          cut.splice(index, 1)
+          this.type = [...cut]
         }
         return
       case 'name':
-        this.name = value.toString()
+        this.name = value
         return
       case 'generation':
-        if (value === 'all') {
-          this.generation = []
+        if (this.generation.indexOf(value) === -1) {
+          this.generation = [...this.generation, value]
         } else {
-          if (this.generation.indexOf(parseInt(value.toString(), 10)) === -1) {
-            this.generation.push(parseInt(value.toString(), 10))
-          } else {
-            this.generation.splice(
-              this.generation.indexOf(parseInt(value.toString(), 10)),
-              1
-            )
-          }
+          const index = this.generation.indexOf(value)
+          const cut = [...this.generation]
+          cut.splice(index, 1)
+          this.generation = cut
         }
         return
 
       case 'isEvolution':
       case 'isMega':
       case 'isRegion':
-        this[`${type}`] = Boolean(value)
+        this[`${type}`] = value
         return
     }
   }
@@ -59,23 +53,26 @@ export class FilterStore {
   @action
   public clear() {
     this.generation = []
-    this.isEvolution = null
-    this.isMega = null
-    this.isRegion = null
-    this.name = ''
+    this.isEvolution = undefined
+    this.isMega = undefined
+    this.isRegion = undefined
+    this.name = undefined
     this.type = []
   }
 
   @action
-  private setTypeArray() {
-    const set = new Set(this.type)
-    this.type = [...set]
+  public setKeyword(keyword: string) {
+    this.keyword = keyword
   }
 
-  private checkTypeLength() {
-    if (this.type.length === 2) {
+  @action
+  private changeSwitchValue(value: string): boolean | undefined {
+    if (value === 'true') {
+      return true
+    } else if (value === 'false') {
       return false
+    } else if (value === 'all') {
+      return undefined
     }
-    return true
   }
 }

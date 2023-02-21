@@ -113,7 +113,9 @@ export default class PokemonResolver {
         generation: generation && {
           in: changeNumber,
         },
-        name,
+        name: {
+          contains: name,
+        },
         type: type && {
           hasEvery: type,
         },
@@ -121,6 +123,11 @@ export default class PokemonResolver {
         isMega,
         isRegion,
       },
+      orderBy: [
+        {
+          number: 'asc',
+        },
+      ],
     })
 
     if (data) {

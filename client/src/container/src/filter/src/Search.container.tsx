@@ -2,42 +2,55 @@ import isEqual from 'fast-deep-equal'
 import { observer } from 'mobx-react'
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Input } from '../../../../components'
+import { Input } from '../../../../components'
 import { FilterContext } from '../../../../context'
+import { useDebounce } from '../../../../hook'
 
 const Search = styled.div`
-  width: 20rem;
-  height: 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
   padding: 1rem;
+
+  .filter__name--title {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #333333;
+  }
+
+  button {
+    margin-left: 1rem;
+  }
 `
 
 const SearchContainer: React.FC = observer(() => {
-  const [keyword, setKeyword] = React.useState<string>('')
+  const { filter, changeFilter } = React.useContext(FilterContext)
+  const [keyword, setKeyword] = useDebounce()
 
-  const { changeFilter } = React.useContext(FilterContext)
+  const handleChange = React.useCallback(
+    (str: string) => {
+      setKeyword(str)
+    },
+    [setKeyword]
+  )
 
-  const hadleClick = React.useCallback(() => {
+  React.useEffect(() => {
     if (changeFilter) {
       changeFilter({ type: 'name', value: keyword })
     }
   }, [changeFilter, keyword])
 
-  const handleChange = React.useCallback((e: string) => {
-    setKeyword(() => e)
-  }, [])
-
   return (
     <Search>
+      <p className="filter__name--title">Name</p>
       <Input
         type="text"
         status="default"
         placeholder="포켓몬을 입력하세요"
         onChange={handleChange}
+        defaultValue={filter?.name}
       />
-      <Button buttonType="default" label="검색" onClick={hadleClick} />
     </Search>
   )
 })
