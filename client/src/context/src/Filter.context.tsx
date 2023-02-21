@@ -16,10 +16,7 @@ interface PokemonList {
 
 type ContextType = {
   filter?: FilterStore
-  changeFilter?: (data: {
-    type: keyof FilterStore
-    value: string | boolean
-  }) => void
+  changeFilter?: (data: { type: keyof FilterStore; value: string }) => void
 }
 
 const FILTER_POKEMON = gql`
@@ -71,7 +68,7 @@ export const FilterProvider: React.FC<FilterContextProps> = observer(
       })
 
     const changeFilter = React.useCallback(
-      (data: { type: keyof FilterStore; value: string | boolean }) => {
+      (data: { type: keyof FilterStore; value: string }) => {
         filter.changeFilter(data)
       },
       [filter]

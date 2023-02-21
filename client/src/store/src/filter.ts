@@ -13,31 +13,28 @@ export class FilterStore {
   }
 
   @action
-  public changeFilter(data: {
-    type: keyof FilterStore
-    value: string | boolean
-  }) {
+  public changeFilter(data: { type: keyof FilterStore; value: string }) {
     const { type, value } = data
 
     switch (type) {
       case 'type':
-        if (this.type.indexOf(value.toString()) === -1) {
-          this.type = [...this.type, value.toString()]
+        if (this.type.indexOf(value) === -1) {
+          this.type = [...this.type, value]
         } else {
-          const index = this.type.indexOf(value.toString())
+          const index = this.type.indexOf(value)
           const cut = [...this.type]
           cut.splice(index, 1)
           this.type = [...cut]
         }
         return
       case 'name':
-        this.name = value.toString()
+        this.name = value
         return
       case 'generation':
-        if (this.generation.indexOf(value.toString()) === -1) {
-          this.generation = [...this.generation, value.toString()]
+        if (this.generation.indexOf(value) === -1) {
+          this.generation = [...this.generation, value]
         } else {
-          const index = this.generation.indexOf(value.toString())
+          const index = this.generation.indexOf(value)
           const cut = [...this.generation]
           cut.splice(index, 1)
           this.generation = cut
@@ -47,7 +44,9 @@ export class FilterStore {
       case 'isEvolution':
       case 'isMega':
       case 'isRegion':
-        this[`${type}`] = Boolean(value)
+        const changeVal = this.changeSwitchValue(value)
+
+        this[`${type}`] = changeVal
         return
     }
   }
@@ -63,16 +62,13 @@ export class FilterStore {
   }
 
   @action
-  public setValidation() {
-    const variable = {
-      name: this.name,
-      generation: this.generation.length === 0 ? undefined : this.generation,
-      type: this.type.length === 0 ? undefined : this.type,
-      isMega: this.isMega,
-      isRegion: this.isRegion,
-      isEvolution: this.isEvolution,
+  private changeSwitchValue(value: string): boolean | undefined {
+    if (value === 'true') {
+      return true
+    } else if (value === 'false') {
+      return false
+    } else if (value === 'all') {
+      return undefined
     }
-
-    return variable
   }
 }

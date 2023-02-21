@@ -1,12 +1,14 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
+import { FilterStore } from '../../../store'
 import Radio from './Radio.component'
 
 interface RadioComponentProps {
   title: string
-  name: string
+  name: keyof FilterStore
   options: Array<{ label: string; value: string }>
+  onSelect: (data: { type: keyof FilterStore; value: string }) => void
 }
 
 const RadioGroup = styled.div`
@@ -28,9 +30,14 @@ const RadioGroup = styled.div`
 `
 
 const RadioGroupComponent: React.FC<RadioComponentProps> = (props) => {
-  const { title, name, options } = props
+  const { title, name, options, onSelect } = props
 
-  const handleCheck = React.useCallback((data: string) => {}, [])
+  const handleCheck = React.useCallback(
+    (data: string) => {
+      onSelect({ type: name, value: data })
+    },
+    [name, onSelect]
+  )
 
   return (
     <RadioGroup>
