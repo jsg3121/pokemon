@@ -13,7 +13,6 @@ export const runServer = async () => {
   app.use(express.json())
   app.use(express.static(__dirname + '/assets'))
   app.use('/api/v1/pokemon', listRouter)
-  console.log(__dirname)
   await createApolloServer({ app })
 
   app.listen(PORT, () => {
