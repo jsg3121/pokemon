@@ -123,7 +123,7 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
       <div className="card--image__pokemon">
         <Image>
           <img
-            src={`http://localhost:4000/image/${pokemonNumber}.png`}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonNumber}.png`}
             alt="pokemon_image"
           />
         </Image>
