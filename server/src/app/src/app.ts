@@ -17,7 +17,7 @@ export const runServer = async () => {
 
   app.listen(PORT, () => {
     console.log(PORT)
-
     console.log('server running...')
+    console.log('start!!!')
   })
 }
