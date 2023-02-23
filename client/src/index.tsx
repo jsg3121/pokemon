@@ -5,7 +5,7 @@ import App from './App'
 import GlobalStyles from './Global'
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'http://43.201.49.91:4000/graphql',
   cache: new InMemoryCache(),
 })
 
