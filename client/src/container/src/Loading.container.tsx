@@ -50,7 +50,7 @@ const LoadingContainer: React.FC = () => {
           return (value += 1)
         }
       })
-    }, 1000)
+    }, 250)
 
     return () => {
       return clearInterval(interval)
