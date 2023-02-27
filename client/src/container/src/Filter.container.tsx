@@ -11,7 +11,7 @@ const Filter = styled.section`
   padding-right: 1rem;
   position: fixed;
   left: 0;
-  top: 0;
+  top: 5rem;
   background-color: #ffffff;
 
   .btn__reset {

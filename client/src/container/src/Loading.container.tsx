@@ -9,7 +9,7 @@ import { ReactComponent as Isang } from '../../assets/image/bulbasaur.svg'
 
 const Loading = styled.section`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: relative;
 
   .loading__image {
