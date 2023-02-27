@@ -8,4 +8,4 @@ echo
 echo "이미지 추가중..."
 cp -r ./src/assets ./build/app/src
 
-echo "finish!!
+echo "finish!!"
