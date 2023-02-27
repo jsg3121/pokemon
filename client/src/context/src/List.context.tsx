@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react'
 import React from 'react'
+import { Loading } from '../../container'
 import { Pokemon } from '../../graphql/inedex'
+import { useMobxStore } from '../../hook'
 
 interface ListProviderProps {
   children: React.ReactNode
@@ -14,10 +16,13 @@ export const ListContext = React.createContext<ContextType>({})
 
 export const ListProvider: React.FC<ListProviderProps> = observer((props) => {
   const { children } = props
+  const { pokemonList } = useMobxStore()
 
   const initialValue = {}
 
   return (
-    <ListContext.Provider value={initialValue}>{children}</ListContext.Provider>
+    <ListContext.Provider value={initialValue}>
+      {!pokemonList.isLoading ? <>{children}</> : <Loading />}
+    </ListContext.Provider>
   )
 })

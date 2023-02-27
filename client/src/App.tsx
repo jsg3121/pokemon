@@ -5,17 +5,22 @@ import { ListProvider } from './context/src/List.context'
 import MobxProvider from './store/src/MobxProvider'
 
 const Main = styled.main`
+  width: 100%;
+  height: 100vh;
   margin: 0 auto;
 
   .dashboard {
     display: flex;
-    align-items: center;
+    height: 100%;
+    width: 100%;
   }
 
   .section__filter {
     width: 20rem;
+    height: 100vh;
     align-items: flex-start;
     position: relative;
+    flex-shrink: 0;
   }
 
   .section__list {

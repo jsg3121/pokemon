@@ -12,6 +12,7 @@ const Filter = styled.section`
   position: fixed;
   left: 0;
   top: 0;
+  background-color: #ffffff;
 
   .btn__reset {
     width: 100%;

@@ -59,7 +59,7 @@ export const FilterProvider: React.FC<FilterContextProps> = observer(
     const { filter } = useMobxStore()
     const { pokemonList } = useMobxStore()
 
-    const { data: { getPokemonFilter } = { getPokemonFilter: [] } } =
+    const { data: { getPokemonFilter } = { getPokemonFilter: [] }, loading } =
       useQuery<PokemonList>(FILTER_POKEMON, {
         variables: {
           ...variablesCheck({ ...filter }),
@@ -82,6 +82,10 @@ export const FilterProvider: React.FC<FilterContextProps> = observer(
     React.useEffect(() => {
       pokemonList.setPokemonList(getPokemonFilter)
     }, [getPokemonFilter, pokemonList])
+
+    React.useEffect(() => {
+      pokemonList.setLoading(loading)
+    }, [loading, pokemonList])
 
     return (
       <FilterContext.Provider value={initialValue}>

@@ -3,6 +3,7 @@ import { Pokemon } from '../../graphql/inedex'
 
 export class PokemonListStore {
   @observable public pokemon: Array<Pokemon> = []
+  @observable public isLoading: boolean = true
 
   constructor() {
     makeObservable(this)
@@ -11,5 +12,10 @@ export class PokemonListStore {
   @action
   public setPokemonList(list: Array<Pokemon>) {
     this.pokemon = [...list]
+  }
+
+  @action
+  public setLoading(loading: boolean) {
+    this.isLoading = loading
   }
 }
