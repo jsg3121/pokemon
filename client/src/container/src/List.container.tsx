@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Card } from '../../components'
 import { useMobxStore } from '../../hook'
 
@@ -7,6 +8,15 @@ const ListContainer: React.FC = observer(() => {
   const {
     pokemonList: { pokemon },
   } = useMobxStore()
+
+  const navigate = useNavigate()
+
+  const handleClick = React.useCallback(
+    (number: number) => {
+      navigate(`/detail/${number}`)
+    },
+    [navigate]
+  )
 
   return (
     <>
@@ -20,6 +30,7 @@ const ListContainer: React.FC = observer(() => {
               type={item.type}
               region={item.isRegion ?? undefined}
               mega={item.isMega ?? undefined}
+              onClick={handleClick}
             />
           )
         })}
