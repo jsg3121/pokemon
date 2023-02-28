@@ -124,7 +124,7 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
         <Image>
           <img
             // src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonNumber}.png`}
-            src={`http://43.201.49.91:4000/image/${pokemonNumber}.png`}
+            src={`http://localhost:4000/image/official-artwork/${pokemonNumber}.png`}
             alt="pokemon_image"
             loading="lazy"
           />
