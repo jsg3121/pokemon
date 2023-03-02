@@ -1,5 +1,5 @@
 import { action, makeObservable, observable } from 'mobx'
-import { Pokemon } from '../../graphql/inedex'
+import { Pokemon } from '../../graphql'
 
 export class PokemonListStore {
   @observable public pokemon: Array<Pokemon> = []

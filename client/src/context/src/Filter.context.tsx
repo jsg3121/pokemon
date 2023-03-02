@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import { observer } from 'mobx-react'
 import React from 'react'
 import { variablesCheck } from '../../common'
-import { Pokemon } from '../../graphql/inedex'
+import { Pokemon } from '../../graphql'
 import { useMobxStore } from '../../hook'
 import { FilterStore } from '../../store'
 

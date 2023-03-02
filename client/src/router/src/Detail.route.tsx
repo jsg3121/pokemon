@@ -1,11 +1,14 @@
 import React from 'react'
 import isEqual from 'fast-deep-equal'
-import styled from 'styled-components'
-
-const Detail = styled.section``
+import { DetailProvider } from '../../context'
+import { Detail } from '../../container'
 
 const DetailRoute: React.FC = () => {
-  return <Detail>dddddddd</Detail>
+  return (
+    <DetailProvider>
+      <Detail />
+    </DetailProvider>
+  )
 }
 
 export default React.memo(DetailRoute, isEqual)
