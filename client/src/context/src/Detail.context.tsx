@@ -62,8 +62,8 @@ const GET_MEGA = gql`
 
 type ContextType = {
   detailInfo?: Pokemon
-  regionInfo?: Array<PokemonRegion> | {}
-  megaInfo?: Array<PokemonMega> | {}
+  regionInfo?: Array<PokemonRegion> | []
+  megaInfo?: Array<PokemonMega> | []
 }
 
 export const DetailContext = React.createContext<ContextType>({})
@@ -82,9 +82,9 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
     }
   )
 
-  const [getRegion, { data: { getRegionForm } = { getRegionForm: {} } }] =
+  const [getRegion, { data: { getRegionForm } = { getRegionForm: [] } }] =
     useLazyQuery<PokemonDetail['region']>(GET_REGION)
-  const [getMega, { data: { getMegaEvolution } = { getMegaEvolution: {} } }] =
+  const [getMega, { data: { getMegaEvolution } = { getMegaEvolution: [] } }] =
     useLazyQuery<PokemonDetail['mega']>(GET_MEGA)
 
   const initialValue = {
