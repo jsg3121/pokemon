@@ -3,7 +3,7 @@ import isEqual from 'fast-deep-equal'
 import { DetailContext } from '../../context'
 
 const DetailContainer: React.FC = () => {
-  const { detailInfo } = React.useContext(DetailContext)
+  const { detailInfo, megaInfo, regionInfo } = React.useContext(DetailContext)
 
   return (
     <>

@@ -39,13 +39,13 @@ export default class PokemonResolver {
    * @param number 포켓몬 번호
    * @returns {PokemonRegion}
    */
-  @Query(() => PokemonRegion)
+  @Query(() => [PokemonRegion])
   public async getRegionForm(
     @Arg('number') number: number
-  ): Promise<PokemonRegion | []> {
-    const data = await prisma.pokemonRegion.findUnique({
+  ): Promise<Array<PokemonRegion>> {
+    const data = await prisma.pokemonRegion.findMany({
       where: {
-        id: number,
+        pokemonNumber: number,
       },
     })
 
@@ -62,13 +62,13 @@ export default class PokemonResolver {
    * @param number 포켓몬 번호
    * @returns {PokemonMega}
    */
-  @Query(() => PokemonMega)
+  @Query(() => [PokemonMega])
   public async getMegaEvolution(
     @Arg('number') number: number
-  ): Promise<PokemonMega> {
-    const data = await prisma.pokemonMega.findUnique({
+  ): Promise<Array<PokemonMega>> {
+    const data = await prisma.pokemonMega.findMany({
       where: {
-        id: number,
+        pokemonNumber: number,
       },
     })
 
