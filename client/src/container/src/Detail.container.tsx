@@ -1,9 +1,9 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
-import { Tag } from '../../components'
+import { Image, Tag } from '../../components'
 import { DetailContext } from '../../context'
-import { ImageSwitch } from './detail'
+import { ImageSwitch, InfoHeader, InfoTable } from './detail'
 
 const Detail = styled.section`
   width: 100%;
@@ -16,29 +16,6 @@ const DetailInfo = styled.article`
   width: clamp(20rem, 50vw, 60rem);
   height: 100%;
   margin: 0 auto;
-
-  .detail__info--number {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.8rem;
-    color: #777777;
-  }
-
-  ul {
-    .detail__info--type {
-      width: 7rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .detail__info--name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 0.1rem;
-      margin-bottom: 0.5rem;
-    }
-  }
 `
 
 const DetailContainer: React.FC = () => {
@@ -46,24 +23,27 @@ const DetailContainer: React.FC = () => {
 
   return (
     <Detail>
-      {detailInfo && (
-        <DetailInfo>
-          <h1 className="detail__info--number">
-            No.{detailInfo.number.toString().padStart(5, '0')}
-          </h1>
-          <ImageSwitch number={detailInfo.number} />
-          <ul>
-            <li>
-              <p className="detail__info--name">{detailInfo.name}</p>
-            </li>
-            <li className="detail__info--type">
-              {detailInfo.type.map((item, index) => {
-                return <Tag label={item} key={index} />
-              })}
-            </li>
-          </ul>
-        </DetailInfo>
-      )}
+      <DetailInfo>
+        {detailInfo && (
+          <>
+            <ImageSwitch number={detailInfo.number} />
+            <InfoHeader
+              number={detailInfo.number}
+              evolutions={detailInfo.evolutionId}
+              name={detailInfo.name}
+            />
+            <InfoTable
+              generation={detailInfo.generation}
+              types={detailInfo.type}
+              evolutions={
+                detailInfo.evolutionId.length === 0
+                  ? undefined
+                  : detailInfo.evolutionId
+              }
+            />
+          </>
+        )}
+      </DetailInfo>
       {/* 
       <h1>메가</h1>
       {megaInfo &&
