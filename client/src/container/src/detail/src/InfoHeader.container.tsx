@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Image } from '../../../../components'
 
@@ -40,12 +41,31 @@ const InfoHeader = styled.div`
       height: 6rem;
       display: flex;
       justify-content: space-around;
+
+      & > div {
+        cursor: pointer;
+        transition: transform 0.2s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
     }
   }
 `
 
 const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
   const { evolutions, name, number } = props
+
+  const navigate = useNavigate()
+
+  const handleClick = React.useCallback(
+    (e: React.MouseEvent) => {
+      const changeNumber = e.currentTarget.getAttribute('data-number')
+      navigate(`/detail/${changeNumber}`)
+    },
+    [navigate]
+  )
 
   return (
     <InfoHeader>
@@ -60,7 +80,7 @@ const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
         <div className="info__evolution--image">
           {evolutions.map((item) => {
             return (
-              <div key={item}>
+              <div key={item} onClick={handleClick} data-number={item}>
                 <Image>
                   <img
                     src={`http://43.201.49.91:4000/image/official-artwork/${item}.png`}

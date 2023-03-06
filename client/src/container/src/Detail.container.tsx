@@ -1,7 +1,6 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
-import { Image, Tag } from '../../components'
 import { DetailContext } from '../../context'
 import { ImageSwitch, InfoHeader, InfoTable } from './detail'
 
