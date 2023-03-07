@@ -62,8 +62,8 @@ const GET_MEGA = gql`
 
 type ContextType = {
   detailInfo?: Pokemon
-  regionInfo?: Array<PokemonRegion> | []
-  megaInfo?: Array<PokemonMega> | []
+  regionInfo?: Array<PokemonRegion>
+  megaInfo?: Array<PokemonMega>
 }
 
 export const DetailContext = React.createContext<ContextType>({})

@@ -6,6 +6,7 @@ import { Image } from '../../../../components'
 interface InfoHeaderContainerProps {
   number: number
   name: string
+  generate: number
   evolutions: Array<number>
 }
 
@@ -55,7 +56,7 @@ const InfoHeader = styled.div`
 `
 
 const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
-  const { evolutions, name, number } = props
+  const { evolutions, name, generate, number } = props
 
   const navigate = useNavigate()
 
@@ -83,7 +84,7 @@ const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
               <div key={item} onClick={handleClick} data-number={item}>
                 <Image>
                   <img
-                    src={`http://43.201.49.91:4000/image/official-artwork/${item}.png`}
+                    src={`http://43.201.49.91:4000/image/official-artwork/gen${generate}/${item}.png`}
                     alt="pokemon_image"
                     loading="lazy"
                   />

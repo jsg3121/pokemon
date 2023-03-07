@@ -8,6 +8,7 @@ import Tag from './Tag.component'
 
 interface CardComponentProps {
   pokemonNumber: number
+  generate: number
   name: string
   type: Array<string>
   region?: boolean
@@ -85,7 +86,7 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
 `
 
 const CardComponent: React.FC<CardComponentProps> = (props) => {
-  const { type, pokemonNumber, name, mega, region, onClick } = props
+  const { type, pokemonNumber, name, mega, generate, region, onClick } = props
 
   const typeVal = React.useMemo(() => {
     return getIconType(type[0])
@@ -134,7 +135,7 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
         <Image>
           <img
             // src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonNumber}.png`}
-            src={`http://43.201.49.91:4000/image/official-artwork/${pokemonNumber}.png`}
+            src={`http://43.201.49.91:4000/image/official-artwork/gen${generate}/${pokemonNumber}.png`}
             alt="pokemon_image"
             loading="lazy"
           />

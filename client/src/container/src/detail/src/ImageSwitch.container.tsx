@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 interface ImageSwitchContainerProps {
   number: number
+  generate: number
 }
 
 const ImageSwitch = styled.div`
@@ -24,7 +25,7 @@ const ImageSwitch = styled.div`
 `
 
 const ImageSwitchContainer: React.FC<ImageSwitchContainerProps> = (props) => {
-  const { number } = props
+  const { number, generate } = props
   const [shiny, setShiny] = React.useState<boolean>(false)
 
   const handleChange = React.useCallback(
@@ -43,14 +44,14 @@ const ImageSwitchContainer: React.FC<ImageSwitchContainerProps> = (props) => {
       {shiny === true ? (
         <Image>
           <img
-            src={`http://43.201.49.91:4000/image/official-artwork/shiny/${number}.png`}
+            src={`http://43.201.49.91:4000/image/official-artwork/gen${generate}/shiny/${number}.png`}
             alt="shiny_image"
           />
         </Image>
       ) : (
         <Image>
           <img
-            src={`http://43.201.49.91:4000/image/official-artwork/${number}.png`}
+            src={`http://43.201.49.91:4000/image/official-artwork/gen${generate}/${number}.png`}
             alt="normal_image"
           />
         </Image>

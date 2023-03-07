@@ -28,6 +28,7 @@ const ListContainer: React.FC = observer(() => {
               name={item.name}
               pokemonNumber={item.number}
               type={item.type}
+              generate={item.generation}
               region={item.isRegion ?? undefined}
               mega={item.isMega ?? undefined}
               onClick={handleClick}

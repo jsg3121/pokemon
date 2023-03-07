@@ -1,6 +1,7 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
+import { Switch } from '../../components'
 import { DetailContext } from '../../context'
 import { ImageSwitch, InfoHeader, InfoTable } from './detail'
 
@@ -20,13 +21,33 @@ const DetailInfo = styled.article`
 const DetailContainer: React.FC = () => {
   const { detailInfo, megaInfo, regionInfo } = React.useContext(DetailContext)
 
+  const handleMega = React.useCallback(() => {}, [])
+
   return (
     <Detail>
       <DetailInfo>
+        <div className="detail__other-info">
+          {megaInfo && (
+            <>
+              <p>메가진화</p>
+              <Switch name="megaInfo" onChange={handleMega} />
+            </>
+          )}
+          {regionInfo && (
+            <>
+              <p>메가진화</p>
+              <Switch name="megaInfo" onChange={handleMega} />
+            </>
+          )}
+        </div>
         {detailInfo && (
           <>
-            <ImageSwitch number={detailInfo.number} />
+            <ImageSwitch
+              number={detailInfo.number}
+              generate={detailInfo.generation}
+            />
             <InfoHeader
+              generate={detailInfo.generation}
               number={detailInfo.number}
               evolutions={detailInfo.evolutionId}
               name={detailInfo.name}
