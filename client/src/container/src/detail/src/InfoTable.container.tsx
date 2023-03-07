@@ -32,7 +32,7 @@ const InfoTableContainer: React.FC<InfoTableContainerProps> = (props) => {
         <p>{generation}세대</p>
       </TableCell>
       <TableCell title="진화">
-        <p>{evolutions ? '진화 불가능' : '진화 가능'}</p>
+        <p>{evolutions === undefined ? '진화 불가능' : '진화 가능'}</p>
       </TableCell>
     </InfoTable>
   )
