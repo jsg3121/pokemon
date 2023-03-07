@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react'
 import React from 'react'
 import { Loading } from '../../container'
-import { Pokemon } from '../../graphql/inedex'
+import { Pokemon } from '../../graphql'
 import { useMobxStore } from '../../hook'
 
 interface ListProviderProps {

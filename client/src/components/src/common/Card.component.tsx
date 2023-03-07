@@ -12,6 +12,7 @@ interface CardComponentProps {
   type: Array<string>
   region?: boolean
   mega?: boolean
+  onClick?: (number: number) => void
 }
 
 const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
@@ -84,14 +85,23 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
 `
 
 const CardComponent: React.FC<CardComponentProps> = (props) => {
-  const { type, pokemonNumber, name, mega, region } = props
+  const { type, pokemonNumber, name, mega, region, onClick } = props
 
   const typeVal = React.useMemo(() => {
     return getIconType(type[0])
   }, [type])
 
+  const handleClick = React.useCallback(() => {
+    if (onClick) {
+      onClick(pokemonNumber)
+    }
+  }, [onClick, pokemonNumber])
+
   return (
-    <Card type={typeVal.type} backgroundColor={typeVal.color}>
+    <Card
+      type={typeVal.type}
+      backgroundColor={typeVal.color}
+      onClick={handleClick}>
       <div className="card--info">
         <div className="card--tag">
           <h1>No. {pokemonNumber.toString().padStart(3, '0')}</h1>

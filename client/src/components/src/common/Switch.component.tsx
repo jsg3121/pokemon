@@ -2,11 +2,10 @@ import React from 'react'
 import isEqual from 'fast-deep-equal'
 import styled from 'styled-components'
 import Ball from './Ball.component'
-import { FilterStore } from '../../../store'
 
 interface SwitchComponentProps {
-  onChange: (data: { name: keyof FilterStore; value: boolean }) => void
-  name: keyof FilterStore
+  onChange: (data: { name: string; value: boolean }) => void
+  name: string
   value?: boolean
   disabled?: boolean
 }
@@ -83,16 +82,14 @@ const Switch = styled.div<{ disabled?: boolean }>`
 `
 const SwitchComponent: React.FC<SwitchComponentProps> = (props) => {
   const { name, value = false, disabled = false, onChange } = props
-  const [checked, setChecked] = React.useState<boolean>()
+  const [checked, setChecked] = React.useState<boolean>(false)
 
   const handleChange = React.useCallback(() => {
     setChecked((value) => !value)
   }, [])
 
   React.useEffect(() => {
-    if (checked) {
-      onChange({ name, value: checked })
-    }
+    onChange({ name, value: checked })
   }, [checked, name, onChange])
 
   return (
