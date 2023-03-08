@@ -9,6 +9,10 @@ import { FilterStore } from '../../../../store'
 const Radio = styled.div`
   width: 100%;
   padding: 1rem;
+
+  & > div {
+    height: 6rem;
+  }
 `
 
 const RadioOptions = [
@@ -21,9 +25,14 @@ const RadioContainer: React.FC = observer(() => {
   const { filter, changeFilter } = React.useContext(FilterContext)
 
   const handleSelect = React.useCallback(
-    (data: { type: keyof FilterStore; value: string }) => {
+    (data: { name: string; value: string }) => {
+      const option = {
+        type: data.name as keyof FilterStore,
+        value: data.value,
+      }
+
       if (changeFilter) {
-        changeFilter(data)
+        changeFilter(option)
       }
     },
     [changeFilter]

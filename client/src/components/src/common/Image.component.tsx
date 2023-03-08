@@ -15,6 +15,7 @@ const Picture = styled.picture`
 
     img {
       height: 100%;
+      margin: 0 auto;
     }
   }
 `

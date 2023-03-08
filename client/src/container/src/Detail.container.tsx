@@ -1,57 +1,47 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
+import { Settings } from 'react-slick'
 import styled from 'styled-components'
-import { Switch } from '../../components'
 import { DetailContext } from '../../context'
-import { ImageSwitch, InfoHeader, InfoTable } from './detail'
+import { Images, InfoHeader, InfoTable, Switchs } from './detail'
 
 const Detail = styled.section`
   width: 100%;
   height: 100%;
   padding: 2rem;
-  box-sizing: border-box;
 `
 
 const DetailInfo = styled.article`
   width: clamp(20rem, 50vw, 60rem);
   height: 100%;
   margin: 0 auto;
+  position: relative;
 `
 
-const DetailContainer: React.FC = () => {
-  const { detailInfo, megaInfo, regionInfo } = React.useContext(DetailContext)
+const settings: Settings = {
+  dots: false,
+  speed: 0,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+}
 
-  const handleMega = React.useCallback(() => {}, [])
+const DetailContainer: React.FC = () => {
+  const { detailInfo, otherInfo, megaInfo } = React.useContext(DetailContext)
 
   return (
     <Detail>
       <DetailInfo>
-        <div className="detail__other-info">
-          {megaInfo && (
-            <>
-              <p>메가진화</p>
-              <Switch name="megaInfo" onChange={handleMega} />
-            </>
-          )}
-          {regionInfo && (
-            <>
-              <p>메가진화</p>
-              <Switch name="megaInfo" onChange={handleMega} />
-            </>
-          )}
-        </div>
+        <Switchs />
         {detailInfo && (
           <>
-            <ImageSwitch
-              number={detailInfo.number}
-              generate={detailInfo.generation}
-            />
-            <InfoHeader
-              generate={detailInfo.generation}
-              number={detailInfo.number}
-              evolutions={detailInfo.evolutionId}
-              name={detailInfo.name}
-            />
+            {otherInfo === 'normal' && <Images />}
+            {otherInfo === 'mega' && megaInfo && (
+              <>
+                {megaInfo.map((list, index) => {
+                  return <Images index={index} />
+                })}
+              </>
+            )}
             <InfoTable
               generation={detailInfo.generation}
               types={detailInfo.type}
@@ -61,30 +51,15 @@ const DetailContainer: React.FC = () => {
                   : detailInfo.evolutionId
               }
             />
+            <InfoHeader
+              generate={detailInfo.generation}
+              number={detailInfo.number}
+              evolutions={detailInfo.evolutionId}
+              name={detailInfo.name}
+            />
           </>
         )}
       </DetailInfo>
-      {/* 
-      <h1>메가</h1>
-      {megaInfo &&
-        megaInfo.map((item, index) => {
-          return (
-            <React.Fragment key={index}>
-              <p>{item.pokemonNumber}</p>
-              <p>{item.type}</p>
-            </React.Fragment>
-          )
-        })}
-      <h1>리전</h1>
-      {regionInfo &&
-        regionInfo.map((item) => {
-          return (
-            <React.Fragment key={item.id}>
-              <p>{item.type}</p>
-              <p>{item.region}</p>
-            </React.Fragment>
-          )
-        })} */}
     </Detail>
   )
 }

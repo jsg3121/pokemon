@@ -16,6 +16,7 @@ const InfoTable = styled.div`
   grid-template-rows: repeat(3, 1fr);
   border: 2px solid #333333;
   border-radius: 10px;
+  overflow: hidden;
 `
 
 const InfoTableContainer: React.FC<InfoTableContainerProps> = (props) => {
