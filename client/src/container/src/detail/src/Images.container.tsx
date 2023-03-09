@@ -1,6 +1,6 @@
 import React from 'react'
 import isEqual from 'fast-deep-equal'
-import { Image, Switch } from '../../../../components'
+import { Image } from '../../../../components'
 import styled from 'styled-components'
 import { DetailContext } from '../../../../context'
 

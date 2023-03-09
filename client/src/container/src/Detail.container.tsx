@@ -1,7 +1,8 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
-import { Settings } from 'react-slick'
+import Slider, { Settings } from 'react-slick'
 import styled from 'styled-components'
+import { NextArrow, PrevArrow } from '../../components'
 import { DetailContext } from '../../context'
 import { Images, InfoHeader, InfoTable, Switchs } from './detail'
 
@@ -20,13 +21,18 @@ const DetailInfo = styled.article`
 
 const settings: Settings = {
   dots: false,
-  speed: 0,
+  speed: 100,
   slidesToShow: 1,
   slidesToScroll: 1,
+  infinite: false,
+  fade: true,
+  nextArrow: <NextArrow />,
+  prevArrow: <PrevArrow />,
 }
 
 const DetailContainer: React.FC = () => {
-  const { detailInfo, otherInfo, megaInfo } = React.useContext(DetailContext)
+  const { detailInfo, otherInfo, megaInfo, regionInfo } =
+    React.useContext(DetailContext)
 
   return (
     <Detail>
@@ -36,12 +42,25 @@ const DetailContainer: React.FC = () => {
           <>
             {otherInfo === 'normal' && <Images />}
             {otherInfo === 'mega' && megaInfo && (
-              <>
-                {megaInfo.map((list, index) => {
-                  return <Images index={index} />
+              <Slider {...settings}>
+                {megaInfo.map((_, index) => {
+                  return <Images index={index} key={index} />
                 })}
-              </>
+              </Slider>
             )}
+            {otherInfo === 'region' && regionInfo && (
+              <Slider {...settings}>
+                {regionInfo.map((_, index) => {
+                  return <Images index={index} key={index} />
+                })}
+              </Slider>
+            )}
+            <InfoHeader
+              generate={detailInfo.generation}
+              number={detailInfo.number}
+              evolutions={detailInfo.evolutionId}
+              name={detailInfo.name}
+            />
             <InfoTable
               generation={detailInfo.generation}
               types={detailInfo.type}
@@ -50,12 +69,6 @@ const DetailContainer: React.FC = () => {
                   ? undefined
                   : detailInfo.evolutionId
               }
-            />
-            <InfoHeader
-              generate={detailInfo.generation}
-              number={detailInfo.number}
-              evolutions={detailInfo.evolutionId}
-              name={detailInfo.name}
             />
           </>
         )}
