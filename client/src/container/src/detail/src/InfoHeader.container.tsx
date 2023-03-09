@@ -1,3 +1,4 @@
+import isEqual from 'fast-deep-equal'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -98,4 +99,4 @@ const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
   )
 }
 
-export default InfoHeaderContainer
+export default React.memo(InfoHeaderContainer, isEqual)

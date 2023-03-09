@@ -47,6 +47,9 @@ export default class PokemonResolver {
       where: {
         pokemonNumber: number,
       },
+      orderBy: {
+        id: 'asc',
+      },
     })
 
     if (data) {
@@ -69,6 +72,9 @@ export default class PokemonResolver {
     const data = await prisma.pokemonMega.findMany({
       where: {
         pokemonNumber: number,
+      },
+      orderBy: {
+        id: 'asc',
       },
     })
 

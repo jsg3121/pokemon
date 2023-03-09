@@ -4,7 +4,7 @@ import Slider, { Settings } from 'react-slick'
 import styled from 'styled-components'
 import { NextArrow, PrevArrow } from '../../components'
 import { DetailContext } from '../../context'
-import { Images, InfoHeader, InfoTable, Switchs } from './detail'
+import { DetailView, Images, InfoHeader, InfoTable, Switchs } from './detail'
 
 const Detail = styled.section`
   width: 100%;
@@ -21,11 +21,8 @@ const DetailInfo = styled.article`
 
 const settings: Settings = {
   dots: false,
-  speed: 100,
-  slidesToShow: 1,
-  slidesToScroll: 1,
+  speed: 0,
   infinite: false,
-  fade: true,
   nextArrow: <NextArrow />,
   prevArrow: <PrevArrow />,
 }
@@ -40,36 +37,51 @@ const DetailContainer: React.FC = () => {
         <Switchs />
         {detailInfo && (
           <>
-            {otherInfo === 'normal' && <Images />}
+            {otherInfo === 'normal' && (
+              <DetailView
+                generate={detailInfo.generation}
+                number={detailInfo.number}
+                evolutions={detailInfo.evolutionId}
+                name={detailInfo.name}
+                types={detailInfo.type}
+              />
+            )}
             {otherInfo === 'mega' && megaInfo && (
               <Slider {...settings}>
-                {megaInfo.map((_, index) => {
-                  return <Images index={index} key={index} />
+                {megaInfo.map((item, index) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <DetailView
+                        generate={detailInfo.generation}
+                        number={detailInfo.number}
+                        evolutions={detailInfo.evolutionId}
+                        name={detailInfo.name}
+                        types={item.type}
+                        index={index}
+                      />
+                    </React.Fragment>
+                  )
                 })}
               </Slider>
             )}
             {otherInfo === 'region' && regionInfo && (
               <Slider {...settings}>
-                {regionInfo.map((_, index) => {
-                  return <Images index={index} key={index} />
+                {regionInfo.map((item, index) => {
+                  return (
+                    <React.Fragment key={index}>
+                      <DetailView
+                        generate={detailInfo.generation}
+                        number={detailInfo.number}
+                        evolutions={detailInfo.evolutionId}
+                        name={detailInfo.name}
+                        types={item.type}
+                        index={index}
+                      />
+                    </React.Fragment>
+                  )
                 })}
               </Slider>
             )}
-            <InfoHeader
-              generate={detailInfo.generation}
-              number={detailInfo.number}
-              evolutions={detailInfo.evolutionId}
-              name={detailInfo.name}
-            />
-            <InfoTable
-              generation={detailInfo.generation}
-              types={detailInfo.type}
-              evolutions={
-                detailInfo.evolutionId.length === 0
-                  ? undefined
-                  : detailInfo.evolutionId
-              }
-            />
           </>
         )}
       </DetailInfo>

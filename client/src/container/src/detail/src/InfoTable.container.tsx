@@ -6,6 +6,7 @@ interface InfoTableContainerProps {
   types: Array<string>
   generation: number
   evolutions?: Array<number>
+  region?: string
 }
 
 const InfoTable = styled.div`
@@ -20,7 +21,7 @@ const InfoTable = styled.div`
 `
 
 const InfoTableContainer: React.FC<InfoTableContainerProps> = (props) => {
-  const { types, generation, evolutions } = props
+  const { types, region, evolutions } = props
 
   return (
     <InfoTable className="detail__info--table">
@@ -29,12 +30,16 @@ const InfoTableContainer: React.FC<InfoTableContainerProps> = (props) => {
           return <Tag label={item} key={index} />
         })}
       </TableCell>
-      <TableCell title="첫 등장 세대">
-        <p>{generation}세대</p>
-      </TableCell>
       <TableCell title="진화">
         <p>{evolutions === undefined ? '진화 불가능' : '진화 가능'}</p>
       </TableCell>
+      {region && (
+        <TableCell title="지역">
+          <p>{region} 지방</p>
+        </TableCell>
+      )}
+      <TableCell title="약점 타입">{/* <p>{generation}세대</p> */}</TableCell>
+      <TableCell title="강점 타입">{/* <p>{generation}세대</p> */}</TableCell>
     </InfoTable>
   )
 }
