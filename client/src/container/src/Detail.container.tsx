@@ -4,7 +4,7 @@ import Slider, { Settings } from 'react-slick'
 import styled from 'styled-components'
 import { NextArrow, PrevArrow } from '../../components'
 import { DetailContext } from '../../context'
-import { DetailView, Images, InfoHeader, InfoTable, Switchs } from './detail'
+import { DetailView, Switchs } from './detail'
 
 const Detail = styled.section`
   width: 100%;

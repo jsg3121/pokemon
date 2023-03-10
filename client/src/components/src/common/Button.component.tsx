@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 interface ButtonComponentProps {
-  onClick: () => void
+  onClick?: () => void
   buttonType: 'default' | 'danger' | 'waring' | 'gray'
   label: string
 }
@@ -51,7 +51,9 @@ const ButtonComponent: React.FC<ButtonComponentProps> = (props) => {
   const { buttonType, label, onClick } = props
 
   const handleClick = React.useCallback(() => {
-    onClick()
+    if (onClick) {
+      onClick()
+    }
   }, [onClick])
 
   return (

@@ -1,5 +1,7 @@
 import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+import { Button } from '../../components'
 
 const Header = styled.header`
   width: 100%;
@@ -12,6 +14,7 @@ const Header = styled.header`
   z-index: 100;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   h1 {
     color: #ffcc02;
@@ -22,9 +25,20 @@ const Header = styled.header`
 `
 
 const HeaderContainer: React.FC = () => {
+  const { pathname } = useLocation()
+
   return (
     <Header>
-      <h1>Pokemon Dogam</h1>
+      <Link to="/">
+        <h1>Pokemon Dogam</h1>
+      </Link>
+      {pathname !== '/' && (
+        <div className="detail__button--back">
+          <Link to="/" replace>
+            <Button buttonType="default" label="뒤로가기" />
+          </Link>
+        </div>
+      )}
     </Header>
   )
 }
