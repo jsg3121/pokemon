@@ -15,6 +15,11 @@ const Dashboard = styled.div`
     position: relative;
     flex-shrink: 0;
     margin-top: 5rem;
+
+    @media screen and (max-width: 475px) {
+      display: none;
+      position: absolute;
+    }
   }
 
   .section__list {
@@ -25,6 +30,13 @@ const Dashboard = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(14rem, auto));
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
+
+    @media screen and (max-width: 475px) {
+      width: 100%;
+      padding: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(9rem, auto));
+      grid-column-gap: 0.5rem;
+    }
   }
 `
 
