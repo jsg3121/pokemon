@@ -8,7 +8,7 @@ interface TagComponentProps {
   label: string
 }
 
-const Tag = styled.p<{ color: TypesColor }>`
+const Tag = styled.p<{ color: TypesColor; type: string }>`
   width: 3rem;
   height: 1.25rem;
   padding: 0 0.5rem;
@@ -24,6 +24,18 @@ const Tag = styled.p<{ color: TypesColor }>`
     color: #ffffff;
     line-height: 1.8;
   }
+
+  @media screen and (max-width: 475px) {
+    width: 1rem;
+    height: 1rem;
+    background: ${(props) =>
+        `url(${process.env.PUBLIC_URL}/assets/${props.type}.svg)`}
+      center center/100% no-repeat;
+
+    & > span {
+      display: none;
+    }
+  }
 `
 
 const TagComponent: React.FC<TagComponentProps> = (props) => {
@@ -34,8 +46,8 @@ const TagComponent: React.FC<TagComponentProps> = (props) => {
   }, [label])
 
   return (
-    <Tag color={color}>
-      <span>{type}</span>
+    <Tag color={color} type={type}>
+      <span>{label}</span>
     </Tag>
   )
 }

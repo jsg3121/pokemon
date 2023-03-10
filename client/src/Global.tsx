@@ -156,6 +156,25 @@ const GlobalStyles = createGlobalStyle`
   body{
     height: 100vh;
   }
+
+  @media screen and (max-width: 475px){
+    html, body {
+      font-size: 12px;
+    }
+  }
+  
+  @media screen and (min-width: 476px) and (max-width: 960px) {
+     html, body {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (min-width: 961px){
+     html, body {
+      font-size: 16px;
+    }
+  }
+
 `
 
 export default GlobalStyles

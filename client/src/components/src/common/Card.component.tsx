@@ -28,8 +28,10 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
   transition: transform 0.2s;
   will-change: transform;
 
-  &:hover {
-    transform: scale(1.1);
+  @media screen and (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 
   .card--info {
@@ -56,6 +58,14 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
           margin-left: 0.5rem;
         }
       }
+
+      @media screen and (max-width: 475px) {
+        justify-content: right;
+
+        h1 {
+          display: none;
+        }
+      }
     }
 
     .card--icon {
@@ -71,6 +81,12 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
     width: 11rem;
     height: 10rem;
     margin: 2rem auto 0;
+
+    @media screen and (max-width: 475px) {
+      width: 5rem;
+      height: 4rem;
+      margin: 0 auto;
+    }
   }
 
   .card--name {
@@ -82,6 +98,25 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
       font-size: 1.7rem;
       font-weight: 500;
     }
+
+    @media screen and (max-width: 475px) {
+      margin-top: 0.8rem;
+      margin-left: 0.6rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      h1 {
+        font-size: 0.8rem;
+        text-align: left;
+      }
+    }
+  }
+
+  @media screen and (max-width: 475px) {
+    width: 8rem;
+    height: 8rem;
+    padding: 0.6rem;
   }
 `
 
