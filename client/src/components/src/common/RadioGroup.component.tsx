@@ -1,20 +1,18 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
-import { FilterStore } from '../../../store'
 import Radio from './Radio.component'
 
 interface RadioComponentProps {
-  title: string
-  name: keyof FilterStore
+  title?: string
+  name: string
   options: Array<{ label: string; value: string }>
   defaultValue?: boolean
-  onSelect: (data: { type: keyof FilterStore; value: string }) => void
+  onSelect: (data: { name: string; value: string }) => void
 }
 
 const RadioGroup = styled.div`
   width: 100%;
-  height: 6rem;
 
   .item__title {
     font-size: 1.1rem;
@@ -35,14 +33,14 @@ const RadioGroupComponent: React.FC<RadioComponentProps> = (props) => {
 
   const handleCheck = React.useCallback(
     (data: string) => {
-      onSelect({ type: name, value: data })
+      onSelect({ name, value: data })
     },
     [name, onSelect]
   )
 
   return (
     <RadioGroup>
-      <p className="item__title">{title}</p>
+      {title && <p className="item__title">{title}</p>}
       <div className="radio__item">
         {options.map((item, index) => {
           const { label, value } = item

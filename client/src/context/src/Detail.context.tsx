@@ -62,8 +62,12 @@ const GET_MEGA = gql`
 
 type ContextType = {
   detailInfo?: Pokemon
-  regionInfo?: Array<PokemonRegion> | []
-  megaInfo?: Array<PokemonMega> | []
+  regionInfo?: Array<PokemonRegion>
+  megaInfo?: Array<PokemonMega>
+  isShiny?: boolean
+  otherInfo?: string
+  setShiny?: () => void
+  onOtherInfoChange?: (val: string) => void
 }
 
 export const DetailContext = React.createContext<ContextType>({})
@@ -71,6 +75,8 @@ export const DetailContext = React.createContext<ContextType>({})
 export const DetailProvider: React.FC<DetailContextProps> = (props) => {
   const { children } = props
   const { number = '' } = useParams()
+  const [isShiny, setIsShiny] = React.useState<boolean>()
+  const [otherInfo, setOtherInfo] = React.useState<string>('normal')
 
   const { data: { getSinglePokemon } = {} } = useQuery<PokemonDetail['single']>(
     GET_POKEMON,
@@ -87,11 +93,13 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
   const [getMega, { data: { getMegaEvolution } = { getMegaEvolution: [] } }] =
     useLazyQuery<PokemonDetail['mega']>(GET_MEGA)
 
-  const initialValue = {
-    detailInfo: getSinglePokemon,
-    regionInfo: getRegionForm,
-    megaInfo: getMegaEvolution,
-  }
+  const setShiny = React.useCallback(() => {
+    setIsShiny((val) => !val)
+  }, [])
+
+  const onOtherInfoChange = React.useCallback((val: string) => {
+    setOtherInfo(val)
+  }, [])
 
   React.useEffect(() => {
     if (getSinglePokemon && getSinglePokemon.isRegion) {
@@ -104,6 +112,16 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
       getMega({ variables: { number: parseInt(number, 10) } })
     }
   }, [getMega, getSinglePokemon, number])
+
+  const initialValue = {
+    detailInfo: getSinglePokemon,
+    regionInfo: getRegionForm,
+    megaInfo: getMegaEvolution,
+    otherInfo,
+    isShiny,
+    setShiny,
+    onOtherInfoChange,
+  }
 
   return (
     <DetailContext.Provider value={initialValue}>
