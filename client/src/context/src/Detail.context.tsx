@@ -75,7 +75,7 @@ export const DetailContext = React.createContext<ContextType>({})
 export const DetailProvider: React.FC<DetailContextProps> = (props) => {
   const { children } = props
   const { number = '' } = useParams()
-  const [isShiny, setIsShiny] = React.useState<boolean>()
+  const [isShiny, setIsShiny] = React.useState<boolean>(false)
   const [otherInfo, setOtherInfo] = React.useState<string>('normal')
 
   const { data: { getSinglePokemon } = {} } = useQuery<PokemonDetail['single']>(
@@ -122,6 +122,10 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
     setShiny,
     onOtherInfoChange,
   }
+
+  React.useEffect(() => {
+    setIsShiny(false)
+  }, [])
 
   return (
     <DetailContext.Provider value={initialValue}>
