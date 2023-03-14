@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Image, Notice } from '../../components'
 import { Filter, List } from '../../container'
 import { FilterProvider } from '../../context'
 import { ListProvider } from '../../context/src/List.context'
@@ -30,6 +31,11 @@ const Dashboard = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(14rem, auto));
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
+    position: relative;
+
+    .list__notice--mobile {
+      display: none;
+    }
 
     @media screen and (max-width: 475px) {
       width: 100%;
@@ -50,6 +56,7 @@ const DashboardRoute: React.FC = () => {
       </FilterProvider>
       <ListProvider>
         <section className="section__list">
+          <Notice />
           <List />
         </section>
       </ListProvider>
