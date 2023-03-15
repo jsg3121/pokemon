@@ -10,15 +10,6 @@ const Search = styled.div`
   width: 100%;
   padding: 1rem;
 
-  .filter__name--title {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid #333333;
-  }
-
   button {
     margin-left: 1rem;
   }
@@ -43,7 +34,7 @@ const SearchContainer: React.FC = observer(() => {
 
   return (
     <Search>
-      <p className="filter__name--title">Name</p>
+      <p className="filter__content--title">Name</p>
       <Input
         type="text"
         status="default"
