@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Image, Notice } from '../../components'
+import { Notice } from '../../components'
 import { Filter, List } from '../../container'
 import { FilterProvider } from '../../context'
 import { ListProvider } from '../../context/src/List.context'
@@ -18,8 +18,12 @@ const Dashboard = styled.div`
     margin-top: 5rem;
 
     @media screen and (max-width: 475px) {
-      display: none;
+      width: 0;
+      height: calc(100vh - 3.5rem);
+      margin-top: 3.5rem;
       position: absolute;
+      top: 0;
+      z-index: 10;
     }
   }
 
@@ -31,6 +35,7 @@ const Dashboard = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(14rem, auto));
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
+    justify-items: center;
     position: relative;
 
     .list__notice--mobile {
@@ -42,21 +47,31 @@ const Dashboard = styled.div`
       padding: 1rem;
       grid-template-columns: repeat(auto-fill, minmax(9rem, auto));
       grid-column-gap: 0.5rem;
+      margin-top: 3.5rem;
     }
   }
 `
 
 const DashboardRoute: React.FC = () => {
+  const filterRef = React.useRef<HTMLElement>(null)
+
+  const handleFilterOpen = React.useCallback(() => {
+    if (filterRef.current) {
+      filterRef.current.querySelector('.filter')?.classList.remove('close')
+      filterRef.current.querySelector('.filter')?.classList.add('open')
+    }
+  }, [])
+
   return (
     <Dashboard className="dashboard">
       <FilterProvider>
-        <section className="section__filter">
+        <section className="section__filter" ref={filterRef}>
           <Filter />
         </section>
       </FilterProvider>
       <ListProvider>
         <section className="section__list">
-          <Notice />
+          <Notice onClick={handleFilterOpen} />
           <List />
         </section>
       </ListProvider>

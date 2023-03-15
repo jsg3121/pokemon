@@ -22,6 +22,14 @@ const Header = styled.header`
     font-weight: 900;
     -webkit-text-stroke: 2px #3861ad;
   }
+
+  @media screen and (max-width: 475px) {
+    height: 3.5rem;
+    h1 {
+      font-size: 2rem;
+      -webkit-text-stroke: 1px #3861ad;
+    }
+  }
 `
 
 const HeaderContainer: React.FC = () => {
@@ -29,7 +37,7 @@ const HeaderContainer: React.FC = () => {
 
   return (
     <Header>
-      <Link to="/">
+      <Link to="/" replace>
         <h1>Pokemon Dogam</h1>
       </Link>
       {pathname !== '/' && (

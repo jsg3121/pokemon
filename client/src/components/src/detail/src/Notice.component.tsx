@@ -1,31 +1,52 @@
 import React from 'react'
 import isEqual from 'fast-deep-equal'
 import styled from 'styled-components'
-import { Image } from '../../common'
+import { Button, Image } from '../../common'
+
+interface NoticeComponentProps {
+  onClick: () => void
+}
 
 const Notice = styled.div`
-  display: block;
-  grid-column: 1 / 4;
   width: 100%;
-  height: 2rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  justify-self: flex-start;
+  grid-column: 1 / 4;
 
   .card--icon {
     width: 100%;
     height: 1rem;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
 
     & > div {
-      width: 8rem;
+      width: 5.5rem;
       height: 1rem;
       display: flex;
       justify-content: flex-end;
+
+      p {
+        margin-left: 0.5rem;
+        line-height: 1.2;
+      }
     }
+  }
+
+  @media screen and (min-width: 476px) {
+    display: none;
   }
 `
 
-const NoticeComponent: React.FC = (props) => {
+const NoticeComponent: React.FC<NoticeComponentProps> = (props) => {
+  const { onClick } = props
+
+  const handleClick = React.useCallback(() => {
+    onClick()
+  }, [onClick])
+
   return (
     <Notice>
       <div className="card--icon">
@@ -36,7 +57,7 @@ const NoticeComponent: React.FC = (props) => {
               alt="메가진화_아이콘"
             />
           </Image>
-          <p>메가진화 아이콘</p>
+          <p>메가진화</p>
         </div>
         <div>
           <Image>
@@ -45,9 +66,10 @@ const NoticeComponent: React.FC = (props) => {
               alt="리전폼_아이콘"
             />
           </Image>
-          <p>리전폼 아이콘</p>
+          <p>리전폼</p>
         </div>
       </div>
+      <Button label="필터" buttonType="default" onClick={handleClick} />
     </Notice>
   )
 }

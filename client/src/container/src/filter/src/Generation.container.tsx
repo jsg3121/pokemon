@@ -9,20 +9,19 @@ const Generation = styled.div`
   height: 10rem;
   padding: 1rem;
 
-  .filter__generation--title {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid #333333;
-  }
-
   & > div {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 475px) {
+    height: 8rem;
+
+    & > div {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 `
 
@@ -40,7 +39,7 @@ const GenerationContainer: React.FC = () => {
 
   return (
     <Generation className="filter__generation">
-      <p className="filter__generation--title">Generation</p>
+      <p className="filter__content--title">Generation</p>
       <div>
         <Checkbox
           label="1세대"

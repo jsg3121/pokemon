@@ -11,14 +11,7 @@ const Types = styled.div`
   height: 14rem;
   padding: 1rem;
 
-  .filter__type--title {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid #333333;
-
+  .filter__content {
     span {
       font-size: 0.8rem;
       margin-left: 0.5rem;
@@ -32,6 +25,14 @@ const Types = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 475px) {
+    height: 8rem;
+
+    & > div {
+      grid-template-columns: repeat(6, 1fr);
+    }
   }
 `
 
@@ -49,7 +50,7 @@ const TypesContainer: React.FC = observer(() => {
 
   return (
     <Types className="filter__type">
-      <p className="filter__type--title">
+      <p className="filter__content--title">
         Type
         {filter && filter.type?.length === 2 && (
           <span>최대 두 타입까지 선택할 수 있습니다.</span>
