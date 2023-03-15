@@ -27,7 +27,7 @@ const ImageSwitch = styled.div`
 
   @media screen and (max-width: 475px) {
     margin: 2rem 0;
-    height: 22rem;
+    height: calc(100% - 30rem);
   }
 `
 

@@ -22,7 +22,7 @@ const DetailInfo = styled.div`
     height: calc(100vh - 7.5rem);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 `
 
