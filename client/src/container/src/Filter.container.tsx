@@ -84,7 +84,7 @@ const FilterContainer: React.FC = () => {
 
   const handleClose = React.useCallback(() => {
     if (filterRef.current) {
-      document.getElementsByTagName('body')[0].style.overflow = 'hidden'
+      document.getElementsByTagName('body')[0].style.overflow = 'auto'
       filterRef.current.classList.remove('open')
       filterRef.current.classList.add('close')
     }
@@ -93,7 +93,7 @@ const FilterContainer: React.FC = () => {
   const handleReset = React.useCallback(() => {
     if (filterRef.current) {
       filter.clear()
-      document.getElementsByTagName('body')[0].style.overflow = 'hidden'
+      document.getElementsByTagName('body')[0].style.overflow = 'auto'
       filterRef.current.classList.remove('open')
       filterRef.current.classList.add('close')
     }
