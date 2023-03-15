@@ -56,6 +56,7 @@ const DashboardRoute: React.FC = () => {
 
   const handleFilterOpen = React.useCallback(() => {
     if (filterRef.current) {
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden'
       filterRef.current.querySelector('.filter')?.classList.remove('close')
       filterRef.current.querySelector('.filter')?.classList.add('open')
     }

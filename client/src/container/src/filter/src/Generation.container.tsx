@@ -17,7 +17,8 @@ const Generation = styled.div`
   }
 
   @media screen and (max-width: 475px) {
-    height: 8rem;
+    height: 7rem;
+    padding: 0 1rem;
 
     & > div {
       grid-template-columns: repeat(3, 1fr);

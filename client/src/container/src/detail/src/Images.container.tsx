@@ -24,6 +24,11 @@ const ImageSwitch = styled.div`
       font-weight: 600;
     }
   }
+
+  @media screen and (max-width: 475px) {
+    margin: 2rem 0;
+    height: 22rem;
+  }
 `
 
 const ImagesContainer: React.FC<ImagesContainerProps> = (props) => {

@@ -24,7 +24,7 @@ const InfoTableContainer: React.FC<InfoTableContainerProps> = (props) => {
   const { types, region, evolutions } = props
 
   return (
-    <InfoTable className="detail__info--table">
+    <InfoTable>
       <TableCell title="타입">
         {types.map((item, index) => {
           return <Tag label={item} key={index} />
