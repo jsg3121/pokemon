@@ -10,6 +10,10 @@ const Detail = styled.section`
   width: 100%;
   height: 100%;
   padding: 2rem;
+
+  @media screen and (max-width: 475px) {
+    padding: 1rem;
+  }
 `
 
 const DetailInfo = styled.article`
@@ -17,9 +21,18 @@ const DetailInfo = styled.article`
   height: 100%;
   margin: 0 auto;
   position: relative;
+
+  .detail__slide {
+    height: auto;
+  }
+
+  @media screen and (max-width: 475px) {
+    width: 100%;
+  }
 `
 
 const settings: Settings = {
+  className: 'detail__slide',
   dots: false,
   speed: 0,
   infinite: false,

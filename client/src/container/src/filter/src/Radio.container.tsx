@@ -11,7 +11,7 @@ const Radio = styled.div`
   padding: 1rem;
 
   & > div {
-    height: 6rem;
+    height: 5rem;
   }
 `
 

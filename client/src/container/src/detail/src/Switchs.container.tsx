@@ -33,10 +33,13 @@ const Switchs = styled.div`
       margin-right: 0.75rem;
     }
   }
+
+  @media screen and (max-width: 475px) {
+  }
 `
 
 const otherList = [
-  { label: '기본', value: 'normal' },
+  { label: '기본', value: 'normal', checked: true },
   { label: '메가진화', value: 'mega' },
   { label: '리전폼', value: 'region' },
 ]

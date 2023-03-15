@@ -41,6 +41,7 @@ const Filter = styled.article`
 
   @media screen and (max-width: 475px) {
     width: 100%;
+    height: calc(100vh - 3.5rem);
     top: 3.5rem;
     padding: 0;
     border-right: 0;
@@ -51,8 +52,11 @@ const Filter = styled.article`
     }
 
     .filter__button--mobile {
+      width: 100%;
       display: block;
       padding: 0 1rem;
+      position: absolute;
+      bottom: 0;
 
       button {
         width: 100%;
@@ -80,6 +84,7 @@ const FilterContainer: React.FC = () => {
 
   const handleClose = React.useCallback(() => {
     if (filterRef.current) {
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden'
       filterRef.current.classList.remove('open')
       filterRef.current.classList.add('close')
     }
@@ -88,6 +93,7 @@ const FilterContainer: React.FC = () => {
   const handleReset = React.useCallback(() => {
     if (filterRef.current) {
       filter.clear()
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden'
       filterRef.current.classList.remove('open')
       filterRef.current.classList.add('close')
     }
@@ -103,8 +109,9 @@ const FilterContainer: React.FC = () => {
       <Generations />
       <Radio />
       <div className="filter__button--mobile">
-        <Button label="검색 초기화" onClick={handleReset} buttonType="waring" />
         <Button label="검색" onClick={handleClose} buttonType="default" />
+        <Button label="검색 초기화" onClick={handleReset} buttonType="waring" />
+        <Button label="필터 닫기" onClick={handleClose} buttonType="gray" />
       </div>
     </Filter>
   )
