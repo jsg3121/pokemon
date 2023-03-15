@@ -15,6 +15,19 @@ const Arrow = styled.div`
     border-right: 0.2rem solid #888888;
     transform: rotate(45deg);
   }
+
+  @media screen and (max-width: 475px) {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+
+    &::before {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
 `
 
 const NextArrowComponent: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
