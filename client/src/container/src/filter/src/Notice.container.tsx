@@ -1,9 +1,10 @@
-import React from 'react'
 import isEqual from 'fast-deep-equal'
+import React from 'react'
 import styled from 'styled-components'
-import { Button, Image } from '../../common'
+import { Button, Image } from '../../../../components'
+import { useMobxStore } from '../../../../hook'
 
-interface NoticeComponentProps {
+interface NoticeContainerProps {
   onClick: () => void
 }
 
@@ -35,17 +36,27 @@ const Notice = styled.div`
     }
   }
 
+  button {
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+
   @media screen and (min-width: 476px) {
     display: none;
   }
 `
 
-const NoticeComponent: React.FC<NoticeComponentProps> = (props) => {
+const NoticeContainer: React.FC<NoticeContainerProps> = (props) => {
   const { onClick } = props
+  const { filter } = useMobxStore()
 
-  const handleClick = React.useCallback(() => {
+  const handleFilterOpen = React.useCallback(() => {
     onClick()
   }, [onClick])
+
+  const handleReset = React.useCallback(() => {
+    filter.clear()
+  }, [filter])
 
   return (
     <Notice>
@@ -69,9 +80,10 @@ const NoticeComponent: React.FC<NoticeComponentProps> = (props) => {
           <p>리전폼</p>
         </div>
       </div>
-      <Button label="필터" buttonType="default" onClick={handleClick} />
+      <Button label="검색 초기화" buttonType="waring" onClick={handleReset} />
+      <Button label="필터" buttonType="default" onClick={handleFilterOpen} />
     </Notice>
   )
 }
 
-export default React.memo(NoticeComponent, isEqual)
+export default React.memo(NoticeContainer, isEqual)

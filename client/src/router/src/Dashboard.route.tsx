@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Notice } from '../../components'
-import { Filter, List } from '../../container'
+import { Filter, List, Notice } from '../../container'
 import { FilterProvider } from '../../context'
 import { ListProvider } from '../../context/src/List.context'
 

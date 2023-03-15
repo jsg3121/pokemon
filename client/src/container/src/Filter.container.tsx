@@ -103,8 +103,9 @@ const FilterContainer: React.FC = () => {
       <Generations />
       <Radio />
       <div className="filter__button--mobile">
-        <Button label="검색 초기화" onClick={handleReset} buttonType="waring" />
         <Button label="검색" onClick={handleClose} buttonType="default" />
+        <Button label="검색 초기화" onClick={handleReset} buttonType="waring" />
+        <Button label="필터 닫기" onClick={handleClose} buttonType="gray" />
       </div>
     </Filter>
   )
