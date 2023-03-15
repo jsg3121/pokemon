@@ -15,11 +15,15 @@ interface DetailViewContainerProps {
 }
 
 const DetailInfo = styled.div`
-  height: calc(100vh - 7.5rem);
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media screen and (max-width: 475px) {
+    height: calc(100vh - 7.5rem);
+  }
 `
 
 const DetailViewContainer: React.FC<DetailViewContainerProps> = (props) => {
