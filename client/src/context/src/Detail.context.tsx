@@ -68,6 +68,7 @@ type ContextType = {
   otherInfo?: string
   setShiny?: () => void
   onOtherInfoChange?: (val: string) => void
+  resetMode?: () => void
 }
 
 export const DetailContext = React.createContext<ContextType>({})
@@ -101,6 +102,10 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
     setOtherInfo(val)
   }, [])
 
+  const resetMode = React.useCallback(() => {
+    setOtherInfo('normal')
+  }, [])
+
   React.useEffect(() => {
     if (getSinglePokemon && getSinglePokemon.isRegion) {
       getRegion({ variables: { number: parseInt(number, 10) } })
@@ -121,6 +126,7 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
     isShiny,
     setShiny,
     onOtherInfoChange,
+    resetMode,
   }
 
   React.useEffect(() => {
