@@ -1,7 +1,6 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
-import { DetailContext } from '../../../../context'
 import Images from './Images.container'
 import InfoHeader from './InfoHeader.container'
 import InfoTable from './InfoTable.container'
@@ -29,13 +28,6 @@ const DetailInfo = styled.div`
 
 const DetailViewContainer: React.FC<DetailViewContainerProps> = (props) => {
   const { index, generate, number, evolutions, name, types } = props
-  const { resetMode } = React.useContext(DetailContext)
-
-  React.useEffect(() => {
-    if (resetMode) {
-      resetMode()
-    }
-  }, [resetMode])
 
   return (
     <DetailInfo>
