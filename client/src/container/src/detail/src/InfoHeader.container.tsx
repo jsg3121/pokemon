@@ -3,6 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Image } from '../../../../components'
+import { DetailContext } from '../../../../context'
 
 interface InfoHeaderContainerProps {
   number: number
@@ -58,15 +59,19 @@ const InfoHeader = styled.div`
 
 const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
   const { evolutions, name, generate, number } = props
+  const { resetMode } = React.useContext(DetailContext)
 
   const navigate = useNavigate()
 
   const handleClick = React.useCallback(
     (e: React.MouseEvent) => {
       const changeNumber = e.currentTarget.getAttribute('data-number')
+      if (resetMode) {
+        resetMode()
+      }
       navigate(`/detail/${changeNumber}`)
     },
-    [navigate]
+    [navigate, resetMode]
   )
 
   return (
