@@ -83,8 +83,8 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
     margin: 2rem auto 0;
 
     @media screen and (max-width: 475px) {
-      width: 5rem;
-      height: 4rem;
+      width: 100%;
+      height: 70%;
       margin: 0 auto;
     }
   }
@@ -114,8 +114,8 @@ const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
   }
 
   @media screen and (max-width: 475px) {
-    width: 8rem;
-    height: 8rem;
+    width: 100%;
+    height: 10rem;
     padding: 0.6rem;
   }
 `
