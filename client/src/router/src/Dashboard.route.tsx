@@ -44,7 +44,7 @@ const Dashboard = styled.div`
     @media screen and (max-width: 475px) {
       width: 100%;
       padding: 1rem;
-      grid-template-columns: repeat(auto-fill, minmax(9rem, auto));
+      grid-template-columns: repeat(3, auto);
       grid-column-gap: 0.5rem;
       margin-top: 3.5rem;
     }

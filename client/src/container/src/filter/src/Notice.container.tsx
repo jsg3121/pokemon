@@ -10,7 +10,7 @@ interface NoticeContainerProps {
 
 const Notice = styled.div`
   width: 100%;
-  height: 1.5rem;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
