@@ -89,6 +89,7 @@ const DetailContainer: React.FC = () => {
                         name={detailInfo.name}
                         types={item.type}
                         index={index}
+                        region={item.region}
                       />
                     </React.Fragment>
                   )

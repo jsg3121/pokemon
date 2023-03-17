@@ -12,6 +12,7 @@ interface DetailViewContainerProps {
   evolutions: Array<number>
   types: Array<string>
   index?: number
+  region?: string
 }
 
 const DetailInfo = styled.div`
@@ -27,7 +28,7 @@ const DetailInfo = styled.div`
 `
 
 const DetailViewContainer: React.FC<DetailViewContainerProps> = (props) => {
-  const { index, generate, number, evolutions, name, types } = props
+  const { index, generate, number, evolutions, name, types, region } = props
 
   return (
     <DetailInfo>
@@ -43,6 +44,7 @@ const DetailViewContainer: React.FC<DetailViewContainerProps> = (props) => {
           generation={generate}
           types={types}
           evolutions={evolutions.length === 0 ? undefined : evolutions}
+          region={region}
         />
       </div>
     </DetailInfo>

@@ -6,7 +6,7 @@ import Radio from './Radio.component'
 interface RadioComponentProps {
   title?: string
   name: string
-  options: Array<{ label: string; value: string; checked?: boolean }>
+  options: Array<{ label: string; value: string }>
   defaultValue?: boolean
   onSelect: (data: { name: string; value: string }) => void
 }
@@ -29,7 +29,7 @@ const RadioGroup = styled.div`
 `
 
 const RadioGroupComponent: React.FC<RadioComponentProps> = (props) => {
-  const { title, name, options, onSelect } = props
+  const { title, name, options, defaultValue, onSelect } = props
 
   const handleCheck = React.useCallback(
     (data: string) => {
@@ -43,7 +43,7 @@ const RadioGroupComponent: React.FC<RadioComponentProps> = (props) => {
       {title && <p className="item__title">{title}</p>}
       <div className="radio__item">
         {options.map((item, index) => {
-          const { label, value, checked } = item
+          const { label, value } = item
           return (
             <Radio
               key={index}
@@ -51,7 +51,7 @@ const RadioGroupComponent: React.FC<RadioComponentProps> = (props) => {
               label={label}
               value={value}
               onChecked={handleCheck}
-              defaultChecked={checked}
+              defaultChecked={defaultValue}
             />
           )
         })}
