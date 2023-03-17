@@ -39,7 +39,7 @@ const Switchs = styled.div`
 `
 
 const otherList = [
-  { label: '기본', value: 'normal', checked: true },
+  { label: '기본', value: 'normal' },
   { label: '메가진화', value: 'mega' },
   { label: '리전폼', value: 'region' },
 ]
