@@ -21,6 +21,12 @@ const Header = styled.header`
     font-size: 3rem;
     font-weight: 900;
     -webkit-text-stroke: 2px #3861ad;
+
+    span {
+      font-size: 0.75rem;
+      color: #aaaaaa;
+      -webkit-text-stroke: 0;
+    }
   }
 
   @media screen and (max-width: 475px) {
@@ -38,7 +44,9 @@ const HeaderContainer: React.FC = () => {
   return (
     <Header>
       <Link to="/" replace>
-        <h1>Pokemon Dogam</h1>
+        <h1>
+          Pokemon Dogam <span>v0.1.1</span>
+        </h1>
       </Link>
       {pathname !== '/' && (
         <div className="detail__button--back">

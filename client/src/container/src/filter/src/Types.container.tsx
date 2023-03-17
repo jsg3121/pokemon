@@ -11,7 +11,7 @@ const Types = styled.div`
   height: 14rem;
   padding: 1rem;
 
-  .filter__content {
+  .filter__content--title {
     span {
       font-size: 0.8rem;
       margin-left: 0.5rem;

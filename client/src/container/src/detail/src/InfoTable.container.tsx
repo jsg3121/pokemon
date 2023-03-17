@@ -38,8 +38,8 @@ const InfoTableContainer: React.FC<InfoTableContainerProps> = (props) => {
           <p>{region} 지방</p>
         </TableCell>
       )}
-      <TableCell title="약점 타입">{/* <p>{generation}세대</p> */}</TableCell>
-      <TableCell title="강점 타입">{/* <p>{generation}세대</p> */}</TableCell>
+      <TableCell title="약점 타입">{}</TableCell>
+      <TableCell title="강점 타입">{}</TableCell>
     </InfoTable>
   )
 }
