@@ -45,7 +45,7 @@ const otherList = [
 ]
 
 const SwitchsContainer: React.FC<SwitchsContainerProps> = (props) => {
-  const { detailInfo, setShiny, onOtherInfoChange } =
+  const { detailInfo, setShiny, onOtherInfoChange, isShiny } =
     React.useContext(DetailContext)
 
   const handleChange = React.useCallback(() => {
@@ -63,7 +63,7 @@ const SwitchsContainer: React.FC<SwitchsContainerProps> = (props) => {
     [onOtherInfoChange]
   )
 
-  const handleMegaChange = React.useCallback(
+  const handleModeChange = React.useCallback(
     (data: { name: string; value: boolean }) => {
       if (onOtherInfoChange) {
         if (data.value) {
@@ -80,19 +80,19 @@ const SwitchsContainer: React.FC<SwitchsContainerProps> = (props) => {
     <Switchs>
       <div className="image__switch">
         <p>이로치</p>
-        <Switch name="detail_image" onChange={handleChange} />
+        <Switch name="detail_image" onChange={handleChange} value={isShiny} />
       </div>
       <div className="switch__other-info">
         {detailInfo && !detailInfo.isMega && detailInfo.isRegion && (
           <>
             <p>리전폼</p>
-            <Switch name="region" onChange={handleMegaChange} />
+            <Switch name="region" onChange={handleModeChange} />
           </>
         )}
         {detailInfo && detailInfo.isMega && !detailInfo.isRegion && (
           <>
             <p>메가진화</p>
-            <Switch name="mega" onChange={handleMegaChange} />
+            <Switch name="mega" onChange={handleModeChange} />
           </>
         )}
         {detailInfo && detailInfo.isMega && detailInfo.isRegion && (
