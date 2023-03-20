@@ -130,10 +130,6 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
     resetMode,
   }
 
-  React.useEffect(() => {
-    setIsShiny(false)
-  }, [])
-
   return (
     <DetailContext.Provider value={initialValue}>
       {children}

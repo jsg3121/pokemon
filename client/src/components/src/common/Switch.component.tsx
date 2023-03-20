@@ -82,15 +82,13 @@ const Switch = styled.div<{ disabled?: boolean }>`
 `
 const SwitchComponent: React.FC<SwitchComponentProps> = (props) => {
   const { name, value = false, disabled = false, onChange } = props
-  const [checked, setChecked] = React.useState<boolean>(false)
 
-  const handleChange = React.useCallback(() => {
-    setChecked((value) => !value)
-  }, [])
-
-  React.useEffect(() => {
-    onChange({ name, value: checked })
-  }, [checked, name, onChange])
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange({ name, value: e.target.checked })
+    },
+    [name, onChange]
+  )
 
   return (
     <Switch disabled={disabled}>
