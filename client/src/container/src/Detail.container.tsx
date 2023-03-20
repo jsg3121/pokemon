@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { NextArrow, PrevArrow } from '../../components'
 import { DetailContext } from '../../context'
 import { DetailView, Switchs } from './detail'
+import Loading from './Loading.container'
 
 const Detail = styled.section`
   width: 100%;
@@ -41,64 +42,68 @@ const settings: Settings = {
 }
 
 const DetailContainer: React.FC = () => {
-  const { detailInfo, otherInfo, megaInfo, regionInfo } =
+  const { detailInfo, otherInfo, megaInfo, regionInfo, isLoading } =
     React.useContext(DetailContext)
 
   return (
     <Detail>
-      <DetailInfo>
-        <Switchs />
-        {detailInfo && (
-          <>
-            {otherInfo === 'normal' && (
-              <DetailView
-                generate={detailInfo.generation}
-                number={detailInfo.number}
-                evolutions={detailInfo.evolutionId}
-                name={detailInfo.name}
-                types={detailInfo.type}
-              />
-            )}
-            {otherInfo === 'mega' && megaInfo && (
-              <Slider {...settings}>
-                {megaInfo.map((item, index) => {
-                  return (
-                    <React.Fragment key={index}>
-                      <DetailView
-                        generate={detailInfo.generation}
-                        number={detailInfo.number}
-                        evolutions={detailInfo.evolutionId}
-                        name={detailInfo.name}
-                        types={item.type}
-                        index={index}
-                      />
-                    </React.Fragment>
-                  )
-                })}
-              </Slider>
-            )}
-            {otherInfo === 'region' && regionInfo && (
-              <Slider {...settings}>
-                {regionInfo.map((item, index) => {
-                  return (
-                    <React.Fragment key={index}>
-                      <DetailView
-                        generate={detailInfo.generation}
-                        number={detailInfo.number}
-                        evolutions={detailInfo.evolutionId}
-                        name={detailInfo.name}
-                        types={item.type}
-                        index={index}
-                        region={item.region}
-                      />
-                    </React.Fragment>
-                  )
-                })}
-              </Slider>
-            )}
-          </>
-        )}
-      </DetailInfo>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <DetailInfo>
+          <Switchs />
+          {detailInfo && (
+            <>
+              {otherInfo === 'normal' && (
+                <DetailView
+                  generate={detailInfo.generation}
+                  number={detailInfo.number}
+                  evolutions={detailInfo.evolutionId}
+                  name={detailInfo.name}
+                  types={detailInfo.type}
+                />
+              )}
+              {otherInfo === 'mega' && megaInfo && (
+                <Slider {...settings}>
+                  {megaInfo.map((item, index) => {
+                    return (
+                      <React.Fragment key={index}>
+                        <DetailView
+                          generate={detailInfo.generation}
+                          number={detailInfo.number}
+                          evolutions={detailInfo.evolutionId}
+                          name={detailInfo.name}
+                          types={item.type}
+                          index={index}
+                        />
+                      </React.Fragment>
+                    )
+                  })}
+                </Slider>
+              )}
+              {otherInfo === 'region' && regionInfo && (
+                <Slider {...settings}>
+                  {regionInfo.map((item, index) => {
+                    return (
+                      <React.Fragment key={index}>
+                        <DetailView
+                          generate={detailInfo.generation}
+                          number={detailInfo.number}
+                          evolutions={detailInfo.evolutionId}
+                          name={detailInfo.name}
+                          types={item.type}
+                          index={index}
+                          region={item.region}
+                        />
+                      </React.Fragment>
+                    )
+                  })}
+                </Slider>
+              )}
+            </>
+          )}
+        </DetailInfo>
+      )}
     </Detail>
   )
 }

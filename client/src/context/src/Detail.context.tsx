@@ -62,10 +62,11 @@ const GET_MEGA = gql`
 
 type ContextType = {
   detailInfo?: Pokemon
+  otherInfo?: string
+  isShiny?: boolean
+  isLoading?: boolean
   regionInfo?: Array<PokemonRegion>
   megaInfo?: Array<PokemonMega>
-  isShiny?: boolean
-  otherInfo?: string
   setShiny?: () => void
   onOtherInfoChange?: (val: string) => void
   resetMode?: () => void
@@ -79,15 +80,14 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
   const [isShiny, setIsShiny] = React.useState<boolean>(false)
   const [otherInfo, setOtherInfo] = React.useState<string>('normal')
 
-  const { data: { getSinglePokemon } = {} } = useQuery<PokemonDetail['single']>(
-    GET_POKEMON,
-    {
-      variables: {
-        number: parseInt(number, 10),
-      },
-      fetchPolicy: 'no-cache',
-    }
-  )
+  const { data: { getSinglePokemon } = {}, loading } = useQuery<
+    PokemonDetail['single']
+  >(GET_POKEMON, {
+    variables: {
+      number: parseInt(number, 10),
+    },
+    fetchPolicy: 'no-cache',
+  })
 
   const [getRegion, { data: { getRegionForm } = { getRegionForm: [] } }] =
     useLazyQuery<PokemonDetail['region']>(GET_REGION)
@@ -123,6 +123,7 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
     regionInfo: getRegionForm,
     megaInfo: getMegaEvolution,
     otherInfo,
+    isLoading: loading,
     isShiny,
     setShiny,
     onOtherInfoChange,
