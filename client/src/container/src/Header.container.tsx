@@ -45,7 +45,7 @@ const HeaderContainer: React.FC = () => {
     <Header>
       <Link to="/" replace>
         <h1>
-          Pokemon Dogam <span>v0.1.1</span>
+          Pokemon Dogam <span>v{process.env.REACT_APP_VERSION}</span>
         </h1>
       </Link>
       {pathname !== '/' && (
