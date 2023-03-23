@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import { relationType } from '../../../../common'
 import { TableCell, Tag } from '../../../../components'
 
 interface InfoTableContainerProps {
+  name: string
   types: Array<string>
   generation: number
   evolutions?: Array<number>
@@ -18,10 +20,19 @@ const InfoTable = styled.div`
   border: 2px solid #333333;
   border-radius: 10px;
   overflow: hidden;
+
+  .cell__item:nth-child(3),
+  .cell__item:nth-child(4) {
+    grid-column: 1 / 3;
+  }
 `
 
 const InfoTableContainer: React.FC<InfoTableContainerProps> = (props) => {
-  const { types, region, evolutions } = props
+  const { name, types, region, evolutions } = props
+
+  React.useEffect(() => {
+    relationType(types)
+  }, [types])
 
   return (
     <InfoTable>
@@ -38,8 +49,8 @@ const InfoTableContainer: React.FC<InfoTableContainerProps> = (props) => {
           <p>{region} 지방</p>
         </TableCell>
       )}
-      <TableCell title="약점 타입">{}</TableCell>
-      <TableCell title="강점 타입">{}</TableCell>
+      <TableCell title={`${name}이(가) 강한 타입`}>{}</TableCell>
+      <TableCell title={`${name}이(가) 약한 타입`}>{}</TableCell>
     </InfoTable>
   )
 }

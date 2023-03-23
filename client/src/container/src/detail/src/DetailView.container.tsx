@@ -41,6 +41,7 @@ const DetailViewContainer: React.FC<DetailViewContainerProps> = (props) => {
           name={name}
         />
         <InfoTable
+          name={name}
           generation={generate}
           types={types}
           evolutions={evolutions.length === 0 ? undefined : evolutions}

@@ -14,7 +14,7 @@ const TableCell = styled.div`
   align-items: center;
 
   .info__type--title {
-    width: 50%;
+    width: 14rem;
     height: 100%;
     display: flex;
     align-items: center;
@@ -27,7 +27,7 @@ const TableCell = styled.div`
   }
 
   .info__type--body {
-    width: 50%;
+    width: calc(100% - 14rem);
     height: 100%;
     padding: 0 1rem;
     display: flex;
@@ -46,7 +46,7 @@ const TableCellComponent: React.FC<TableCellComponentProps> = (props) => {
   const { children, title } = props
 
   return (
-    <TableCell>
+    <TableCell className="cell__item">
       <p className="info__type--title">{title}</p>
       <div className="info__type--body">{children}</div>
     </TableCell>
