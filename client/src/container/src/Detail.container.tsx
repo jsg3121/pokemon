@@ -18,7 +18,7 @@ const Detail = styled.section`
 `
 
 const DetailInfo = styled.article`
-  width: clamp(20rem, 70vw, 60rem);
+  width: clamp(20rem, 80vw, 60rem);
   height: 100%;
   margin: 0 auto;
   position: relative;

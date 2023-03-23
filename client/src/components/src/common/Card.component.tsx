@@ -1,8 +1,8 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
-import { getIconType } from '../../../common'
-import { IconColor } from '../../../types'
+import { changeType } from '../../../common'
+import { TypesColor } from '../../../types'
 import Image from './Image.component'
 import Tag from './Tag.component'
 
@@ -16,7 +16,7 @@ interface CardComponentProps {
   onClick?: (number: number) => void
 }
 
-const Card = styled.article<{ type: string; backgroundColor: IconColor }>`
+const Card = styled.article<{ type: string; backgroundColor: TypesColor }>`
   width: 14rem;
   height: 20rem;
   border: 1px solid #cccccc;
@@ -124,7 +124,7 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
   const { type, pokemonNumber, name, mega, generate, region, onClick } = props
 
   const typeVal = React.useMemo(() => {
-    return getIconType(type[0])
+    return changeType(type[0])
   }, [type])
 
   const handleClick = React.useCallback(() => {

@@ -1,6 +1,6 @@
-import { changeType } from './changeType'
+import { changeToEngType, changeType } from '../../common'
 
-type TRelationType = (types: Array<string>) => {
+type UseRelationType = (types: Array<string>) => {
   quad: Array<string>
   double: Array<string>
   half: Array<string>
@@ -140,7 +140,7 @@ const relationList: LelationListType = [
   },
 ]
 
-export const relationType: TRelationType = (types) => {
+export const useRelationType: UseRelationType = (types) => {
   const double: string[] = []
   const half: string[] = []
   const invalidity: string[] = []
@@ -197,7 +197,7 @@ export const relationType: TRelationType = (types) => {
     }
   })
 
-  const result: ReturnType<TRelationType> = {
+  const result: ReturnType<UseRelationType> = {
     quad: [],
     double: [],
     half: [],
@@ -207,15 +207,15 @@ export const relationType: TRelationType = (types) => {
 
   for (const [key, value] of Object.entries(list)) {
     if (value === 2) {
-      result.quad.push(key)
+      result.quad.push(changeToEngType(key))
     } else if (value === 1) {
-      result.double.push(key)
+      result.double.push(changeToEngType(key))
     } else if (value === -1) {
-      result.half.push(key)
+      result.half.push(changeToEngType(key))
     } else if (value === -2) {
-      result.quarter.push(key)
+      result.quarter.push(changeToEngType(key))
     } else if (value === 999) {
-      result.zero.push(key)
+      result.zero.push(changeToEngType(key))
     }
   }
 
