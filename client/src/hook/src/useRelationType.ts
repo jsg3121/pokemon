@@ -219,7 +219,5 @@ export const useRelationType: UseRelationType = (types) => {
     }
   }
 
-  console.log({ ...result })
-
   return result
 }

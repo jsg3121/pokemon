@@ -37,6 +37,7 @@ const settings: Settings = {
   dots: false,
   speed: 0,
   infinite: false,
+  draggable: false,
   nextArrow: <NextArrow />,
   prevArrow: <PrevArrow />,
 }
