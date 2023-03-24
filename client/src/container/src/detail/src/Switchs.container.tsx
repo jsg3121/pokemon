@@ -4,7 +4,9 @@ import { DetailContext } from '../../../../context'
 import styled from 'styled-components'
 import { RadioGroup, Switch } from '../../../../components'
 
-interface SwitchsContainerProps {}
+interface SwitchsContainerProps {
+  onClick: (val?: string) => void
+}
 
 const Switchs = styled.div`
   display: flex;
@@ -45,6 +47,7 @@ const otherList = [
 ]
 
 const SwitchsContainer: React.FC<SwitchsContainerProps> = (props) => {
+  const { onClick } = props
   const { detailInfo, setShiny, onOtherInfoChange, isShiny } =
     React.useContext(DetailContext)
 
@@ -67,13 +70,15 @@ const SwitchsContainer: React.FC<SwitchsContainerProps> = (props) => {
     (data: { name: string; value: boolean }) => {
       if (onOtherInfoChange) {
         if (data.value) {
+          onClick(data.name)
           onOtherInfoChange(data.name)
         } else {
+          onClick('normal')
           onOtherInfoChange('normal')
         }
       }
     },
-    [onOtherInfoChange]
+    [onClick, onOtherInfoChange]
   )
 
   return (

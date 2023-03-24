@@ -16,6 +16,7 @@ const InfoTable = styled.div`
   height: 14rem;
   border: 2px solid #333333;
   border-radius: 10px;
+  background-color: #ffffff;
   overflow: hidden;
   display: flex;
   flex-wrap: wrap;

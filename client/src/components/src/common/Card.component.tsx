@@ -16,7 +16,7 @@ interface CardComponentProps {
   onClick?: (number: number) => void
 }
 
-const Card = styled.article<{ type: string; backgroundColor: TypesColor }>`
+const Card = styled.article<{ backgroundColor: Array<TypesColor> }>`
   width: 14rem;
   height: 20rem;
   border: 1px solid #cccccc;
@@ -24,13 +24,23 @@ const Card = styled.article<{ type: string; backgroundColor: TypesColor }>`
   padding: 1rem;
   position: relative;
   z-index: 1;
-  background-color: #ffffff;
+  background: ${(props) => {
+    if (props.backgroundColor.length === 1) {
+      return `${props.backgroundColor[0]}66`
+    } else {
+      return `linear-gradient(
+              135deg,
+              ${props.backgroundColor[0]}66 35%,
+              ${props.backgroundColor[1]}66 65%
+            )`
+    }
+  }};
   transition: transform 0.2s;
   will-change: transform;
 
   @media screen and (hover: hover) and (pointer: fine) {
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
   }
 
@@ -107,7 +117,7 @@ const Card = styled.article<{ type: string; backgroundColor: TypesColor }>`
       left: 0;
 
       h1 {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         text-align: left;
       }
     }
@@ -123,8 +133,12 @@ const Card = styled.article<{ type: string; backgroundColor: TypesColor }>`
 const CardComponent: React.FC<CardComponentProps> = (props) => {
   const { type, pokemonNumber, name, mega, generate, region, onClick } = props
 
-  const typeVal = React.useMemo(() => {
-    return changeType(type[0])
+  const backgroundColor = React.useMemo(() => {
+    const background: Array<TypesColor> = []
+    type.map((item) => {
+      return background.push(changeType(item).color)
+    })
+    return background
   }, [type])
 
   const handleClick = React.useCallback(() => {
@@ -134,10 +148,7 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
   }, [onClick, pokemonNumber])
 
   return (
-    <Card
-      type={typeVal.type}
-      backgroundColor={typeVal.color}
-      onClick={handleClick}>
+    <Card backgroundColor={backgroundColor} onClick={handleClick}>
       <div className="card--info">
         <div className="card--tag">
           <h1>No. {pokemonNumber.toString().padStart(3, '0')}</h1>
