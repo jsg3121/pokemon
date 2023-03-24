@@ -29,7 +29,7 @@ const InfoTable = styled.div`
 
     &:first-child {
       .info__type--title {
-        width: clamp(3rem, 100%, 7rem);
+        width: clamp(3rem, 40%, 7rem);
         text-align: center;
       }
       .info__type--body {
