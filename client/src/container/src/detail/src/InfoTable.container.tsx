@@ -14,82 +14,98 @@ interface InfoTableContainerProps {
 const InfoTable = styled.div`
   width: 100%;
   height: 14rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   border: 2px solid #333333;
   border-radius: 10px;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 
-  .cell__item:nth-child(1),
-  .cell__item:nth-child(2) {
-    height: 3rem;
+  .table__row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+      .info__type--title {
+        width: clamp(3rem, 100%, 7rem);
+        text-align: center;
+      }
+      .info__type--body {
+        width: 100%;
+      }
+    }
   }
 
-  .cell__item:nth-child(3),
-  .cell__item:nth-child(4) {
-    height: 5.5rem;
-    grid-column: 1 / 3;
-
-    .type-list__container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-    }
+  .type-list__container {
+    display: flex;
   }
 `
 
 const InfoTableContainer: React.FC<InfoTableContainerProps> = (props) => {
-  const { name, types, region, evolutions } = props
+  const { types, region, evolutions } = props
   const relationTypes = useRelationType(types)
 
   return (
     <InfoTable>
-      <TableCell title="타입">
-        {types.map((item, index) => {
-          return <Tag label={item} key={index} />
-        })}
-      </TableCell>
-      <TableCell title="진화">
-        <p>{evolutions === undefined ? '진화 불가능' : '진화 가능'}</p>
-      </TableCell>
-      {region && (
-        <TableCell title="지역">
-          <p>{region} 지방</p>
+      <div className="table__row">
+        <TableCell title="타입">
+          {types.map((item, index) => {
+            return <Tag label={item} key={index} />
+          })}
         </TableCell>
-      )}
-      <TableCell title={`${name}이(가) 강한 타입`}>
-        <div className="type-list__container">
+        <TableCell title="진화">
+          <p>{evolutions === undefined ? '진화 불가능' : '진화 가능'}</p>
+        </TableCell>
+        {region && (
+          <TableCell title="지역">
+            <p>{region} 지방</p>
+          </TableCell>
+        )}
+      </div>
+      <div className="table__row">
+        <TableCell title="강점">
           {relationTypes.half.length > 0 && (
             <TypeList
               list={relationTypes.half}
-              title="0.5배의 데미지를 받아요"
+              title="0.5배의 데미지"
+              grade="good"
             />
           )}
           {relationTypes.quarter.length > 0 && (
             <TypeList
               list={relationTypes.quarter}
-              title="0.25배의 데미지를 받아요"
+              title="0.25배의 데미지"
+              grade="better"
             />
           )}
           {relationTypes.zero.length > 0 && (
-            <TypeList list={relationTypes.zero} title="데미지를 받지 않아요" />
+            <TypeList
+              list={relationTypes.zero}
+              title="데미지 없음"
+              grade="best"
+            />
           )}
-        </div>
-      </TableCell>
-      <TableCell title={`${name}이(가) 약한 타입`}>
-        <div className="type-list__container">
+        </TableCell>
+      </div>
+      <div className="table__row">
+        <TableCell title="약점">
           {relationTypes.double.length > 0 && (
             <TypeList
               list={relationTypes.double}
-              title="2배의 데미지로 맞아요"
+              title="2배의 데미지"
+              grade="warning"
             />
           )}
           {relationTypes.quad.length > 0 && (
-            <TypeList list={relationTypes.quad} title="4배의 데미지로 맞아요" />
+            <TypeList
+              list={relationTypes.quad}
+              title="4배의 데미지"
+              grade="danger"
+            />
           )}
-        </div>
-      </TableCell>
+        </TableCell>
+      </div>
     </InfoTable>
   )
 }

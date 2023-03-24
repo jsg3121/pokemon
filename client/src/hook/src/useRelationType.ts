@@ -57,7 +57,7 @@ const relationList: LelationListType = [
   {
     type: '전기',
     double: '땅',
-    half: '전기 비행',
+    half: '전기 비행 강철',
     invalidity: '',
   },
   {
@@ -218,6 +218,8 @@ export const useRelationType: UseRelationType = (types) => {
       result.zero.push(changeToEngType(key))
     }
   }
+
+  console.log({ ...result })
 
   return result
 }

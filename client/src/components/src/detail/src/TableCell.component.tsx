@@ -14,10 +14,11 @@ const TableCell = styled.div`
   align-items: center;
 
   .info__type--title {
-    width: 14rem;
+    width: 7rem;
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: 1.2rem;
     font-weight: 700;
     flex-shrink: 0;
@@ -27,17 +28,21 @@ const TableCell = styled.div`
   }
 
   .info__type--body {
-    width: calc(100% - 14rem);
+    width: calc(100% - 7rem);
     height: 100%;
-    padding: 0 1rem;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+
     border-right: 1px solid #333333;
     border-bottom: 1px solid #333333;
 
-    p {
+    & > p {
       margin-right: 0.8rem;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
     }
   }
 `
