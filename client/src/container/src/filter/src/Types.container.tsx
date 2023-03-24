@@ -13,7 +13,7 @@ const Types = styled.div`
 
   .filter__content--title {
     span {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       margin-left: 0.5rem;
       font-weight: 500;
       color: #666666;

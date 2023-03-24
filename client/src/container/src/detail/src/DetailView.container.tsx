@@ -16,7 +16,6 @@ interface DetailViewContainerProps {
 }
 
 const DetailInfo = styled.div`
-  height: 100%;
   width: 100%;
 
   @media screen and (max-width: 475px) {
@@ -41,6 +40,7 @@ const DetailViewContainer: React.FC<DetailViewContainerProps> = (props) => {
           name={name}
         />
         <InfoTable
+          name={name}
           generation={generate}
           types={types}
           evolutions={evolutions.length === 0 ? undefined : evolutions}

@@ -1,4 +1,4 @@
-import { IconTypes, TypesColor } from '../../types'
+import { EngTypes, TypesColor } from '../../types'
 
 /**
  * info : 타입 정보 및 색상 설정
@@ -9,92 +9,92 @@ export const changeType = (type: string) => {
   switch (type) {
     case '노말':
       return {
-        type: IconTypes.NORMAL,
+        type: EngTypes.NORMAL,
         color: TypesColor.NORMAL,
       }
     case '불꽃':
       return {
-        type: IconTypes.FIRE,
+        type: EngTypes.FIRE,
         color: TypesColor.FIRE,
       }
     case '물':
       return {
-        type: IconTypes.WATER,
+        type: EngTypes.WATER,
         color: TypesColor.WATER,
       }
     case '풀':
       return {
-        type: IconTypes.GRASS,
+        type: EngTypes.GRASS,
         color: TypesColor.GRASS,
       }
     case '전기':
       return {
-        type: IconTypes.ELECTRIC,
+        type: EngTypes.ELECTRIC,
         color: TypesColor.ELECTRIC,
       }
     case '얼음':
       return {
-        type: IconTypes.ICE,
+        type: EngTypes.ICE,
         color: TypesColor.ICE,
       }
     case '격투':
       return {
-        type: IconTypes.FIGHTING,
+        type: EngTypes.FIGHTING,
         color: TypesColor.FIGHTING,
       }
     case '독':
       return {
-        type: IconTypes.POISON,
+        type: EngTypes.POISON,
         color: TypesColor.POISON,
       }
     case '땅':
       return {
-        type: IconTypes.GROUND,
+        type: EngTypes.GROUND,
         color: TypesColor.GROUND,
       }
     case '비행':
       return {
-        type: IconTypes.FLYING,
+        type: EngTypes.FLYING,
         color: TypesColor.FLYING,
       }
     case '에스퍼':
       return {
-        type: IconTypes.PSYCHIC,
+        type: EngTypes.PSYCHIC,
         color: TypesColor.PSYCHIC,
       }
     case '벌레':
       return {
-        type: IconTypes.BUG,
+        type: EngTypes.BUG,
         color: TypesColor.BUG,
       }
     case '바위':
       return {
-        type: IconTypes.ROCK,
+        type: EngTypes.ROCK,
         color: TypesColor.ROCK,
       }
     case '고스트':
       return {
-        type: IconTypes.GHOST,
+        type: EngTypes.GHOST,
         color: TypesColor.GHOST,
       }
     case '드래곤':
       return {
-        type: IconTypes.DRAGON,
+        type: EngTypes.DRAGON,
         color: TypesColor.DRAGON,
       }
     case '악':
       return {
-        type: IconTypes.DARK,
+        type: EngTypes.DARK,
         color: TypesColor.DARK,
       }
     case '강철':
       return {
-        type: IconTypes.STEEL,
+        type: EngTypes.STEEL,
         color: TypesColor.STEEL,
       }
     case '페어리':
       return {
-        type: IconTypes.FAIRY,
+        type: EngTypes.FAIRY,
         color: TypesColor.FAIRY,
       }
 

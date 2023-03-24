@@ -10,7 +10,7 @@ interface ImagesContainerProps {
 
 const ImageSwitch = styled.div`
   width: 100%;
-  height: 30rem;
+  height: 27rem;
   margin-top: 1rem;
 
   .image__switch {
