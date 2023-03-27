@@ -90,7 +90,7 @@ const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
               <div key={item} onClick={handleClick} data-number={item}>
                 <Image>
                   <img
-                    src={`http://43.201.49.91:4000/image/official-artwork/gen${generate}/${item}.png`}
+                    src={`http://43.201.49.91:4000/image/${item}.png`}
                     alt="pokemon_image"
                     loading="lazy"
                   />

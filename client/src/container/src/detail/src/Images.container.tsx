@@ -66,14 +66,14 @@ const ImagesContainer: React.FC<ImagesContainerProps> = (props) => {
           {isShiny === true ? (
             <Image>
               <img
-                src={`http://43.201.49.91:4000/image/official-artwork/gen${detailInfo.generation}/shiny/${imageCode}.png`}
+                src={`http://43.201.49.91:4000/image/shiny/${imageCode}.png`}
                 alt="shiny_image"
               />
             </Image>
           ) : (
             <Image>
               <img
-                src={`http://43.201.49.91:4000/image/official-artwork/gen${detailInfo.generation}/${imageCode}.png`}
+                src={`http://43.201.49.91:4000/image/${imageCode}.png`}
                 alt="normal_image"
               />
             </Image>
