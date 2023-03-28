@@ -1,5 +1,5 @@
 ---
-slug: /
+slug: /0.1.2
 title: 0.1.2 업데이트
 authors: sungyu
 tags: [pokemon, update, '업데이트']

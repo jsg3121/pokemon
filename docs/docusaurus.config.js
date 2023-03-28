@@ -39,6 +39,8 @@ const config = {
         id: 'update',
         path: 'update',
         routeBasePath: 'update',
+        blogSidebarTitle: '모든 게시물',
+        blogSidebarCount: 'ALL',
       }),
     ],
   ],
@@ -52,6 +54,8 @@ const config = {
         },
         blog: {
           showReadingTime: true,
+          blogSidebarTitle: '모든 게시물',
+          blogSidebarCount: 'ALL',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

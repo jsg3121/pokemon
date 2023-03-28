@@ -1,5 +1,8 @@
 ---
-title: Markdown page example
+slug: 'slug'
+title: 'title'
+authors: sungyu
+tags: [tagList]
 ---
 
 # Markdown page example
