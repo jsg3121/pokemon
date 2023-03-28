@@ -18,7 +18,7 @@ const FeatureList: FeatureItem[] = [
         <p>업데이트 내용과 앞으로의 일정이 궁금하시다면</p>
         <Link
           className="button button--secondary button--lg"
-          to="/docs/intro">
+          to="/update">
           업데이트 바로가기
         </Link>
       </>

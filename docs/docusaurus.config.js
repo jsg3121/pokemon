@@ -31,7 +31,16 @@ const config = {
     defaultLocale: 'ko',
     locales: ['en', 'ko'],
   },
-
+  plugins: [
+    ['@docusaurus/plugin-content-blog',
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      ({
+        id: 'update',
+        path: 'update',
+        routeBasePath:'update'
+      }),
+    ]
+  ],
   presets: [
     [
       'classic',
@@ -39,17 +48,9 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -70,9 +71,9 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
-          {to: '/update/log', label: '공지사항', position: 'left'},
+          {to: '/docs/intro', label: '이용안내', position: 'left'},
+          {to: '/update', label: '공지사항', position: 'left'},
           {to: '/blog', label: '블로그', position: 'left'},
-          {to: '/tutorial', label: '이용안내', position: 'left'},
           // {
           //   type: 'docSidebar',
           //   sidebarId: 'tutorialSidebar',
