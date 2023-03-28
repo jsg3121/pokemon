@@ -1,41 +1,54 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
+import Link from '@docusaurus/Link';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  Svg?: React.ComponentType<React.ComponentProps<'svg'>>;
   description: JSX.Element;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: '업데이트',
+    Svg: require('@site/static/img/bulbasaur.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        <p>업데이트 내용과 앞으로의 일정이 궁금하시다면</p>
+        <Link
+          className="button button--secondary button--lg"
+          to="/docs/intro">
+          업데이트 바로가기
+        </Link>
+      </>
+    ),
+  },
+   {
+    title: '도감 사이트 이용 안내',
+    Svg: require('@site/static/img/charmander.svg').default,
+    description: (
+      <>
+        <p>사이트의 이용 방법이 궁금하시다면</p>
+        <Link
+          className="button button--secondary button--lg"
+          to="/docs/intro">
+            사용안내 바로가기
+        </Link>
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: '블로그',
+    Svg: require('@site/static/img/squirtle.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
-  },
-  {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        <p>도감 사이트의 개발 과정 및 관련 기술을 알고 싶으시다면</p>
+        <Link
+        className="button button--secondary button--lg"
+        to="/docs/intro">
+        블로그 바로가기
+      </Link>
       </>
     ),
   },
@@ -45,7 +58,7 @@ function Feature({title, Svg, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        {Svg &&  <Svg className={styles.featureSvg} role="img" /> }
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
