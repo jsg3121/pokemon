@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer/themes/github')
+const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -32,14 +32,15 @@ const config = {
     locales: ['en', 'ko'],
   },
   plugins: [
-    ['@docusaurus/plugin-content-blog',
+    [
+      '@docusaurus/plugin-content-blog',
       /** @type {import('@docusaurus/plugin-content-docs').Options} */
       ({
         id: 'update',
         path: 'update',
-        routeBasePath:'update'
+        routeBasePath: 'update',
       }),
-    ]
+    ],
   ],
   presets: [
     [
@@ -71,16 +72,9 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
-          {to: '/docs/intro', label: '이용안내', position: 'left'},
-          {to: '/update', label: '공지사항', position: 'left'},
-          {to: '/blog', label: '블로그', position: 'left'},
-          // {
-          //   type: 'docSidebar',
-          //   sidebarId: 'tutorialSidebar',
-          //   position: 'left',
-          //   label: 'Tutorial',
-          // },
-          // {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/docs/intro', label: '이용안내', position: 'left' },
+          { to: '/update', label: '공지사항', position: 'left' },
+          { to: '/blog', label: '블로그', position: 'left' },
           {
             href: 'https://github.com/jsg3121',
             label: 'GitHub',
@@ -90,55 +84,6 @@ const config = {
       },
       footer: {
         style: 'dark',
-        // links: [
-        //   {
-        //     title: 'Docs',
-        //     items: [
-        //       {
-        //         label: 'Tutorial',
-        //         to: '/docs/intro',
-        //       },
-        //       {
-        //         label: 'Update Log',
-        //         to: '/update/log',
-        //       },
-        //       {
-        //         label: 'Blog',
-        //         to: '/blog',
-        //       },
-        //     ],
-        //   },
-        //   // {
-        //   //   title: 'Community',
-        //   //   items: [
-        //   //     {
-        //   //       label: 'Stack Overflow',
-        //   //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-        //   //     },
-        //   //     {
-        //   //       label: 'Discord',
-        //   //       href: 'https://discordapp.com/invite/docusaurus',
-        //   //     },
-        //   //     {
-        //   //       label: 'Twitter',
-        //   //       href: 'https://twitter.com/docusaurus',
-        //   //     },
-        //   //   ],
-        //   // },
-        //   {
-        //     title: 'More',
-        //     items: [
-        //       {
-        //         label: 'Blog',
-        //         to: '/blog',
-        //       },
-        //       {
-        //         label: 'GitHub',
-        //         href: 'https://github.com/facebook/docusaurus',
-        //       },
-        //     ],
-        //   },
-        // ],
         copyright: `Designed & build by Sungyu Jang Copyright © ${new Date().getFullYear()} All rights reserved.`,
       },
       prism: {
@@ -146,6 +91,6 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
-};
+}
 
-module.exports = config;
+module.exports = config
