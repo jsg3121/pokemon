@@ -28,7 +28,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         <p>사이트의 이용 방법이 궁금하시다면</p>
-        <Link className="button button--secondary button--lg" to="/docs/intro">
+        <Link className="button button--secondary button--lg" to="/docs">
           사용안내 바로가기
         </Link>
       </>
@@ -40,7 +40,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         <p>도감 사이트의 개발 과정 및 관련 기술을 알고 싶으시다면</p>
-        <Link className="button button--secondary button--lg" to="/docs/intro">
+        <Link className="button button--secondary button--lg" to="/blog">
           블로그 바로가기
         </Link>
       </>

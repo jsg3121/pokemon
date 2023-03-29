@@ -51,6 +51,13 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          showLastUpdateAuthor: true,
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: '0.0.2',
+            },
+          },
         },
         blog: {
           showReadingTime: true,
@@ -76,7 +83,7 @@ const config = {
           src: 'img/logo.png',
         },
         items: [
-          { to: '/docs/intro', label: '이용안내', position: 'left' },
+          { to: '/docs', label: '이용안내', position: 'left' },
           { to: '/update', label: '공지사항', position: 'left' },
           { to: '/blog', label: '블로그', position: 'left' },
           {
