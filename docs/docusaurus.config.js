@@ -51,7 +51,6 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          showLastUpdateAuthor: true,
           lastVersion: 'current',
           versions: {
             current: {
