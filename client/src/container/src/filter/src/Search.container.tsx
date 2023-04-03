@@ -27,10 +27,16 @@ const SearchContainer: React.FC = observer(() => {
   )
 
   React.useEffect(() => {
-    if (changeFilter) {
+    if (changeFilter && keyword) {
       changeFilter({ type: 'name', value: keyword })
     }
   }, [changeFilter, keyword])
+
+  React.useEffect(() => {
+    if (keyword === '') {
+      console.log('a')
+    }
+  }, [keyword])
 
   return (
     <Search>

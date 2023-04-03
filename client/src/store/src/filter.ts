@@ -1,7 +1,7 @@
 import { action, makeObservable, observable } from 'mobx'
 
 export class FilterStore {
-  @observable public name: string | undefined = undefined
+  @observable public name: string = ''
   @observable public type: Array<string> = []
   @observable public generation: Array<string> = []
   @observable public isMega: string | undefined = undefined
@@ -56,7 +56,7 @@ export class FilterStore {
     this.isEvolution = undefined
     this.isMega = undefined
     this.isRegion = undefined
-    this.name = undefined
+    this.name = ''
     this.type = []
   }
 

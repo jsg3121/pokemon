@@ -56,8 +56,7 @@ export const FilterContext = React.createContext<ContextType>({})
 export const FilterProvider: React.FC<FilterContextProps> = observer(
   (props) => {
     const { children } = props
-    const { filter } = useMobxStore()
-    const { pokemonList } = useMobxStore()
+    const { filter, pokemonList } = useMobxStore()
 
     const { data: { getPokemonFilter } = { getPokemonFilter: [] }, loading } =
       useQuery<PokemonList>(FILTER_POKEMON, {
