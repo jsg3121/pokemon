@@ -11,7 +11,11 @@ listRouter.get('/list', async (req, res) => {
 })
 
 listRouter.post('/update', async (req, res) => {
-  const dataList = await prisma.pokemon.findMany()
+  const dataList = await prisma.pokemon.findMany({
+    where: {
+      generation: req.body.generation,
+    },
+  })
 
   try {
     dataList.map(async (data) => {
