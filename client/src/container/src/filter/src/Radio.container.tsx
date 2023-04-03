@@ -45,21 +45,21 @@ const RadioContainer: React.FC = observer(() => {
         name="isMega"
         options={RadioOptions}
         onSelect={handleSelect}
-        defaultValue={filter && filter.isMega !== undefined}
+        defaultValue={filter && filter.isMega}
       />
       <RadioGroup
         title="리전폼"
         name="isRegion"
         options={RadioOptions}
         onSelect={handleSelect}
-        defaultValue={filter && filter.isRegion !== undefined}
+        defaultValue={filter && filter.isRegion}
       />
       <RadioGroup
         title="진화여부"
         name="isEvolution"
         options={RadioOptions}
         onSelect={handleSelect}
-        defaultValue={filter && filter.isEvolution !== undefined}
+        defaultValue={filter && filter.isEvolution}
       />
     </Radio>
   )
