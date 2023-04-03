@@ -45,7 +45,7 @@ const Input = styled.input<{
 `
 
 const InputComponent: React.FC<InputComponentProps> = (props) => {
-  const { defaultValue, placeholder, type, status, onChange } = props
+  const { defaultValue = '', placeholder, type, status, onChange } = props
   const inputRef = React.useRef<HTMLInputElement>(null)
 
   const handleChange = React.useCallback(
@@ -56,10 +56,8 @@ const InputComponent: React.FC<InputComponentProps> = (props) => {
   )
 
   React.useEffect(() => {
-    if (defaultValue === undefined) {
-      if (inputRef.current) {
-        inputRef.current.value = ''
-      }
+    if (inputRef.current) {
+      inputRef.current.value = defaultValue
     }
   }, [defaultValue])
 
@@ -67,7 +65,7 @@ const InputComponent: React.FC<InputComponentProps> = (props) => {
     <Input
       type={type}
       ref={inputRef}
-      defaultValue={defaultValue ? defaultValue : ''}
+      defaultValue={defaultValue}
       status={status}
       placeholder={placeholder}
       onChange={handleChange}

@@ -7,7 +7,7 @@ interface RadioComponentProps {
   title?: string
   name: string
   options: Array<{ label: string; value: string }>
-  defaultValue?: boolean
+  defaultValue?: string
   onSelect: (data: { name: string; value: string }) => void
 }
 
@@ -51,7 +51,7 @@ const RadioGroupComponent: React.FC<RadioComponentProps> = (props) => {
               label={label}
               value={value}
               onChecked={handleCheck}
-              defaultChecked={defaultValue}
+              defaultChecked={defaultValue === value}
             />
           )
         })}

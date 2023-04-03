@@ -21,16 +21,19 @@ const SearchContainer: React.FC = observer(() => {
 
   const handleChange = React.useCallback(
     (str: string) => {
-      setKeyword(str)
+      if (str === '' && changeFilter) {
+        changeFilter({ type: 'name', value: '' })
+      }
+      setKeyword(str.trim())
     },
-    [setKeyword]
+    [changeFilter, setKeyword]
   )
 
   React.useEffect(() => {
-    if (changeFilter) {
+    if (changeFilter && keyword) {
       changeFilter({ type: 'name', value: keyword })
     }
-  }, [changeFilter, keyword])
+  }, [changeFilter, filter, keyword])
 
   return (
     <Search>
