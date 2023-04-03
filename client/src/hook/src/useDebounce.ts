@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 type DebounceType = (str: string) => void
 
-type UseDebounce = () => [string | undefined, DebounceType]
+type UseDebounce = () => [string, DebounceType]
 
 /**
  * info : text 입력값 debounce
@@ -11,7 +11,7 @@ type UseDebounce = () => [string | undefined, DebounceType]
  */
 export const useDebounce: UseDebounce = () => {
   const [value, setValue] = useState<string>('')
-  const [keyword, setKeyword] = useState<string>()
+  const [keyword, setKeyword] = useState<string>('')
 
   const debounce: DebounceType = (str) => {
     setValue(str)
