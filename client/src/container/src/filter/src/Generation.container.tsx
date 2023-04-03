@@ -42,60 +42,20 @@ const GenerationContainer: React.FC = () => {
     <Generation className="filter__generation">
       <p className="filter__content--title">Generation</p>
       <div>
-        <Checkbox
-          label="1세대"
-          value={'1'}
-          onChecked={handleGenCheck}
-          defaultChecked={filter && filter.generation.length !== 0}
-        />
-        <Checkbox
-          label="2세대"
-          value={'2'}
-          onChecked={handleGenCheck}
-          defaultChecked={filter && filter.generation.length !== 0}
-        />
-        <Checkbox
-          label="3세대"
-          value={'3'}
-          onChecked={handleGenCheck}
-          defaultChecked={filter && filter.generation.length !== 0}
-        />
-        <Checkbox
-          label="4세대"
-          value={'4'}
-          onChecked={handleGenCheck}
-          defaultChecked={filter && filter.generation.length !== 0}
-        />
-        <Checkbox
-          label="5세대"
-          value={'5'}
-          onChecked={handleGenCheck}
-          defaultChecked={filter && filter.generation.length !== 0}
-        />
-        <Checkbox
-          label="6세대"
-          value={'6'}
-          onChecked={handleGenCheck}
-          defaultChecked={filter && filter.generation.length !== 0}
-        />
-        <Checkbox
-          label="7세대"
-          value={'7'}
-          onChecked={handleGenCheck}
-          defaultChecked={filter && filter.generation.length !== 0}
-        />
-        <Checkbox
-          label="8세대"
-          value={'8'}
-          onChecked={handleGenCheck}
-          defaultChecked={filter && filter.generation.length !== 0}
-        />
-        <Checkbox
-          label="9세대"
-          value={'9'}
-          onChecked={handleGenCheck}
-          defaultChecked={filter && filter.generation.length !== 0}
-        />
+        {new Array(9).fill('').map((_, index) => {
+          return (
+            <React.Fragment key={index}>
+              <Checkbox
+                label={`${index + 1}세대`}
+                value={`${index + 1}`}
+                onChecked={handleGenCheck}
+                defaultChecked={
+                  filter && filter.generation.indexOf(`${index + 1}`) >= 0
+                }
+              />
+            </React.Fragment>
+          )
+        })}
       </div>
     </Generation>
   )
