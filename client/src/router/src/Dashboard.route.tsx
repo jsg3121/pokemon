@@ -28,13 +28,8 @@ const Dashboard = styled.div`
 
   .section__list {
     width: calc(100% - 20rem);
-    padding: 2rem;
+    padding: 1rem;
     margin-top: 5rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(14rem, auto));
-    grid-column-gap: 1rem;
-    grid-row-gap: 1rem;
-    justify-items: center;
     position: relative;
 
     .list__notice--mobile {
@@ -43,9 +38,6 @@ const Dashboard = styled.div`
 
     @media screen and (max-width: 475px) {
       width: 100%;
-      padding: 1rem;
-      grid-template-columns: repeat(3, auto);
-      grid-column-gap: 0.5rem;
       margin-top: 3.5rem;
     }
   }
