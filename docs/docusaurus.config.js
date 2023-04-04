@@ -11,7 +11,7 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'ec2-43-201-49-91.ap-northeast-2.compute.amazonaws.com',
+  url: 'http://ec2-43-201-49-91.ap-northeast-2.compute.amazonaws.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: ':3000/',
