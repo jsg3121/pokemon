@@ -34,16 +34,17 @@ const InfoHeader = styled.div`
   }
 
   .detail__info--evolution {
-    width: 15rem;
-    height: 7rem;
-    display: flex;
-    flex-shrink: 0;
+    min-width: 10rem;
+    max-width: 25rem;
+    height: 6.6rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-bottom: 0.5rem;
 
     .info__evolution--image {
       width: 100%;
       height: 6rem;
       display: flex;
-      justify-content: space-around;
 
       & > div {
         cursor: pointer;
@@ -54,11 +55,37 @@ const InfoHeader = styled.div`
         }
       }
     }
+
+    /* total width */
+    &::-webkit-scrollbar {
+      height: 0.35rem;
+    }
+
+    /* background of the scrollbar except button or resizer */
+    &::-webkit-scrollbar-track {
+    }
+    &::-webkit-scrollbar-track:hover {
+    }
+
+    /* scrollbar itself */
+    &::-webkit-scrollbar-thumb {
+      background-color: #898989;
+      border-radius: 1rem;
+      border: 3px solid transparent;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #898989;
+      border: 3px solid transparent;
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
   }
 `
 
 const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
-  const { evolutions, name, generate, number } = props
+  const { evolutions, name, number } = props
   const { resetMode } = React.useContext(DetailContext)
 
   const navigate = useNavigate()

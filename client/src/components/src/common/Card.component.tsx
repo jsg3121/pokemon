@@ -131,7 +131,7 @@ const Card = styled.article<{ backgroundColor: Array<TypesColor> }>`
 `
 
 const CardComponent: React.FC<CardComponentProps> = (props) => {
-  const { type, pokemonNumber, name, mega, generate, region, onClick } = props
+  const { type, pokemonNumber, name, mega, region, onClick } = props
 
   const backgroundColor = React.useMemo(() => {
     const background: Array<TypesColor> = []
