@@ -7,7 +7,7 @@ import { Card } from '../../components'
 import { Pokemon } from '../../graphql'
 import { useMobxStore } from '../../hook'
 
-interface PokemonCardProps {
+interface PokemonCardContainerProps {
   onClick: (number: number) => void
   data: Pokemon
 }
@@ -20,7 +20,6 @@ const List = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(14rem, auto));
     grid-column-gap: 1rem;
-    grid-row-gap: 1rem;
     justify-items: center;
 
     @media screen and (max-width: 475px) {
@@ -30,7 +29,11 @@ const List = styled.div`
   }
 `
 
-const PokemonCard: React.FC<PokemonCardProps> = (props) => {
+const PokemonCard = styled.div`
+  padding: 1rem 0;
+`
+
+const PokemonCardContainer: React.FC<PokemonCardContainerProps> = (props) => {
   const { data, onClick } = props
 
   const handleClick = React.useCallback(
@@ -41,15 +44,17 @@ const PokemonCard: React.FC<PokemonCardProps> = (props) => {
   )
 
   return (
-    <Card
-      name={data.name}
-      pokemonNumber={data.number}
-      type={data.type}
-      generate={data.generation}
-      region={data.isRegion ?? undefined}
-      mega={data.isMega ?? undefined}
-      onClick={handleClick}
-    />
+    <PokemonCard>
+      <Card
+        name={data.name}
+        pokemonNumber={data.number}
+        type={data.type}
+        generate={data.generation}
+        region={data.isRegion ?? undefined}
+        mega={data.isMega ?? undefined}
+        onClick={handleClick}
+      />
+    </PokemonCard>
   )
 }
 
@@ -72,7 +77,7 @@ const ListContainer: React.FC = observer(() => {
       <VirtuosoGrid
         totalCount={pokemon.length}
         itemContent={(index) => (
-          <PokemonCard data={pokemon[index]} onClick={handleClick} />
+          <PokemonCardContainer data={pokemon[index]} onClick={handleClick} />
         )}
       />
     )
