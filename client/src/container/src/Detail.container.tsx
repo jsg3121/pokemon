@@ -46,8 +46,14 @@ const DetailInfo = styled.article`
 `
 
 const DetailContainer: React.FC = () => {
-  const { detailInfo, otherInfo, megaInfo, regionInfo, isLoading } =
-    React.useContext(DetailContext)
+  const {
+    detailInfo,
+    otherInfo,
+    megaInfo,
+    regionInfo,
+    isLoading,
+    normalFormInfo,
+  } = React.useContext(DetailContext)
   const [color, setColor] = React.useState<Array<TypesColor>>([])
 
   const settings = React.useMemo<Settings>(() => {
@@ -107,13 +113,34 @@ const DetailContainer: React.FC = () => {
           {detailInfo && (
             <>
               {otherInfo === 'normal' && (
-                <DetailView
-                  generate={detailInfo.generation}
-                  number={detailInfo.number}
-                  evolutions={detailInfo.evolutionId}
-                  name={detailInfo.name}
-                  types={detailInfo.type}
-                />
+                <>
+                  {normalFormInfo && normalFormInfo.length > 0 ? (
+                    <Slider {...settings}>
+                      {normalFormInfo.map((item, index) => {
+                        return (
+                          <React.Fragment key={index}>
+                            <DetailView
+                              generate={detailInfo.generation}
+                              number={detailInfo.number}
+                              evolutions={detailInfo.evolutionId}
+                              name={detailInfo.name}
+                              types={item.type}
+                              index={index}
+                            />
+                          </React.Fragment>
+                        )
+                      })}
+                    </Slider>
+                  ) : (
+                    <DetailView
+                      generate={detailInfo.generation}
+                      number={detailInfo.number}
+                      evolutions={detailInfo.evolutionId}
+                      name={detailInfo.name}
+                      types={detailInfo.type}
+                    />
+                  )}
+                </>
               )}
               {otherInfo === 'mega' && megaInfo && (
                 <Slider {...settings}>

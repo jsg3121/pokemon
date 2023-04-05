@@ -46,6 +46,16 @@ export type PokemonMega = {
   typeSingle2?: Maybe<Scalars['String']>;
 };
 
+export type PokemonNormalForm = {
+  __typename?: 'PokemonNormalForm';
+  id: Scalars['Int'];
+  imagePath: Scalars['String'];
+  pokemonId: Scalars['Int'];
+  type: Array<Scalars['String']>;
+  typeSingle1: Scalars['String'];
+  typeSingle2?: Maybe<Scalars['String']>;
+};
+
 export type PokemonRegion = {
   __typename?: 'PokemonRegion';
   id: Scalars['Int'];
@@ -61,6 +71,7 @@ export type Query = {
   __typename?: 'Query';
   getList: Array<Pokemon>;
   getMegaEvolution: Array<PokemonMega>;
+  getNormalForm: Array<PokemonNormalForm>;
   getPokemonFilter?: Maybe<Array<Pokemon>>;
   getRegionForm: Array<PokemonRegion>;
   getSinglePokemon: Pokemon;
@@ -68,6 +79,11 @@ export type Query = {
 
 
 export type QueryGetMegaEvolutionArgs = {
+  number: Scalars['Float'];
+};
+
+
+export type QueryGetNormalFormArgs = {
   number: Scalars['Float'];
 };
 

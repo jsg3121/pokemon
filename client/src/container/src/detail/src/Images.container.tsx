@@ -6,6 +6,7 @@ import { DetailContext } from '../../../../context'
 
 interface ImagesContainerProps {
   index?: number
+  normalFormPath?: number
 }
 
 const ImageSwitch = styled.div`
@@ -32,13 +33,18 @@ const ImageSwitch = styled.div`
 `
 
 const ImagesContainer: React.FC<ImagesContainerProps> = (props) => {
-  const { index } = props
-  const { isShiny, otherInfo, detailInfo } = React.useContext(DetailContext)
+  const { index = 0 } = props
+  const { isShiny, otherInfo, detailInfo, normalFormInfo } =
+    React.useContext(DetailContext)
 
   const imageCode = React.useMemo(() => {
     if (detailInfo) {
       if (otherInfo === 'normal') {
-        return detailInfo.number
+        if (normalFormInfo && normalFormInfo.length > 0) {
+          return normalFormInfo[index].imagePath
+        } else {
+          return detailInfo.number
+        }
       } else if (otherInfo === 'mega') {
         return parseInt(
           `1${detailInfo.number.toString().padStart(3, '0')}${index
@@ -57,7 +63,7 @@ const ImagesContainer: React.FC<ImagesContainerProps> = (props) => {
     } else {
       return 0
     }
-  }, [detailInfo, index, otherInfo])
+  }, [detailInfo, index, normalFormInfo, otherInfo])
 
   return (
     <ImageSwitch className="detail__image">

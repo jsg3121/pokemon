@@ -1,7 +1,12 @@
 import { gql, useLazyQuery, useQuery } from '@apollo/client'
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { Pokemon, PokemonMega, PokemonRegion } from '../../graphql'
+import {
+  Pokemon,
+  PokemonMega,
+  PokemonNormalForm,
+  PokemonRegion,
+} from '../../graphql'
 
 interface DetailContextProps {
   children: React.ReactNode
@@ -16,6 +21,9 @@ interface PokemonDetail {
   }
   region: {
     getRegionForm: Array<PokemonRegion>
+  }
+  normalForm: {
+    getNormalForm: Array<PokemonNormalForm>
   }
 }
 
@@ -33,6 +41,7 @@ const GET_POKEMON = gql`
       isEvolution
       evolutionId
       generation
+      isForm
     }
   }
 `
@@ -60,6 +69,19 @@ const GET_MEGA = gql`
   }
 `
 
+const GET_NORMAL_FORM = gql`
+  query GetNormalForm($number: Float!) {
+    getNormalForm(number: $number) {
+      id
+      pokemonId
+      type
+      typeSingle1
+      typeSingle2
+      imagePath
+    }
+  }
+`
+
 type ContextType = {
   detailInfo?: Pokemon
   otherInfo?: string
@@ -67,6 +89,7 @@ type ContextType = {
   isLoading?: boolean
   regionInfo?: Array<PokemonRegion>
   megaInfo?: Array<PokemonMega>
+  normalFormInfo?: Array<PokemonNormalForm>
   setShiny?: () => void
   onOtherInfoChange?: (val: string) => void
   resetMode?: () => void
@@ -93,6 +116,8 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
     useLazyQuery<PokemonDetail['region']>(GET_REGION)
   const [getMega, { data: { getMegaEvolution } = { getMegaEvolution: [] } }] =
     useLazyQuery<PokemonDetail['mega']>(GET_MEGA)
+  const [getForm, { data: { getNormalForm } = { getNormalForm: [] } }] =
+    useLazyQuery<PokemonDetail['normalForm']>(GET_NORMAL_FORM)
 
   const setShiny = React.useCallback(() => {
     setIsShiny((val) => !val)
@@ -118,9 +143,16 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
     }
   }, [getMega, getSinglePokemon, number])
 
+  React.useEffect(() => {
+    if (getSinglePokemon && getSinglePokemon.isForm) {
+      getForm({ variables: { number: parseInt(number, 10) } })
+    }
+  }, [getForm, getSinglePokemon, number])
+
   const initialValue = {
     detailInfo: getSinglePokemon,
     regionInfo: getRegionForm,
+    normalFormInfo: getNormalForm,
     megaInfo: getMegaEvolution,
     otherInfo,
     isLoading: loading,
