@@ -24,13 +24,20 @@ const List = styled.div`
 
     @media screen and (max-width: 475px) {
       grid-template-columns: repeat(3, auto);
-      grid-column-gap: 0.5rem;
     }
+  }
+
+  @media screen and (max-width: 475px) {
+    padding: 0 1rem;
   }
 `
 
 const PokemonCard = styled.div`
   padding: 1rem 0;
+
+  @media screen and (max-width: 475px) {
+    padding: 0.75rem 0;
+  }
 `
 
 const PokemonCardContainer: React.FC<PokemonCardContainerProps> = (props) => {

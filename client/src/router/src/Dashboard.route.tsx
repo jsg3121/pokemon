@@ -7,6 +7,7 @@ import { ListProvider } from '../../context/src/List.context'
 const Dashboard = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
 
   .section__filter {
     width: 20rem;
@@ -39,6 +40,7 @@ const Dashboard = styled.div`
     @media screen and (max-width: 475px) {
       width: 100%;
       margin-top: 3.5rem;
+      padding: 1rem 0;
     }
   }
 `

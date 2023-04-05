@@ -44,6 +44,11 @@ const Notice = styled.div`
   @media screen and (min-width: 476px) {
     display: none;
   }
+
+  @media screen and (max-width: 475px) {
+    padding: 0 1rem;
+    margin-bottom: 0.5rem;
+  }
 `
 
 const NoticeContainer: React.FC<NoticeContainerProps> = (props) => {
