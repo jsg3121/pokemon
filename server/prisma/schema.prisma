@@ -17,21 +17,34 @@ generator typegraphql {
 }
 
 model Pokemon {
-  id            Int             @id @unique @default(autoincrement()) @db.Integer
-  number        Int             @unique @db.Integer
-  name          String          @db.VarChar(50)
-  type          String[]
-  isRegion      Boolean?        @default(false) @map("is_region")
-  isMega        Boolean?        @default(false) @map("is_mega")
-  typeSingle1   String          @map("type_single1") @db.VarChar(20)
-  typeSingle2   String?         @map("type_single2") @db.VarChar(20)
-  isEvolution   Boolean         @default(false) @map("is_evolution")
-  evolutionId   Int[]           @map("evolution_id") @db.Integer
-  generation    Int             @map("generation") @db.Integer
-  PokemonRegion PokemonRegion[]
-  PokemonMega   PokemonMega[]
+  id                Int                 @id @unique @default(autoincrement()) @db.Integer
+  number            Int                 @unique @db.Integer
+  name              String              @db.VarChar(50)
+  type              String[]
+  isRegion          Boolean?            @default(false) @map("is_region")
+  isMega            Boolean?            @default(false) @map("is_mega")
+  typeSingle1       String              @map("type_single1") @db.VarChar(20)
+  typeSingle2       String?             @map("type_single2") @db.VarChar(20)
+  isEvolution       Boolean             @default(false) @map("is_evolution")
+  evolutionId       Int[]               @map("evolution_id") @db.Integer
+  generation        Int                 @map("generation") @db.Integer
+  isForm            Boolean             @default(false) @map("is_form")
+  PokemonRegion     PokemonRegion[]
+  PokemonMega       PokemonMega[]
+  PokemonNormalForm PokemonNormalForm[]
 
   @@map("pokemon")
+}
+
+model PokemonNormalForm {
+  id          Int      @id @unique @default(autoincrement()) @db.Integer
+  pokemon     Pokemon  @relation(fields: [pokemonId], references: [number])
+  pokemonId   Int      @map("pokemon_id") @db.Integer
+  type        String[]
+  typeSingle1 String   @map("type_single1") @db.VarChar(20)
+  typeSingle2 String?  @map("type_single2") @db.VarChar(20)
+
+  @@map("pokemon_normal_form")
 }
 
 model PokemonRegion {

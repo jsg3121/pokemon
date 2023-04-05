@@ -16,4 +16,9 @@ export class PokemonCount {
     nullable: false
   })
   PokemonMega!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  PokemonNormalForm!: number;
 }

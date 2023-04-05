@@ -1,4 +1,5 @@
 export { PokemonMegaScalarFieldEnum } from "./PokemonMegaScalarFieldEnum";
+export { PokemonNormalFormScalarFieldEnum } from "./PokemonNormalFormScalarFieldEnum";
 export { PokemonRegionScalarFieldEnum } from "./PokemonRegionScalarFieldEnum";
 export { PokemonScalarFieldEnum } from "./PokemonScalarFieldEnum";
 export { QueryMode } from "./QueryMode";

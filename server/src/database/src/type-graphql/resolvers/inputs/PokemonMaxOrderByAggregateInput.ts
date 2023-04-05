@@ -52,4 +52,9 @@ export class PokemonMaxOrderByAggregateInput {
     nullable: true
   })
   generation?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  isForm?: "asc" | "desc" | undefined;
 }

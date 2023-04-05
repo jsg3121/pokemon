@@ -61,4 +61,9 @@ export class PokemonCreateManyInput {
     nullable: false
   })
   generation!: number;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  isForm?: boolean | undefined;
 }

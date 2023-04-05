@@ -1,0 +1,14 @@
+export { AggregatePokemonNormalFormArgs } from "./AggregatePokemonNormalFormArgs";
+export { CreateManyPokemonNormalFormArgs } from "./CreateManyPokemonNormalFormArgs";
+export { CreateOnePokemonNormalFormArgs } from "./CreateOnePokemonNormalFormArgs";
+export { DeleteManyPokemonNormalFormArgs } from "./DeleteManyPokemonNormalFormArgs";
+export { DeleteOnePokemonNormalFormArgs } from "./DeleteOnePokemonNormalFormArgs";
+export { FindFirstPokemonNormalFormArgs } from "./FindFirstPokemonNormalFormArgs";
+export { FindFirstPokemonNormalFormOrThrowArgs } from "./FindFirstPokemonNormalFormOrThrowArgs";
+export { FindManyPokemonNormalFormArgs } from "./FindManyPokemonNormalFormArgs";
+export { FindUniquePokemonNormalFormArgs } from "./FindUniquePokemonNormalFormArgs";
+export { FindUniquePokemonNormalFormOrThrowArgs } from "./FindUniquePokemonNormalFormOrThrowArgs";
+export { GroupByPokemonNormalFormArgs } from "./GroupByPokemonNormalFormArgs";
+export { UpdateManyPokemonNormalFormArgs } from "./UpdateManyPokemonNormalFormArgs";
+export { UpdateOnePokemonNormalFormArgs } from "./UpdateOnePokemonNormalFormArgs";
+export { UpsertOnePokemonNormalFormArgs } from "./UpsertOnePokemonNormalFormArgs";

@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { PokemonMegaOrderByRelationAggregateInput } from "../inputs/PokemonMegaOrderByRelationAggregateInput";
+import { PokemonNormalFormOrderByRelationAggregateInput } from "../inputs/PokemonNormalFormOrderByRelationAggregateInput";
 import { PokemonRegionOrderByRelationAggregateInput } from "../inputs/PokemonRegionOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -65,6 +66,11 @@ export class PokemonOrderByWithRelationInput {
   })
   generation?: "asc" | "desc" | undefined;
 
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  isForm?: "asc" | "desc" | undefined;
+
   @TypeGraphQL.Field(_type => PokemonRegionOrderByRelationAggregateInput, {
     nullable: true
   })
@@ -74,4 +80,9 @@ export class PokemonOrderByWithRelationInput {
     nullable: true
   })
   PokemonMega?: PokemonMegaOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonNormalFormOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  PokemonNormalForm?: PokemonNormalFormOrderByRelationAggregateInput | undefined;
 }

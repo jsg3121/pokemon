@@ -51,4 +51,9 @@ export class PokemonMaxAggregate {
     nullable: true
   })
   generation!: number | null;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  isForm!: boolean | null;
 }

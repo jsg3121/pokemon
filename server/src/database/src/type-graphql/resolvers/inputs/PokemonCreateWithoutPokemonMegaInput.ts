@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { PokemonNormalFormCreateNestedManyWithoutPokemonInput } from "../inputs/PokemonNormalFormCreateNestedManyWithoutPokemonInput";
 import { PokemonRegionCreateNestedManyWithoutPokemonInput } from "../inputs/PokemonRegionCreateNestedManyWithoutPokemonInput";
 
 @TypeGraphQL.InputType("PokemonCreateWithoutPokemonMegaInput", {
@@ -58,8 +59,18 @@ export class PokemonCreateWithoutPokemonMegaInput {
   })
   generation!: number;
 
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  isForm?: boolean | undefined;
+
   @TypeGraphQL.Field(_type => PokemonRegionCreateNestedManyWithoutPokemonInput, {
     nullable: true
   })
   PokemonRegion?: PokemonRegionCreateNestedManyWithoutPokemonInput | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonNormalFormCreateNestedManyWithoutPokemonInput, {
+    nullable: true
+  })
+  PokemonNormalForm?: PokemonNormalFormCreateNestedManyWithoutPokemonInput | undefined;
 }

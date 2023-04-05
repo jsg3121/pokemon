@@ -1,8 +1,10 @@
 import * as TypeGraphQL from "type-graphql";
 import { Pokemon } from "../../../models/Pokemon";
 import { PokemonMega } from "../../../models/PokemonMega";
+import { PokemonNormalForm } from "../../../models/PokemonNormalForm";
 import { PokemonRegion } from "../../../models/PokemonRegion";
 import { PokemonPokemonMegaArgs } from "./args/PokemonPokemonMegaArgs";
+import { PokemonPokemonNormalFormArgs } from "./args/PokemonPokemonNormalFormArgs";
 import { PokemonPokemonRegionArgs } from "./args/PokemonPokemonRegionArgs";
 import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
@@ -28,5 +30,16 @@ export class PokemonRelationsResolver {
         id: pokemon.id,
       },
     }).PokemonMega(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [PokemonNormalForm], {
+    nullable: false
+  })
+  async PokemonNormalForm(@TypeGraphQL.Root() pokemon: Pokemon, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PokemonPokemonNormalFormArgs): Promise<PokemonNormalForm[]> {
+    return getPrismaFromContext(ctx).pokemon.findUnique({
+      where: {
+        id: pokemon.id,
+      },
+    }).PokemonNormalForm(args);
   }
 }

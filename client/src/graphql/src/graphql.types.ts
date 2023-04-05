@@ -16,9 +16,11 @@ export type Pokemon = {
   __typename?: 'Pokemon';
   _count?: Maybe<PokemonCount>;
   evolutionId: Array<Scalars['Int']>;
+  formList: Array<Scalars['Int']>;
   generation: Scalars['Int'];
   id: Scalars['Int'];
   isEvolution: Scalars['Boolean'];
+  isForm: Scalars['Boolean'];
   isMega?: Maybe<Scalars['Boolean']>;
   isRegion?: Maybe<Scalars['Boolean']>;
   name: Scalars['String'];
@@ -58,9 +60,9 @@ export type PokemonRegion = {
 export type Query = {
   __typename?: 'Query';
   getList: Array<Pokemon>;
-  getMegaEvolution: PokemonMega;
+  getMegaEvolution: Array<PokemonMega>;
   getPokemonFilter?: Maybe<Array<Pokemon>>;
-  getRegionForm: PokemonRegion;
+  getRegionForm: Array<PokemonRegion>;
   getSinglePokemon: Pokemon;
 };
 
@@ -71,7 +73,7 @@ export type QueryGetMegaEvolutionArgs = {
 
 
 export type QueryGetPokemonFilterArgs = {
-  generation?: InputMaybe<Scalars['Float']>;
+  generation?: InputMaybe<Array<Scalars['String']>>;
   isEvolution?: InputMaybe<Scalars['Boolean']>;
   isMega?: InputMaybe<Scalars['Boolean']>;
   isRegion?: InputMaybe<Scalars['Boolean']>;

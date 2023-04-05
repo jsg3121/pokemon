@@ -67,6 +67,11 @@ export class PokemonGroupBy {
   })
   generation!: number;
 
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: false
+  })
+  isForm!: boolean;
+
   @TypeGraphQL.Field(_type => PokemonCountAggregate, {
     nullable: true
   })
