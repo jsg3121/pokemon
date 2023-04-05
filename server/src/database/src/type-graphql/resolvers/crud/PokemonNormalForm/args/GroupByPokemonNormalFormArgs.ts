@@ -20,7 +20,7 @@ export class GroupByPokemonNormalFormArgs {
   @TypeGraphQL.Field(_type => [PokemonNormalFormScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "pokemonId" | "type" | "typeSingle1" | "typeSingle2">;
+  by!: Array<"id" | "pokemonId" | "type" | "typeSingle1" | "typeSingle2" | "imagePath">;
 
   @TypeGraphQL.Field(_type => PokemonNormalFormScalarWhereWithAggregatesInput, {
     nullable: true

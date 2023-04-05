@@ -43,6 +43,7 @@ model PokemonNormalForm {
   type        String[]
   typeSingle1 String   @map("type_single1") @db.VarChar(20)
   typeSingle2 String?  @map("type_single2") @db.VarChar(20)
+  imagePath   String   @map("image_path") @db.VarChar(50)
 
   @@map("pokemon_normal_form")
 }

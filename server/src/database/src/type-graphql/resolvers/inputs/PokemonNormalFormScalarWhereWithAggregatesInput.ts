@@ -50,4 +50,9 @@ export class PokemonNormalFormScalarWhereWithAggregatesInput {
     nullable: true
   })
   typeSingle2?: StringNullableWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
+  })
+  imagePath?: StringWithAggregatesFilter | undefined;
 }

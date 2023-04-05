@@ -26,4 +26,9 @@ export class PokemonNormalFormMaxAggregate {
     nullable: true
   })
   typeSingle2!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  imagePath!: string | null;
 }

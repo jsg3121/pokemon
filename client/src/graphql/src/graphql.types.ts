@@ -16,7 +16,6 @@ export type Pokemon = {
   __typename?: 'Pokemon';
   _count?: Maybe<PokemonCount>;
   evolutionId: Array<Scalars['Int']>;
-  formList: Array<Scalars['Int']>;
   generation: Scalars['Int'];
   id: Scalars['Int'];
   isEvolution: Scalars['Boolean'];
@@ -33,6 +32,7 @@ export type Pokemon = {
 export type PokemonCount = {
   __typename?: 'PokemonCount';
   PokemonMega: Scalars['Int'];
+  PokemonNormalForm: Scalars['Int'];
   PokemonRegion: Scalars['Int'];
 };
 

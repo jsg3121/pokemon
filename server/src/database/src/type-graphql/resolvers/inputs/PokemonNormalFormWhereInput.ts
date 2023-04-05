@@ -56,4 +56,9 @@ export class PokemonNormalFormWhereInput {
     nullable: true
   })
   typeSingle2?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  imagePath?: StringFilter | undefined;
 }

@@ -1,6 +1,11 @@
 import { PrismaClient } from '@prisma/client'
-import { Arg, Float, Int, Query, Resolver } from 'type-graphql'
-import { Pokemon, PokemonMega, PokemonRegion } from '../../type-graphql'
+import { Arg, Query, Resolver } from 'type-graphql'
+import {
+  Pokemon,
+  PokemonMega,
+  PokemonNormalForm,
+  PokemonRegion,
+} from '../../type-graphql'
 
 const prisma = new PrismaClient()
 
@@ -134,6 +139,32 @@ export default class PokemonResolver {
           number: 'asc',
         },
       ],
+    })
+
+    if (data) {
+      return data
+    } else {
+      throw new Error('No data!!')
+    }
+  }
+
+  /**
+   * @author 장선규
+   * @description 포켓몬 노말 폼
+   * @param number 검색 노말 폼 조회
+   * @returns {Promise<PokemonNormalForm[]>}
+   */
+  @Query(() => [PokemonNormalForm])
+  public async getNormalForm(
+    @Arg('number') number: number
+  ): Promise<Array<PokemonNormalForm>> {
+    const data = await prisma.pokemonNormalForm.findMany({
+      where: {
+        pokemonId: number,
+      },
+      orderBy: {
+        id: 'asc',
+      },
     })
 
     if (data) {

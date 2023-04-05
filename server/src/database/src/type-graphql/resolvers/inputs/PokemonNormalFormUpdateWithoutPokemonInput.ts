@@ -21,4 +21,9 @@ export class PokemonNormalFormUpdateWithoutPokemonInput {
     nullable: true
   })
   typeSingle2?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  imagePath?: string | undefined;
 }

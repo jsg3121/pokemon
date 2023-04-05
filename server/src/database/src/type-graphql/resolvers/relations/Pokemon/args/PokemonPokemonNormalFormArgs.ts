@@ -35,5 +35,5 @@ export class PokemonPokemonNormalFormArgs {
   @TypeGraphQL.Field(_type => [PokemonNormalFormScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "pokemonId" | "type" | "typeSingle1" | "typeSingle2"> | undefined;
+  distinct?: Array<"id" | "pokemonId" | "type" | "typeSingle1" | "typeSingle2" | "imagePath"> | undefined;
 }

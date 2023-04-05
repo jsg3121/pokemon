@@ -34,4 +34,9 @@ export class PokemonNormalForm {
     nullable: true
   })
   typeSingle2?: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  imagePath!: string;
 }
