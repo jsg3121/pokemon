@@ -27,6 +27,11 @@ export class PokemonNormalFormOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  name?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   type?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {

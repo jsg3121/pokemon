@@ -13,6 +13,11 @@ export class PokemonNormalFormCreateInput {
   })
   pokemon!: PokemonCreateNestedOneWithoutPokemonNormalFormInput;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  name!: string;
+
   @TypeGraphQL.Field(_type => [String], {
     nullable: true
   })

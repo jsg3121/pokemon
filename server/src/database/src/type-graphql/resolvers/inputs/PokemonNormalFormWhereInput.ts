@@ -42,6 +42,11 @@ export class PokemonNormalFormWhereInput {
   })
   pokemonId?: IntFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  name?: StringFilter | undefined;
+
   @TypeGraphQL.Field(_type => StringNullableListFilter, {
     nullable: true
   })

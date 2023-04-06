@@ -7,6 +7,11 @@ import { DecimalJSScalar } from "../../scalars";
   isAbstract: true
 })
 export class PokemonNormalFormUpdateWithoutPokemonInput {
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  name?: string | undefined;
+
   @TypeGraphQL.Field(_type => [String], {
     nullable: true
   })

@@ -12,6 +12,11 @@ export class PokemonNormalFormCreateManyPokemonInput {
   })
   id?: number | undefined;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  name!: string;
+
   @TypeGraphQL.Field(_type => [String], {
     nullable: true
   })

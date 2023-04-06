@@ -13,6 +13,11 @@ export class PokemonNormalFormUpdateInput {
   })
   pokemon?: PokemonUpdateOneRequiredWithoutPokemonNormalFormNestedInput | undefined;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  name?: string | undefined;
+
   @TypeGraphQL.Field(_type => [String], {
     nullable: true
   })

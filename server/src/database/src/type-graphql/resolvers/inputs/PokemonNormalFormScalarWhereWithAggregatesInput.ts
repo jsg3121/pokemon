@@ -36,6 +36,11 @@ export class PokemonNormalFormScalarWhereWithAggregatesInput {
   })
   pokemonId?: IntWithAggregatesFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
+  })
+  name?: StringWithAggregatesFilter | undefined;
+
   @TypeGraphQL.Field(_type => StringNullableListFilter, {
     nullable: true
   })

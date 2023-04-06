@@ -40,6 +40,7 @@ model PokemonNormalForm {
   id          Int      @id @unique @default(autoincrement()) @db.Integer
   pokemon     Pokemon  @relation(fields: [pokemonId], references: [number])
   pokemonId   Int      @map("pokemon_id") @db.Integer
+  name        String   @map("name") @db.VarChar(50)
   type        String[]
   typeSingle1 String   @map("type_single1") @db.VarChar(20)
   typeSingle2 String?  @map("type_single2") @db.VarChar(20)

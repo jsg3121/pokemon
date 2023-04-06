@@ -22,6 +22,11 @@ export class PokemonNormalFormGroupBy {
   })
   pokemonId!: number;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  name!: string;
+
   @TypeGraphQL.Field(_type => [String], {
     nullable: true
   })

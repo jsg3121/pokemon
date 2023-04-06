@@ -13,7 +13,9 @@ listRouter.get('/list', async (req, res) => {
 listRouter.post('/update', async (req, res) => {
   const dataList = await prisma.pokemon.findMany({
     where: {
-      generation: req.body.generation,
+      generation: {
+        equals: parseInt(req.body.generation, 10),
+      },
     },
   })
 
@@ -72,6 +74,32 @@ listRouter.post('/update/mega', async (req, res) => {
   try {
     dataList.map(async (data) => {
       return await prisma.pokemonMega.update({
+        where: {
+          id: data.id,
+        },
+        data: {
+          type: data.typeSingle2
+            ? [data.typeSingle1, data.typeSingle2]
+            : [data.typeSingle1],
+        },
+      })
+    })
+    res.send({
+      response: 'success',
+      data: [...dataList],
+    })
+  } catch (err) {
+    res.send('fail')
+  }
+  res.end()
+})
+
+listRouter.post('/update/normalForm', async (req, res) => {
+  const dataList = await prisma.pokemonNormalForm.findMany()
+
+  try {
+    dataList.map(async (data) => {
+      return await prisma.pokemonNormalForm.update({
         where: {
           id: data.id,
         },
