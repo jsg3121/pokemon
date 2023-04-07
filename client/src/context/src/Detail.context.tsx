@@ -78,6 +78,7 @@ const GET_NORMAL_FORM = gql`
       typeSingle1
       typeSingle2
       imagePath
+      name
     }
   }
 `

@@ -50,6 +50,7 @@ export type PokemonNormalForm = {
   __typename?: 'PokemonNormalForm';
   id: Scalars['Int'];
   imagePath: Scalars['String'];
+  name: Scalars['String'];
   pokemonId: Scalars['Int'];
   type: Array<Scalars['String']>;
   typeSingle1: Scalars['String'];

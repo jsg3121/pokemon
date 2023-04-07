@@ -123,7 +123,7 @@ const DetailContainer: React.FC = () => {
                               generate={detailInfo.generation}
                               number={detailInfo.number}
                               evolutions={detailInfo.evolutionId}
-                              name={detailInfo.name}
+                              name={item.name}
                               types={item.type}
                               index={index}
                             />
