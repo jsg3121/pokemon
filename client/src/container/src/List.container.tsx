@@ -3,7 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { VirtuosoGrid } from 'react-virtuoso'
 import styled from 'styled-components'
-import { Card } from '../../components'
+import { Card, NoData } from '../../components'
 import { Pokemon } from '../../graphql'
 import { useMobxStore } from '../../hook'
 
@@ -90,6 +90,6 @@ const ListContainer: React.FC = observer(() => {
     )
   }, [handleClick, pokemon])
 
-  return <List>{cardList}</List>
+  return <List>{pokemon.length === 0 ? <NoData /> : cardList}</List>
 })
 export default ListContainer
