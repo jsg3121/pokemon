@@ -32,8 +32,6 @@ const NoData = styled.section`
 `
 
 const NoDataComponent: React.FC<NoDataComponentProps> = (props) => {
-  const {} = props
-
   return (
     <NoData>
       <div className="no-data__image">

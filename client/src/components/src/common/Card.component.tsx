@@ -1,7 +1,7 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
-import { changeType } from '../../../common'
+import { changeType, imageMode } from '../../../common'
 import { TypesColor } from '../../../types'
 import Image from './Image.component'
 import Tag from './Tag.component'
@@ -180,7 +180,7 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
       <div className="card--image__pokemon">
         <Image>
           <img
-            src={`http://43.201.49.91:4000/image/${pokemonNumber}.png`}
+            src={`${imageMode}/${pokemonNumber}.png`}
             alt="pokemon_image"
             loading="lazy"
           />

@@ -3,6 +3,7 @@ import isEqual from 'fast-deep-equal'
 import { Image } from '../../../../components'
 import styled from 'styled-components'
 import { DetailContext } from '../../../../context'
+import { imageMode } from '../../../../common'
 
 interface ImagesContainerProps {
   index?: number
@@ -72,16 +73,13 @@ const ImagesContainer: React.FC<ImagesContainerProps> = (props) => {
           {isShiny === true ? (
             <Image>
               <img
-                src={`http://43.201.49.91:4000/image/shiny/${imageCode}.png`}
+                src={`${imageMode}/shiny/${imageCode}.png`}
                 alt="shiny_image"
               />
             </Image>
           ) : (
             <Image>
-              <img
-                src={`http://43.201.49.91:4000/image/${imageCode}.png`}
-                alt="normal_image"
-              />
+              <img src={`${imageMode}/${imageCode}.png`} alt="normal_image" />
             </Image>
           )}
         </>

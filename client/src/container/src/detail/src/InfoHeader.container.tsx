@@ -2,6 +2,7 @@ import isEqual from 'fast-deep-equal'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { imageMode } from '../../../../common'
 import { Image } from '../../../../components'
 import { DetailContext } from '../../../../context'
 
@@ -117,7 +118,7 @@ const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
               <div key={item} onClick={handleClick} data-number={item}>
                 <Image>
                   <img
-                    src={`http://43.201.49.91:4000/image/${item}.png`}
+                    src={`${imageMode}/${item}.png`}
                     alt="pokemon_image"
                     loading="lazy"
                   />
