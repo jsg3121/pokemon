@@ -102,21 +102,29 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
   const { children } = props
   const { number = '' } = useParams()
   const [isShiny, setIsShiny] = React.useState<boolean>(false)
+  const [loading, setLoading] = React.useState<boolean>(true)
   const [otherInfo, setOtherInfo] = React.useState<string>('normal')
 
-  const { data: { getSinglePokemon } = {}, loading } = useQuery<
-    PokemonDetail['single']
-  >(GET_POKEMON, {
-    variables: {
-      number: parseInt(number, 10),
-    },
-    fetchPolicy: 'no-cache',
-  })
+  const { data: { getSinglePokemon } = {} } = useQuery<PokemonDetail['single']>(
+    GET_POKEMON,
+    {
+      variables: {
+        number: parseInt(number, 10),
+      },
+      fetchPolicy: 'no-cache',
+      onCompleted(data) {
+        if (data.getSinglePokemon.isForm !== true) {
+          setLoading(() => false)
+        }
+      },
+    }
+  )
 
   const [getRegion, { data: { getRegionForm } = { getRegionForm: [] } }] =
     useLazyQuery<PokemonDetail['region']>(GET_REGION)
   const [getMega, { data: { getMegaEvolution } = { getMegaEvolution: [] } }] =
     useLazyQuery<PokemonDetail['mega']>(GET_MEGA)
+
   const [getForm, { data: { getNormalForm } = { getNormalForm: [] } }] =
     useLazyQuery<PokemonDetail['normalForm']>(GET_NORMAL_FORM)
 
@@ -146,7 +154,12 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
 
   React.useEffect(() => {
     if (getSinglePokemon && getSinglePokemon.isForm) {
-      getForm({ variables: { number: parseInt(number, 10) } })
+      getForm({
+        variables: { number: parseInt(number, 10) },
+        onCompleted() {
+          setLoading(() => false)
+        },
+      })
     }
   }, [getForm, getSinglePokemon, number])
 
