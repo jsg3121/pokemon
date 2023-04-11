@@ -90,6 +90,11 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          {
+            href: 'http://43.201.49.91:3000',
+            label: 'Site',
+            position: 'right',
+          },
         ],
       },
       footer: {
