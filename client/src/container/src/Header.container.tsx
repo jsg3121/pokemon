@@ -29,11 +29,34 @@ const Header = styled.header`
     }
   }
 
+  .detail__button--link {
+    width: 6rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      width: 100%;
+      height: 100%;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+  }
+
   @media screen and (max-width: 475px) {
     height: 3.5rem;
     h1 {
-      font-size: 2rem;
+      font-size: 1.6rem;
       -webkit-text-stroke: 1px #3861ad;
+    }
+
+    .detail__button--link {
+      width: 4.3rem;
+
+      a {
+        font-size: 1rem;
+      }
     }
   }
 `
@@ -48,6 +71,28 @@ const HeaderContainer: React.FC = () => {
           Pokemon Dogam <span>v{process.env.REACT_APP_VERSION}</span>
         </h1>
       </Link>
+      {pathname === '/' && (
+        <>
+          <div className="detail__button--link">
+            <div className="button__link--github">
+              <a
+                href="https://github.com/jsg3121/pokemon"
+                target="_blank"
+                rel="noreferrer">
+                Git
+              </a>
+            </div>
+            <div className="button__link--docs">
+              <a
+                href="http://43.201.49.91:3001"
+                target="_blank"
+                rel="noreferrer">
+                Docs
+              </a>
+            </div>
+          </div>
+        </>
+      )}
       {pathname !== '/' && (
         <div className="detail__button--back">
           <Link to="/" replace>
