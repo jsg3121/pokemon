@@ -25,18 +25,6 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: '업데이트',
-    Svg: require('@site/static/img/bulbasaur.svg').default,
-    description: (
-      <>
-        <p>업데이트 내용과 앞으로의 일정이 궁금하시다면</p>
-        <Link className="button button--secondary button--lg" to="/update">
-          업데이트 바로가기
-        </Link>
-      </>
-    ),
-  },
-  {
     title: '도감 사이트 이용 안내',
     Svg: require('@site/static/img/charmander.svg').default,
     description: (
@@ -44,6 +32,18 @@ const FeatureList: FeatureItem[] = [
         <p>사이트의 이용 방법이 궁금하시다면</p>
         <Link className="button button--secondary button--lg" to="/docs">
           사용안내 바로가기
+        </Link>
+      </>
+    ),
+  },
+  {
+    title: '업데이트',
+    Svg: require('@site/static/img/bulbasaur.svg').default,
+    description: (
+      <>
+        <p>업데이트 내용과 앞으로의 일정이 궁금하시다면</p>
+        <Link className="button button--secondary button--lg" to="/update">
+          업데이트 바로가기
         </Link>
       </>
     ),
@@ -64,7 +64,7 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({ title, Svg, description }: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--3')}>
       <div className="text--center">
         {Svg && <Svg className={styles.featureSvg} role="img" />}
       </div>
