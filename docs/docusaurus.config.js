@@ -34,7 +34,7 @@ const config = {
   plugins: [
     [
       '@docusaurus/plugin-content-blog',
-      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
       ({
         id: 'update',
         path: 'update',
