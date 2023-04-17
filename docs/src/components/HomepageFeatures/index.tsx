@@ -11,6 +11,20 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
+    title: '사이트 바로가기',
+    Svg: require('@site/static/img/pikachu.svg').default,
+    description: (
+      <>
+        <p>도감 사이트 바로가기</p>
+        <Link
+          className="button button--secondary button--lg"
+          href="http://43.201.49.91:3000/">
+          사이트 바로가기
+        </Link>
+      </>
+    ),
+  },
+  {
     title: '업데이트',
     Svg: require('@site/static/img/bulbasaur.svg').default,
     description: (

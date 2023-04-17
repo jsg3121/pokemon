@@ -34,7 +34,7 @@ const config = {
   plugins: [
     [
       '@docusaurus/plugin-content-blog',
-      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
       ({
         id: 'update',
         path: 'update',
@@ -88,6 +88,11 @@ const config = {
           {
             href: 'https://github.com/jsg3121',
             label: 'GitHub',
+            position: 'right',
+          },
+          {
+            href: 'http://43.201.49.91:3000',
+            label: 'Site',
             position: 'right',
           },
         ],
