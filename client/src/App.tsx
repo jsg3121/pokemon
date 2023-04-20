@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Router } from './router'
+import './common.css'
 
 const Main = styled.main`
   width: 100%;

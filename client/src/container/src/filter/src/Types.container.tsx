@@ -28,11 +28,11 @@ const Types = styled.div`
   }
 
   @media screen and (max-width: 475px) {
-    height: 8rem;
+    height: 9rem;
     padding: 0 1rem;
 
     & > div {
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(5, 1fr);
     }
   }
 `

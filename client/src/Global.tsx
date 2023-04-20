@@ -88,7 +88,6 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
     vertical-align: baseline;
   }
   /* HTML5 display-role reset for older browsers */
@@ -134,8 +133,10 @@ const GlobalStyles = createGlobalStyle`
   }
 
   *{
+    font-family: 'GmarketSans';
     box-sizing: border-box;
   }
+
   input, textarea { 
     -moz-user-select: auto;
     -webkit-user-select: auto;

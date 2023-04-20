@@ -8,7 +8,6 @@ const Filter = styled.article`
   width: 20rem;
   height: 100vh;
   border-right: 1px solid #333333;
-  padding-right: 1rem;
   position: fixed;
   left: 0;
   top: 5rem;
