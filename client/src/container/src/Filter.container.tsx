@@ -56,6 +56,7 @@ const Filter = styled.article`
       padding: 0 1rem;
       position: absolute;
       bottom: 0;
+      background-color: #ffffff;
 
       button {
         width: 100%;
