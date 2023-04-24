@@ -19,7 +19,7 @@ const Dashboard = styled.div`
 
     @media screen and (max-width: 475px) {
       width: 0;
-      height: calc(100vh - 3.5rem);
+      height: calc(var(--vh, 1vh) * 100 - 3.5rem);
       margin-top: 3.5rem;
       position: absolute;
       top: 0;
