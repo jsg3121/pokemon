@@ -52,7 +52,7 @@ const Header = styled.header`
     }
 
     .detail__button--link {
-      width: 4.3rem;
+      width: 5.5rem;
 
       a {
         font-size: 1rem;
