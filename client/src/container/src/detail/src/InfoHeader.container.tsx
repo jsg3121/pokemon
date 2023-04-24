@@ -50,6 +50,8 @@ const InfoHeader = styled.div<{ fontSize: number }>`
     }
 
     @media screen and (max-width: 380px) {
+      width: 100%;
+      height: 2rem;
       font-size: ${(props) => {
         const { fontSize } = props
         if (fontSize <= 8) {
@@ -62,6 +64,7 @@ const InfoHeader = styled.div<{ fontSize: number }>`
           return '1.2rem'
         }
       }};
+      line-height: 2rem;
     }
   }
 

@@ -30,6 +30,7 @@ const ImageSwitch = styled.div`
   @media screen and (max-width: 475px) {
     margin: 2rem 0;
     height: calc(100% - 30rem);
+    max-height: calc(100vw - 2rem);
   }
 `
 
