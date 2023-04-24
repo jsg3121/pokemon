@@ -156,6 +156,10 @@ const GlobalStyles = createGlobalStyle`
 
   body{
     height: 100vh;
+
+    @media screen and (max-width: 475px) {
+      height: calc(var(--vh, 1vh) * 100);
+    }
   }
 
   @media screen and (max-width: 475px){

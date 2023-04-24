@@ -19,7 +19,7 @@ const DetailInfo = styled.div`
   width: 100%;
 
   @media screen and (max-width: 475px) {
-    height: calc(100vh - 7.5rem);
+    height: calc(var(--vh, 1vh) * 100 - 7.5rem);
     display: flex;
     flex-direction: column;
     justify-content: space-around;

@@ -40,7 +40,7 @@ const Filter = styled.article`
 
   @media screen and (max-width: 475px) {
     width: 100%;
-    height: calc(100vh - 3.5rem);
+    height: calc(var(--vh, 1vh) * 100 - 3.5rem);
     top: 3.5rem;
     padding: 0;
     border-right: 0;
