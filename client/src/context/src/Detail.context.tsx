@@ -165,7 +165,7 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
 
   const initialValue = {
     detailInfo: getSinglePokemon,
-    regionInfo: getSinglePokemon?.isRegion ? getRegionForm : [],
+    regionInfo: getRegionForm,
     normalFormInfo: getSinglePokemon?.isForm ? getNormalForm : [],
     megaInfo: getMegaEvolution,
     otherInfo,
