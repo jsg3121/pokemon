@@ -57,6 +57,7 @@ const Filter = styled.article`
       position: absolute;
       bottom: 0;
       background-color: #ffffff;
+      z-index: 100;
 
       button {
         width: 100%;

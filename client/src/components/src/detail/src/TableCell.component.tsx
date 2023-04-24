@@ -27,7 +27,7 @@ const TableCell = styled.div`
     border-bottom: 1px solid #333333;
 
     @media screen and (max-width: 475px) {
-      width: 5rem;
+      width: 4rem;
     }
   }
 
@@ -50,7 +50,7 @@ const TableCell = styled.div`
     }
 
     @media screen and (max-width: 475px) {
-      width: calc(100% - 5rem);
+      width: calc(100% - 4rem);
     }
   }
 `

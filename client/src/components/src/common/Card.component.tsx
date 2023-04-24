@@ -65,12 +65,13 @@ const Card = styled.article<{ backgroundColor: Array<TypesColor> }>`
         justify-content: space-between;
 
         & p:last-child {
-          margin-left: 0.5rem;
+          margin-left: 0.2rem;
         }
       }
 
       @media screen and (max-width: 475px) {
         justify-content: right;
+        align-self: flex-start;
 
         h1 {
           display: none;
@@ -110,7 +111,9 @@ const Card = styled.article<{ backgroundColor: Array<TypesColor> }>`
     }
 
     @media screen and (max-width: 475px) {
-      margin-top: 0.8rem;
+      width: auto;
+      max-width: 5rem;
+      margin-top: 0.7rem;
       margin-left: 0.6rem;
       position: absolute;
       top: 0;
@@ -124,8 +127,8 @@ const Card = styled.article<{ backgroundColor: Array<TypesColor> }>`
   }
 
   @media screen and (max-width: 475px) {
-    width: 100%;
-    height: 10rem;
+    width: calc(33vw - 1rem);
+    height: clamp(10rem, 40vw, 14rem);
     padding: 0.6rem;
   }
 `
@@ -158,24 +161,26 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
             })}
           </div>
         </div>
-        <div className="card--icon">
-          {mega && (
-            <Image>
-              <img
-                src={require('../../../assets/image/mega.png')}
-                alt="메가진화_아이콘"
-              />
-            </Image>
-          )}
-          {region && (
-            <Image>
-              <img
-                src={require('../../../assets/image/regionForm.png')}
-                alt="리전폼_아이콘"
-              />
-            </Image>
-          )}
-        </div>
+        {(mega || region) && (
+          <div className="card--icon">
+            {mega && (
+              <Image>
+                <img
+                  src={require('../../../assets/image/mega.png')}
+                  alt="메가진화_아이콘"
+                />
+              </Image>
+            )}
+            {region && (
+              <Image>
+                <img
+                  src={require('../../../assets/image/regionForm.png')}
+                  alt="리전폼_아이콘"
+                />
+              </Image>
+            )}
+          </div>
+        )}
       </div>
       <div className="card--image__pokemon">
         <Image>

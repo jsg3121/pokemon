@@ -13,12 +13,13 @@ interface InfoHeaderContainerProps {
   evolutions: Array<number>
 }
 
-const InfoHeader = styled.div`
+const InfoHeader = styled.div<{ fontSize: number }>`
   width: 100%;
   height: 7rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1rem;
 
   .detail__info--number {
     font-size: 1.5rem;
@@ -31,12 +32,36 @@ const InfoHeader = styled.div`
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 0.1rem;
-    margin-bottom: 1.5rem;
 
-    @media screen and (max-width: 475px) {
+    @media screen and (min-width: 381px) and (max-width: 475px) {
+      width: 100%;
       height: 2rem;
-      font-size: clamp(1rem, 6vw, 2rem);
-      white-space: nowrap;
+      font-size: ${(props) => {
+        const { fontSize } = props
+        if (fontSize <= 10) {
+          return '2rem'
+        } else if (fontSize === 11) {
+          return '1.75rem'
+        } else {
+          return '1.6rem'
+        }
+      }};
+      line-height: 2rem;
+    }
+
+    @media screen and (max-width: 380px) {
+      font-size: ${(props) => {
+        const { fontSize } = props
+        if (fontSize <= 8) {
+          return '2rem'
+        } else if (fontSize > 8 && fontSize <= 10) {
+          return '1.5rem'
+        } else if (fontSize === 11) {
+          return '1.35rem'
+        } else {
+          return '1.2rem'
+        }
+      }};
     }
   }
 
@@ -44,7 +69,8 @@ const InfoHeader = styled.div`
     flex-shrink: 0;
 
     @media screen and (max-width: 475px) {
-      width: calc(55vw - 1rem);
+      height: 5rem;
+      width: calc(60vw - 1rem);
     }
   }
 
@@ -54,7 +80,6 @@ const InfoHeader = styled.div`
     height: 6.6rem;
     overflow-x: auto;
     overflow-y: hidden;
-    margin-bottom: 0.5rem;
     flex-shrink: 0;
 
     .info__evolution--image {
@@ -69,6 +94,10 @@ const InfoHeader = styled.div`
         &:hover {
           transform: scale(1.1);
         }
+      }
+
+      @media screen and (max-width: 475px) {
+        height: 5rem;
       }
     }
 
@@ -93,8 +122,10 @@ const InfoHeader = styled.div`
     }
 
     @media screen and (max-width: 475px) {
+      height: 5rem;
       min-width: 6rem;
       max-width: calc(45vw - 1rem);
+      margin-bottom: 0;
     }
   }
 `
@@ -117,7 +148,7 @@ const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
   )
 
   return (
-    <InfoHeader>
+    <InfoHeader fontSize={name.length}>
       <div className="detail__info--title">
         <h1 className="detail__info--number">
           No.
