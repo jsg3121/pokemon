@@ -112,7 +112,6 @@ const Card = styled.article<{ backgroundColor: Array<TypesColor> }>`
 
     @media screen and (max-width: 475px) {
       width: auto;
-      max-width: 5rem;
       margin-top: 0.7rem;
       margin-left: 0.6rem;
       position: absolute;
