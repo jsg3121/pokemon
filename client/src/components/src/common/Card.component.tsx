@@ -48,7 +48,7 @@ const Card = styled.article<{ backgroundColor: Array<TypesColor> }>`
     width: 100%;
     height: 2.3rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
 

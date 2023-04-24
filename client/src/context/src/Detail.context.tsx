@@ -163,6 +163,10 @@ export const DetailProvider: React.FC<DetailContextProps> = (props) => {
     }
   }, [getForm, getSinglePokemon, number])
 
+  React.useEffect(() => {
+    setOtherInfo('normal')
+  }, [getSinglePokemon])
+
   const initialValue = {
     detailInfo: getSinglePokemon,
     regionInfo: getRegionForm,
