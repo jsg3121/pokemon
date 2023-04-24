@@ -25,6 +25,10 @@ const TableCell = styled.div`
     padding: 0 0.5rem;
     border-right: 1px solid #333333;
     border-bottom: 1px solid #333333;
+
+    @media screen and (max-width: 475px) {
+      width: 5rem;
+    }
   }
 
   .info__type--body {
@@ -43,6 +47,10 @@ const TableCell = styled.div`
       &:last-of-type {
         margin-right: 0;
       }
+    }
+
+    @media screen and (max-width: 475px) {
+      width: calc(100% - 5rem);
     }
   }
 `
