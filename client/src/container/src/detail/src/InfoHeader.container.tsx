@@ -13,12 +13,13 @@ interface InfoHeaderContainerProps {
   evolutions: Array<number>
 }
 
-const InfoHeader = styled.div`
+const InfoHeader = styled.div<{ fontSize: number }>`
   width: 100%;
   height: 7rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1rem;
 
   .detail__info--number {
     font-size: 1.5rem;
@@ -31,7 +32,49 @@ const InfoHeader = styled.div`
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 0.1rem;
-    margin-bottom: 1.5rem;
+
+    @media screen and (min-width: 381px) and (max-width: 475px) {
+      width: 100%;
+      height: 2rem;
+      font-size: ${(props) => {
+        const { fontSize } = props
+        if (fontSize <= 10) {
+          return '2rem'
+        } else if (fontSize === 11) {
+          return '1.75rem'
+        } else {
+          return '1.6rem'
+        }
+      }};
+      line-height: 2rem;
+    }
+
+    @media screen and (max-width: 380px) {
+      width: 100%;
+      height: 2rem;
+      font-size: ${(props) => {
+        const { fontSize } = props
+        if (fontSize <= 8) {
+          return '2rem'
+        } else if (fontSize > 8 && fontSize <= 10) {
+          return '1.5rem'
+        } else if (fontSize === 11) {
+          return '1.35rem'
+        } else {
+          return '1.2rem'
+        }
+      }};
+      line-height: 2rem;
+    }
+  }
+
+  .detail__info--title {
+    flex-shrink: 0;
+
+    @media screen and (max-width: 475px) {
+      height: 5rem;
+      width: calc(60vw - 1rem);
+    }
   }
 
   .detail__info--evolution {
@@ -40,7 +83,7 @@ const InfoHeader = styled.div`
     height: 6.6rem;
     overflow-x: auto;
     overflow-y: hidden;
-    margin-bottom: 0.5rem;
+    flex-shrink: 0;
 
     .info__evolution--image {
       width: 100%;
@@ -55,17 +98,15 @@ const InfoHeader = styled.div`
           transform: scale(1.1);
         }
       }
+
+      @media screen and (max-width: 475px) {
+        height: 5rem;
+      }
     }
 
     /* total width */
     &::-webkit-scrollbar {
       height: 0.35rem;
-    }
-
-    /* background of the scrollbar except button or resizer */
-    &::-webkit-scrollbar-track {
-    }
-    &::-webkit-scrollbar-track:hover {
     }
 
     /* scrollbar itself */
@@ -81,6 +122,13 @@ const InfoHeader = styled.div`
 
     &::-webkit-scrollbar-button {
       display: none;
+    }
+
+    @media screen and (max-width: 475px) {
+      height: 5rem;
+      min-width: 6rem;
+      max-width: calc(45vw - 1rem);
+      margin-bottom: 0;
     }
   }
 `
@@ -103,8 +151,8 @@ const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
   )
 
   return (
-    <InfoHeader>
-      <div>
+    <InfoHeader fontSize={name.length}>
+      <div className="detail__info--title">
         <h1 className="detail__info--number">
           No.
           {number.toString().padStart(5, '0')}

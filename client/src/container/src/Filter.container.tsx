@@ -8,7 +8,6 @@ const Filter = styled.article`
   width: 20rem;
   height: 100vh;
   border-right: 1px solid #333333;
-  padding-right: 1rem;
   position: fixed;
   left: 0;
   top: 5rem;
@@ -41,7 +40,7 @@ const Filter = styled.article`
 
   @media screen and (max-width: 475px) {
     width: 100%;
-    height: calc(100vh - 3.5rem);
+    height: calc(var(--vh, 1vh) * 100 - 3.5rem);
     top: 3.5rem;
     padding: 0;
     border-right: 0;
@@ -57,6 +56,8 @@ const Filter = styled.article`
       padding: 0 1rem;
       position: absolute;
       bottom: 0;
+      background-color: #ffffff;
+      z-index: 100;
 
       button {
         width: 100%;

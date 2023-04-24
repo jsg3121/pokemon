@@ -9,7 +9,7 @@ interface TagComponentProps {
 }
 
 const Tag = styled.p<{ color: TypesColor; type: string }>`
-  width: 3rem;
+  width: 3.2rem;
   height: 1.25rem;
   padding: 0 0.5rem;
   border-radius: 0.5rem;

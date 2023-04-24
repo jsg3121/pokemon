@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url('./assets/font/NotoSansKR-Regular.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url('./assets/font/NotoSansKR-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url('./assets/font/NotoSansKR-Bold.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSans';
+  src: url('./assets/font/GmarketSansLight.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSans';
+  src: url('./assets/font/GmarketSansMedium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GmarketSans';
+  src: url('./assets/font/GmarketSansBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}

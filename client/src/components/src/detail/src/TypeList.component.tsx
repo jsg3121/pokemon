@@ -39,6 +39,10 @@ const TypeList = styled.div<{ grade: TypeListComponentProps['grade'] }>`
       }
     }};
     margin-bottom: 0.5rem;
+
+    @media screen and (max-width: 475px) {
+      letter-spacing: -0.75px;
+    }
   }
 
   .type-list__tag {

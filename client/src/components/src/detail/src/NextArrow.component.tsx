@@ -11,8 +11,8 @@ const Arrow = styled.div`
     width: 2rem;
     height: 2rem;
     display: block;
-    border-top: 0.2rem solid #888888;
-    border-right: 0.2rem solid #888888;
+    border-top: 0.2rem solid #333333;
+    border-right: 0.2rem solid #333333;
     transform: rotate(45deg);
   }
 
@@ -26,6 +26,7 @@ const Arrow = styled.div`
     &::before {
       width: 1.5rem;
       height: 1.5rem;
+      margin-left: -0.5rem;
     }
   }
 `
