@@ -2,6 +2,8 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button } from '../../components'
+import { ReactComponent as GitHub } from '../../assets/image/github.svg'
+import { ReactComponent as Blog } from '../../assets/image/blog.svg'
 
 const Header = styled.header`
   width: 100%;
@@ -17,10 +19,12 @@ const Header = styled.header`
   justify-content: space-between;
 
   h1 {
+    height: 3rem;
     color: #ffcc02;
-    font-size: 3rem;
+    font-size: 2.75rem;
     font-weight: 900;
     -webkit-text-stroke: 2px #3861ad;
+    line-height: 3rem;
 
     span {
       font-size: 0.75rem;
@@ -39,24 +43,20 @@ const Header = styled.header`
     a {
       width: 100%;
       height: 100%;
-      font-size: 1.2rem;
-      font-weight: 500;
+      font-size: 0;
     }
   }
 
   @media screen and (max-width: 475px) {
     height: 3.5rem;
+
     h1 {
       font-size: 1.6rem;
       -webkit-text-stroke: 1px #3861ad;
     }
 
     .detail__button--link {
-      width: 5.5rem;
-
-      a {
-        font-size: 1rem;
-      }
+      width: 4.75rem;
     }
   }
 `
@@ -79,7 +79,8 @@ const HeaderContainer: React.FC = () => {
                 href="https://github.com/jsg3121/pokemon"
                 target="_blank"
                 rel="noreferrer">
-                Git
+                GitHub
+                <GitHub />
               </a>
             </div>
             <div className="button__link--docs">
@@ -87,7 +88,8 @@ const HeaderContainer: React.FC = () => {
                 href="http://43.201.49.91:3001"
                 target="_blank"
                 rel="noreferrer">
-                Docs
+                blog
+                <Blog />
               </a>
             </div>
           </div>
