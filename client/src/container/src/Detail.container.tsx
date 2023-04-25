@@ -6,7 +6,7 @@ import { changeColor } from '../../common'
 import { NextArrow, PrevArrow } from '../../components'
 import { DetailContext } from '../../context'
 import { TypesColor } from '../../types'
-import { DetailView, Switchs } from './detail'
+import { DetailSlide, DetailView, Switchs } from './detail'
 import Loading from './Loading.container'
 
 const Detail = styled.section<{ backgroundColor: Array<TypesColor> }>`
@@ -96,6 +96,10 @@ const DetailContainer: React.FC = () => {
     [detailInfo, megaInfo, regionInfo]
   )
 
+  const handleColor = React.useCallback((color: Array<TypesColor>) => {
+    setColor(color)
+  }, [])
+
   React.useEffect(() => {
     if (detailInfo) {
       const newColor = changeColor(detailInfo.type)
@@ -143,41 +147,18 @@ const DetailContainer: React.FC = () => {
                 </>
               )}
               {otherInfo === 'mega' && megaInfo && (
-                <Slider {...settings}>
-                  {megaInfo.map((item, index) => {
-                    return (
-                      <React.Fragment key={index}>
-                        <DetailView
-                          generate={detailInfo.generation}
-                          number={detailInfo.number}
-                          evolutions={detailInfo.evolutionId}
-                          name={detailInfo.name}
-                          types={item.type}
-                          index={index}
-                        />
-                      </React.Fragment>
-                    )
-                  })}
-                </Slider>
+                <DetailSlide
+                  detailInfo={detailInfo}
+                  setColor={handleColor}
+                  type="mega"
+                />
               )}
               {otherInfo === 'region' && regionInfo && (
-                <Slider {...settings}>
-                  {regionInfo.map((item, index) => {
-                    return (
-                      <React.Fragment key={index}>
-                        <DetailView
-                          generate={detailInfo.generation}
-                          number={detailInfo.number}
-                          evolutions={detailInfo.evolutionId}
-                          name={detailInfo.name}
-                          types={item.type}
-                          index={index}
-                          region={item.region}
-                        />
-                      </React.Fragment>
-                    )
-                  })}
-                </Slider>
+                <DetailSlide
+                  detailInfo={detailInfo}
+                  setColor={handleColor}
+                  type="region"
+                />
               )}
             </>
           )}
