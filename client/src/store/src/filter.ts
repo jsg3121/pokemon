@@ -8,8 +8,23 @@ export class FilterStore {
   @observable public isRegion: string | undefined = undefined
   @observable public isEvolution: string | undefined = undefined
   @observable public keyword: string | undefined = undefined
+  @observable private isSave: boolean = true
 
   constructor() {
+    if (this.isSave) {
+      const filters = window.localStorage.getItem('filters')
+      if (filters) {
+        const items = JSON.parse(filters)
+        this.name = items.name
+        this.type = items.type
+        this.generation = items.generation
+        this.isMega = items.isMega
+        this.isRegion = items.isRegion
+        this.isEvolution = items.isEvolution
+        this.keyword = items.keyword
+      }
+    }
+
     makeObservable(this)
   }
 
@@ -58,6 +73,10 @@ export class FilterStore {
     this.isRegion = undefined
     this.name = ''
     this.type = []
+
+    if (this.isSave) {
+      window.localStorage.removeItem('filters')
+    }
   }
 
   @action
