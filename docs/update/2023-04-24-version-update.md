@@ -25,7 +25,7 @@ tags: [pokemon, update, '업데이트', 1.0.0]
 - 해당 부분의 스타일을 다시 수정하며 폰트역시 기본 제공하는 폰트가 아닌 주고 ui와 페이지 분위기에 맞는 폰트를 적용하였습니다.
   - 사용한 폰트는 **GmarketSans**폰트를 사용하였습니다.
   - 아래 링크를 통해 폰트를 다운 받을 수 있습니다.
-  - https://corp.gmarket.com/fonts/
+  - <https://corp.gmarket.com/fonts/>
 
 ### 3. 모바일에서 필터, 포켓몬 상세 페이지가 스크롤 되는 이슈 수정
 
