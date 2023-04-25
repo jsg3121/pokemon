@@ -1,17 +1,17 @@
-import React from 'react'
 import isEqual from 'fast-deep-equal'
+import React from 'react'
 import Slider, { Settings } from 'react-slick'
-import { NextArrow, PrevArrow } from '../../../../components'
-import { changeColor } from '../../../../common'
-import { TypesColor } from '../../../../types'
-import { DetailContext } from '../../../../context'
 import { DetailView } from '..'
+import { changeColor } from '../../../../common'
+import { NextArrow, PrevArrow } from '../../../../components'
+import { DetailContext } from '../../../../context'
 import {
   Pokemon,
   PokemonMega,
   PokemonNormalForm,
   PokemonRegion,
 } from '../../../../graphql'
+import { TypesColor } from '../../../../types'
 
 interface DetailSlideContainerProps {
   type: 'normalForm' | 'mega' | 'region'

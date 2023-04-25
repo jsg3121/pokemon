@@ -1,13 +1,11 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
-import Slider, { Settings } from 'react-slick'
 import styled from 'styled-components'
 import { changeColor } from '../../common'
-import { NextArrow, PrevArrow } from '../../components'
 import { DetailContext } from '../../context'
 import { TypesColor } from '../../types'
-import { DetailSlide, DetailView, Switchs } from './detail'
 import Loading from './Loading.container'
+import { DetailSlide, DetailView, Switchs } from './detail'
 
 const Detail = styled.section<{ backgroundColor: Array<TypesColor> }>`
   width: 100%;
@@ -55,28 +53,6 @@ const DetailContainer: React.FC = () => {
     normalFormInfo,
   } = React.useContext(DetailContext)
   const [color, setColor] = React.useState<Array<TypesColor>>([])
-
-  const settings = React.useMemo<Settings>(() => {
-    return {
-      className: 'detail__slide',
-      dots: false,
-      speed: 0,
-      infinite: false,
-      draggable: false,
-      touchMove: false,
-      nextArrow: <NextArrow />,
-      prevArrow: <PrevArrow />,
-      afterChange(currentSlide) {
-        if (otherInfo === 'mega' && megaInfo) {
-          const types = changeColor(megaInfo[currentSlide].type)
-          setColor(types)
-        } else if (otherInfo === 'region' && regionInfo) {
-          const types = changeColor(regionInfo[currentSlide].type)
-          setColor(types)
-        }
-      },
-    }
-  }, [megaInfo, otherInfo, regionInfo])
 
   const handleClick = React.useCallback(
     (val?: string) => {
