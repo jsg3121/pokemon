@@ -119,22 +119,11 @@ const DetailContainer: React.FC = () => {
               {otherInfo === 'normal' && (
                 <>
                   {normalFormInfo && normalFormInfo.length > 0 ? (
-                    <Slider {...settings}>
-                      {normalFormInfo.map((item, index) => {
-                        return (
-                          <React.Fragment key={index}>
-                            <DetailView
-                              generate={detailInfo.generation}
-                              number={detailInfo.number}
-                              evolutions={detailInfo.evolutionId}
-                              name={item.name}
-                              types={item.type}
-                              index={index}
-                            />
-                          </React.Fragment>
-                        )
-                      })}
-                    </Slider>
+                    <DetailSlide
+                      detailInfo={detailInfo}
+                      setColor={handleColor}
+                      type="normalForm"
+                    />
                   ) : (
                     <DetailView
                       generate={detailInfo.generation}
@@ -146,14 +135,14 @@ const DetailContainer: React.FC = () => {
                   )}
                 </>
               )}
-              {otherInfo === 'mega' && megaInfo && (
+              {otherInfo === 'mega' && (
                 <DetailSlide
                   detailInfo={detailInfo}
                   setColor={handleColor}
                   type="mega"
                 />
               )}
-              {otherInfo === 'region' && regionInfo && (
+              {otherInfo === 'region' && (
                 <DetailSlide
                   detailInfo={detailInfo}
                   setColor={handleColor}

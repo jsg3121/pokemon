@@ -6,19 +6,28 @@ import { changeColor } from '../../../../common'
 import { TypesColor } from '../../../../types'
 import { DetailContext } from '../../../../context'
 import { DetailView } from '..'
-import { Pokemon, PokemonMega, PokemonRegion } from '../../../../graphql'
+import {
+  Pokemon,
+  PokemonMega,
+  PokemonNormalForm,
+  PokemonRegion,
+} from '../../../../graphql'
 
 interface DetailSlideContainerProps {
-  type: 'normal' | 'mega' | 'region'
+  type: 'normalForm' | 'mega' | 'region'
   setColor: (color: Array<TypesColor>) => void
   detailInfo: Pokemon
 }
 
 const DetailSlideContainer: React.FC<DetailSlideContainerProps> = (props) => {
   const { detailInfo, type, setColor } = props
-  const { megaInfo = [], regionInfo = [] } = React.useContext(DetailContext)
+  const {
+    megaInfo = [],
+    regionInfo = [],
+    normalFormInfo = [],
+  } = React.useContext(DetailContext)
   const [otherInfo, setOtherInfo] = React.useState<
-    Array<PokemonMega> | Array<PokemonRegion>
+    Array<PokemonMega> | Array<PokemonRegion> | Array<PokemonNormalForm>
   >([])
 
   const settings = React.useMemo<Settings>(() => {
@@ -45,7 +54,10 @@ const DetailSlideContainer: React.FC<DetailSlideContainerProps> = (props) => {
     if (regionInfo && type === 'region') {
       setOtherInfo(regionInfo)
     }
-  }, [megaInfo, regionInfo, type])
+    if (regionInfo && type === 'normalForm') {
+      setOtherInfo(normalFormInfo)
+    }
+  }, [megaInfo, normalFormInfo, regionInfo, type])
 
   return (
     <Slider {...settings}>
@@ -56,7 +68,11 @@ const DetailSlideContainer: React.FC<DetailSlideContainerProps> = (props) => {
               generate={detailInfo.generation}
               number={detailInfo.number}
               evolutions={detailInfo.evolutionId}
-              name={detailInfo.name}
+              name={
+                type === 'normalForm'
+                  ? normalFormInfo[index].name
+                  : detailInfo.name
+              }
               types={item.type}
               index={index}
               region={type === 'region' ? regionInfo[index].region : undefined}
