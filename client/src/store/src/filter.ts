@@ -85,13 +85,7 @@ export class FilterStore {
   }
 
   @action
-  private changeSwitchValue(value: string): boolean | undefined {
-    if (value === 'true') {
-      return true
-    } else if (value === 'false') {
-      return false
-    } else if (value === 'all') {
-      return undefined
-    }
+  public changeSetting(val: boolean) {
+    this.isSave = val
   }
 }

@@ -2,8 +2,8 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button } from '../../components'
-import { ReactComponent as GitHub } from '../../assets/image/github.svg'
-import { ReactComponent as Blog } from '../../assets/image/blog.svg'
+import { Setting } from './header'
+import { SettingProvider } from '../../context'
 
 const Header = styled.header`
   width: 100%;
@@ -18,7 +18,7 @@ const Header = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  h1 {
+  .header__title {
     height: 3rem;
     color: #ffcc02;
     font-size: 2.75rem;
@@ -30,20 +30,6 @@ const Header = styled.header`
       font-size: 0.75rem;
       color: #aaaaaa;
       -webkit-text-stroke: 0;
-    }
-  }
-
-  .detail__button--link {
-    width: 6rem;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    a {
-      width: 100%;
-      height: 100%;
-      font-size: 0;
     }
   }
 
@@ -63,36 +49,18 @@ const Header = styled.header`
 
 const HeaderContainer: React.FC = () => {
   const { pathname } = useLocation()
-
   return (
     <Header>
       <Link to="/" replace>
-        <h1>
+        <h1 className="header__title">
           Pokemon Dogam <span>v{process.env.REACT_APP_VERSION}</span>
         </h1>
       </Link>
       {pathname === '/' && (
         <>
-          <div className="detail__button--link">
-            <div className="button__link--github">
-              <a
-                href="https://github.com/jsg3121/pokemon"
-                target="_blank"
-                rel="noreferrer">
-                GitHub
-                <GitHub />
-              </a>
-            </div>
-            <div className="button__link--docs">
-              <a
-                href="http://43.201.49.91:3001"
-                target="_blank"
-                rel="noreferrer">
-                blog
-                <Blog />
-              </a>
-            </div>
-          </div>
+          <SettingProvider>
+            <Setting />
+          </SettingProvider>
         </>
       )}
       {pathname !== '/' && (
