@@ -2,7 +2,7 @@
 
 포켓몬들의 정보, 이로치등을 확인하실 수 있는 사이트 입니다.
 
-## **현재 버전 : 1.0.0**
+## **현재 버전 : 1.1.0**
 
 --------------------------------------------------------
 
@@ -12,41 +12,6 @@
 - 문서 페이지 : <http://43.201.49.91:3001>
 - 블로그 : <https://velog.io/@jsg3121/series/%EB%8F%84%EA%B0%90-%EB%A7%8C%EB%93%A4%EA%B8%B0>
 
-## 설치 후 로컬 사용 방법
+## 개인적으로만 사용하려 했던 프로젝트였기 때문에 다른 분들과 공유함에 따라 다시 reademe를 작성중입니다
 
-### **git clone**
-
-```bash
-  git clone https://github.com/jsg3121/pokemon.git
-```
-
-### **패키지 설치**
-
-```javascript
-  client
-    cd ../client
-    yarn or npm install
-
-  server
-    cd ../server
-    yarn or npm install
-```
-
-### **실행**
-
-development
-
-```javascript
-  yarn dev //or npm run dev
-```
-
-production
-
-```javascript
-  production
-  client
-    yarn start  //or npm run start
-
-  server
-    sh build.sh
-```
+## 해당 readme의 업데이트 전 자세한 사항은 블로그를 확인해주세요!
