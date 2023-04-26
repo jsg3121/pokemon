@@ -11,8 +11,8 @@ interface RouterProps {}
 const Router: React.FC<RouterProps> = (props) => {
   return (
     <BrowserRouter>
-      <Header />
       <MobxProvider>
+        <Header />
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/detail/:number" element={<Detail />} />

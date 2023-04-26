@@ -36,13 +36,9 @@ const Header = styled.header`
   @media screen and (max-width: 475px) {
     height: 3.5rem;
 
-    h1 {
+    .header__title {
       font-size: 1.6rem;
       -webkit-text-stroke: 1px #3861ad;
-    }
-
-    .detail__button--link {
-      width: 4.75rem;
     }
   }
 `

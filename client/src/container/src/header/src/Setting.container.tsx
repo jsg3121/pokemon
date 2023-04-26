@@ -1,4 +1,5 @@
 import isEqual from 'fast-deep-equal'
+import { observer } from 'mobx-react'
 import React from 'react'
 import styled from 'styled-components'
 import { ReactComponent as SettingIcon } from '../../../../assets/image/setting.svg'
@@ -26,6 +27,11 @@ const Option = styled.div`
       width: 100%;
       height: 3rem;
     }
+
+    @media screen and (max-width: 475px) {
+      height: 7rem;
+      margin-bottom: 0.75rem;
+    }
   }
 
   .item__description {
@@ -36,16 +42,24 @@ const Option = styled.div`
     font-size: 1.1rem;
     font-weight: 500;
     margin: 2rem 0 1rem;
+
+    @media screen and (max-width: 475px) {
+      margin: 0.75rem 0;
+    }
   }
 `
 
-const SettingContainer: React.FC<SettingContainerProps> = (props) => {
-  const [isShow, setIsShow] = React.useState<boolean>(true)
-  const { changeOptions } = React.useContext(SettingContext)
+const SettingContainer: React.FC<SettingContainerProps> = observer((props) => {
+  const [isShow, setIsShow] = React.useState<boolean>(false)
+  const { changeOptions, saveSetting, isSave } =
+    React.useContext(SettingContext)
 
   const handleConfirm = React.useCallback(() => {
-    setIsShow(false)
-  }, [])
+    if (saveSetting) {
+      setIsShow(false)
+      saveSetting()
+    }
+  }, [saveSetting])
 
   const handleCancel = React.useCallback(() => {
     setIsShow(false)
@@ -57,9 +71,11 @@ const SettingContainer: React.FC<SettingContainerProps> = (props) => {
 
   const handleChangeOptions = React.useCallback(
     (data: { name: string; value: boolean }) => {
-      console.log({ ...data })
+      if (changeOptions) {
+        changeOptions(data.value)
+      }
     },
-    []
+    [changeOptions]
   )
 
   const options = React.useMemo(() => {
@@ -67,7 +83,11 @@ const SettingContainer: React.FC<SettingContainerProps> = (props) => {
       <Option>
         <ul className="option__list">
           <li className="option__item">
-            <Switch name="isSave" onChange={handleChangeOptions} />
+            <Switch
+              name="isSave"
+              onChange={handleChangeOptions}
+              value={isSave}
+            />
             <p className="item__description">검색 조건을 저장합니다.</p>
           </li>
         </ul>
@@ -76,7 +96,7 @@ const SettingContainer: React.FC<SettingContainerProps> = (props) => {
         <Links />
       </Option>
     )
-  }, [handleChangeOptions])
+  }, [handleChangeOptions, isSave])
 
   return (
     <>
@@ -94,6 +114,5 @@ const SettingContainer: React.FC<SettingContainerProps> = (props) => {
       )}
     </>
   )
-}
-
+})
 export default React.memo(SettingContainer, isEqual)

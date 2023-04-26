@@ -8,9 +8,11 @@ export class FilterStore {
   @observable public isRegion: string | undefined = undefined
   @observable public isEvolution: string | undefined = undefined
   @observable public keyword: string | undefined = undefined
-  @observable private isSave: boolean = true
+  @observable public isSave: boolean = true
 
   constructor() {
+    this.isSave = window.localStorage.getItem('isSave') === 'true'
+
     if (this.isSave) {
       const filters = window.localStorage.getItem('filters')
       if (filters) {
@@ -23,6 +25,8 @@ export class FilterStore {
         this.isEvolution = items.isEvolution
         this.keyword = items.keyword
       }
+    } else {
+      window.localStorage.removeItem('filters')
     }
 
     makeObservable(this)
@@ -87,5 +91,6 @@ export class FilterStore {
   @action
   public changeSetting(val: boolean) {
     this.isSave = val
+    window.localStorage.setItem('isSave', this.isSave.toString())
   }
 }
