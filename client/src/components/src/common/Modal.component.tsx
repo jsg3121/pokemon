@@ -5,19 +5,21 @@ import ButtonComponent from './Button.component'
 
 interface ModalComponentProps {
   title: string
-  description: string
+  description: string | React.ReactNode
   onConfirm?: () => void
   onCancel?: () => void
   modalType: 'waring' | 'default' | 'danger'
 }
 
 const Modal = styled.article<{ modalType: 'waring' | 'default' | 'danger' }>`
-  position: fixed;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
 
-  & > div {
+  & > .modal__content {
     width: 30rem;
     padding: 1.5rem;
     background-color: #ffffff;
@@ -30,6 +32,7 @@ const Modal = styled.article<{ modalType: 'waring' | 'default' | 'danger' }>`
     h1 {
       font-size: 1.75rem;
       font-weight: bold;
+      color: #333333;
       padding-bottom: 0.5rem;
       border-bottom: ${(props) => {
         switch (props.modalType) {
@@ -41,16 +44,12 @@ const Modal = styled.article<{ modalType: 'waring' | 'default' | 'danger' }>`
             return '1px solid #f5b62e'
         }
       }};
-      margin: 0 0 2rem;
-    }
-    p {
-      font-size: 1.2rem;
-      font-weight: 500;
+      margin: 0 0 1rem;
     }
   }
 
   .modal--btn {
-    margin: 3rem 0 0;
+    margin: 0;
     padding-top: 1rem;
     text-align: right;
 
@@ -62,18 +61,26 @@ const Modal = styled.article<{ modalType: 'waring' | 'default' | 'danger' }>`
       }
     }
   }
+
+  @media screen and (max-width: 475px) {
+    height: calc(var(--vh, 1vh) * 100);
+
+    & > .modal__content {
+      width: 85vw;
+    }
+  }
 `
 
 const ModalComponent: React.FC<ModalComponentProps> = (props) => {
   const { title, description, modalType, onConfirm, onCancel } = props
 
-  const handleClick = React.useCallback(() => {
+  const handleClickOK = React.useCallback(() => {
     if (onConfirm) {
       onConfirm()
     }
   }, [onConfirm])
 
-  const handleCancel = React.useCallback(() => {
+  const handleClickCancel = React.useCallback(() => {
     if (onCancel) {
       onCancel()
     }
@@ -81,25 +88,23 @@ const ModalComponent: React.FC<ModalComponentProps> = (props) => {
 
   return (
     <Modal modalType={modalType}>
-      <div>
+      <div className="modal__content">
         <div>
           <h1>{title}</h1>
         </div>
-        <div>
-          <p>{description}</p>
-        </div>
+        <div>{description}</div>
         <div className="modal--btn">
           {modalType === 'default' && (
             <>
               <ButtonComponent
                 buttonType="default"
-                onClick={handleClick}
-                label="OK"
+                onClick={handleClickOK}
+                label="확인"
               />
               <ButtonComponent
                 buttonType="gray"
-                onClick={handleCancel}
-                label="Cancle"
+                onClick={handleClickCancel}
+                label="취소"
               />
             </>
           )}
@@ -107,7 +112,7 @@ const ModalComponent: React.FC<ModalComponentProps> = (props) => {
             <>
               <ButtonComponent
                 buttonType={modalType}
-                onClick={handleClick}
+                onClick={handleClickOK}
                 label="OK"
               />
             </>

@@ -69,6 +69,7 @@ export const FilterProvider: React.FC<FilterContextProps> = observer(
     const changeFilter = React.useCallback(
       (data: { type: keyof FilterStore; value: string }) => {
         filter.changeFilter(data)
+        window.localStorage.setItem('filters', JSON.stringify(filter))
       },
       [filter]
     )

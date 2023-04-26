@@ -8,8 +8,27 @@ export class FilterStore {
   @observable public isRegion: string | undefined = undefined
   @observable public isEvolution: string | undefined = undefined
   @observable public keyword: string | undefined = undefined
+  @observable public isSave: boolean = true
 
   constructor() {
+    this.isSave = window.localStorage.getItem('isSave') === 'true'
+
+    if (this.isSave) {
+      const filters = window.localStorage.getItem('filters')
+      if (filters) {
+        const items = JSON.parse(filters)
+        this.name = items.name
+        this.type = items.type
+        this.generation = items.generation
+        this.isMega = items.isMega
+        this.isRegion = items.isRegion
+        this.isEvolution = items.isEvolution
+        this.keyword = items.keyword
+      }
+    } else {
+      window.localStorage.removeItem('filters')
+    }
+
     makeObservable(this)
   }
 
@@ -58,6 +77,10 @@ export class FilterStore {
     this.isRegion = undefined
     this.name = ''
     this.type = []
+
+    if (this.isSave) {
+      window.localStorage.removeItem('filters')
+    }
   }
 
   @action
@@ -66,13 +89,8 @@ export class FilterStore {
   }
 
   @action
-  private changeSwitchValue(value: string): boolean | undefined {
-    if (value === 'true') {
-      return true
-    } else if (value === 'false') {
-      return false
-    } else if (value === 'all') {
-      return undefined
-    }
+  public changeSetting(val: boolean) {
+    this.isSave = val
+    window.localStorage.setItem('isSave', this.isSave.toString())
   }
 }
