@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { Router } from 'express'
+import http from 'axios'
+import fs from 'fs'
 
 export const listRouter = Router()
 
@@ -119,3 +121,37 @@ listRouter.post('/update/normalForm', async (req, res) => {
   }
   res.end()
 })
+
+// listRouter.get('/get/stat', async (req, res) => {
+//   const data = []
+
+//   for (let i = 1; i <= 1010; i++) {
+//     await http
+//       .request({
+//         url: `https://pokeapi.co/api/v2/pokemon/${i}`,
+//         method: 'GET',
+//       })
+//       .then((res) => {
+//         const stats = res.data.stats
+
+//         const statInfo = []
+
+//         for (let j = 0; j < stats.length; j++) {
+//           const form = {
+//             statName: res.data.stats[j].stat.name,
+//             statPoint: res.data.stats[j].base_stat,
+//           }
+//           statInfo.push(form)
+//         }
+//         data.push(statInfo)
+//       })
+//     if (i % 100 === 0) {
+//       console.log(`insert ${i}.....`)
+//     }
+//   }
+
+//   fs.writeFileSync('./stats.json', JSON.stringify(data))
+
+//   res.send(data)
+//   res.end()
+// })
