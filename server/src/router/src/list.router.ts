@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { Router } from 'express'
 import http from 'axios'
 import fs from 'fs'
+import stats_mega from '../../../json/stats_mega.json'
 
 export const listRouter = Router()
 
@@ -122,36 +123,61 @@ listRouter.post('/update/normalForm', async (req, res) => {
   res.end()
 })
 
-// listRouter.get('/get/stat', async (req, res) => {
-//   const data = []
+listRouter.get('/get/stat', async (req, res) => {
+  const data = []
 
-//   for (let i = 1; i <= 1010; i++) {
-//     await http
-//       .request({
-//         url: `https://pokeapi.co/api/v2/pokemon/${i}`,
-//         method: 'GET',
-//       })
-//       .then((res) => {
-//         const stats = res.data.stats
+  for (let i = 1; i <= 58; i++) {
+    await http
+      .request({
+        url: `https://pokeapi.co/api/v2/pokemon/${i + 10032}`,
+        method: 'GET',
+      })
+      .then((res) => {
+        const stats = res.data.stats
 
-//         const statInfo = []
+        const statInfo = []
 
-//         for (let j = 0; j < stats.length; j++) {
-//           const form = {
-//             statName: res.data.stats[j].stat.name,
-//             statPoint: res.data.stats[j].base_stat,
-//           }
-//           statInfo.push(form)
-//         }
-//         data.push(statInfo)
-//       })
-//     if (i % 100 === 0) {
-//       console.log(`insert ${i}.....`)
-//     }
-//   }
+        for (let j = 0; j < stats.length; j++) {
+          const form = {
+            statName: res.data.stats[j].stat.name,
+            statPoint: res.data.stats[j].base_stat,
+          }
+          statInfo.push(form)
+        }
+        data.push(statInfo)
+        console.log(statInfo)
+      })
+    console.log(`insert ${i}.....`)
+  }
 
-//   fs.writeFileSync('./stats.json', JSON.stringify(data))
+  fs.writeFileSync('./json/stats_mega.json', JSON.stringify(data, null, 2))
 
-//   res.send(data)
-//   res.end()
-// })
+  res.send(data)
+  console.log('success! ')
+
+  res.end()
+})
+
+listRouter.get('/get/stats_mega', async (req, res) => {
+  const list = stats_mega.map((statInfo, index) => {
+    return {
+      number: index + 10033,
+      [`${statInfo[0].statName}`]: statInfo[0].statPoint,
+      [`${statInfo[1].statName}`]: statInfo[1].statPoint,
+      [`${statInfo[2].statName}`]: statInfo[2].statPoint,
+      [`${statInfo[3].statName}`]: statInfo[3].statPoint,
+      [`${statInfo[4].statName}`]: statInfo[4].statPoint,
+      [`${statInfo[5].statName}`]: statInfo[5].statPoint,
+      total:
+        statInfo[0].statPoint +
+        statInfo[1].statPoint +
+        statInfo[2].statPoint +
+        statInfo[3].statPoint +
+        statInfo[4].statPoint +
+        statInfo[5].statPoint,
+    }
+  })
+
+  res.send(list)
+  res.end()
+})
