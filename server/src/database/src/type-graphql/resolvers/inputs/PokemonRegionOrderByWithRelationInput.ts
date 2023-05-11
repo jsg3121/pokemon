@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { PokemonOrderByWithRelationInput } from "../inputs/PokemonOrderByWithRelationInput";
+import { RegionStatsOrderByRelationAggregateInput } from "../inputs/RegionStatsOrderByRelationAggregateInput";
 import { SortOrder } from "../../enums/SortOrder";
 
 @TypeGraphQL.InputType("PokemonRegionOrderByWithRelationInput", {
@@ -48,4 +49,14 @@ export class PokemonRegionOrderByWithRelationInput {
     nullable: true
   })
   typeSingle2?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  statCode?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => RegionStatsOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  RegionStats?: RegionStatsOrderByRelationAggregateInput | undefined;
 }

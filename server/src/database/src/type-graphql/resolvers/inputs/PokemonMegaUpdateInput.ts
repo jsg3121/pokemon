@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { MegaStatsUpdateManyWithoutMegaPokemonNestedInput } from "../inputs/MegaStatsUpdateManyWithoutMegaPokemonNestedInput";
 import { PokemonUpdateOneRequiredWithoutPokemonMegaNestedInput } from "../inputs/PokemonUpdateOneRequiredWithoutPokemonMegaNestedInput";
 
 @TypeGraphQL.InputType("PokemonMegaUpdateInput", {
@@ -32,4 +33,14 @@ export class PokemonMegaUpdateInput {
     nullable: true
   })
   typeSingle2?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  statCode?: string | undefined;
+
+  @TypeGraphQL.Field(_type => MegaStatsUpdateManyWithoutMegaPokemonNestedInput, {
+    nullable: true
+  })
+  MegaStats?: MegaStatsUpdateManyWithoutMegaPokemonNestedInput | undefined;
 }

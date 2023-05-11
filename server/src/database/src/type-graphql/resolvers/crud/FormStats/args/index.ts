@@ -1,0 +1,14 @@
+export { AggregateFormStatsArgs } from "./AggregateFormStatsArgs";
+export { CreateManyFormStatsArgs } from "./CreateManyFormStatsArgs";
+export { CreateOneFormStatsArgs } from "./CreateOneFormStatsArgs";
+export { DeleteManyFormStatsArgs } from "./DeleteManyFormStatsArgs";
+export { DeleteOneFormStatsArgs } from "./DeleteOneFormStatsArgs";
+export { FindFirstFormStatsArgs } from "./FindFirstFormStatsArgs";
+export { FindFirstFormStatsOrThrowArgs } from "./FindFirstFormStatsOrThrowArgs";
+export { FindManyFormStatsArgs } from "./FindManyFormStatsArgs";
+export { FindUniqueFormStatsArgs } from "./FindUniqueFormStatsArgs";
+export { FindUniqueFormStatsOrThrowArgs } from "./FindUniqueFormStatsOrThrowArgs";
+export { GroupByFormStatsArgs } from "./GroupByFormStatsArgs";
+export { UpdateManyFormStatsArgs } from "./UpdateManyFormStatsArgs";
+export { UpdateOneFormStatsArgs } from "./UpdateOneFormStatsArgs";
+export { UpsertOneFormStatsArgs } from "./UpsertOneFormStatsArgs";

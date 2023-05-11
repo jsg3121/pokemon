@@ -21,4 +21,9 @@ export class PokemonCount {
     nullable: false
   })
   PokemonNormalForm!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  NormalStats!: number;
 }

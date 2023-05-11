@@ -31,4 +31,9 @@ export class PokemonNormalFormUpdateManyMutationInput {
     nullable: true
   })
   imagePath?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  statCode?: string | undefined;
 }

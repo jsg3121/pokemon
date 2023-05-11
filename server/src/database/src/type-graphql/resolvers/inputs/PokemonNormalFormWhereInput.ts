@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { FormStatsListRelationFilter } from "../inputs/FormStatsListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { PokemonRelationFilter } from "../inputs/PokemonRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
@@ -66,4 +67,14 @@ export class PokemonNormalFormWhereInput {
     nullable: true
   })
   imagePath?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  statCode?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => FormStatsListRelationFilter, {
+    nullable: true
+  })
+  FormStats?: FormStatsListRelationFilter | undefined;
 }

@@ -37,4 +37,9 @@ export class PokemonMegaCountOrderByAggregateInput {
     nullable: true
   })
   typeSingle2?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  statCode?: "asc" | "desc" | undefined;
 }

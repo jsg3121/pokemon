@@ -42,6 +42,11 @@ export class PokemonMegaGroupBy {
   })
   typeSingle2!: string | null;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  statCode!: string;
+
   @TypeGraphQL.Field(_type => PokemonMegaCountAggregate, {
     nullable: true
   })

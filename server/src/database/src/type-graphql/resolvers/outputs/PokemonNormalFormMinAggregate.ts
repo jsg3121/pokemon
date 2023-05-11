@@ -36,4 +36,9 @@ export class PokemonNormalFormMinAggregate {
     nullable: true
   })
   imagePath!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  statCode!: string | null;
 }

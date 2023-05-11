@@ -1,8 +1,10 @@
 import * as TypeGraphQL from "type-graphql";
+import { NormalStats } from "../../../models/NormalStats";
 import { Pokemon } from "../../../models/Pokemon";
 import { PokemonMega } from "../../../models/PokemonMega";
 import { PokemonNormalForm } from "../../../models/PokemonNormalForm";
 import { PokemonRegion } from "../../../models/PokemonRegion";
+import { PokemonNormalStatsArgs } from "./args/PokemonNormalStatsArgs";
 import { PokemonPokemonMegaArgs } from "./args/PokemonPokemonMegaArgs";
 import { PokemonPokemonNormalFormArgs } from "./args/PokemonPokemonNormalFormArgs";
 import { PokemonPokemonRegionArgs } from "./args/PokemonPokemonRegionArgs";
@@ -41,5 +43,16 @@ export class PokemonRelationsResolver {
         id: pokemon.id,
       },
     }).PokemonNormalForm(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [NormalStats], {
+    nullable: false
+  })
+  async NormalStats(@TypeGraphQL.Root() pokemon: Pokemon, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PokemonNormalStatsArgs): Promise<NormalStats[]> {
+    return getPrismaFromContext(ctx).pokemon.findUnique({
+      where: {
+        id: pokemon.id,
+      },
+    }).NormalStats(args);
   }
 }

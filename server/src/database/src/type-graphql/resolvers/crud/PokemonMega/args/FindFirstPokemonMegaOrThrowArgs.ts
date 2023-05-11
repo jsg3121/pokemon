@@ -35,5 +35,5 @@ export class FindFirstPokemonMegaOrThrowArgs {
   @TypeGraphQL.Field(_type => [PokemonMegaScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "pokemonId" | "pokemonNumber" | "type" | "typeSingle1" | "typeSingle2"> | undefined;
+  distinct?: Array<"id" | "pokemonId" | "pokemonNumber" | "type" | "typeSingle1" | "typeSingle2" | "statCode"> | undefined;
 }

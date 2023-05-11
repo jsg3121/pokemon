@@ -55,4 +55,9 @@ export class PokemonMegaScalarWhereInput {
     nullable: true
   })
   typeSingle2?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  statCode?: StringFilter | undefined;
 }

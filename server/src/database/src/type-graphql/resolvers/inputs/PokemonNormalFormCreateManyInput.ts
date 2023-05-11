@@ -41,4 +41,9 @@ export class PokemonNormalFormCreateManyInput {
     nullable: false
   })
   imagePath!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  statCode!: string;
 }

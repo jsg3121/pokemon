@@ -47,6 +47,11 @@ export class PokemonNormalFormGroupBy {
   })
   imagePath!: string;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  statCode!: string;
+
   @TypeGraphQL.Field(_type => PokemonNormalFormCountAggregate, {
     nullable: true
   })

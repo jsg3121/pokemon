@@ -60,4 +60,9 @@ export class PokemonRegionScalarWhereWithAggregatesInput {
     nullable: true
   })
   typeSingle2?: StringNullableWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
+  })
+  statCode?: StringWithAggregatesFilter | undefined;
 }

@@ -47,6 +47,11 @@ export class PokemonRegionGroupBy {
   })
   typeSingle2!: string | null;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  statCode!: string;
+
   @TypeGraphQL.Field(_type => PokemonRegionCountAggregate, {
     nullable: true
   })
