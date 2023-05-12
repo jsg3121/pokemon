@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { Arg, Query, Resolver } from 'type-graphql'
 import {
+  NormalStats,
   Pokemon,
   PokemonMega,
   PokemonNormalForm,
@@ -109,7 +110,15 @@ export default class PokemonResolver {
     @Arg('type', () => [String], { nullable: true })
     type: string[]
   ): Promise<Pokemon[]> {
-    console.log(generation, name, type, isEvolution, isRegion, isMega)
+    console.log(
+      'search filter options : ',
+      generation,
+      name,
+      type,
+      isEvolution,
+      isRegion,
+      isMega
+    )
 
     const changeNumber = []
 
@@ -171,6 +180,49 @@ export default class PokemonResolver {
       return data
     } else {
       throw new Error('No data!!')
+    }
+  }
+
+  /**
+   * @author 장선규
+   * @description 기본 포켓몬 종족값
+   * @returns {Promise<NormalStats[]>}
+   */
+  @Query(() => [NormalStats])
+  public async getNormalStats(): Promise<NormalStats[]> {
+    const data = await prisma.normalStats.findMany({
+      orderBy: {
+        pokemonId: 'asc',
+      },
+    })
+
+    if (data) {
+      return data
+    } else if (data.length === 0) {
+      return []
+    } else {
+      throw new Error('No Data!!')
+    }
+  }
+  /**
+   * @author 장선규
+   * @description 단일 포켓몬 종족값
+   * @returns {Promise<NormalStats>}
+   */
+  @Query(() => NormalStats)
+  public async getSingleNormalStats(
+    @Arg('id') id: number
+  ): Promise<NormalStats> {
+    const data = await prisma.normalStats.findFirst({
+      where: {
+        pokemonId: id,
+      },
+    })
+
+    if (data) {
+      return data
+    } else {
+      throw new Error('No Data!!')
     }
   }
 }
