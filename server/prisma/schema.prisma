@@ -108,7 +108,7 @@ model NormalStats {
 
 model MegaStats {
   id             Int         @id @unique @default(autoincrement()) @db.Integer
-  megaPokemon    PokemonMega @relation(fields: [statCode], references: [statCode])
+  megaPokemon    PokemonMega @relation(fields: [statCode], references: [statCode], onUpdate: Cascade)
   statCode       String      @map("stat_code") @db.VarChar(10)
   hp             Int         @map("hp") @db.Integer
   attack         Int         @map("attack") @db.Integer
@@ -123,7 +123,7 @@ model MegaStats {
 
 model RegionStats {
   id             Int           @id @unique @default(autoincrement()) @db.Integer
-  regionPokemon  PokemonRegion @relation(fields: [statCode], references: [statCode])
+  regionPokemon  PokemonRegion @relation(fields: [statCode], references: [statCode], onUpdate: Cascade)
   statCode       String        @map("stat_code") @db.VarChar(10)
   hp             Int           @map("hp") @db.Integer
   attack         Int           @map("attack") @db.Integer
@@ -138,7 +138,7 @@ model RegionStats {
 
 model FormStats {
   id                Int               @id @unique @default(autoincrement()) @db.Integer
-  normalFormPokemon PokemonNormalForm @relation(fields: [statCode], references: [statCode])
+  normalFormPokemon PokemonNormalForm @relation(fields: [statCode], references: [statCode], onUpdate: Cascade)
   statCode          String            @map("stat_code") @db.VarChar(10)
   hp                Int               @map("hp") @db.Integer
   attack            Int               @map("attack") @db.Integer

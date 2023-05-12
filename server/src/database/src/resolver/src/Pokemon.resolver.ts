@@ -1,11 +1,14 @@
 import { PrismaClient } from '@prisma/client'
 import { Arg, Query, Resolver } from 'type-graphql'
 import {
+  FormStats,
+  MegaStats,
   NormalStats,
   Pokemon,
   PokemonMega,
   PokemonNormalForm,
   PokemonRegion,
+  RegionStats,
 } from '../../type-graphql'
 
 const prisma = new PrismaClient()
@@ -204,6 +207,7 @@ export default class PokemonResolver {
       throw new Error('No Data!!')
     }
   }
+
   /**
    * @author 장선규
    * @description 단일 포켓몬 종족값
@@ -223,6 +227,35 @@ export default class PokemonResolver {
       return data
     } else {
       throw new Error('No Data!!')
+    }
+  }
+
+  /**
+   * @author 장선규
+   * @description 메가진화 포켓몬 종족값
+   * @returns {Promise<FormStats | MegaStats | RegionStats>}
+   */
+  @Query(() => FormStats || MegaStats || RegionStats)
+  public async getPokemonStats(
+    @Arg('type') type: 'mega' | 'form' | 'region',
+    @Arg('statCode') statCode: string
+  ): Promise<FormStats | MegaStats | RegionStats> {
+    console.log(type, statCode)
+    switch (type) {
+      case 'form':
+        return await prisma.formStats.findFirst({
+          where: { statCode },
+        })
+      case 'region':
+        return await prisma.regionStats.findFirst({
+          where: { statCode },
+        })
+      case 'mega':
+        return await prisma.megaStats.findFirst({
+          where: { statCode },
+        })
+      default:
+        throw new Error('No Data')
     }
   }
 }
