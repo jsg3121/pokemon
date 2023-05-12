@@ -1,8 +1,9 @@
 import { action, makeObservable, observable } from 'mobx'
-import { Pokemon } from '../../graphql'
+import { NormalStats, Pokemon } from '../../graphql'
 
 export class PokemonListStore {
   @observable public pokemon: Array<Pokemon> = []
+  @observable public stats: Array<NormalStats> = []
   @observable public isLoading: boolean = true
 
   constructor() {
@@ -12,6 +13,11 @@ export class PokemonListStore {
   @action
   public setPokemonList(list: Array<Pokemon>) {
     this.pokemon = [...list]
+  }
+
+  @action
+  public setPokemonStats(stats: Array<NormalStats>) {
+    this.stats = [...stats]
   }
 
   @action

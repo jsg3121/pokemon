@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client'
 import { observer } from 'mobx-react'
 import React from 'react'
 import { variablesCheck } from '../../common'
-import { Pokemon } from '../../graphql'
+import { NormalStats, Pokemon } from '../../graphql'
 import { useMobxStore } from '../../hook'
 import { FilterStore } from '../../store'
 
@@ -14,10 +14,30 @@ interface PokemonList {
   getPokemonFilter: Array<Pokemon>
 }
 
+interface PokemonStats {
+  getNormalStats: Array<NormalStats>
+}
+
 type ContextType = {
   filter?: FilterStore
   changeFilter?: (data: { type: keyof FilterStore; value: string }) => void
 }
+
+const POKEMON_STATS = gql`
+  query GetNormalStats {
+    getNormalStats {
+      id
+      pokemonId
+      hp
+      attack
+      defense
+      specialAttack
+      specialDefense
+      speed
+      total
+    }
+  }
+`
 
 const FILTER_POKEMON = gql`
   query GetPokemonFilter(
