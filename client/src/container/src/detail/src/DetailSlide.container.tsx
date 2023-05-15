@@ -1,6 +1,6 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
-import Slider, { Settings } from 'react-slick'
+import SlickSlider, { Settings } from 'react-slick'
 import { DetailView } from '..'
 import { changeColor } from '../../../../common'
 import { NextArrow, PrevArrow } from '../../../../components'
@@ -12,12 +12,30 @@ import {
   PokemonRegion,
 } from '../../../../graphql'
 import { TypesColor } from '../../../../types'
+import styled from 'styled-components'
 
 interface DetailSlideContainerProps {
   type: 'normalForm' | 'mega' | 'region'
   setColor: (color: Array<TypesColor>) => void
   detailInfo: Pokemon
 }
+
+const Slider = styled(SlickSlider)`
+  height: calc(100% - 1rem) !important;
+
+  .slick-list,
+  .slick-track {
+    height: 100% !important;
+  }
+
+  .slick-slide {
+    display: flex;
+
+    @media screen and (max-width: 475px) {
+      display: block;
+    }
+  }
+`
 
 const DetailSlideContainer: React.FC<DetailSlideContainerProps> = (props) => {
   const { detailInfo, type, setColor } = props
@@ -36,6 +54,7 @@ const DetailSlideContainer: React.FC<DetailSlideContainerProps> = (props) => {
       dots: false,
       speed: 0,
       infinite: false,
+      adaptiveHeight: true,
       draggable: false,
       touchMove: false,
       nextArrow: <NextArrow />,
@@ -46,6 +65,22 @@ const DetailSlideContainer: React.FC<DetailSlideContainerProps> = (props) => {
       },
     }
   }, [otherInfo, setColor])
+
+  const stats = React.useMemo(() => {
+    if (type === 'mega') {
+      return megaInfo.map((item) => {
+        return item.megaStats === null ? detailInfo.stats : item.megaStats
+      })
+    } else if (type === 'region') {
+      return regionInfo.map((item) => {
+        return item.regionStats === null ? detailInfo.stats : item.regionStats
+      })
+    } else {
+      return normalFormInfo.map((item) => {
+        return item.formStats === null ? detailInfo.stats : item.formStats
+      })
+    }
+  }, [detailInfo, megaInfo, normalFormInfo, regionInfo, type])
 
   React.useEffect(() => {
     if (megaInfo && type === 'mega') {
@@ -63,21 +98,21 @@ const DetailSlideContainer: React.FC<DetailSlideContainerProps> = (props) => {
     <Slider {...settings}>
       {otherInfo.map((item, index) => {
         return (
-          <React.Fragment key={index}>
-            <DetailView
-              generate={detailInfo.generation}
-              number={detailInfo.number}
-              evolutions={detailInfo.evolutionId}
-              name={
-                type === 'normalForm'
-                  ? normalFormInfo[index].name
-                  : detailInfo.name
-              }
-              types={item.type}
-              index={index}
-              region={type === 'region' ? regionInfo[index].region : undefined}
-            />
-          </React.Fragment>
+          <DetailView
+            generate={detailInfo.generation}
+            number={detailInfo.number}
+            evolutions={detailInfo.evolutionId}
+            name={
+              type === 'normalForm'
+                ? normalFormInfo[index].name
+                : detailInfo.name
+            }
+            types={item.type}
+            index={index}
+            region={type === 'region' ? regionInfo[index].region : undefined}
+            stats={stats[index]}
+            key={index}
+          />
         )
       })}
     </Slider>

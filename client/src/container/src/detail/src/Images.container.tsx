@@ -12,7 +12,7 @@ interface ImagesContainerProps {
 
 const ImageSwitch = styled.div`
   width: 100%;
-  height: 27rem;
+  height: calc(55% - 1rem);
   margin-top: 1rem;
 
   .image__switch {
@@ -28,9 +28,7 @@ const ImageSwitch = styled.div`
   }
 
   @media screen and (max-width: 475px) {
-    margin: 2rem 0;
-    height: calc(100% - 30rem);
-    max-height: calc(100vw - 2rem);
+    height: 40%;
   }
 `
 

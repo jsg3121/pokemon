@@ -16,6 +16,7 @@ class MegaFieldResover {
   @FieldResolver(() => MegaStats, {
     name: 'megaStats',
     description: '메가진화 상태 종족값',
+    nullable: true,
   })
   public async getSinglePokemon(@Root() pokemon: PokemonMega) {
     return await prisma.megaStats.findFirst({
@@ -31,6 +32,7 @@ class RegionFieldResover {
   @FieldResolver(() => RegionStats, {
     name: 'regionStats',
     description: '리전폼 포켓몬 종족값',
+    nullable: true,
   })
   public async getSinglePokemon(@Root() pokemon: PokemonRegion) {
     return await prisma.regionStats.findFirst({
@@ -46,6 +48,7 @@ class FormFieldResover {
   @FieldResolver(() => FormStats, {
     name: 'formStats',
     description: '노말폼 변경시 종족값',
+    nullable: true,
   })
   public async getSinglePokemon(@Root() pokemon: PokemonNormalForm) {
     return await prisma.formStats.findFirst({

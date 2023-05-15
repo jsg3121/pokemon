@@ -107,6 +107,7 @@ const DetailContainer: React.FC = () => {
                       evolutions={detailInfo.evolutionId}
                       name={detailInfo.name}
                       types={detailInfo.type}
+                      stats={detailInfo.stats}
                     />
                   )}
                 </>

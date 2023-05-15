@@ -9,6 +9,7 @@ interface SwitchsContainerProps {
 }
 
 const Switchs = styled.div`
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
