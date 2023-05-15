@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { Arg, FieldResolver, Query, Resolver, Root } from 'type-graphql'
+import { Arg, Query, Resolver } from 'type-graphql'
 import {
   FormStats,
   MegaStats,
@@ -21,18 +21,12 @@ export default class PokemonResolver {
    */
   @Query(() => [Pokemon])
   public async getList(): Promise<Array<Pokemon>> {
-    return await prisma.pokemon
-      .findMany({
-        include: {
-          NormalStats: true,
-        },
-        orderBy: [{ number: 'asc' }],
-      })
-      .then((res) => {
-        console.log(res[10])
-
-        return res
-      })
+    return await prisma.pokemon.findMany({
+      include: {
+        NormalStats: true,
+      },
+      orderBy: [{ number: 'asc' }],
+    })
   }
 
   /**
@@ -46,6 +40,9 @@ export default class PokemonResolver {
     @Arg('number') number: number
   ): Promise<Pokemon> {
     return await prisma.pokemon.findUnique({
+      include: {
+        NormalStats: true,
+      },
       where: {
         number,
       },

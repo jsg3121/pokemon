@@ -25,6 +25,19 @@ export type FormStats = {
   total: Scalars['Int'];
 };
 
+export type MegaStats = {
+  __typename?: 'MegaStats';
+  attack: Scalars['Int'];
+  defense: Scalars['Int'];
+  hp: Scalars['Int'];
+  id: Scalars['Int'];
+  specialAttack: Scalars['Int'];
+  specialDefense: Scalars['Int'];
+  speed: Scalars['Int'];
+  statCode: Scalars['String'];
+  total: Scalars['Int'];
+};
+
 export type NormalStats = {
   __typename?: 'NormalStats';
   attack: Scalars['Int'];
@@ -50,6 +63,8 @@ export type Pokemon = {
   isRegion?: Maybe<Scalars['Boolean']>;
   name: Scalars['String'];
   number: Scalars['Int'];
+  /** pokemonList fieldResover */
+  stats: NormalStats;
   type: Array<Scalars['String']>;
   typeSingle1: Scalars['String'];
   typeSingle2?: Maybe<Scalars['String']>;
@@ -57,7 +72,6 @@ export type Pokemon = {
 
 export type PokemonCount = {
   __typename?: 'PokemonCount';
-  NormalStats: Scalars['Int'];
   PokemonMega: Scalars['Int'];
   PokemonNormalForm: Scalars['Int'];
   PokemonRegion: Scalars['Int'];
@@ -67,6 +81,8 @@ export type PokemonMega = {
   __typename?: 'PokemonMega';
   _count?: Maybe<PokemonMegaCount>;
   id: Scalars['Int'];
+  /** 메가진화 상태 종족값 */
+  megaStats: MegaStats;
   pokemonId: Scalars['Int'];
   pokemonNumber: Scalars['Int'];
   statCode: Scalars['String'];
@@ -83,6 +99,8 @@ export type PokemonMegaCount = {
 export type PokemonNormalForm = {
   __typename?: 'PokemonNormalForm';
   _count?: Maybe<PokemonNormalFormCount>;
+  /** 노말폼 변경시 종족값 */
+  formStats: FormStats;
   id: Scalars['Int'];
   imagePath: Scalars['String'];
   name: Scalars['String'];
@@ -105,6 +123,8 @@ export type PokemonRegion = {
   pokemonId: Scalars['Int'];
   pokemonNumber: Scalars['Int'];
   region: Scalars['String'];
+  /** 리전폼 포켓몬 종족값 */
+  regionStats: RegionStats;
   statCode: Scalars['String'];
   type: Array<Scalars['String']>;
   typeSingle1: Scalars['String'];
@@ -168,4 +188,17 @@ export type QueryGetSingleNormalStatsArgs = {
 
 export type QueryGetSinglePokemonArgs = {
   number: Scalars['Float'];
+};
+
+export type RegionStats = {
+  __typename?: 'RegionStats';
+  attack: Scalars['Int'];
+  defense: Scalars['Int'];
+  hp: Scalars['Int'];
+  id: Scalars['Int'];
+  specialAttack: Scalars['Int'];
+  specialDefense: Scalars['Int'];
+  speed: Scalars['Int'];
+  statCode: Scalars['String'];
+  total: Scalars['Int'];
 };

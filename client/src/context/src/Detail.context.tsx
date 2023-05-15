@@ -42,6 +42,16 @@ const GET_POKEMON = gql`
       evolutionId
       generation
       isForm
+      stats {
+        pokemonId
+        hp
+        attack
+        defense
+        specialAttack
+        specialDefense
+        speed
+        total
+      }
     }
   }
 `
@@ -53,6 +63,17 @@ const GET_REGION = gql`
       region
       type
       pokemonNumber
+      regionStats {
+        id
+        statCode
+        hp
+        attack
+        defense
+        specialAttack
+        specialDefense
+        speed
+        total
+      }
     }
   }
 `
@@ -65,6 +86,17 @@ const GET_MEGA = gql`
       type
       typeSingle1
       typeSingle2
+      megaStats {
+        id
+        statCode
+        hp
+        attack
+        defense
+        specialAttack
+        specialDefense
+        speed
+        total
+      }
     }
   }
 `
@@ -79,6 +111,17 @@ const GET_NORMAL_FORM = gql`
       typeSingle2
       imagePath
       name
+      formStats {
+        id
+        statCode
+        hp
+        attack
+        defense
+        specialAttack
+        specialDefense
+        speed
+        total
+      }
     }
   }
 `
