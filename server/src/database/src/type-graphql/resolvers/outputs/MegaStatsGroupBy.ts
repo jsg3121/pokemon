@@ -9,7 +9,8 @@ import { MegaStatsMinAggregate } from "../outputs/MegaStatsMinAggregate";
 import { MegaStatsSumAggregate } from "../outputs/MegaStatsSumAggregate";
 
 @TypeGraphQL.ObjectType("MegaStatsGroupBy", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class MegaStatsGroupBy {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

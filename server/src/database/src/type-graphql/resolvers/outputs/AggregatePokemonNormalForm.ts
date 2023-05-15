@@ -9,7 +9,8 @@ import { PokemonNormalFormMinAggregate } from "../outputs/PokemonNormalFormMinAg
 import { PokemonNormalFormSumAggregate } from "../outputs/PokemonNormalFormSumAggregate";
 
 @TypeGraphQL.ObjectType("AggregatePokemonNormalForm", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class AggregatePokemonNormalForm {
   @TypeGraphQL.Field(_type => PokemonNormalFormCountAggregate, {

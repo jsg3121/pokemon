@@ -9,7 +9,8 @@ import { TypeRelationMinAggregate } from "../outputs/TypeRelationMinAggregate";
 import { TypeRelationSumAggregate } from "../outputs/TypeRelationSumAggregate";
 
 @TypeGraphQL.ObjectType("AggregateTypeRelation", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class AggregateTypeRelation {
   @TypeGraphQL.Field(_type => TypeRelationCountAggregate, {

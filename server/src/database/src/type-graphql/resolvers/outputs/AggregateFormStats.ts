@@ -9,7 +9,8 @@ import { FormStatsMinAggregate } from "../outputs/FormStatsMinAggregate";
 import { FormStatsSumAggregate } from "../outputs/FormStatsSumAggregate";
 
 @TypeGraphQL.ObjectType("AggregateFormStats", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class AggregateFormStats {
   @TypeGraphQL.Field(_type => FormStatsCountAggregate, {

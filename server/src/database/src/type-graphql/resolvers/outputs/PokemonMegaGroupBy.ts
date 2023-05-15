@@ -9,7 +9,8 @@ import { PokemonMegaMinAggregate } from "../outputs/PokemonMegaMinAggregate";
 import { PokemonMegaSumAggregate } from "../outputs/PokemonMegaSumAggregate";
 
 @TypeGraphQL.ObjectType("PokemonMegaGroupBy", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class PokemonMegaGroupBy {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

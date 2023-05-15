@@ -4,22 +4,17 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { NormalStatsWhereInput } from "../inputs/NormalStatsWhereInput";
 
-@TypeGraphQL.InputType("NormalStatsListRelationFilter", {
+@TypeGraphQL.InputType("NormalStatsRelationFilter", {
   isAbstract: true
 })
-export class NormalStatsListRelationFilter {
+export class NormalStatsRelationFilter {
   @TypeGraphQL.Field(_type => NormalStatsWhereInput, {
     nullable: true
   })
-  every?: NormalStatsWhereInput | undefined;
+  is?: NormalStatsWhereInput | undefined;
 
   @TypeGraphQL.Field(_type => NormalStatsWhereInput, {
     nullable: true
   })
-  some?: NormalStatsWhereInput | undefined;
-
-  @TypeGraphQL.Field(_type => NormalStatsWhereInput, {
-    nullable: true
-  })
-  none?: NormalStatsWhereInput | undefined;
+  isNot?: NormalStatsWhereInput | undefined;
 }

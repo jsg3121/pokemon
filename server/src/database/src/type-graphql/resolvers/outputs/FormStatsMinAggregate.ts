@@ -4,7 +4,8 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.ObjectType("FormStatsMinAggregate", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class FormStatsMinAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

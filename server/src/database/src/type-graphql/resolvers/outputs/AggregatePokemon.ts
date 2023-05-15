@@ -9,7 +9,8 @@ import { PokemonMinAggregate } from "../outputs/PokemonMinAggregate";
 import { PokemonSumAggregate } from "../outputs/PokemonSumAggregate";
 
 @TypeGraphQL.ObjectType("AggregatePokemon", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class AggregatePokemon {
   @TypeGraphQL.Field(_type => PokemonCountAggregate, {

@@ -9,7 +9,8 @@ import { RegionStatsMinAggregate } from "../outputs/RegionStatsMinAggregate";
 import { RegionStatsSumAggregate } from "../outputs/RegionStatsSumAggregate";
 
 @TypeGraphQL.ObjectType("RegionStatsGroupBy", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class RegionStatsGroupBy {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

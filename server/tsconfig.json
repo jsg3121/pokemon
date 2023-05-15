@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es2020",
     "module": "commonjs",
-    "lib": ["dom", "dom.iterable", "esnext", "es2018", "esnext.asynciterable"],
+    "lib": ["es2020", "esnext.asynciterable"],
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,

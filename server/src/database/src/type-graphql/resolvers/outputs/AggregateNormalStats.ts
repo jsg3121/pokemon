@@ -9,7 +9,8 @@ import { NormalStatsMinAggregate } from "../outputs/NormalStatsMinAggregate";
 import { NormalStatsSumAggregate } from "../outputs/NormalStatsSumAggregate";
 
 @TypeGraphQL.ObjectType("AggregateNormalStats", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class AggregateNormalStats {
   @TypeGraphQL.Field(_type => NormalStatsCountAggregate, {

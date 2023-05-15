@@ -11,4 +11,9 @@ export class NormalStatsWhereUniqueInput {
     nullable: true
   })
   id?: number | undefined;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: true
+  })
+  pokemonId?: number | undefined;
 }

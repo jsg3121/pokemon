@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { Arg, FieldResolver, Query, Resolver } from 'type-graphql'
+import { Arg, FieldResolver, Query, Resolver, Root } from 'type-graphql'
 import {
   FormStats,
   MegaStats,
@@ -11,12 +11,7 @@ import {
   RegionStats,
 } from '../../type-graphql'
 
-interface PokemonListResolver extends Pokemon {
-  NormalStats: Array<NormalStats>
-}
-
 const prisma = new PrismaClient()
-
 @Resolver()
 export default class PokemonResolver {
   /**
@@ -25,7 +20,7 @@ export default class PokemonResolver {
    * @returns {Array<Pokemon>}
    */
   @Query(() => [Pokemon])
-  public async getList(): Promise<Pokemon[]> {
+  public async getList(): Promise<Array<Pokemon>> {
     return await prisma.pokemon
       .findMany({
         include: {

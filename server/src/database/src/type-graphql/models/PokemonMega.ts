@@ -7,7 +7,8 @@ import { Pokemon } from "../models/Pokemon";
 import { PokemonMegaCount } from "../resolvers/outputs/PokemonMegaCount";
 
 @TypeGraphQL.ObjectType("PokemonMega", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class PokemonMega {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

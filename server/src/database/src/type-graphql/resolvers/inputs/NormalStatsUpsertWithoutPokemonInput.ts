@@ -4,17 +4,11 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { NormalStatsCreateWithoutPokemonInput } from "../inputs/NormalStatsCreateWithoutPokemonInput";
 import { NormalStatsUpdateWithoutPokemonInput } from "../inputs/NormalStatsUpdateWithoutPokemonInput";
-import { NormalStatsWhereUniqueInput } from "../inputs/NormalStatsWhereUniqueInput";
 
-@TypeGraphQL.InputType("NormalStatsUpsertWithWhereUniqueWithoutPokemonInput", {
+@TypeGraphQL.InputType("NormalStatsUpsertWithoutPokemonInput", {
   isAbstract: true
 })
-export class NormalStatsUpsertWithWhereUniqueWithoutPokemonInput {
-  @TypeGraphQL.Field(_type => NormalStatsWhereUniqueInput, {
-    nullable: false
-  })
-  where!: NormalStatsWhereUniqueInput;
-
+export class NormalStatsUpsertWithoutPokemonInput {
   @TypeGraphQL.Field(_type => NormalStatsUpdateWithoutPokemonInput, {
     nullable: false
   })

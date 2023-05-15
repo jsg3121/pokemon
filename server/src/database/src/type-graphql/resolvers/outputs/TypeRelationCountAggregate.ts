@@ -4,7 +4,8 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.ObjectType("TypeRelationCountAggregate", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class TypeRelationCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

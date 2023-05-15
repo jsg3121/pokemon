@@ -7,7 +7,8 @@ import { Pokemon } from "../models/Pokemon";
 import { PokemonNormalFormCount } from "../resolvers/outputs/PokemonNormalFormCount";
 
 @TypeGraphQL.ObjectType("PokemonNormalForm", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class PokemonNormalForm {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

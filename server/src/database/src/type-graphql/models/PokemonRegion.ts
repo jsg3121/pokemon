@@ -7,7 +7,8 @@ import { RegionStats } from "../models/RegionStats";
 import { PokemonRegionCount } from "../resolvers/outputs/PokemonRegionCount";
 
 @TypeGraphQL.ObjectType("PokemonRegion", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class PokemonRegion {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

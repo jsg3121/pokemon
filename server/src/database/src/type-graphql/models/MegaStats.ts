@@ -5,7 +5,8 @@ import { DecimalJSScalar } from "../scalars";
 import { PokemonMega } from "../models/PokemonMega";
 
 @TypeGraphQL.ObjectType("MegaStats", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class MegaStats {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

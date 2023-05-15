@@ -9,7 +9,8 @@ import { TypeRelationMinAggregate } from "../outputs/TypeRelationMinAggregate";
 import { TypeRelationSumAggregate } from "../outputs/TypeRelationSumAggregate";
 
 @TypeGraphQL.ObjectType("TypeRelationGroupBy", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class TypeRelationGroupBy {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

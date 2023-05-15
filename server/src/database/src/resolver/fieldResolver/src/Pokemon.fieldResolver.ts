@@ -1,14 +1,14 @@
-import { FieldResolver, Resolver } from 'type-graphql'
-import { Pokemon } from '../../../type-graphql'
 import { PrismaClient } from '@prisma/client'
-import { PokemonList } from '../../../object'
+import { FieldResolver, Resolver, Root } from 'type-graphql'
+import { NormalStats, Pokemon } from '../../../type-graphql'
 
-const prisma = new PrismaClient()
-
-@Resolver((of) => PokemonList)
+@Resolver(Pokemon)
 export default class PokemonFieldResolver {
-  @FieldResolver()
-  public async test(): Promise<Pokemon[]> {
-    return await prisma.pokemon.findMany({})
+  @FieldResolver(() => NormalStats, {
+    name: 'statsPokemon',
+    description: 'pokemonList fieldResover',
+  })
+  public async getPokemonFilter(@Root() pokemon: Pokemon) {
+    return pokemon.NormalStats
   }
 }
