@@ -72,13 +72,13 @@ const ImagesContainer: React.FC<ImagesContainerProps> = (props) => {
           {isShiny === true ? (
             <Image>
               <img
-                src={`${imageMode}/shiny/${imageCode}.png`}
+                src={`${imageMode}/shiny/${imageCode}.webp`}
                 alt="shiny_image"
               />
             </Image>
           ) : (
             <Image>
-              <img src={`${imageMode}/${imageCode}.png`} alt="normal_image" />
+              <img src={`${imageMode}/${imageCode}.webp`} alt="normal_image" />
             </Image>
           )}
         </>

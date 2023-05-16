@@ -184,7 +184,7 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
       <div className="card--image__pokemon">
         <Image>
           <img
-            src={`${imageMode}/${pokemonNumber}.png`}
+            src={`${imageMode}/${pokemonNumber}.webp`}
             alt="pokemon_image"
             loading="lazy"
           />
