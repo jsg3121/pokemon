@@ -69,15 +69,15 @@ const DetailSlideContainer: React.FC<DetailSlideContainerProps> = (props) => {
   const stats = React.useMemo(() => {
     if (type === 'mega') {
       return megaInfo.map((item) => {
-        return item.megaStats === null ? detailInfo.stats : item.megaStats
+        return item.megaStats ? item.megaStats : detailInfo.stats
       })
     } else if (type === 'region') {
       return regionInfo.map((item) => {
-        return item.regionStats === null ? detailInfo.stats : item.regionStats
+        return item.regionStats ? item.regionStats : detailInfo.stats
       })
     } else {
       return normalFormInfo.map((item) => {
-        return item.formStats === null ? detailInfo.stats : item.formStats
+        return item.formStats ? item.formStats : detailInfo.stats
       })
     }
   }, [detailInfo, megaInfo, normalFormInfo, regionInfo, type])

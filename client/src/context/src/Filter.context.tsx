@@ -21,6 +21,7 @@ type ContextType = {
 
 const FILTER_POKEMON = gql`
   query GetPokemonFilter(
+    $pokemonNumber: Int
     $type: [String!]
     $isMega: Boolean
     $isRegion: Boolean
@@ -29,6 +30,7 @@ const FILTER_POKEMON = gql`
     $generation: [String!]
   ) {
     getPokemonFilter(
+      pokemonNumber: $pokemonNumber
       type: $type
       isMega: $isMega
       isRegion: $isRegion

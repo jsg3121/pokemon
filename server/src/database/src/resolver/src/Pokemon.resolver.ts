@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { Arg, Query, Resolver } from 'type-graphql'
+import { Arg, Int, Query, Resolver } from 'type-graphql'
 import {
   FormStats,
   MegaStats,
@@ -114,21 +114,22 @@ export default class PokemonResolver {
     @Arg('generation', () => [String], { nullable: true })
     generation: string[],
     @Arg('name', { nullable: true }) name: string,
+    @Arg('pokemonNumber', () => Int, { nullable: true }) pokemonNumber: number,
     @Arg('isEvolution', { nullable: true }) isEvolution: boolean,
     @Arg('isRegion', { nullable: true }) isRegion: boolean,
     @Arg('isMega', { nullable: true }) isMega: boolean,
     @Arg('type', () => [String], { nullable: true })
     type: string[]
   ): Promise<Pokemon[]> {
-    console.log(
-      'search filter options : ',
+    console.table({
+      pokemonNumber,
       generation,
       name,
       type,
       isEvolution,
       isRegion,
-      isMega
-    )
+      isMega,
+    })
 
     const changeNumber = []
 
@@ -143,6 +144,7 @@ export default class PokemonResolver {
         NormalStats: true,
       },
       where: {
+        number: pokemonNumber,
         generation: generation && {
           in: changeNumber,
         },

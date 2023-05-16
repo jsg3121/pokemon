@@ -73,7 +73,7 @@ const InfoHeader = styled.div<{ fontSize: number }>`
 
     @media screen and (max-width: 475px) {
       height: 5rem;
-      width: calc(60vw - 1rem);
+      width: calc(60vw);
     }
   }
 
@@ -127,7 +127,7 @@ const InfoHeader = styled.div<{ fontSize: number }>`
     @media screen and (max-width: 475px) {
       height: 5rem;
       min-width: 6rem;
-      max-width: calc(45vw - 1rem);
+      max-width: calc(45vw - 3rem);
       margin-bottom: 0;
     }
   }

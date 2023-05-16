@@ -82,7 +82,7 @@ export type PokemonMega = {
   _count?: Maybe<PokemonMegaCount>;
   id: Scalars['Int'];
   /** 메가진화 상태 종족값 */
-  megaStats: MegaStats;
+  megaStats?: Maybe<MegaStats>;
   pokemonId: Scalars['Int'];
   pokemonNumber: Scalars['Int'];
   statCode: Scalars['String'];
@@ -100,7 +100,7 @@ export type PokemonNormalForm = {
   __typename?: 'PokemonNormalForm';
   _count?: Maybe<PokemonNormalFormCount>;
   /** 노말폼 변경시 종족값 */
-  formStats: FormStats;
+  formStats?: Maybe<FormStats>;
   id: Scalars['Int'];
   imagePath: Scalars['String'];
   name: Scalars['String'];
@@ -124,7 +124,7 @@ export type PokemonRegion = {
   pokemonNumber: Scalars['Int'];
   region: Scalars['String'];
   /** 리전폼 포켓몬 종족값 */
-  regionStats: RegionStats;
+  regionStats?: Maybe<RegionStats>;
   statCode: Scalars['String'];
   type: Array<Scalars['String']>;
   typeSingle1: Scalars['String'];

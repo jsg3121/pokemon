@@ -51,7 +51,7 @@ const Option = styled.div`
 
 const SettingContainer: React.FC<SettingContainerProps> = observer((props) => {
   const [isShow, setIsShow] = React.useState<boolean>(false)
-  const { changeOptions, saveSetting, isSave } =
+  const { changeOptions, saveSetting, cancelSetting, isSave } =
     React.useContext(SettingContext)
 
   const handleConfirm = React.useCallback(() => {
@@ -62,8 +62,11 @@ const SettingContainer: React.FC<SettingContainerProps> = observer((props) => {
   }, [saveSetting])
 
   const handleCancel = React.useCallback(() => {
+    if (cancelSetting) {
+      cancelSetting()
+    }
     setIsShow(false)
-  }, [])
+  }, [cancelSetting])
 
   const handleClickIcon = React.useCallback(() => {
     setIsShow(true)
