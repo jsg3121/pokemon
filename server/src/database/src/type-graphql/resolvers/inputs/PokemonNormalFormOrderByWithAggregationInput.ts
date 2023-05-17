@@ -48,6 +48,11 @@ export class PokemonNormalFormOrderByWithAggregationInput {
   })
   imagePath?: "asc" | "desc" | undefined;
 
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  statCode?: "asc" | "desc" | undefined;
+
   @TypeGraphQL.Field(_type => PokemonNormalFormCountOrderByAggregateInput, {
     nullable: true
   })

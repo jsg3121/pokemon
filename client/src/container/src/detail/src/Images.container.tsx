@@ -12,7 +12,7 @@ interface ImagesContainerProps {
 
 const ImageSwitch = styled.div`
   width: 100%;
-  height: 27rem;
+  height: calc(55% - 1rem);
   margin-top: 1rem;
 
   .image__switch {
@@ -28,9 +28,7 @@ const ImageSwitch = styled.div`
   }
 
   @media screen and (max-width: 475px) {
-    margin: 2rem 0;
-    height: calc(100% - 30rem);
-    max-height: calc(100vw - 2rem);
+    height: 40%;
   }
 `
 
@@ -74,13 +72,13 @@ const ImagesContainer: React.FC<ImagesContainerProps> = (props) => {
           {isShiny === true ? (
             <Image>
               <img
-                src={`${imageMode}/shiny/${imageCode}.png`}
+                src={`${imageMode}/shiny/${imageCode}.webp`}
                 alt="shiny_image"
               />
             </Image>
           ) : (
             <Image>
-              <img src={`${imageMode}/${imageCode}.png`} alt="normal_image" />
+              <img src={`${imageMode}/${imageCode}.webp`} alt="normal_image" />
             </Image>
           )}
         </>

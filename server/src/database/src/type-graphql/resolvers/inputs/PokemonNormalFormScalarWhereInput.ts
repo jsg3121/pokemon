@@ -60,4 +60,9 @@ export class PokemonNormalFormScalarWhereInput {
     nullable: true
   })
   imagePath?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  statCode?: StringFilter | undefined;
 }

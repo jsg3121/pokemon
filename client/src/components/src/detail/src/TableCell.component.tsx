@@ -28,6 +28,7 @@ const TableCell = styled.div`
 
     @media screen and (max-width: 475px) {
       width: 4rem;
+      font-size: 1rem;
     }
   }
 

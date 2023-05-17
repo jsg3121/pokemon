@@ -31,7 +31,11 @@ const SearchContainer: React.FC = observer(() => {
 
   React.useEffect(() => {
     if (changeFilter && keyword) {
-      changeFilter({ type: 'name', value: keyword })
+      if (Number.isNaN(parseInt(keyword, 10))) {
+        changeFilter({ type: 'name', value: keyword })
+      } else {
+        changeFilter({ type: 'pokemonNumber', value: keyword })
+      }
     }
   }, [changeFilter, filter, keyword])
 
@@ -41,9 +45,9 @@ const SearchContainer: React.FC = observer(() => {
       <Input
         type="text"
         status="default"
-        placeholder="포켓몬을 입력하세요"
+        placeholder="이름, 전국도감 번호"
         onChange={handleChange}
-        defaultValue={filter?.name}
+        defaultValue={filter?.keyword}
       />
     </Search>
   )

@@ -1,0 +1,14 @@
+export { AggregateNormalStatsArgs } from "./AggregateNormalStatsArgs";
+export { CreateManyNormalStatsArgs } from "./CreateManyNormalStatsArgs";
+export { CreateOneNormalStatsArgs } from "./CreateOneNormalStatsArgs";
+export { DeleteManyNormalStatsArgs } from "./DeleteManyNormalStatsArgs";
+export { DeleteOneNormalStatsArgs } from "./DeleteOneNormalStatsArgs";
+export { FindFirstNormalStatsArgs } from "./FindFirstNormalStatsArgs";
+export { FindFirstNormalStatsOrThrowArgs } from "./FindFirstNormalStatsOrThrowArgs";
+export { FindManyNormalStatsArgs } from "./FindManyNormalStatsArgs";
+export { FindUniqueNormalStatsArgs } from "./FindUniqueNormalStatsArgs";
+export { FindUniqueNormalStatsOrThrowArgs } from "./FindUniqueNormalStatsOrThrowArgs";
+export { GroupByNormalStatsArgs } from "./GroupByNormalStatsArgs";
+export { UpdateManyNormalStatsArgs } from "./UpdateManyNormalStatsArgs";
+export { UpdateOneNormalStatsArgs } from "./UpdateOneNormalStatsArgs";
+export { UpsertOneNormalStatsArgs } from "./UpsertOneNormalStatsArgs";

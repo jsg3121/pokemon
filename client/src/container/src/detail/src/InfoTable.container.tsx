@@ -1,19 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
-import { TableCell, Tag, TypeList } from '../../../../components'
+import { Abilities, TableCell, Tag, TypeList } from '../../../../components'
+import {
+  FormStats,
+  MegaStats,
+  NormalStats,
+  RegionStats,
+} from '../../../../graphql'
 import { useRelationType } from '../../../../hook'
 
 interface InfoTableContainerProps {
   name: string
   types: Array<string>
   generation: number
+  stats: NormalStats | FormStats | RegionStats | MegaStats
   evolutions?: Array<number>
   region?: string
 }
 
 const InfoTable = styled.div`
   width: 100%;
-  height: 14rem;
+  height: calc(100% - 8rem);
   border: 2px solid #333333;
   border-radius: 10px;
   background-color: #ffffff;
@@ -36,6 +43,19 @@ const InfoTable = styled.div`
         width: 100%;
       }
     }
+
+    &:last-child {
+      .info__type--title,
+      .info__type--body {
+        border-bottom: 0;
+      }
+    }
+
+    .cell__item:last-child {
+      .info__type--body {
+        border-right: 0;
+      }
+    }
   }
 
   .type-list__container {
@@ -44,7 +64,7 @@ const InfoTable = styled.div`
 `
 
 const InfoTableContainer: React.FC<InfoTableContainerProps> = (props) => {
-  const { types, region, evolutions } = props
+  const { types, region, evolutions, stats } = props
   const relationTypes = useRelationType(types)
 
   return (
@@ -63,6 +83,11 @@ const InfoTableContainer: React.FC<InfoTableContainerProps> = (props) => {
             <p>{region} 지방</p>
           </TableCell>
         )}
+      </div>
+      <div className="table__row">
+        <TableCell title="종족값">
+          <Abilities {...stats} />
+        </TableCell>
       </div>
       <div className="table__row">
         <TableCell title="강점">

@@ -1,0 +1,14 @@
+export { AggregateRegionStatsArgs } from "./AggregateRegionStatsArgs";
+export { CreateManyRegionStatsArgs } from "./CreateManyRegionStatsArgs";
+export { CreateOneRegionStatsArgs } from "./CreateOneRegionStatsArgs";
+export { DeleteManyRegionStatsArgs } from "./DeleteManyRegionStatsArgs";
+export { DeleteOneRegionStatsArgs } from "./DeleteOneRegionStatsArgs";
+export { FindFirstRegionStatsArgs } from "./FindFirstRegionStatsArgs";
+export { FindFirstRegionStatsOrThrowArgs } from "./FindFirstRegionStatsOrThrowArgs";
+export { FindManyRegionStatsArgs } from "./FindManyRegionStatsArgs";
+export { FindUniqueRegionStatsArgs } from "./FindUniqueRegionStatsArgs";
+export { FindUniqueRegionStatsOrThrowArgs } from "./FindUniqueRegionStatsOrThrowArgs";
+export { GroupByRegionStatsArgs } from "./GroupByRegionStatsArgs";
+export { UpdateManyRegionStatsArgs } from "./UpdateManyRegionStatsArgs";
+export { UpdateOneRegionStatsArgs } from "./UpdateOneRegionStatsArgs";
+export { UpsertOneRegionStatsArgs } from "./UpsertOneRegionStatsArgs";

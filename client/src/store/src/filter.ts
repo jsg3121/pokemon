@@ -7,8 +7,9 @@ export class FilterStore {
   @observable public isMega: string | undefined = undefined
   @observable public isRegion: string | undefined = undefined
   @observable public isEvolution: string | undefined = undefined
-  @observable public keyword: string | undefined = undefined
+  @observable public pokemonNumber: number | undefined = undefined
   @observable public isSave: boolean = true
+  @observable public keyword: string | undefined = undefined
 
   constructor() {
     this.isSave = window.localStorage.getItem('isSave') === 'true'
@@ -24,6 +25,7 @@ export class FilterStore {
         this.isRegion = items.isRegion
         this.isEvolution = items.isEvolution
         this.keyword = items.keyword
+        this.pokemonNumber = items.pokemonNumber
       }
     } else {
       window.localStorage.removeItem('filters')
@@ -48,7 +50,14 @@ export class FilterStore {
         }
         return
       case 'name':
+        this.pokemonNumber = undefined
         this.name = value
+        this.keyword = value
+        return
+      case 'pokemonNumber':
+        this.name = ''
+        this.pokemonNumber = parseInt(value)
+        this.keyword = value
         return
       case 'generation':
         if (this.generation.indexOf(value) === -1) {
@@ -75,8 +84,10 @@ export class FilterStore {
     this.isEvolution = undefined
     this.isMega = undefined
     this.isRegion = undefined
+    this.pokemonNumber = undefined
     this.name = ''
     this.type = []
+    this.keyword = ''
 
     if (this.isSave) {
       window.localStorage.removeItem('filters')

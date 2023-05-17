@@ -1,4 +1,5 @@
 import * as TypeGraphQL from "type-graphql";
+import { NormalStats } from "../../../models/NormalStats";
 import { Pokemon } from "../../../models/Pokemon";
 import { PokemonMega } from "../../../models/PokemonMega";
 import { PokemonNormalForm } from "../../../models/PokemonNormalForm";
@@ -41,5 +42,16 @@ export class PokemonRelationsResolver {
         id: pokemon.id,
       },
     }).PokemonNormalForm(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => NormalStats, {
+    nullable: true
+  })
+  async NormalStats(@TypeGraphQL.Root() pokemon: Pokemon, @TypeGraphQL.Ctx() ctx: any): Promise<NormalStats | null> {
+    return getPrismaFromContext(ctx).pokemon.findUnique({
+      where: {
+        id: pokemon.id,
+      },
+    }).NormalStats({});
   }
 }

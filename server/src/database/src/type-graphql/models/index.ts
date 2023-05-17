@@ -1,5 +1,9 @@
+export { FormStats } from "./FormStats";
+export { MegaStats } from "./MegaStats";
+export { NormalStats } from "./NormalStats";
 export { Pokemon } from "./Pokemon";
 export { PokemonMega } from "./PokemonMega";
 export { PokemonNormalForm } from "./PokemonNormalForm";
 export { PokemonRegion } from "./PokemonRegion";
+export { RegionStats } from "./RegionStats";
 export { TypeRelation } from "./TypeRelation";

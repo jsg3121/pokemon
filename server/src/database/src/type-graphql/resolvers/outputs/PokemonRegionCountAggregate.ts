@@ -4,7 +4,8 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 
 @TypeGraphQL.ObjectType("PokemonRegionCountAggregate", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class PokemonRegionCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
@@ -41,6 +42,11 @@ export class PokemonRegionCountAggregate {
     nullable: false
   })
   typeSingle2!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  statCode!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false

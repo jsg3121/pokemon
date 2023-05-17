@@ -14,6 +14,7 @@ generator typegraphql {
   provider        = "typegraphql-prisma"
   output          = "../src/database/src/type-graphql"
   useSimpleInputs = true
+  simpleResolvers = true
 }
 
 model Pokemon {
@@ -32,44 +33,51 @@ model Pokemon {
   PokemonRegion     PokemonRegion[]
   PokemonMega       PokemonMega[]
   PokemonNormalForm PokemonNormalForm[]
+  NormalStats       NormalStats?
 
   @@map("pokemon")
 }
 
 model PokemonNormalForm {
-  id          Int      @id @unique @default(autoincrement()) @db.Integer
-  pokemon     Pokemon  @relation(fields: [pokemonId], references: [number])
-  pokemonId   Int      @map("pokemon_id") @db.Integer
-  name        String   @map("name") @db.VarChar(50)
+  id          Int         @id @unique @default(autoincrement()) @db.Integer
+  pokemon     Pokemon     @relation(fields: [pokemonId], references: [number])
+  pokemonId   Int         @map("pokemon_id") @db.Integer
+  name        String      @map("name") @db.VarChar(50)
   type        String[]
-  typeSingle1 String   @map("type_single1") @db.VarChar(20)
-  typeSingle2 String?  @map("type_single2") @db.VarChar(20)
-  imagePath   String   @map("image_path") @db.VarChar(50)
+  typeSingle1 String      @map("type_single1") @db.VarChar(20)
+  typeSingle2 String?     @map("type_single2") @db.VarChar(20)
+  imagePath   String      @map("image_path") @db.VarChar(50)
+  statCode    String      @unique @map("stat_code") @db.VarChar(10)
+  FormStats   FormStats[]
 
   @@map("pokemon_normal_form")
 }
 
 model PokemonRegion {
-  id            Int      @id @unique @default(autoincrement()) @db.Integer
-  pokemon       Pokemon  @relation(fields: [pokemonId], references: [number])
-  pokemonId     Int      @map("pokemon_id") @db.Integer
-  pokemonNumber Int      @map("pokemon_number")
-  region        String   @db.VarChar(20)
+  id            Int           @id @unique @default(autoincrement()) @db.Integer
+  pokemon       Pokemon       @relation(fields: [pokemonId], references: [number])
+  pokemonId     Int           @map("pokemon_id") @db.Integer
+  pokemonNumber Int           @map("pokemon_number")
+  region        String        @db.VarChar(20)
   type          String[]
-  typeSingle1   String   @map("type_single1") @db.VarChar(20)
-  typeSingle2   String?  @map("type_single2") @db.VarChar(20)
+  typeSingle1   String        @map("type_single1") @db.VarChar(20)
+  typeSingle2   String?       @map("type_single2") @db.VarChar(20)
+  statCode      String        @unique @map("stat_code") @db.VarChar(10)
+  RegionStats   RegionStats[]
 
   @@map("pokemon_region")
 }
 
 model PokemonMega {
-  id            Int      @id @unique @default(autoincrement()) @db.Integer
-  pokemon       Pokemon  @relation(fields: [pokemonId], references: [number])
-  pokemonId     Int      @map("pokemon_id") @db.Integer
-  pokemonNumber Int      @map("pokemon_number")
+  id            Int         @id @unique @default(autoincrement()) @db.Integer
+  pokemon       Pokemon     @relation(fields: [pokemonId], references: [number])
+  pokemonId     Int         @map("pokemon_id") @db.Integer
+  pokemonNumber Int         @map("pokemon_number")
   type          String[]
-  typeSingle1   String   @map("type_single1") @db.VarChar(20)
-  typeSingle2   String?  @map("type_single2") @db.VarChar(20)
+  typeSingle1   String      @map("type_single1") @db.VarChar(20)
+  typeSingle2   String?     @map("type_single2") @db.VarChar(20)
+  statCode      String      @unique @map("stat_code") @db.VarChar(10)
+  MegaStats     MegaStats[]
 
   @@map("pokemon_mega")
 }
@@ -82,4 +90,64 @@ model TypeRelation {
   invalidity String?
 
   @@map("type_relation")
+}
+
+model NormalStats {
+  id             Int     @id @unique @default(autoincrement()) @db.Integer
+  pokemon        Pokemon @relation(fields: [pokemonId], references: [number])
+  pokemonId      Int     @unique @map("pokemon_id") @db.Integer
+  hp             Int     @map("hp") @db.Integer
+  attack         Int     @map("attack") @db.Integer
+  defense        Int     @map("defense") @db.Integer
+  specialAttack  Int     @map("special_attack") @db.Integer
+  specialDefense Int     @map("special_defense") @db.Integer
+  speed          Int     @map("speed") @db.Integer
+  total          Int     @map("total") @db.Integer
+
+  @@map("normal_stats")
+}
+
+model MegaStats {
+  id             Int         @id @unique @default(autoincrement()) @db.Integer
+  megaPokemon    PokemonMega @relation(fields: [statCode], references: [statCode], onUpdate: Cascade)
+  statCode       String      @map("stat_code") @db.VarChar(10)
+  hp             Int         @map("hp") @db.Integer
+  attack         Int         @map("attack") @db.Integer
+  defense        Int         @map("defense") @db.Integer
+  specialAttack  Int         @map("special_attack") @db.Integer
+  specialDefense Int         @map("special_defense") @db.Integer
+  speed          Int         @map("speed") @db.Integer
+  total          Int         @map("total") @db.Integer
+
+  @@map("mega_stats")
+}
+
+model RegionStats {
+  id             Int           @id @unique @default(autoincrement()) @db.Integer
+  regionPokemon  PokemonRegion @relation(fields: [statCode], references: [statCode], onUpdate: Cascade)
+  statCode       String        @map("stat_code") @db.VarChar(10)
+  hp             Int           @map("hp") @db.Integer
+  attack         Int           @map("attack") @db.Integer
+  defense        Int           @map("defense") @db.Integer
+  specialAttack  Int           @map("special_attack") @db.Integer
+  specialDefense Int           @map("special_defense") @db.Integer
+  speed          Int           @map("speed") @db.Integer
+  total          Int           @map("total") @db.Integer
+
+  @@map("region_stats")
+}
+
+model FormStats {
+  id                Int               @id @unique @default(autoincrement()) @db.Integer
+  normalFormPokemon PokemonNormalForm @relation(fields: [statCode], references: [statCode], onUpdate: Cascade)
+  statCode          String            @map("stat_code") @db.VarChar(10)
+  hp                Int               @map("hp") @db.Integer
+  attack            Int               @map("attack") @db.Integer
+  defense           Int               @map("defense") @db.Integer
+  specialAttack     Int               @map("special_attack") @db.Integer
+  specialDefense    Int               @map("special_defense") @db.Integer
+  speed             Int               @map("speed") @db.Integer
+  total             Int               @map("total") @db.Integer
+
+  @@map("form_stats")
 }

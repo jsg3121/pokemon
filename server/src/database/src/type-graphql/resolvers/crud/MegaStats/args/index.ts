@@ -1,0 +1,14 @@
+export { AggregateMegaStatsArgs } from "./AggregateMegaStatsArgs";
+export { CreateManyMegaStatsArgs } from "./CreateManyMegaStatsArgs";
+export { CreateOneMegaStatsArgs } from "./CreateOneMegaStatsArgs";
+export { DeleteManyMegaStatsArgs } from "./DeleteManyMegaStatsArgs";
+export { DeleteOneMegaStatsArgs } from "./DeleteOneMegaStatsArgs";
+export { FindFirstMegaStatsArgs } from "./FindFirstMegaStatsArgs";
+export { FindFirstMegaStatsOrThrowArgs } from "./FindFirstMegaStatsOrThrowArgs";
+export { FindManyMegaStatsArgs } from "./FindManyMegaStatsArgs";
+export { FindUniqueMegaStatsArgs } from "./FindUniqueMegaStatsArgs";
+export { FindUniqueMegaStatsOrThrowArgs } from "./FindUniqueMegaStatsOrThrowArgs";
+export { GroupByMegaStatsArgs } from "./GroupByMegaStatsArgs";
+export { UpdateManyMegaStatsArgs } from "./UpdateManyMegaStatsArgs";
+export { UpdateOneMegaStatsArgs } from "./UpdateOneMegaStatsArgs";
+export { UpsertOneMegaStatsArgs } from "./UpsertOneMegaStatsArgs";

@@ -60,4 +60,9 @@ export class PokemonRegionScalarWhereInput {
     nullable: true
   })
   typeSingle2?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  statCode?: StringFilter | undefined;
 }

@@ -1,5 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import { Router } from 'express'
+import http from 'axios'
+import fs from 'fs'
+import stats_region from '../../../json/stats_region.json'
 
 export const listRouter = Router()
 
@@ -116,6 +119,113 @@ listRouter.post('/update/normalForm', async (req, res) => {
     })
   } catch (err) {
     res.send('fail')
+  }
+  res.end()
+})
+
+listRouter.get('/get/stat', async (req, res) => {
+  const data = []
+
+  const cnt = 35
+  const startNumb = 10229
+
+  for (let i = 0; i < cnt; i++) {
+    await http
+      .request({
+        url: `https://pokeapi.co/api/v2/pokemon/${i + startNumb}`,
+        method: 'GET',
+      })
+      .then((res) => {
+        const stats = res.data.stats
+
+        const statInfo = []
+
+        for (let j = 0; j < stats.length; j++) {
+          const form = {
+            statName: res.data.stats[j].stat.name,
+            statPoint: res.data.stats[j].base_stat,
+          }
+          statInfo.push(form)
+        }
+        data.push(statInfo)
+      })
+    console.log(`insert ${i}.....`)
+  }
+
+  console.log('format list...')
+
+  const list = data.map((statInfo, index) => {
+    return {
+      number: index + startNumb,
+      [`${statInfo[0].statName}`]: statInfo[0].statPoint,
+      [`${statInfo[1].statName}`]: statInfo[1].statPoint,
+      [`${statInfo[2].statName}`]: statInfo[2].statPoint,
+      [`${statInfo[3].statName}`]: statInfo[3].statPoint,
+      [`${statInfo[4].statName}`]: statInfo[4].statPoint,
+      [`${statInfo[5].statName}`]: statInfo[5].statPoint,
+      total:
+        statInfo[0].statPoint +
+        statInfo[1].statPoint +
+        statInfo[2].statPoint +
+        statInfo[3].statPoint +
+        statInfo[4].statPoint +
+        statInfo[5].statPoint,
+    }
+  })
+
+  fs.writeFileSync('./json/stats_gen9.json', JSON.stringify(list))
+
+  res.send(list)
+
+  console.log('list info')
+  console.log(list.length)
+  console.log('success! ')
+
+  res.end()
+})
+
+listRouter.post('/change/db', async (req, res) => {
+  try {
+    const data = await prisma.pokemonNormalForm
+      .findMany({
+        orderBy: {
+          id: 'asc',
+        },
+      })
+      .then((res) => {
+        return res.map((item) => {
+          return {
+            id: item.id,
+            number: item.pokemonId,
+          }
+        })
+      })
+
+    const list = []
+
+    data.forEach(async (item, index) => {
+      if (index > 150) {
+        const str = `M${item.number.toString().padStart(4, '0')}${(index + 1)
+          .toString()
+          .padStart(3, '0')}`
+        list.push(
+          await prisma.pokemonNormalForm.update({
+            where: {
+              id: item.id,
+            },
+            data: {
+              statCode: `${str}`,
+            },
+          })
+        )
+      }
+    })
+
+    await Promise.all(list).then(() => {
+      res.send(data)
+    })
+  } catch (error) {
+    console.log(error)
   }
   res.end()
 })

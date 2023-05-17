@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFilter } from "../inputs/IntFilter";
 import { PokemonRelationFilter } from "../inputs/PokemonRelationFilter";
+import { RegionStatsListRelationFilter } from "../inputs/RegionStatsListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { StringNullableListFilter } from "../inputs/StringNullableListFilter";
@@ -66,4 +67,14 @@ export class PokemonRegionWhereInput {
     nullable: true
   })
   typeSingle2?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  statCode?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => RegionStatsListRelationFilter, {
+    nullable: true
+  })
+  RegionStats?: RegionStatsListRelationFilter | undefined;
 }

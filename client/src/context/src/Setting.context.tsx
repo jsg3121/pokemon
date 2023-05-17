@@ -10,6 +10,7 @@ type ContextType = {
   isSave?: boolean
   changeOptions?: (val: boolean) => void
   saveSetting?: () => void
+  cancelSetting?: () => void
 }
 
 export const SettingContext = React.createContext<ContextType>({})
@@ -28,6 +29,10 @@ export const SettingProvider: React.FC<SettingContextProps> = observer(
       filter.changeSetting(isSave)
     }, [filter, isSave])
 
+    const cancelSetting = React.useCallback(() => {
+      setIsSave(filter.isSave)
+    }, [filter.isSave])
+
     React.useEffect(() => {
       setIsSave(filter.isSave)
     }, [filter.isSave])
@@ -35,6 +40,7 @@ export const SettingProvider: React.FC<SettingContextProps> = observer(
     const initialValue = {
       changeOptions,
       saveSetting,
+      cancelSetting,
       isSave,
     }
 

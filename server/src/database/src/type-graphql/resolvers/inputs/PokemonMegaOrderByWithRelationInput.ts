@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { MegaStatsOrderByRelationAggregateInput } from "../inputs/MegaStatsOrderByRelationAggregateInput";
 import { PokemonOrderByWithRelationInput } from "../inputs/PokemonOrderByWithRelationInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -43,4 +44,14 @@ export class PokemonMegaOrderByWithRelationInput {
     nullable: true
   })
   typeSingle2?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  statCode?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => MegaStatsOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  MegaStats?: MegaStatsOrderByRelationAggregateInput | undefined;
 }

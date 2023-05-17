@@ -5,6 +5,7 @@ import resolvers from './src/resolver'
 export const createApolloServer = async ({ app }) => {
   const schema = await buildSchema({
     resolvers,
+    validate: false,
   })
 
   const apolloServer = new ApolloServer({

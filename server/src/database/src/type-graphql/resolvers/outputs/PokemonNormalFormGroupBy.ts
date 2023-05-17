@@ -9,7 +9,8 @@ import { PokemonNormalFormMinAggregate } from "../outputs/PokemonNormalFormMinAg
 import { PokemonNormalFormSumAggregate } from "../outputs/PokemonNormalFormSumAggregate";
 
 @TypeGraphQL.ObjectType("PokemonNormalFormGroupBy", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class PokemonNormalFormGroupBy {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
@@ -46,6 +47,11 @@ export class PokemonNormalFormGroupBy {
     nullable: false
   })
   imagePath!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  statCode!: string;
 
   @TypeGraphQL.Field(_type => PokemonNormalFormCountAggregate, {
     nullable: true

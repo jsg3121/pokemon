@@ -1,5 +1,6 @@
 type FilterTypes = {
   name?: string
+  pokemonNumber?: number
   generation?: Array<string>
   type?: Array<string>
   isMega?: string
@@ -10,6 +11,7 @@ type FilterTypes = {
 export const variablesCheck = (filter: FilterTypes) => {
   const {
     name,
+    pokemonNumber,
     generation = [],
     type = [],
     isMega,
@@ -18,6 +20,7 @@ export const variablesCheck = (filter: FilterTypes) => {
   } = filter
 
   const variable = {
+    pokemonNumber,
     name,
     generation: generation.length === 0 ? undefined : generation,
     type: type.length === 0 ? undefined : type,

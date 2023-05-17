@@ -11,4 +11,9 @@ export class PokemonNormalFormWhereUniqueInput {
     nullable: true
   })
   id?: number | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  statCode?: string | undefined;
 }

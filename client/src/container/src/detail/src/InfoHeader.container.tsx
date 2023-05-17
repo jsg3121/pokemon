@@ -73,7 +73,7 @@ const InfoHeader = styled.div<{ fontSize: number }>`
 
     @media screen and (max-width: 475px) {
       height: 5rem;
-      width: calc(60vw - 1rem);
+      width: calc(60vw);
     }
   }
 
@@ -100,7 +100,8 @@ const InfoHeader = styled.div<{ fontSize: number }>`
       }
 
       @media screen and (max-width: 475px) {
-        height: 5rem;
+        height: 4.5rem;
+        margin-top: 0.5rem;
       }
     }
 
@@ -127,7 +128,7 @@ const InfoHeader = styled.div<{ fontSize: number }>`
     @media screen and (max-width: 475px) {
       height: 5rem;
       min-width: 6rem;
-      max-width: calc(45vw - 1rem);
+      max-width: calc(45vw - 3rem);
       margin-bottom: 0;
     }
   }
@@ -166,7 +167,7 @@ const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
               <div key={item} onClick={handleClick} data-number={item}>
                 <Image>
                   <img
-                    src={`${imageMode}/${item}.png`}
+                    src={`${imageMode}/${item}.webp`}
                     alt="pokemon_image"
                     loading="lazy"
                   />

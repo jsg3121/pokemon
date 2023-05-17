@@ -1,14 +1,17 @@
 import { PrismaClient } from '@prisma/client'
-import { Arg, Query, Resolver } from 'type-graphql'
+import { Arg, Int, Query, Resolver } from 'type-graphql'
 import {
+  FormStats,
+  MegaStats,
+  NormalStats,
   Pokemon,
   PokemonMega,
   PokemonNormalForm,
   PokemonRegion,
+  RegionStats,
 } from '../../type-graphql'
 
 const prisma = new PrismaClient()
-
 @Resolver()
 export default class PokemonResolver {
   /**
@@ -17,8 +20,13 @@ export default class PokemonResolver {
    * @returns {Array<Pokemon>}
    */
   @Query(() => [Pokemon])
-  public async getList(): Promise<Pokemon[]> {
-    return await prisma.pokemon.findMany({ orderBy: [{ number: 'asc' }] })
+  public async getList(): Promise<Array<Pokemon>> {
+    return await prisma.pokemon.findMany({
+      include: {
+        NormalStats: true,
+      },
+      orderBy: [{ number: 'asc' }],
+    })
   }
 
   /**
@@ -32,6 +40,9 @@ export default class PokemonResolver {
     @Arg('number') number: number
   ): Promise<Pokemon> {
     return await prisma.pokemon.findUnique({
+      include: {
+        NormalStats: true,
+      },
       where: {
         number,
       },
@@ -103,13 +114,22 @@ export default class PokemonResolver {
     @Arg('generation', () => [String], { nullable: true })
     generation: string[],
     @Arg('name', { nullable: true }) name: string,
+    @Arg('pokemonNumber', () => Int, { nullable: true }) pokemonNumber: number,
     @Arg('isEvolution', { nullable: true }) isEvolution: boolean,
     @Arg('isRegion', { nullable: true }) isRegion: boolean,
     @Arg('isMega', { nullable: true }) isMega: boolean,
     @Arg('type', () => [String], { nullable: true })
     type: string[]
   ): Promise<Pokemon[]> {
-    console.log(generation, name, type, isEvolution, isRegion, isMega)
+    console.table({
+      pokemonNumber,
+      generation,
+      name,
+      type,
+      isEvolution,
+      isRegion,
+      isMega,
+    })
 
     const changeNumber = []
 
@@ -120,7 +140,11 @@ export default class PokemonResolver {
     }
 
     const data = await prisma.pokemon.findMany({
+      include: {
+        NormalStats: true,
+      },
       where: {
+        number: pokemonNumber,
         generation: generation && {
           in: changeNumber,
         },
@@ -171,6 +195,79 @@ export default class PokemonResolver {
       return data
     } else {
       throw new Error('No data!!')
+    }
+  }
+
+  /**
+   * @author 장선규
+   * @description 기본 포켓몬 종족값
+   * @returns {Promise<NormalStats[]>}
+   */
+  @Query(() => [NormalStats])
+  public async getNormalStats(): Promise<NormalStats[]> {
+    const data = await prisma.normalStats.findMany({
+      orderBy: {
+        pokemonId: 'asc',
+      },
+    })
+
+    if (data) {
+      return data
+    } else if (data.length === 0) {
+      return []
+    } else {
+      throw new Error('No Data!!')
+    }
+  }
+
+  /**
+   * @author 장선규
+   * @description 단일 포켓몬 종족값
+   * @returns {Promise<NormalStats>}
+   */
+  @Query(() => NormalStats)
+  public async getSingleNormalStats(
+    @Arg('id') id: number
+  ): Promise<NormalStats> {
+    const data = await prisma.normalStats.findFirst({
+      where: {
+        pokemonId: id,
+      },
+    })
+
+    if (data) {
+      return data
+    } else {
+      throw new Error('No Data!!')
+    }
+  }
+
+  /**
+   * @author 장선규
+   * @description 메가진화 포켓몬 종족값
+   * @returns {Promise<FormStats | MegaStats | RegionStats>}
+   */
+  @Query(() => FormStats || MegaStats || RegionStats)
+  public async getPokemonStats(
+    @Arg('type') type: 'mega' | 'form' | 'region',
+    @Arg('statCode') statCode: string
+  ): Promise<FormStats | MegaStats | RegionStats> {
+    console.log(type, statCode)
+    switch (type) {
+      case 'form':
+        return await prisma.formStats.findFirst({
+          where: { statCode },
+        })
+      case 'region':
+        return await prisma.regionStats.findFirst({
+          where: { statCode },
+        })
+      case 'mega':
+        return await prisma.megaStats.findFirst({
+          where: { statCode },
+        })
+      default:
+        throw new Error('No Data')
     }
   }
 }

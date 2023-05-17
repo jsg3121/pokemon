@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { FormStatsUpdateManyWithoutNormalFormPokemonNestedInput } from "../inputs/FormStatsUpdateManyWithoutNormalFormPokemonNestedInput";
 import { PokemonUpdateOneRequiredWithoutPokemonNormalFormNestedInput } from "../inputs/PokemonUpdateOneRequiredWithoutPokemonNormalFormNestedInput";
 
 @TypeGraphQL.InputType("PokemonNormalFormUpdateInput", {
@@ -37,4 +38,14 @@ export class PokemonNormalFormUpdateInput {
     nullable: true
   })
   imagePath?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  statCode?: string | undefined;
+
+  @TypeGraphQL.Field(_type => FormStatsUpdateManyWithoutNormalFormPokemonNestedInput, {
+    nullable: true
+  })
+  FormStats?: FormStatsUpdateManyWithoutNormalFormPokemonNestedInput | undefined;
 }

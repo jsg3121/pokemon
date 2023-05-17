@@ -1,0 +1,1 @@
+export { PokemonNormalFormFormStatsArgs } from "./PokemonNormalFormFormStatsArgs";

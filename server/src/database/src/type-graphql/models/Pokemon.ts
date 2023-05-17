@@ -2,13 +2,15 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
+import { NormalStats } from "../models/NormalStats";
 import { PokemonMega } from "../models/PokemonMega";
 import { PokemonNormalForm } from "../models/PokemonNormalForm";
 import { PokemonRegion } from "../models/PokemonRegion";
 import { PokemonCount } from "../resolvers/outputs/PokemonCount";
 
 @TypeGraphQL.ObjectType("Pokemon", {
-  isAbstract: true
+  isAbstract: true,
+  simpleResolvers: true
 })
 export class Pokemon {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
@@ -76,6 +78,8 @@ export class Pokemon {
   PokemonMega?: PokemonMega[];
 
   PokemonNormalForm?: PokemonNormalForm[];
+
+  NormalStats?: NormalStats | null;
 
   @TypeGraphQL.Field(_type => PokemonCount, {
     nullable: true

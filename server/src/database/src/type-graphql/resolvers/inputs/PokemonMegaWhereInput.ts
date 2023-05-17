@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFilter } from "../inputs/IntFilter";
+import { MegaStatsListRelationFilter } from "../inputs/MegaStatsListRelationFilter";
 import { PokemonRelationFilter } from "../inputs/PokemonRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
@@ -61,4 +62,14 @@ export class PokemonMegaWhereInput {
     nullable: true
   })
   typeSingle2?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  statCode?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => MegaStatsListRelationFilter, {
+    nullable: true
+  })
+  MegaStats?: MegaStatsListRelationFilter | undefined;
 }

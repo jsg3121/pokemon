@@ -7,7 +7,8 @@ export enum PokemonRegionScalarFieldEnum {
   region = "region",
   type = "type",
   typeSingle1 = "typeSingle1",
-  typeSingle2 = "typeSingle2"
+  typeSingle2 = "typeSingle2",
+  statCode = "statCode"
 }
 TypeGraphQL.registerEnumType(PokemonRegionScalarFieldEnum, {
   name: "PokemonRegionScalarFieldEnum",

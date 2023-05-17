@@ -19,6 +19,7 @@ const Arrow = styled.div`
   @media screen and (max-width: 475px) {
     width: 1.5rem;
     height: 1.5rem;
+    top: 10rem;
     position: absolute;
     left: 0;
     z-index: 100;

@@ -20,7 +20,7 @@ export class GroupByPokemonRegionArgs {
   @TypeGraphQL.Field(_type => [PokemonRegionScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "pokemonId" | "pokemonNumber" | "region" | "type" | "typeSingle1" | "typeSingle2">;
+  by!: Array<"id" | "pokemonId" | "pokemonNumber" | "region" | "type" | "typeSingle1" | "typeSingle2" | "statCode">;
 
   @TypeGraphQL.Field(_type => PokemonRegionScalarWhereWithAggregatesInput, {
     nullable: true

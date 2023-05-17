@@ -1,0 +1,1 @@
+export { PokemonMegaMegaStatsArgs } from "./PokemonMegaMegaStatsArgs";

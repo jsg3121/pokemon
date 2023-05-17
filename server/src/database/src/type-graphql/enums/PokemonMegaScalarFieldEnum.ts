@@ -6,7 +6,8 @@ export enum PokemonMegaScalarFieldEnum {
   pokemonNumber = "pokemonNumber",
   type = "type",
   typeSingle1 = "typeSingle1",
-  typeSingle2 = "typeSingle2"
+  typeSingle2 = "typeSingle2",
+  statCode = "statCode"
 }
 TypeGraphQL.registerEnumType(PokemonMegaScalarFieldEnum, {
   name: "PokemonMegaScalarFieldEnum",

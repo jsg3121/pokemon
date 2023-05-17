@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { PokemonUpdateOneRequiredWithoutPokemonRegionNestedInput } from "../inputs/PokemonUpdateOneRequiredWithoutPokemonRegionNestedInput";
+import { RegionStatsUpdateManyWithoutRegionPokemonNestedInput } from "../inputs/RegionStatsUpdateManyWithoutRegionPokemonNestedInput";
 
 @TypeGraphQL.InputType("PokemonRegionUpdateInput", {
   isAbstract: true
@@ -37,4 +38,14 @@ export class PokemonRegionUpdateInput {
     nullable: true
   })
   typeSingle2?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  statCode?: string | undefined;
+
+  @TypeGraphQL.Field(_type => RegionStatsUpdateManyWithoutRegionPokemonNestedInput, {
+    nullable: true
+  })
+  RegionStats?: RegionStatsUpdateManyWithoutRegionPokemonNestedInput | undefined;
 }
