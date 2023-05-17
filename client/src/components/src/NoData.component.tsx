@@ -36,7 +36,7 @@ const NoDataComponent: React.FC<NoDataComponentProps> = (props) => {
     <NoData>
       <div className="no-data__image">
         <Image>
-          <img src={require('../../assets/image/noData.png')} alt="no_data" />
+          <img src={require('../../assets/image/noData.webp')} alt="no_data" />
         </Image>
         <h1>검색 조건에 맞는 포켓몬이 없어요!</h1>
       </div>
