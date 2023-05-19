@@ -45,11 +45,14 @@ const Header = styled.header`
 
 const HeaderContainer: React.FC = () => {
   const { pathname } = useLocation()
+
+  console.log(import.meta.env)
+
   return (
     <Header>
       <Link to="/" replace>
         <h1 className="header__title">
-          Pokemon Dogam <span>v{process.env.REACT_APP_VERSION}</span>
+          Pokemon Dogam <span>v{import.meta.env.VITE_APP_VERSION}</span>
         </h1>
       </Link>
       {pathname === '/' && (

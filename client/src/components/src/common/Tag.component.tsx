@@ -28,9 +28,8 @@ const Tag = styled.p<{ color: TypesColor; type: string }>`
   @media screen and (max-width: 475px) {
     width: 1rem;
     height: 1rem;
-    background: ${(props) =>
-        `url(${process.env.PUBLIC_URL}/assets/${props.type}.svg)`}
-      center center/100% no-repeat;
+    background: ${(props) => `url(/assets/${props.type}.svg)`} center
+      center/100% no-repeat;
 
     & > span {
       display: none;
