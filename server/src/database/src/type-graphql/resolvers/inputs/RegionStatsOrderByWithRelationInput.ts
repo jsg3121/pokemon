@@ -14,11 +14,6 @@ export class RegionStatsOrderByWithRelationInput {
   })
   id?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonRegionOrderByWithRelationInput, {
-    nullable: true
-  })
-  regionPokemon?: PokemonRegionOrderByWithRelationInput | undefined;
-
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
@@ -58,4 +53,9 @@ export class RegionStatsOrderByWithRelationInput {
     nullable: true
   })
   total?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonRegionOrderByWithRelationInput, {
+    nullable: true
+  })
+  regionPokemon?: PokemonRegionOrderByWithRelationInput | undefined;
 }

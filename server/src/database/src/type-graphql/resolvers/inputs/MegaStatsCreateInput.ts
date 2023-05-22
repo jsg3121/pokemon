@@ -8,11 +8,6 @@ import { PokemonMegaCreateNestedOneWithoutMegaStatsInput } from "../inputs/Pokem
   isAbstract: true
 })
 export class MegaStatsCreateInput {
-  @TypeGraphQL.Field(_type => PokemonMegaCreateNestedOneWithoutMegaStatsInput, {
-    nullable: false
-  })
-  megaPokemon!: PokemonMegaCreateNestedOneWithoutMegaStatsInput;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
@@ -47,4 +42,9 @@ export class MegaStatsCreateInput {
     nullable: false
   })
   total!: number;
+
+  @TypeGraphQL.Field(_type => PokemonMegaCreateNestedOneWithoutMegaStatsInput, {
+    nullable: false
+  })
+  megaPokemon!: PokemonMegaCreateNestedOneWithoutMegaStatsInput;
 }

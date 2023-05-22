@@ -14,8 +14,6 @@ export class FormStats {
   })
   id!: number;
 
-  normalFormPokemon?: PokemonNormalForm;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -55,4 +53,6 @@ export class FormStats {
     nullable: false
   })
   total!: number;
+
+  normalFormPokemon?: PokemonNormalForm;
 }

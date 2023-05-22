@@ -14,8 +14,6 @@ export class NormalStats {
   })
   id!: number;
 
-  pokemon?: Pokemon;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
@@ -55,4 +53,6 @@ export class NormalStats {
     nullable: false
   })
   total!: number;
+
+  pokemon?: Pokemon;
 }

@@ -30,11 +30,6 @@ export class RegionStatsWhereInput {
   })
   id?: IntFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonRegionRelationFilter, {
-    nullable: true
-  })
-  regionPokemon?: PokemonRegionRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
@@ -74,4 +69,9 @@ export class RegionStatsWhereInput {
     nullable: true
   })
   total?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonRegionRelationFilter, {
+    nullable: true
+  })
+  regionPokemon?: PokemonRegionRelationFilter | undefined;
 }

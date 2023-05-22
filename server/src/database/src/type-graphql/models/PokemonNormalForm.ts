@@ -16,8 +16,6 @@ export class PokemonNormalForm {
   })
   id!: number;
 
-  pokemon?: Pokemon;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
@@ -54,6 +52,8 @@ export class PokemonNormalForm {
   statCode!: string;
 
   FormStats?: FormStats[];
+
+  pokemon?: Pokemon;
 
   @TypeGraphQL.Field(_type => PokemonNormalFormCount, {
     nullable: true

@@ -65,18 +65,18 @@ export class PokemonUpdateWithoutPokemonNormalFormInput {
   })
   isForm?: boolean | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonRegionUpdateManyWithoutPokemonNestedInput, {
+  @TypeGraphQL.Field(_type => NormalStatsUpdateOneWithoutPokemonNestedInput, {
     nullable: true
   })
-  PokemonRegion?: PokemonRegionUpdateManyWithoutPokemonNestedInput | undefined;
+  NormalStats?: NormalStatsUpdateOneWithoutPokemonNestedInput | undefined;
 
   @TypeGraphQL.Field(_type => PokemonMegaUpdateManyWithoutPokemonNestedInput, {
     nullable: true
   })
   PokemonMega?: PokemonMegaUpdateManyWithoutPokemonNestedInput | undefined;
 
-  @TypeGraphQL.Field(_type => NormalStatsUpdateOneWithoutPokemonNestedInput, {
+  @TypeGraphQL.Field(_type => PokemonRegionUpdateManyWithoutPokemonNestedInput, {
     nullable: true
   })
-  NormalStats?: NormalStatsUpdateOneWithoutPokemonNestedInput | undefined;
+  PokemonRegion?: PokemonRegionUpdateManyWithoutPokemonNestedInput | undefined;
 }

@@ -7,17 +7,6 @@ import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldI
 
 @TypeGraphQL.Resolver(_of => PokemonMega)
 export class PokemonMegaRelationsResolver {
-  @TypeGraphQL.FieldResolver(_type => Pokemon, {
-    nullable: false
-  })
-  async pokemon(@TypeGraphQL.Root() pokemonMega: PokemonMega, @TypeGraphQL.Ctx() ctx: any): Promise<Pokemon> {
-    return getPrismaFromContext(ctx).pokemonMega.findUnique({
-      where: {
-        id: pokemonMega.id,
-      },
-    }).pokemon({});
-  }
-
   @TypeGraphQL.FieldResolver(_type => [MegaStats], {
     nullable: false
   })
@@ -27,5 +16,16 @@ export class PokemonMegaRelationsResolver {
         id: pokemonMega.id,
       },
     }).MegaStats(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => Pokemon, {
+    nullable: false
+  })
+  async pokemon(@TypeGraphQL.Root() pokemonMega: PokemonMega, @TypeGraphQL.Ctx() ctx: any): Promise<Pokemon> {
+    return getPrismaFromContext(ctx).pokemonMega.findUnique({
+      where: {
+        id: pokemonMega.id,
+      },
+    }).pokemon({});
   }
 }

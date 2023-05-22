@@ -16,8 +16,6 @@ export class PokemonMega {
   })
   id!: number;
 
-  pokemon?: Pokemon;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
@@ -49,6 +47,8 @@ export class PokemonMega {
   statCode!: string;
 
   MegaStats?: MegaStats[];
+
+  pokemon?: Pokemon;
 
   @TypeGraphQL.Field(_type => PokemonMegaCount, {
     nullable: true

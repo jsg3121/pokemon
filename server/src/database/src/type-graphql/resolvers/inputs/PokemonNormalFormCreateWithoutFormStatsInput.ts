@@ -8,11 +8,6 @@ import { PokemonCreateNestedOneWithoutPokemonNormalFormInput } from "../inputs/P
   isAbstract: true
 })
 export class PokemonNormalFormCreateWithoutFormStatsInput {
-  @TypeGraphQL.Field(_type => PokemonCreateNestedOneWithoutPokemonNormalFormInput, {
-    nullable: false
-  })
-  pokemon!: PokemonCreateNestedOneWithoutPokemonNormalFormInput;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -42,4 +37,9 @@ export class PokemonNormalFormCreateWithoutFormStatsInput {
     nullable: false
   })
   statCode!: string;
+
+  @TypeGraphQL.Field(_type => PokemonCreateNestedOneWithoutPokemonNormalFormInput, {
+    nullable: false
+  })
+  pokemon!: PokemonCreateNestedOneWithoutPokemonNormalFormInput;
 }

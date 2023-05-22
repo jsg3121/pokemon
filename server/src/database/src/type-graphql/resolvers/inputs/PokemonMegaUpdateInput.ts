@@ -9,11 +9,6 @@ import { PokemonUpdateOneRequiredWithoutPokemonMegaNestedInput } from "../inputs
   isAbstract: true
 })
 export class PokemonMegaUpdateInput {
-  @TypeGraphQL.Field(_type => PokemonUpdateOneRequiredWithoutPokemonMegaNestedInput, {
-    nullable: true
-  })
-  pokemon?: PokemonUpdateOneRequiredWithoutPokemonMegaNestedInput | undefined;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })
@@ -43,4 +38,9 @@ export class PokemonMegaUpdateInput {
     nullable: true
   })
   MegaStats?: MegaStatsUpdateManyWithoutMegaPokemonNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonUpdateOneRequiredWithoutPokemonMegaNestedInput, {
+    nullable: true
+  })
+  pokemon?: PokemonUpdateOneRequiredWithoutPokemonMegaNestedInput | undefined;
 }

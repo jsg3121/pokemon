@@ -72,10 +72,10 @@ export class PokemonOrderByWithRelationInput {
   })
   isForm?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonRegionOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => NormalStatsOrderByWithRelationInput, {
     nullable: true
   })
-  PokemonRegion?: PokemonRegionOrderByRelationAggregateInput | undefined;
+  NormalStats?: NormalStatsOrderByWithRelationInput | undefined;
 
   @TypeGraphQL.Field(_type => PokemonMegaOrderByRelationAggregateInput, {
     nullable: true
@@ -87,8 +87,8 @@ export class PokemonOrderByWithRelationInput {
   })
   PokemonNormalForm?: PokemonNormalFormOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field(_type => NormalStatsOrderByWithRelationInput, {
+  @TypeGraphQL.Field(_type => PokemonRegionOrderByRelationAggregateInput, {
     nullable: true
   })
-  NormalStats?: NormalStatsOrderByWithRelationInput | undefined;
+  PokemonRegion?: PokemonRegionOrderByRelationAggregateInput | undefined;
 }

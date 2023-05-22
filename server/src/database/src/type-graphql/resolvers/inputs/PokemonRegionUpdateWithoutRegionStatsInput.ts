@@ -8,11 +8,6 @@ import { PokemonUpdateOneRequiredWithoutPokemonRegionNestedInput } from "../inpu
   isAbstract: true
 })
 export class PokemonRegionUpdateWithoutRegionStatsInput {
-  @TypeGraphQL.Field(_type => PokemonUpdateOneRequiredWithoutPokemonRegionNestedInput, {
-    nullable: true
-  })
-  pokemon?: PokemonUpdateOneRequiredWithoutPokemonRegionNestedInput | undefined;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })
@@ -42,4 +37,9 @@ export class PokemonRegionUpdateWithoutRegionStatsInput {
     nullable: true
   })
   statCode?: string | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonUpdateOneRequiredWithoutPokemonRegionNestedInput, {
+    nullable: true
+  })
+  pokemon?: PokemonUpdateOneRequiredWithoutPokemonRegionNestedInput | undefined;
 }

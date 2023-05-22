@@ -30,11 +30,6 @@ export class FormStatsWhereInput {
   })
   id?: IntFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonNormalFormRelationFilter, {
-    nullable: true
-  })
-  normalFormPokemon?: PokemonNormalFormRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringFilter, {
     nullable: true
   })
@@ -74,4 +69,9 @@ export class FormStatsWhereInput {
     nullable: true
   })
   total?: IntFilter | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonNormalFormRelationFilter, {
+    nullable: true
+  })
+  normalFormPokemon?: PokemonNormalFormRelationFilter | undefined;
 }

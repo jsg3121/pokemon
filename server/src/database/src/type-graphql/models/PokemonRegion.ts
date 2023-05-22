@@ -16,8 +16,6 @@ export class PokemonRegion {
   })
   id!: number;
 
-  pokemon?: Pokemon;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
@@ -52,6 +50,8 @@ export class PokemonRegion {
     nullable: false
   })
   statCode!: string;
+
+  pokemon?: Pokemon;
 
   RegionStats?: RegionStats[];
 

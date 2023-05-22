@@ -9,11 +9,6 @@ import { RegionStatsCreateNestedManyWithoutRegionPokemonInput } from "../inputs/
   isAbstract: true
 })
 export class PokemonRegionCreateInput {
-  @TypeGraphQL.Field(_type => PokemonCreateNestedOneWithoutPokemonRegionInput, {
-    nullable: false
-  })
-  pokemon!: PokemonCreateNestedOneWithoutPokemonRegionInput;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
@@ -43,6 +38,11 @@ export class PokemonRegionCreateInput {
     nullable: false
   })
   statCode!: string;
+
+  @TypeGraphQL.Field(_type => PokemonCreateNestedOneWithoutPokemonRegionInput, {
+    nullable: false
+  })
+  pokemon!: PokemonCreateNestedOneWithoutPokemonRegionInput;
 
   @TypeGraphQL.Field(_type => RegionStatsCreateNestedManyWithoutRegionPokemonInput, {
     nullable: true

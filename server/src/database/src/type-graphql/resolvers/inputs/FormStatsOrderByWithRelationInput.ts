@@ -14,11 +14,6 @@ export class FormStatsOrderByWithRelationInput {
   })
   id?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonNormalFormOrderByWithRelationInput, {
-    nullable: true
-  })
-  normalFormPokemon?: PokemonNormalFormOrderByWithRelationInput | undefined;
-
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
@@ -58,4 +53,9 @@ export class FormStatsOrderByWithRelationInput {
     nullable: true
   })
   total?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonNormalFormOrderByWithRelationInput, {
+    nullable: true
+  })
+  normalFormPokemon?: PokemonNormalFormOrderByWithRelationInput | undefined;
 }

@@ -93,10 +93,10 @@ export class PokemonWhereInput {
   })
   isForm?: BoolFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonRegionListRelationFilter, {
+  @TypeGraphQL.Field(_type => NormalStatsRelationFilter, {
     nullable: true
   })
-  PokemonRegion?: PokemonRegionListRelationFilter | undefined;
+  NormalStats?: NormalStatsRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => PokemonMegaListRelationFilter, {
     nullable: true
@@ -108,8 +108,8 @@ export class PokemonWhereInput {
   })
   PokemonNormalForm?: PokemonNormalFormListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => NormalStatsRelationFilter, {
+  @TypeGraphQL.Field(_type => PokemonRegionListRelationFilter, {
     nullable: true
   })
-  NormalStats?: NormalStatsRelationFilter | undefined;
+  PokemonRegion?: PokemonRegionListRelationFilter | undefined;
 }

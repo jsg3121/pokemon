@@ -33,11 +33,6 @@ export class PokemonMegaWhereInput {
   })
   id?: IntFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonRelationFilter, {
-    nullable: true
-  })
-  pokemon?: PokemonRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => IntFilter, {
     nullable: true
   })
@@ -72,4 +67,9 @@ export class PokemonMegaWhereInput {
     nullable: true
   })
   MegaStats?: MegaStatsListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonRelationFilter, {
+    nullable: true
+  })
+  pokemon?: PokemonRelationFilter | undefined;
 }

@@ -73,13 +73,13 @@ export class Pokemon {
   })
   isForm!: boolean;
 
-  PokemonRegion?: PokemonRegion[];
+  NormalStats?: NormalStats | null;
 
   PokemonMega?: PokemonMega[];
 
   PokemonNormalForm?: PokemonNormalForm[];
 
-  NormalStats?: NormalStats | null;
+  PokemonRegion?: PokemonRegion[];
 
   @TypeGraphQL.Field(_type => PokemonCount, {
     nullable: true

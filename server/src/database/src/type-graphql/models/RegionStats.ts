@@ -14,8 +14,6 @@ export class RegionStats {
   })
   id!: number;
 
-  regionPokemon?: PokemonRegion;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -55,4 +53,6 @@ export class RegionStats {
     nullable: false
   })
   total!: number;
+
+  regionPokemon?: PokemonRegion;
 }

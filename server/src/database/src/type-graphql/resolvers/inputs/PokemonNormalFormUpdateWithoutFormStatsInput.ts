@@ -8,11 +8,6 @@ import { PokemonUpdateOneRequiredWithoutPokemonNormalFormNestedInput } from "../
   isAbstract: true
 })
 export class PokemonNormalFormUpdateWithoutFormStatsInput {
-  @TypeGraphQL.Field(_type => PokemonUpdateOneRequiredWithoutPokemonNormalFormNestedInput, {
-    nullable: true
-  })
-  pokemon?: PokemonUpdateOneRequiredWithoutPokemonNormalFormNestedInput | undefined;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
@@ -42,4 +37,9 @@ export class PokemonNormalFormUpdateWithoutFormStatsInput {
     nullable: true
   })
   statCode?: string | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonUpdateOneRequiredWithoutPokemonNormalFormNestedInput, {
+    nullable: true
+  })
+  pokemon?: PokemonUpdateOneRequiredWithoutPokemonNormalFormNestedInput | undefined;
 }

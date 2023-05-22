@@ -11,15 +11,15 @@ import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldI
 
 @TypeGraphQL.Resolver(_of => Pokemon)
 export class PokemonRelationsResolver {
-  @TypeGraphQL.FieldResolver(_type => [PokemonRegion], {
-    nullable: false
+  @TypeGraphQL.FieldResolver(_type => NormalStats, {
+    nullable: true
   })
-  async PokemonRegion(@TypeGraphQL.Root() pokemon: Pokemon, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PokemonPokemonRegionArgs): Promise<PokemonRegion[]> {
+  async NormalStats(@TypeGraphQL.Root() pokemon: Pokemon, @TypeGraphQL.Ctx() ctx: any): Promise<NormalStats | null> {
     return getPrismaFromContext(ctx).pokemon.findUnique({
       where: {
         id: pokemon.id,
       },
-    }).PokemonRegion(args);
+    }).NormalStats({});
   }
 
   @TypeGraphQL.FieldResolver(_type => [PokemonMega], {
@@ -44,14 +44,14 @@ export class PokemonRelationsResolver {
     }).PokemonNormalForm(args);
   }
 
-  @TypeGraphQL.FieldResolver(_type => NormalStats, {
-    nullable: true
+  @TypeGraphQL.FieldResolver(_type => [PokemonRegion], {
+    nullable: false
   })
-  async NormalStats(@TypeGraphQL.Root() pokemon: Pokemon, @TypeGraphQL.Ctx() ctx: any): Promise<NormalStats | null> {
+  async PokemonRegion(@TypeGraphQL.Root() pokemon: Pokemon, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PokemonPokemonRegionArgs): Promise<PokemonRegion[]> {
     return getPrismaFromContext(ctx).pokemon.findUnique({
       where: {
         id: pokemon.id,
       },
-    }).NormalStats({});
+    }).PokemonRegion(args);
   }
 }

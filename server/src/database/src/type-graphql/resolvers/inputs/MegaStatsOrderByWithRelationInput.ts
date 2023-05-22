@@ -14,11 +14,6 @@ export class MegaStatsOrderByWithRelationInput {
   })
   id?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonMegaOrderByWithRelationInput, {
-    nullable: true
-  })
-  megaPokemon?: PokemonMegaOrderByWithRelationInput | undefined;
-
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
@@ -58,4 +53,9 @@ export class MegaStatsOrderByWithRelationInput {
     nullable: true
   })
   total?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonMegaOrderByWithRelationInput, {
+    nullable: true
+  })
+  megaPokemon?: PokemonMegaOrderByWithRelationInput | undefined;
 }
