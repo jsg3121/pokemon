@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button, Image } from '../../../../components'
 import { useMobxStore } from '../../../../hook'
+import { SortFilter } from '../../dashboard'
 
 interface NoticeContainerProps {
   onClick: () => void
@@ -10,44 +11,47 @@ interface NoticeContainerProps {
 
 const Notice = styled.div`
   width: 100%;
-  height: 2rem;
+  height: 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  justify-self: flex-start;
-  grid-column: 1 / 4;
+  flex-wrap: wrap;
+  padding: 0 1rem;
 
-  .card--icon {
+  .notice__buttons {
     width: 100%;
-    height: 1rem;
+    height: 2rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    & > div {
-      width: 5.5rem;
+    .card--icon {
+      width: 100%;
       height: 1rem;
       display: flex;
-      justify-content: flex-end;
+      align-items: center;
 
-      p {
-        margin-left: 0.5rem;
-        line-height: 1.2;
+      & > div {
+        width: 5.5rem;
+        height: 1rem;
+        display: flex;
+        justify-content: flex-end;
+
+        p {
+          margin-left: 0.5rem;
+          line-height: 1.2;
+        }
       }
     }
-  }
 
-  button {
-    flex-shrink: 0;
-    margin-left: 0.5rem;
+    button {
+      flex-shrink: 0;
+      margin-left: 0.5rem;
+    }
   }
 
   @media screen and (min-width: 476px) {
     display: none;
-  }
-
-  @media screen and (max-width: 475px) {
-    padding: 0 1rem;
-    margin-bottom: 0.5rem;
   }
 `
 
@@ -65,28 +69,31 @@ const NoticeContainer: React.FC<NoticeContainerProps> = (props) => {
 
   return (
     <Notice>
-      <div className="card--icon">
-        <div>
-          <Image>
-            <img
-              src={require('../../../../assets/image/mega.webp')}
-              alt="메가진화_아이콘"
-            />
-          </Image>
-          <p>메가진화</p>
+      <div className="notice__buttons">
+        <div className="card--icon">
+          <div>
+            <Image>
+              <img
+                src={require('../../../../assets/image/mega.webp')}
+                alt="메가진화_아이콘"
+              />
+            </Image>
+            <p>메가진화</p>
+          </div>
+          <div>
+            <Image>
+              <img
+                src={require('../../../../assets/image/regionForm.webp')}
+                alt="리전폼_아이콘"
+              />
+            </Image>
+            <p>리전폼</p>
+          </div>
         </div>
-        <div>
-          <Image>
-            <img
-              src={require('../../../../assets/image/regionForm.webp')}
-              alt="리전폼_아이콘"
-            />
-          </Image>
-          <p>리전폼</p>
-        </div>
+        <Button label="검색 초기화" buttonType="waring" onClick={handleReset} />
+        <Button label="필터" buttonType="default" onClick={handleFilterOpen} />
       </div>
-      <Button label="검색 초기화" buttonType="waring" onClick={handleReset} />
-      <Button label="필터" buttonType="default" onClick={handleFilterOpen} />
+      <SortFilter />
     </Notice>
   )
 }

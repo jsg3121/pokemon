@@ -56,6 +56,24 @@ const SortFilter = styled.div<{ isOpen: boolean }>`
       }
     }
   }
+
+  @media screen and (max-width: 475px) {
+    background-color: #ffffff;
+    width: 100%;
+    border-bottom: 0;
+
+    .sort__pop {
+      width: 100%;
+      height: ${({ isOpen }) => {
+        return isOpen ? '16rem' : 0
+      }};
+      left: 0;
+
+      .sort__popt--radios {
+        width: 100%;
+      }
+    }
+  }
 `
 
 const RadioOptions = [
