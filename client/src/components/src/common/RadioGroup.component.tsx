@@ -23,9 +23,8 @@ const RadioGroup = styled.div`
   }
 
   .radio__item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
   }
 `
 

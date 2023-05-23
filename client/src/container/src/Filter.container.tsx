@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Button } from '../../components'
 import { useMobxStore } from '../../hook'
 import { Generations, Radio, Search, Types } from './filter'
+import { SortFilter } from './dashboard'
 
 const Filter = styled.article`
   width: 20rem;
@@ -14,6 +15,7 @@ const Filter = styled.article`
   background-color: #ffffff;
   transition: transform 0.3s;
   will-change: transform;
+  z-index: 10;
 
   .btn__reset {
     width: 100%;
@@ -102,6 +104,7 @@ const FilterContainer: React.FC = () => {
 
   return (
     <Filter className="filter" ref={filterRef}>
+      <SortFilter />
       <div className="btn__reset">
         <Button label="검색 초기화" onClick={handleClick} buttonType="waring" />
       </div>

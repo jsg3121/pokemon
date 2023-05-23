@@ -46,8 +46,6 @@ const Header = styled.header`
 const HeaderContainer: React.FC = () => {
   const { pathname } = useLocation()
 
-  console.log(import.meta.env)
-
   return (
     <Header>
       <Link to="/" replace>
