@@ -1,8 +1,8 @@
 import isEqual from 'fast-deep-equal'
 import React from 'react'
 import styled from 'styled-components'
-import { Radio, RadioGroup } from '../../../../components'
 import { ReactComponent as SortIcon } from '../../../../assets/image/sort.svg'
+import { RadioGroup } from '../../../../components'
 import { useMobxStore } from '../../../../hook'
 
 const SortFilter = styled.div<{ isOpen: boolean }>`

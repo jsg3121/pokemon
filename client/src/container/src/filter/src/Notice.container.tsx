@@ -93,7 +93,7 @@ const NoticeContainer: React.FC<NoticeContainerProps> = (props) => {
         <Button label="검색 초기화" buttonType="waring" onClick={handleReset} />
         <Button label="필터" buttonType="default" onClick={handleFilterOpen} />
       </div>
-      <SortFilter />
+      {window.innerWidth <= 475 && <SortFilter />}
     </Notice>
   )
 }

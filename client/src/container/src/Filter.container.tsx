@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from '../../components'
 import { useMobxStore } from '../../hook'
-import { Generations, Radio, Search, Types } from './filter'
 import { SortFilter } from './dashboard'
+import { Generations, Radio, Search, Types } from './filter'
 
 const Filter = styled.article`
   width: 20rem;
@@ -104,7 +104,7 @@ const FilterContainer: React.FC = () => {
 
   return (
     <Filter className="filter" ref={filterRef}>
-      <SortFilter />
+      {window.innerWidth > 475 && <SortFilter />}
       <div className="btn__reset">
         <Button label="검색 초기화" onClick={handleClick} buttonType="waring" />
       </div>
