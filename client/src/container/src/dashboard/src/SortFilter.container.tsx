@@ -16,15 +16,25 @@ const SortFilter = styled.div<{ isOpen: boolean }>`
     height: 100%;
     display: flex;
     align-items: center;
-    cursor: pointer;
+    justify-content: space-between;
+    padding: 0.5rem;
 
-    & > p {
-      text-align: left;
-      line-height: 1rem;
-      margin-left: 0.5rem;
+    & > div {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      & > p {
+        text-align: left;
+        line-height: 1rem;
+        margin-left: 0.5rem;
+      }
     }
 
-    padding: 0.5rem;
+    & > span {
+      font-size: 0.9rem;
+      color: #aaaaaa;
+    }
   }
 
   .sort__pop {
@@ -106,15 +116,23 @@ const SortFilterContainer: React.FC = () => {
   const handleSelect = React.useCallback(
     (data: { name: string; value: string }) => {
       pokemonList.sortPokemon(data)
+      setOpen(false)
     },
     []
   )
 
+  React.useEffect(() => {
+    pokemonList.sortPokemon({ name: '도감번호 낮은순', value: 'number asc' })
+  }, [])
+
   return (
     <SortFilter isOpen={isOpen}>
       <div className="sort__title" onClick={handleClick}>
-        <SortIcon fill={isOpen ? '#3471cd' : '#5c9dff'} />
-        <p>정렬 조건</p>
+        <div>
+          <SortIcon fill={isOpen ? '#3471cd' : '#5c9dff'} />
+          <p>정렬 조건</p>
+        </div>
+        <span>{pokemonList.nowSorting}</span>
       </div>
       <div className="sort__pop">
         <div className="sort__popt--radios">
@@ -123,6 +141,7 @@ const SortFilterContainer: React.FC = () => {
             name="sortList"
             options={RadioOptions}
             onSelect={handleSelect}
+            defaultValue="number asc"
           />
         </div>
       </div>
