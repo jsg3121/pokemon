@@ -18,7 +18,7 @@ export const resetCount = async () => {
   })
 }
 
-listRouter.get('/count', async (req, res) => {
+listRouter.post('/count', async (req, res) => {
   const { todayCount, totalCount } = await prisma.useCount.findFirst({
     where: {
       id: 1,

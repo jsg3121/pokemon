@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import './common.css'
 import { Router } from './router'
+import { dailycount } from './service'
 
 const Main = styled.main`
   width: 100%;
@@ -17,6 +18,10 @@ function App() {
   React.useEffect(() => {
     const vh = window.innerHeight * 0.01
     document.documentElement.style.setProperty('--vh', `${vh}px`)
+  }, [])
+
+  React.useEffect(() => {
+    dailycount()
   }, [])
 
   return (
