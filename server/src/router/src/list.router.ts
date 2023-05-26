@@ -1,12 +1,43 @@
 import { PrismaClient } from '@prisma/client'
-import { Router } from 'express'
 import http from 'axios'
+import { Router } from 'express'
 import fs from 'fs'
-import stats_region from '../../../json/stats_region.json'
+
+const prisma = new PrismaClient()
 
 export const listRouter = Router()
 
-const prisma = new PrismaClient()
+export const resetCount = async () => {
+  await prisma.useCount.update({
+    where: {
+      id: 1,
+    },
+    data: {
+      todayCount: 0,
+    },
+  })
+}
+
+listRouter.get('/count', async (req, res) => {
+  const { todayCount, totalCount } = await prisma.useCount.findFirst({
+    where: {
+      id: 1,
+    },
+  })
+
+  await prisma.useCount.update({
+    where: {
+      id: 1,
+    },
+    data: {
+      todayCount: todayCount + 1,
+      totalCount: totalCount + 1,
+    },
+  })
+
+  res.send()
+  res.end()
+})
 
 listRouter.get('/list', async (req, res) => {
   res.send('asdf')

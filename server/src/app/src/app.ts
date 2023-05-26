@@ -1,8 +1,9 @@
 import 'reflect-metadata'
 import cors from 'cors'
 import express from 'express'
-import { listRouter } from '../../router'
+import { listRouter, resetCount } from '../../router'
 import { createApolloServer } from '../../database'
+import cron from 'node-cron'
 
 export const runServer = async () => {
   const app = express()
@@ -19,5 +20,9 @@ export const runServer = async () => {
     console.log(PORT)
     console.log('server running...')
     console.log('start!!!')
+  })
+
+  cron.schedule('* * 1 * *', () => {
+    resetCount()
   })
 }
