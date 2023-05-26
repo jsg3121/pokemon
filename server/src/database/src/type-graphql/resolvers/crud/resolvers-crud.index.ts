@@ -7,3 +7,4 @@ export { PokemonNormalFormCrudResolver } from "./PokemonNormalForm/PokemonNormal
 export { PokemonRegionCrudResolver } from "./PokemonRegion/PokemonRegionCrudResolver";
 export { RegionStatsCrudResolver } from "./RegionStats/RegionStatsCrudResolver";
 export { TypeRelationCrudResolver } from "./TypeRelation/TypeRelationCrudResolver";
+export { UseCountCrudResolver } from "./UseCount/UseCountCrudResolver";

@@ -7,3 +7,4 @@ export { PokemonNormalForm } from "./PokemonNormalForm";
 export { PokemonRegion } from "./PokemonRegion";
 export { RegionStats } from "./RegionStats";
 export { TypeRelation } from "./TypeRelation";
+export { UseCount } from "./UseCount";

@@ -124,3 +124,17 @@ export { GroupByTypeRelationResolver } from "./TypeRelation/GroupByTypeRelationR
 export { UpdateManyTypeRelationResolver } from "./TypeRelation/UpdateManyTypeRelationResolver";
 export { UpdateOneTypeRelationResolver } from "./TypeRelation/UpdateOneTypeRelationResolver";
 export { UpsertOneTypeRelationResolver } from "./TypeRelation/UpsertOneTypeRelationResolver";
+export { AggregateUseCountResolver } from "./UseCount/AggregateUseCountResolver";
+export { CreateManyUseCountResolver } from "./UseCount/CreateManyUseCountResolver";
+export { CreateOneUseCountResolver } from "./UseCount/CreateOneUseCountResolver";
+export { DeleteManyUseCountResolver } from "./UseCount/DeleteManyUseCountResolver";
+export { DeleteOneUseCountResolver } from "./UseCount/DeleteOneUseCountResolver";
+export { FindFirstUseCountResolver } from "./UseCount/FindFirstUseCountResolver";
+export { FindFirstUseCountOrThrowResolver } from "./UseCount/FindFirstUseCountOrThrowResolver";
+export { FindManyUseCountResolver } from "./UseCount/FindManyUseCountResolver";
+export { FindUniqueUseCountResolver } from "./UseCount/FindUniqueUseCountResolver";
+export { FindUniqueUseCountOrThrowResolver } from "./UseCount/FindUniqueUseCountOrThrowResolver";
+export { GroupByUseCountResolver } from "./UseCount/GroupByUseCountResolver";
+export { UpdateManyUseCountResolver } from "./UseCount/UpdateManyUseCountResolver";
+export { UpdateOneUseCountResolver } from "./UseCount/UpdateOneUseCountResolver";
+export { UpsertOneUseCountResolver } from "./UseCount/UpsertOneUseCountResolver";

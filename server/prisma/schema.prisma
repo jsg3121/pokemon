@@ -148,3 +148,11 @@ model FormStats {
 
   @@map("form_stats")
 }
+
+model UseCount {
+  id         Int @id @unique @default(autoincrement())
+  totalCount Int @default(0) @map("total_count") @db.Integer
+  todayCount Int @default(0) @map("today_count") @db.Integer
+
+  @@map("use_count")
+}

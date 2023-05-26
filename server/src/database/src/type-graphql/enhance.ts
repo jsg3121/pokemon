@@ -17,7 +17,8 @@ const crudResolversMap = {
   NormalStats: crudResolvers.NormalStatsCrudResolver,
   MegaStats: crudResolvers.MegaStatsCrudResolver,
   RegionStats: crudResolvers.RegionStatsCrudResolver,
-  FormStats: crudResolvers.FormStatsCrudResolver
+  FormStats: crudResolvers.FormStatsCrudResolver,
+  UseCount: crudResolvers.UseCountCrudResolver
 };
 const actionResolversMap = {
   Pokemon: {
@@ -163,6 +164,22 @@ const actionResolversMap = {
     updateManyFormStats: actionResolvers.UpdateManyFormStatsResolver,
     updateOneFormStats: actionResolvers.UpdateOneFormStatsResolver,
     upsertOneFormStats: actionResolvers.UpsertOneFormStatsResolver
+  },
+  UseCount: {
+    aggregateUseCount: actionResolvers.AggregateUseCountResolver,
+    createManyUseCount: actionResolvers.CreateManyUseCountResolver,
+    createOneUseCount: actionResolvers.CreateOneUseCountResolver,
+    deleteManyUseCount: actionResolvers.DeleteManyUseCountResolver,
+    deleteOneUseCount: actionResolvers.DeleteOneUseCountResolver,
+    findFirstUseCount: actionResolvers.FindFirstUseCountResolver,
+    findFirstUseCountOrThrow: actionResolvers.FindFirstUseCountOrThrowResolver,
+    useCounts: actionResolvers.FindManyUseCountResolver,
+    useCount: actionResolvers.FindUniqueUseCountResolver,
+    getUseCount: actionResolvers.FindUniqueUseCountOrThrowResolver,
+    groupByUseCount: actionResolvers.GroupByUseCountResolver,
+    updateManyUseCount: actionResolvers.UpdateManyUseCountResolver,
+    updateOneUseCount: actionResolvers.UpdateOneUseCountResolver,
+    upsertOneUseCount: actionResolvers.UpsertOneUseCountResolver
   }
 };
 const crudResolversInfo = {
@@ -174,7 +191,8 @@ const crudResolversInfo = {
   NormalStats: ["aggregateNormalStats", "createManyNormalStats", "createOneNormalStats", "deleteManyNormalStats", "deleteOneNormalStats", "findFirstNormalStats", "findFirstNormalStatsOrThrow", "findManyNormalStats", "findUniqueNormalStats", "findUniqueNormalStatsOrThrow", "groupByNormalStats", "updateManyNormalStats", "updateOneNormalStats", "upsertOneNormalStats"],
   MegaStats: ["aggregateMegaStats", "createManyMegaStats", "createOneMegaStats", "deleteManyMegaStats", "deleteOneMegaStats", "findFirstMegaStats", "findFirstMegaStatsOrThrow", "findManyMegaStats", "findUniqueMegaStats", "findUniqueMegaStatsOrThrow", "groupByMegaStats", "updateManyMegaStats", "updateOneMegaStats", "upsertOneMegaStats"],
   RegionStats: ["aggregateRegionStats", "createManyRegionStats", "createOneRegionStats", "deleteManyRegionStats", "deleteOneRegionStats", "findFirstRegionStats", "findFirstRegionStatsOrThrow", "findManyRegionStats", "findUniqueRegionStats", "findUniqueRegionStatsOrThrow", "groupByRegionStats", "updateManyRegionStats", "updateOneRegionStats", "upsertOneRegionStats"],
-  FormStats: ["aggregateFormStats", "createManyFormStats", "createOneFormStats", "deleteManyFormStats", "deleteOneFormStats", "findFirstFormStats", "findFirstFormStatsOrThrow", "findManyFormStats", "findUniqueFormStats", "findUniqueFormStatsOrThrow", "groupByFormStats", "updateManyFormStats", "updateOneFormStats", "upsertOneFormStats"]
+  FormStats: ["aggregateFormStats", "createManyFormStats", "createOneFormStats", "deleteManyFormStats", "deleteOneFormStats", "findFirstFormStats", "findFirstFormStatsOrThrow", "findManyFormStats", "findUniqueFormStats", "findUniqueFormStatsOrThrow", "groupByFormStats", "updateManyFormStats", "updateOneFormStats", "upsertOneFormStats"],
+  UseCount: ["aggregateUseCount", "createManyUseCount", "createOneUseCount", "deleteManyUseCount", "deleteOneUseCount", "findFirstUseCount", "findFirstUseCountOrThrow", "useCounts", "useCount", "getUseCount", "groupByUseCount", "updateManyUseCount", "updateOneUseCount", "upsertOneUseCount"]
 };
 const argsInfo = {
   AggregatePokemonArgs: ["where", "orderBy", "cursor", "take", "skip"],
@@ -302,7 +320,21 @@ const argsInfo = {
   GroupByFormStatsArgs: ["where", "orderBy", "by", "having", "take", "skip"],
   UpdateManyFormStatsArgs: ["data", "where"],
   UpdateOneFormStatsArgs: ["data", "where"],
-  UpsertOneFormStatsArgs: ["where", "create", "update"]
+  UpsertOneFormStatsArgs: ["where", "create", "update"],
+  AggregateUseCountArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  CreateManyUseCountArgs: ["data", "skipDuplicates"],
+  CreateOneUseCountArgs: ["data"],
+  DeleteManyUseCountArgs: ["where"],
+  DeleteOneUseCountArgs: ["where"],
+  FindFirstUseCountArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindFirstUseCountOrThrowArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyUseCountArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindUniqueUseCountArgs: ["where"],
+  FindUniqueUseCountOrThrowArgs: ["where"],
+  GroupByUseCountArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  UpdateManyUseCountArgs: ["data", "where"],
+  UpdateOneUseCountArgs: ["data", "where"],
+  UpsertOneUseCountArgs: ["where", "create", "update"]
 };
 
 type ResolverModelNames = keyof typeof crudResolversMap;
@@ -498,7 +530,8 @@ const modelsInfo = {
   NormalStats: ["id", "pokemonId", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   MegaStats: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   RegionStats: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
-  FormStats: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"]
+  FormStats: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
+  UseCount: ["id", "totalCount", "todayCount"]
 };
 
 type ModelNames = keyof typeof models;
@@ -555,6 +588,8 @@ const outputsInfo = {
   RegionStatsGroupBy: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total", "_count", "_avg", "_sum", "_min", "_max"],
   AggregateFormStats: ["_count", "_avg", "_sum", "_min", "_max"],
   FormStatsGroupBy: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total", "_count", "_avg", "_sum", "_min", "_max"],
+  AggregateUseCount: ["_count", "_avg", "_sum", "_min", "_max"],
+  UseCountGroupBy: ["id", "totalCount", "todayCount", "_count", "_avg", "_sum", "_min", "_max"],
   AffectedRowsOutput: ["count"],
   PokemonCount: ["PokemonMega", "PokemonNormalForm", "PokemonRegion"],
   PokemonCountAggregate: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "_all"],
@@ -604,7 +639,12 @@ const outputsInfo = {
   FormStatsAvgAggregate: ["id", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   FormStatsSumAggregate: ["id", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   FormStatsMinAggregate: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
-  FormStatsMaxAggregate: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"]
+  FormStatsMaxAggregate: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
+  UseCountCountAggregate: ["id", "totalCount", "todayCount", "_all"],
+  UseCountAvgAggregate: ["id", "totalCount", "todayCount"],
+  UseCountSumAggregate: ["id", "totalCount", "todayCount"],
+  UseCountMinAggregate: ["id", "totalCount", "todayCount"],
+  UseCountMaxAggregate: ["id", "totalCount", "todayCount"]
 };
 
 type OutputTypesNames = keyof typeof outputTypes;
@@ -690,6 +730,11 @@ const inputsInfo = {
   FormStatsWhereUniqueInput: ["id"],
   FormStatsOrderByWithAggregationInput: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total", "_count", "_avg", "_max", "_min", "_sum"],
   FormStatsScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
+  UseCountWhereInput: ["AND", "OR", "NOT", "id", "totalCount", "todayCount"],
+  UseCountOrderByWithRelationInput: ["id", "totalCount", "todayCount"],
+  UseCountWhereUniqueInput: ["id"],
+  UseCountOrderByWithAggregationInput: ["id", "totalCount", "todayCount", "_count", "_avg", "_max", "_min", "_sum"],
+  UseCountScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "totalCount", "todayCount"],
   PokemonCreateInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
   PokemonUpdateInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
   PokemonCreateManyInput: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm"],
@@ -726,6 +771,10 @@ const inputsInfo = {
   FormStatsUpdateInput: ["hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total", "normalFormPokemon"],
   FormStatsCreateManyInput: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   FormStatsUpdateManyMutationInput: ["hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
+  UseCountCreateInput: ["totalCount", "todayCount"],
+  UseCountUpdateInput: ["totalCount", "todayCount"],
+  UseCountCreateManyInput: ["id", "totalCount", "todayCount"],
+  UseCountUpdateManyMutationInput: ["totalCount", "todayCount"],
   IntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   StringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
   StringNullableListFilter: ["equals", "has", "hasEvery", "hasSome", "isEmpty"],
@@ -800,6 +849,11 @@ const inputsInfo = {
   FormStatsMaxOrderByAggregateInput: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   FormStatsMinOrderByAggregateInput: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   FormStatsSumOrderByAggregateInput: ["id", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
+  UseCountCountOrderByAggregateInput: ["id", "totalCount", "todayCount"],
+  UseCountAvgOrderByAggregateInput: ["id", "totalCount", "todayCount"],
+  UseCountMaxOrderByAggregateInput: ["id", "totalCount", "todayCount"],
+  UseCountMinOrderByAggregateInput: ["id", "totalCount", "todayCount"],
+  UseCountSumOrderByAggregateInput: ["id", "totalCount", "todayCount"],
   PokemonCreatetypeInput: ["set"],
   PokemonCreateevolutionIdInput: ["set"],
   NormalStatsCreateNestedOneWithoutPokemonInput: ["create", "connectOrCreate", "connect"],

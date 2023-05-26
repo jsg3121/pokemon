@@ -7,3 +7,4 @@ export * from "./PokemonNormalForm/args";
 export * from "./PokemonRegion/args";
 export * from "./RegionStats/args";
 export * from "./TypeRelation/args";
+export * from "./UseCount/args";
