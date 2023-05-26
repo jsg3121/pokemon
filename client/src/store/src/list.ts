@@ -28,9 +28,19 @@ export class PokemonListStore {
   @observable public pokemon: Array<Pokemon> = []
   @observable public stats: Array<NormalStats> = []
   @observable public isLoading: boolean = true
-  @observable public nowSorting: string = '도감번호 낮은순'
+  @observable public nowSorting: string = ''
 
   constructor() {
+    const isSave = window.localStorage.getItem('isSave') === 'true'
+    const sort = window.localStorage.getItem('sortList')
+    if (sort) {
+      if (isSave) {
+        this.nowSorting = SortLabel[sort as keyof typeof SortLabel]
+      } else {
+        this.nowSorting = '도감번호 낮은순'
+        window.localStorage.setItem('sortList', 'number asc')
+      }
+    }
     makeObservable(this)
   }
 
@@ -62,7 +72,14 @@ export class PokemonListStore {
 
   @action
   public setPokemonList(list: Array<Pokemon>) {
+    const sort = window.localStorage.getItem('sortList')
+    const isSave = window.localStorage.getItem('isSave') === 'true'
+
     this.pokemon = [...list]
+
+    if (sort) {
+      this.sortPokemon(sort)
+    }
   }
 
   @action
@@ -76,10 +93,12 @@ export class PokemonListStore {
   }
 
   @action
-  public sortPokemon(data: { name: string; value: string }) {
+  public sortPokemon(value: string) {
     this.isLoading = true
-    const [name, order] = data.value.split(' ')
-    this.nowSorting = SortLabel[data.value as keyof typeof SortLabel]
+    const [name, order] = value.split(' ')
+    this.nowSorting = SortLabel[value as keyof typeof SortLabel]
+
+    window.localStorage.setItem('sortList', value)
 
     if (order === 'asc') {
       this.sortASC(name as keyof OrderByType)

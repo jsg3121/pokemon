@@ -115,14 +115,14 @@ const SortFilterContainer: React.FC = () => {
 
   const handleSelect = React.useCallback(
     (data: { name: string; value: string }) => {
-      pokemonList.sortPokemon(data)
+      pokemonList.sortPokemon(data.value)
       setOpen(false)
     },
     []
   )
 
-  React.useEffect(() => {
-    pokemonList.sortPokemon({ name: '도감번호 낮은순', value: 'number asc' })
+  const sortDefaultValue = React.useMemo(() => {
+    return window.localStorage.getItem('sortList') ?? 'number asc'
   }, [])
 
   return (
@@ -141,7 +141,7 @@ const SortFilterContainer: React.FC = () => {
             name="sortList"
             options={RadioOptions}
             onSelect={handleSelect}
-            defaultValue="number asc"
+            defaultValue={sortDefaultValue}
           />
         </div>
       </div>
