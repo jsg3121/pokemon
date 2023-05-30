@@ -21,7 +21,9 @@ function App() {
   }, [])
 
   React.useEffect(() => {
-    dailycount()
+    if (process.env.NODE_ENV === 'production') {
+      dailycount()
+    }
   }, [])
 
   return (
