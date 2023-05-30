@@ -5,7 +5,7 @@ export const dailycount = async () => {
 
   if (countCheck !== 'true') {
     await http.request({
-      url: 'http://127.0.0.1:4000/api/v1/pokemon/count',
+      url: 'http://43.201.49.91:4000/api/v1/pokemon/count',
       method: 'POST',
     })
     window.sessionStorage.setItem('countCheck', 'true')
