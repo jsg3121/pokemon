@@ -8,6 +8,8 @@ const prisma = new PrismaClient()
 export const listRouter = Router()
 
 export const resetCount = async () => {
+  console.log(`today count reset`)
+  console.log(new Date())
   await prisma.useCount.update({
     where: {
       id: 1,
