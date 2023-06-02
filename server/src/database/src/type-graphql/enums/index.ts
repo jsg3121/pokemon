@@ -11,3 +11,4 @@ export { SortOrder } from "./SortOrder";
 export { TransactionIsolationLevel } from "./TransactionIsolationLevel";
 export { TypeRelationScalarFieldEnum } from "./TypeRelationScalarFieldEnum";
 export { UseCountScalarFieldEnum } from "./UseCountScalarFieldEnum";
+export { VisitLogScalarFieldEnum } from "./VisitLogScalarFieldEnum";

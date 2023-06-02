@@ -156,3 +156,11 @@ model UseCount {
 
   @@map("use_count")
 }
+
+model VisitLog {
+  id         Int      @id @unique @default(autoincrement())
+  logDate    DateTime @default(now()) @map("log_date") @db.Timestamp()
+  visitCount Int      @map("visit_count")
+
+  @@map("visit_log")
+}

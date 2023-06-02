@@ -22,7 +22,14 @@ export const runServer = async () => {
     console.log('start!!!')
   })
 
-  cron.schedule('0 0 0 * * *', () => {
-    resetCount()
-  })
+  cron.schedule(
+    '0 0 * * *',
+    () => {
+      resetCount()
+    },
+    {
+      scheduled: true,
+      timezone: 'Asia/Seoul',
+    }
+  )
 }

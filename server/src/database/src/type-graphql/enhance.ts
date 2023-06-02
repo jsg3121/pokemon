@@ -18,7 +18,8 @@ const crudResolversMap = {
   MegaStats: crudResolvers.MegaStatsCrudResolver,
   RegionStats: crudResolvers.RegionStatsCrudResolver,
   FormStats: crudResolvers.FormStatsCrudResolver,
-  UseCount: crudResolvers.UseCountCrudResolver
+  UseCount: crudResolvers.UseCountCrudResolver,
+  VisitLog: crudResolvers.VisitLogCrudResolver
 };
 const actionResolversMap = {
   Pokemon: {
@@ -180,6 +181,22 @@ const actionResolversMap = {
     updateManyUseCount: actionResolvers.UpdateManyUseCountResolver,
     updateOneUseCount: actionResolvers.UpdateOneUseCountResolver,
     upsertOneUseCount: actionResolvers.UpsertOneUseCountResolver
+  },
+  VisitLog: {
+    aggregateVisitLog: actionResolvers.AggregateVisitLogResolver,
+    createManyVisitLog: actionResolvers.CreateManyVisitLogResolver,
+    createOneVisitLog: actionResolvers.CreateOneVisitLogResolver,
+    deleteManyVisitLog: actionResolvers.DeleteManyVisitLogResolver,
+    deleteOneVisitLog: actionResolvers.DeleteOneVisitLogResolver,
+    findFirstVisitLog: actionResolvers.FindFirstVisitLogResolver,
+    findFirstVisitLogOrThrow: actionResolvers.FindFirstVisitLogOrThrowResolver,
+    visitLogs: actionResolvers.FindManyVisitLogResolver,
+    visitLog: actionResolvers.FindUniqueVisitLogResolver,
+    getVisitLog: actionResolvers.FindUniqueVisitLogOrThrowResolver,
+    groupByVisitLog: actionResolvers.GroupByVisitLogResolver,
+    updateManyVisitLog: actionResolvers.UpdateManyVisitLogResolver,
+    updateOneVisitLog: actionResolvers.UpdateOneVisitLogResolver,
+    upsertOneVisitLog: actionResolvers.UpsertOneVisitLogResolver
   }
 };
 const crudResolversInfo = {
@@ -192,7 +209,8 @@ const crudResolversInfo = {
   MegaStats: ["aggregateMegaStats", "createManyMegaStats", "createOneMegaStats", "deleteManyMegaStats", "deleteOneMegaStats", "findFirstMegaStats", "findFirstMegaStatsOrThrow", "findManyMegaStats", "findUniqueMegaStats", "findUniqueMegaStatsOrThrow", "groupByMegaStats", "updateManyMegaStats", "updateOneMegaStats", "upsertOneMegaStats"],
   RegionStats: ["aggregateRegionStats", "createManyRegionStats", "createOneRegionStats", "deleteManyRegionStats", "deleteOneRegionStats", "findFirstRegionStats", "findFirstRegionStatsOrThrow", "findManyRegionStats", "findUniqueRegionStats", "findUniqueRegionStatsOrThrow", "groupByRegionStats", "updateManyRegionStats", "updateOneRegionStats", "upsertOneRegionStats"],
   FormStats: ["aggregateFormStats", "createManyFormStats", "createOneFormStats", "deleteManyFormStats", "deleteOneFormStats", "findFirstFormStats", "findFirstFormStatsOrThrow", "findManyFormStats", "findUniqueFormStats", "findUniqueFormStatsOrThrow", "groupByFormStats", "updateManyFormStats", "updateOneFormStats", "upsertOneFormStats"],
-  UseCount: ["aggregateUseCount", "createManyUseCount", "createOneUseCount", "deleteManyUseCount", "deleteOneUseCount", "findFirstUseCount", "findFirstUseCountOrThrow", "useCounts", "useCount", "getUseCount", "groupByUseCount", "updateManyUseCount", "updateOneUseCount", "upsertOneUseCount"]
+  UseCount: ["aggregateUseCount", "createManyUseCount", "createOneUseCount", "deleteManyUseCount", "deleteOneUseCount", "findFirstUseCount", "findFirstUseCountOrThrow", "useCounts", "useCount", "getUseCount", "groupByUseCount", "updateManyUseCount", "updateOneUseCount", "upsertOneUseCount"],
+  VisitLog: ["aggregateVisitLog", "createManyVisitLog", "createOneVisitLog", "deleteManyVisitLog", "deleteOneVisitLog", "findFirstVisitLog", "findFirstVisitLogOrThrow", "visitLogs", "visitLog", "getVisitLog", "groupByVisitLog", "updateManyVisitLog", "updateOneVisitLog", "upsertOneVisitLog"]
 };
 const argsInfo = {
   AggregatePokemonArgs: ["where", "orderBy", "cursor", "take", "skip"],
@@ -334,7 +352,21 @@ const argsInfo = {
   GroupByUseCountArgs: ["where", "orderBy", "by", "having", "take", "skip"],
   UpdateManyUseCountArgs: ["data", "where"],
   UpdateOneUseCountArgs: ["data", "where"],
-  UpsertOneUseCountArgs: ["where", "create", "update"]
+  UpsertOneUseCountArgs: ["where", "create", "update"],
+  AggregateVisitLogArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  CreateManyVisitLogArgs: ["data", "skipDuplicates"],
+  CreateOneVisitLogArgs: ["data"],
+  DeleteManyVisitLogArgs: ["where"],
+  DeleteOneVisitLogArgs: ["where"],
+  FindFirstVisitLogArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindFirstVisitLogOrThrowArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyVisitLogArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindUniqueVisitLogArgs: ["where"],
+  FindUniqueVisitLogOrThrowArgs: ["where"],
+  GroupByVisitLogArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  UpdateManyVisitLogArgs: ["data", "where"],
+  UpdateOneVisitLogArgs: ["data", "where"],
+  UpsertOneVisitLogArgs: ["where", "create", "update"]
 };
 
 type ResolverModelNames = keyof typeof crudResolversMap;
@@ -531,7 +563,8 @@ const modelsInfo = {
   MegaStats: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   RegionStats: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   FormStats: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
-  UseCount: ["id", "totalCount", "todayCount"]
+  UseCount: ["id", "totalCount", "todayCount"],
+  VisitLog: ["id", "logDate", "visitCount"]
 };
 
 type ModelNames = keyof typeof models;
@@ -590,6 +623,8 @@ const outputsInfo = {
   FormStatsGroupBy: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total", "_count", "_avg", "_sum", "_min", "_max"],
   AggregateUseCount: ["_count", "_avg", "_sum", "_min", "_max"],
   UseCountGroupBy: ["id", "totalCount", "todayCount", "_count", "_avg", "_sum", "_min", "_max"],
+  AggregateVisitLog: ["_count", "_avg", "_sum", "_min", "_max"],
+  VisitLogGroupBy: ["id", "logDate", "visitCount", "_count", "_avg", "_sum", "_min", "_max"],
   AffectedRowsOutput: ["count"],
   PokemonCount: ["PokemonMega", "PokemonNormalForm", "PokemonRegion"],
   PokemonCountAggregate: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "_all"],
@@ -644,7 +679,12 @@ const outputsInfo = {
   UseCountAvgAggregate: ["id", "totalCount", "todayCount"],
   UseCountSumAggregate: ["id", "totalCount", "todayCount"],
   UseCountMinAggregate: ["id", "totalCount", "todayCount"],
-  UseCountMaxAggregate: ["id", "totalCount", "todayCount"]
+  UseCountMaxAggregate: ["id", "totalCount", "todayCount"],
+  VisitLogCountAggregate: ["id", "logDate", "visitCount", "_all"],
+  VisitLogAvgAggregate: ["id", "visitCount"],
+  VisitLogSumAggregate: ["id", "visitCount"],
+  VisitLogMinAggregate: ["id", "logDate", "visitCount"],
+  VisitLogMaxAggregate: ["id", "logDate", "visitCount"]
 };
 
 type OutputTypesNames = keyof typeof outputTypes;
@@ -735,6 +775,11 @@ const inputsInfo = {
   UseCountWhereUniqueInput: ["id"],
   UseCountOrderByWithAggregationInput: ["id", "totalCount", "todayCount", "_count", "_avg", "_max", "_min", "_sum"],
   UseCountScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "totalCount", "todayCount"],
+  VisitLogWhereInput: ["AND", "OR", "NOT", "id", "logDate", "visitCount"],
+  VisitLogOrderByWithRelationInput: ["id", "logDate", "visitCount"],
+  VisitLogWhereUniqueInput: ["id"],
+  VisitLogOrderByWithAggregationInput: ["id", "logDate", "visitCount", "_count", "_avg", "_max", "_min", "_sum"],
+  VisitLogScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "logDate", "visitCount"],
   PokemonCreateInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
   PokemonUpdateInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
   PokemonCreateManyInput: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm"],
@@ -775,6 +820,10 @@ const inputsInfo = {
   UseCountUpdateInput: ["totalCount", "todayCount"],
   UseCountCreateManyInput: ["id", "totalCount", "todayCount"],
   UseCountUpdateManyMutationInput: ["totalCount", "todayCount"],
+  VisitLogCreateInput: ["logDate", "visitCount"],
+  VisitLogUpdateInput: ["logDate", "visitCount"],
+  VisitLogCreateManyInput: ["id", "logDate", "visitCount"],
+  VisitLogUpdateManyMutationInput: ["logDate", "visitCount"],
   IntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   StringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
   StringNullableListFilter: ["equals", "has", "hasEvery", "hasSome", "isEmpty"],
@@ -854,6 +903,13 @@ const inputsInfo = {
   UseCountMaxOrderByAggregateInput: ["id", "totalCount", "todayCount"],
   UseCountMinOrderByAggregateInput: ["id", "totalCount", "todayCount"],
   UseCountSumOrderByAggregateInput: ["id", "totalCount", "todayCount"],
+  DateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  VisitLogCountOrderByAggregateInput: ["id", "logDate", "visitCount"],
+  VisitLogAvgOrderByAggregateInput: ["id", "visitCount"],
+  VisitLogMaxOrderByAggregateInput: ["id", "logDate", "visitCount"],
+  VisitLogMinOrderByAggregateInput: ["id", "logDate", "visitCount"],
+  VisitLogSumOrderByAggregateInput: ["id", "visitCount"],
+  DateTimeWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_min", "_max"],
   PokemonCreatetypeInput: ["set"],
   PokemonCreateevolutionIdInput: ["set"],
   NormalStatsCreateNestedOneWithoutPokemonInput: ["create", "connectOrCreate", "connect"],
@@ -897,6 +953,7 @@ const inputsInfo = {
   PokemonRegionUpdateOneRequiredWithoutRegionStatsNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
   PokemonNormalFormCreateNestedOneWithoutFormStatsInput: ["create", "connectOrCreate", "connect"],
   PokemonNormalFormUpdateOneRequiredWithoutFormStatsNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  DateTimeFieldUpdateOperationsInput: ["set"],
   NestedIntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedStringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
   NestedBoolNullableFilter: ["equals", "not"],
@@ -909,6 +966,8 @@ const inputsInfo = {
   NestedIntNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedStringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max"],
   NestedBoolWithAggregatesFilter: ["equals", "not", "_count", "_min", "_max"],
+  NestedDateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  NestedDateTimeWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_min", "_max"],
   NormalStatsCreateWithoutPokemonInput: ["hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   NormalStatsCreateOrConnectWithoutPokemonInput: ["where", "create"],
   PokemonMegaCreateWithoutPokemonInput: ["pokemonNumber", "type", "typeSingle1", "typeSingle2", "statCode", "MegaStats"],

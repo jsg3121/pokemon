@@ -2,14 +2,28 @@ import { PrismaClient } from '@prisma/client'
 import http from 'axios'
 import { Router } from 'express'
 import fs from 'fs'
+import { getTime } from '../../common'
 
 const prisma = new PrismaClient()
 
 export const listRouter = Router()
 
 export const resetCount = async () => {
-  console.log(`today count reset`)
-  console.log(new Date())
+  const date = getTime()
+
+  const { todayCount } = await prisma.useCount.findFirst({
+    where: {
+      id: 1,
+    },
+  })
+
+  await prisma.visitLog.create({
+    data: {
+      visitCount: todayCount,
+      logDate: date,
+    },
+  })
+
   await prisma.useCount.update({
     where: {
       id: 1,
@@ -18,6 +32,12 @@ export const resetCount = async () => {
       todayCount: 0,
     },
   })
+  console.log(
+    new Date().toLocaleString('ko-KR', {
+      timeZone: 'Asia/Seoul',
+    })
+  )
+  console.log(`today count reset`)
 }
 
 listRouter.post('/count', async (req, res) => {

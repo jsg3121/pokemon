@@ -8,3 +8,4 @@ export { PokemonRegionCrudResolver } from "./PokemonRegion/PokemonRegionCrudReso
 export { RegionStatsCrudResolver } from "./RegionStats/RegionStatsCrudResolver";
 export { TypeRelationCrudResolver } from "./TypeRelation/TypeRelationCrudResolver";
 export { UseCountCrudResolver } from "./UseCount/UseCountCrudResolver";
+export { VisitLogCrudResolver } from "./VisitLog/VisitLogCrudResolver";
