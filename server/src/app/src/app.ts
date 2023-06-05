@@ -25,7 +25,9 @@ export const runServer = async () => {
   cron.schedule(
     '0 0 * * *',
     () => {
-      resetCount()
+      if (process.env.NODE_ENV === 'production') {
+        resetCount()
+      }
     },
     {
       scheduled: true,
