@@ -39,7 +39,7 @@ const NoDataComponent: React.FC<NoDataComponentProps> = (props) => {
           <img
             src={require('../../assets/image/noData.webp')}
             alt="no_data"
-            width="auto"
+            width="100%"
             height="100%"
           />
         </Image>

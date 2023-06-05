@@ -11,9 +11,9 @@ interface ImagesContainerProps {
 }
 
 const ImageSwitch = styled.div`
-  width: 100%;
-  height: calc(55% - 1rem);
-  margin-top: 1rem;
+  width: 60%;
+  height: auto;
+  margin: 1rem auto 0;
 
   .image__switch {
     width: 8rem;
@@ -25,10 +25,6 @@ const ImageSwitch = styled.div`
       font-size: 1.2rem;
       font-weight: 600;
     }
-  }
-
-  @media screen and (max-width: 475px) {
-    height: 40%;
   }
 `
 
@@ -74,7 +70,7 @@ const ImagesContainer: React.FC<ImagesContainerProps> = (props) => {
               <img
                 src={`${imageMode}/shiny/${imageCode}.webp`}
                 alt="shiny_image"
-                width="auto"
+                width="100%"
                 height="100%"
               />
             </Image>
@@ -83,7 +79,7 @@ const ImagesContainer: React.FC<ImagesContainerProps> = (props) => {
               <img
                 src={`${imageMode}/${imageCode}.webp`}
                 alt="normal_image"
-                width="auto"
+                width="100%"
                 height="100%"
               />
             </Image>
