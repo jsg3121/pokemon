@@ -103,7 +103,7 @@ const SettingContainer: React.FC<SettingContainerProps> = observer((props) => {
 
   return (
     <>
-      <Setting onClick={handleClickIcon}>
+      <Setting onClick={handleClickIcon} aria-label="setting button">
         <SettingIcon />
       </Setting>
       {isShow && (

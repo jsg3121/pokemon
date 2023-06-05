@@ -89,7 +89,7 @@ const Card = styled.article<{ backgroundColor: Array<TypesColor> }>`
   }
 
   .card--image__pokemon {
-    width: 11rem;
+    width: 10rem;
     height: 10rem;
     margin: 2rem auto 0;
 
@@ -167,6 +167,8 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
                 <img
                   src={require('../../../assets/image/mega.webp')}
                   alt="메가진화_아이콘"
+                  width="100%"
+                  height="100%"
                 />
               </Image>
             )}
@@ -175,6 +177,8 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
                 <img
                   src={require('../../../assets/image/regionForm.webp')}
                   alt="리전폼_아이콘"
+                  width="100%"
+                  height="100%"
                 />
               </Image>
             )}
@@ -186,6 +190,8 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
           <img
             src={`${imageMode}/${pokemonNumber}.webp`}
             alt="pokemon_image"
+            width="100%"
+            height="100%"
             loading="lazy"
           />
         </Image>

@@ -76,6 +76,8 @@ const NoticeContainer: React.FC<NoticeContainerProps> = (props) => {
               <img
                 src={require('../../../../assets/image/mega.webp')}
                 alt="메가진화_아이콘"
+                width="100%"
+                height="100%"
               />
             </Image>
             <p>메가진화</p>
@@ -85,6 +87,8 @@ const NoticeContainer: React.FC<NoticeContainerProps> = (props) => {
               <img
                 src={require('../../../../assets/image/regionForm.webp')}
                 alt="리전폼_아이콘"
+                width="100%"
+                height="100%"
               />
             </Image>
             <p>리전폼</p>
