@@ -2727,6 +2727,11 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       font-weight: 600;
     }
   }
+
+  @media screen and (max-width: 475px) {
+    width: 55vw;
+    height: 55vw;
+  }
 `,jA=e=>{const{index:t=0}=e,{isShiny:n,otherInfo:r,detailInfo:i,normalFormInfo:o}=C.useContext(zo),s=C.useMemo(()=>i?r==="normal"?o&&o.length>0?o[t].imagePath:i.number:parseInt(r==="mega"?`1${i.number.toString().padStart(3,"0")}${t==null?void 0:t.toString().padStart(2,"0")}`:`2${i.number.toString().padStart(3,"0")}${t==null?void 0:t.toString().padStart(2,"0")}`,10):0,[i,t,o,r]);return b.jsx(PA,{className:"detail__image",children:i&&b.jsx(b.Fragment,{children:n===!0?b.jsx(Xn,{children:b.jsx("img",{src:`${Iu}/shiny/${s}.webp`,alt:"shiny_image",width:"100%",height:"100%"})}):b.jsx(Xn,{children:b.jsx("img",{src:`${Iu}/${s}.webp`,alt:"normal_image",width:"100%",height:"100%"})})})})},MA=C.memo(jA,he),IA=re.div`
   width: 100%;
   height: 7rem;
