@@ -166,7 +166,7 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
             {mega && (
               <Image>
                 <img
-                  src={require('../../../assets/image/mega.webp')}
+                  src="/assets/icons/mega.webp"
                   alt="메가진화_아이콘"
                   width="100%"
                   height="100%"
@@ -176,7 +176,7 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
             {region && (
               <Image>
                 <img
-                  src={require('../../../assets/image/regionForm.webp')}
+                  src="/assets/icons/regionForm.webp"
                   alt="리전폼_아이콘"
                   width="100%"
                   height="100%"
