@@ -169,7 +169,6 @@ const InfoHeaderContainer: React.FC<InfoHeaderContainerProps> = (props) => {
                   <img
                     src={`${imageMode}/${item}.webp`}
                     alt="pokemon_image"
-                    loading="lazy"
                     width="100%"
                     height="100%"
                   />

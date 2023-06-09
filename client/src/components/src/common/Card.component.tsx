@@ -193,7 +193,6 @@ const CardComponent: React.FC<CardComponentProps> = (props) => {
             alt="pokemon_image"
             width="100%"
             height="100%"
-            loading="lazy"
           />
         </Image>
       </div>
