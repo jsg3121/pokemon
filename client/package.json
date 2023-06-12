@@ -48,6 +48,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "preview": "vite preview",
     "start": "yarn build && serve -s build",
     "build": "tsc && vite build",
     "codegen": "graphql-codegen --config codegen.yml",
