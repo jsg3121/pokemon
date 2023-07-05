@@ -14,5 +14,7 @@ export default defineConfig({
   build: {
     sourcemap: false,
     minify: true,
+    outDir: 'build',
+    cssCodeSplit: true,
   },
 })
