@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { NormalStatsUpdateOneWithoutPokemonNestedInput } from "../inputs/NormalStatsUpdateOneWithoutPokemonNestedInput";
+import { PokemonAbilitiesUpdateManyWithoutPokemonNestedInput } from "../inputs/PokemonAbilitiesUpdateManyWithoutPokemonNestedInput";
 import { PokemonNormalFormUpdateManyWithoutPokemonNestedInput } from "../inputs/PokemonNormalFormUpdateManyWithoutPokemonNestedInput";
 import { PokemonRegionUpdateManyWithoutPokemonNestedInput } from "../inputs/PokemonRegionUpdateManyWithoutPokemonNestedInput";
 
@@ -65,6 +66,11 @@ export class PokemonUpdateWithoutPokemonMegaInput {
   })
   isForm?: boolean | undefined;
 
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  abilityId?: number[] | undefined;
+
   @TypeGraphQL.Field(_type => NormalStatsUpdateOneWithoutPokemonNestedInput, {
     nullable: true
   })
@@ -79,4 +85,9 @@ export class PokemonUpdateWithoutPokemonMegaInput {
     nullable: true
   })
   PokemonRegion?: PokemonRegionUpdateManyWithoutPokemonNestedInput | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonAbilitiesUpdateManyWithoutPokemonNestedInput, {
+    nullable: true
+  })
+  PokemonAbilities?: PokemonAbilitiesUpdateManyWithoutPokemonNestedInput | undefined;
 }

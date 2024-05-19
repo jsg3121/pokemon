@@ -3,10 +3,11 @@ generator client {
 }
 
 generator typegraphql {
-  provider        = "typegraphql-prisma"
-  output          = "../src/database/src/type-graphql"
-  useSimpleInputs = "true"
-  simpleResolvers = "true"
+  provider            = "typegraphql-prisma"
+  output              = "../src/database/src/type-graphql"
+  useSimpleInputs     = "true"
+  simpleResolvers     = "true"
+  formatGeneratedCode = "prettier"
 }
 
 datasource db {
@@ -27,10 +28,12 @@ model Pokemon {
   evolutionId       Int[]               @map("evolution_id")
   generation        Int                 @map("generation")
   isForm            Boolean             @default(false) @map("is_form")
+  abilityId         Int[]               @map("ability_id")
   NormalStats       NormalStats?
   PokemonMega       PokemonMega[]
   PokemonNormalForm PokemonNormalForm[]
   PokemonRegion     PokemonRegion[]
+  PokemonAbilities  PokemonAbilities[]
 
   @@map("pokemon")
 }
@@ -151,16 +154,27 @@ model FormStats {
 
 model UseCount {
   id         Int @id @unique @default(autoincrement())
-  totalCount Int @default(0) @map("total_count") @db.Integer
-  todayCount Int @default(0) @map("today_count") @db.Integer
+  totalCount Int @default(0) @map("total_count")
+  todayCount Int @default(0) @map("today_count")
 
   @@map("use_count")
 }
 
 model VisitLog {
   id         Int      @id @unique @default(autoincrement())
-  logDate    DateTime @default(now()) @map("log_date") @db.Timestamp()
+  logDate    DateTime @default(now()) @map("log_date") @db.Timestamp(6)
   visitCount Int      @map("visit_count")
 
   @@map("visit_log")
+}
+
+model PokemonAbilities {
+  id          Int    @id @unique @default(autoincrement())
+  abilityId   Int
+  name        String @map("ability_name") @db.VarChar(50)
+  descirption String @map("descirption") @db.Text
+
+  Pokemon Pokemon? @relation(fields: [abilityId], references: [id])
+
+  @@map("abilities")
 }

@@ -88,4 +88,9 @@ export class PokemonScalarWhereWithAggregatesInput {
     nullable: true
   })
   isForm?: BoolWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IntNullableListFilter, {
+    nullable: true
+  })
+  abilityId?: IntNullableListFilter | undefined;
 }

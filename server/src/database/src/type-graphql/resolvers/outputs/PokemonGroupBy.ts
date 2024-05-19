@@ -73,6 +73,11 @@ export class PokemonGroupBy {
   })
   isForm!: boolean;
 
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  abilityId!: number[] | null;
+
   @TypeGraphQL.Field(_type => PokemonCountAggregate, {
     nullable: true
   })

@@ -61,4 +61,9 @@ export class PokemonUpdateManyMutationInput {
     nullable: true
   })
   isForm?: boolean | undefined;
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  abilityId?: number[] | undefined;
 }

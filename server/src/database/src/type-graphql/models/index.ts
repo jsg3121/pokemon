@@ -2,6 +2,7 @@ export { FormStats } from "./FormStats";
 export { MegaStats } from "./MegaStats";
 export { NormalStats } from "./NormalStats";
 export { Pokemon } from "./Pokemon";
+export { PokemonAbilities } from "./PokemonAbilities";
 export { PokemonMega } from "./PokemonMega";
 export { PokemonNormalForm } from "./PokemonNormalForm";
 export { PokemonRegion } from "./PokemonRegion";

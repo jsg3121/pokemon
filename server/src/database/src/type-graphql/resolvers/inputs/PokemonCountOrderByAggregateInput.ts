@@ -67,4 +67,9 @@ export class PokemonCountOrderByAggregateInput {
     nullable: true
   })
   isForm?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  abilityId?: "asc" | "desc" | undefined;
 }

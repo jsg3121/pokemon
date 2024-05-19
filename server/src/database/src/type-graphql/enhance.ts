@@ -19,7 +19,8 @@ const crudResolversMap = {
   RegionStats: crudResolvers.RegionStatsCrudResolver,
   FormStats: crudResolvers.FormStatsCrudResolver,
   UseCount: crudResolvers.UseCountCrudResolver,
-  VisitLog: crudResolvers.VisitLogCrudResolver
+  VisitLog: crudResolvers.VisitLogCrudResolver,
+  PokemonAbilities: crudResolvers.PokemonAbilitiesCrudResolver
 };
 const actionResolversMap = {
   Pokemon: {
@@ -197,6 +198,22 @@ const actionResolversMap = {
     updateManyVisitLog: actionResolvers.UpdateManyVisitLogResolver,
     updateOneVisitLog: actionResolvers.UpdateOneVisitLogResolver,
     upsertOneVisitLog: actionResolvers.UpsertOneVisitLogResolver
+  },
+  PokemonAbilities: {
+    aggregatePokemonAbilities: actionResolvers.AggregatePokemonAbilitiesResolver,
+    createManyPokemonAbilities: actionResolvers.CreateManyPokemonAbilitiesResolver,
+    createOnePokemonAbilities: actionResolvers.CreateOnePokemonAbilitiesResolver,
+    deleteManyPokemonAbilities: actionResolvers.DeleteManyPokemonAbilitiesResolver,
+    deleteOnePokemonAbilities: actionResolvers.DeleteOnePokemonAbilitiesResolver,
+    findFirstPokemonAbilities: actionResolvers.FindFirstPokemonAbilitiesResolver,
+    findFirstPokemonAbilitiesOrThrow: actionResolvers.FindFirstPokemonAbilitiesOrThrowResolver,
+    findManyPokemonAbilities: actionResolvers.FindManyPokemonAbilitiesResolver,
+    findUniquePokemonAbilities: actionResolvers.FindUniquePokemonAbilitiesResolver,
+    findUniquePokemonAbilitiesOrThrow: actionResolvers.FindUniquePokemonAbilitiesOrThrowResolver,
+    groupByPokemonAbilities: actionResolvers.GroupByPokemonAbilitiesResolver,
+    updateManyPokemonAbilities: actionResolvers.UpdateManyPokemonAbilitiesResolver,
+    updateOnePokemonAbilities: actionResolvers.UpdateOnePokemonAbilitiesResolver,
+    upsertOnePokemonAbilities: actionResolvers.UpsertOnePokemonAbilitiesResolver
   }
 };
 const crudResolversInfo = {
@@ -210,7 +227,8 @@ const crudResolversInfo = {
   RegionStats: ["aggregateRegionStats", "createManyRegionStats", "createOneRegionStats", "deleteManyRegionStats", "deleteOneRegionStats", "findFirstRegionStats", "findFirstRegionStatsOrThrow", "findManyRegionStats", "findUniqueRegionStats", "findUniqueRegionStatsOrThrow", "groupByRegionStats", "updateManyRegionStats", "updateOneRegionStats", "upsertOneRegionStats"],
   FormStats: ["aggregateFormStats", "createManyFormStats", "createOneFormStats", "deleteManyFormStats", "deleteOneFormStats", "findFirstFormStats", "findFirstFormStatsOrThrow", "findManyFormStats", "findUniqueFormStats", "findUniqueFormStatsOrThrow", "groupByFormStats", "updateManyFormStats", "updateOneFormStats", "upsertOneFormStats"],
   UseCount: ["aggregateUseCount", "createManyUseCount", "createOneUseCount", "deleteManyUseCount", "deleteOneUseCount", "findFirstUseCount", "findFirstUseCountOrThrow", "useCounts", "useCount", "getUseCount", "groupByUseCount", "updateManyUseCount", "updateOneUseCount", "upsertOneUseCount"],
-  VisitLog: ["aggregateVisitLog", "createManyVisitLog", "createOneVisitLog", "deleteManyVisitLog", "deleteOneVisitLog", "findFirstVisitLog", "findFirstVisitLogOrThrow", "visitLogs", "visitLog", "getVisitLog", "groupByVisitLog", "updateManyVisitLog", "updateOneVisitLog", "upsertOneVisitLog"]
+  VisitLog: ["aggregateVisitLog", "createManyVisitLog", "createOneVisitLog", "deleteManyVisitLog", "deleteOneVisitLog", "findFirstVisitLog", "findFirstVisitLogOrThrow", "visitLogs", "visitLog", "getVisitLog", "groupByVisitLog", "updateManyVisitLog", "updateOneVisitLog", "upsertOneVisitLog"],
+  PokemonAbilities: ["aggregatePokemonAbilities", "createManyPokemonAbilities", "createOnePokemonAbilities", "deleteManyPokemonAbilities", "deleteOnePokemonAbilities", "findFirstPokemonAbilities", "findFirstPokemonAbilitiesOrThrow", "findManyPokemonAbilities", "findUniquePokemonAbilities", "findUniquePokemonAbilitiesOrThrow", "groupByPokemonAbilities", "updateManyPokemonAbilities", "updateOnePokemonAbilities", "upsertOnePokemonAbilities"]
 };
 const argsInfo = {
   AggregatePokemonArgs: ["where", "orderBy", "cursor", "take", "skip"],
@@ -366,7 +384,21 @@ const argsInfo = {
   GroupByVisitLogArgs: ["where", "orderBy", "by", "having", "take", "skip"],
   UpdateManyVisitLogArgs: ["data", "where"],
   UpdateOneVisitLogArgs: ["data", "where"],
-  UpsertOneVisitLogArgs: ["where", "create", "update"]
+  UpsertOneVisitLogArgs: ["where", "create", "update"],
+  AggregatePokemonAbilitiesArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  CreateManyPokemonAbilitiesArgs: ["data", "skipDuplicates"],
+  CreateOnePokemonAbilitiesArgs: ["data"],
+  DeleteManyPokemonAbilitiesArgs: ["where"],
+  DeleteOnePokemonAbilitiesArgs: ["where"],
+  FindFirstPokemonAbilitiesArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindFirstPokemonAbilitiesOrThrowArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyPokemonAbilitiesArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindUniquePokemonAbilitiesArgs: ["where"],
+  FindUniquePokemonAbilitiesOrThrowArgs: ["where"],
+  GroupByPokemonAbilitiesArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  UpdateManyPokemonAbilitiesArgs: ["data", "where"],
+  UpdateOnePokemonAbilitiesArgs: ["data", "where"],
+  UpsertOnePokemonAbilitiesArgs: ["where", "create", "update"]
 };
 
 type ResolverModelNames = keyof typeof crudResolversMap;
@@ -463,17 +495,19 @@ const relationResolversMap = {
   NormalStats: relationResolvers.NormalStatsRelationsResolver,
   MegaStats: relationResolvers.MegaStatsRelationsResolver,
   RegionStats: relationResolvers.RegionStatsRelationsResolver,
-  FormStats: relationResolvers.FormStatsRelationsResolver
+  FormStats: relationResolvers.FormStatsRelationsResolver,
+  PokemonAbilities: relationResolvers.PokemonAbilitiesRelationsResolver
 };
 const relationResolversInfo = {
-  Pokemon: ["NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
+  Pokemon: ["NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion", "PokemonAbilities"],
   PokemonNormalForm: ["FormStats", "pokemon"],
   PokemonRegion: ["pokemon", "RegionStats"],
   PokemonMega: ["MegaStats", "pokemon"],
   NormalStats: ["pokemon"],
   MegaStats: ["megaPokemon"],
   RegionStats: ["regionPokemon"],
-  FormStats: ["normalFormPokemon"]
+  FormStats: ["normalFormPokemon"],
+  PokemonAbilities: ["Pokemon"]
 };
 
 type RelationResolverModelNames = keyof typeof relationResolversMap;
@@ -554,7 +588,7 @@ function applyTypeClassEnhanceConfig<
 }
 
 const modelsInfo = {
-  Pokemon: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm"],
+  Pokemon: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId"],
   PokemonNormalForm: ["id", "pokemonId", "name", "type", "typeSingle1", "typeSingle2", "imagePath", "statCode"],
   PokemonRegion: ["id", "pokemonId", "pokemonNumber", "region", "type", "typeSingle1", "typeSingle2", "statCode"],
   PokemonMega: ["id", "pokemonId", "pokemonNumber", "type", "typeSingle1", "typeSingle2", "statCode"],
@@ -564,7 +598,8 @@ const modelsInfo = {
   RegionStats: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   FormStats: ["id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   UseCount: ["id", "totalCount", "todayCount"],
-  VisitLog: ["id", "logDate", "visitCount"]
+  VisitLog: ["id", "logDate", "visitCount"],
+  PokemonAbilities: ["id", "abilityId", "name", "descirption"]
 };
 
 type ModelNames = keyof typeof models;
@@ -604,7 +639,7 @@ export function applyModelsEnhanceMap(modelsEnhanceMap: ModelsEnhanceMap) {
 
 const outputsInfo = {
   AggregatePokemon: ["_count", "_avg", "_sum", "_min", "_max"],
-  PokemonGroupBy: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "_count", "_avg", "_sum", "_min", "_max"],
+  PokemonGroupBy: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "_count", "_avg", "_sum", "_min", "_max"],
   AggregatePokemonNormalForm: ["_count", "_avg", "_sum", "_min", "_max"],
   PokemonNormalFormGroupBy: ["id", "pokemonId", "name", "type", "typeSingle1", "typeSingle2", "imagePath", "statCode", "_count", "_avg", "_sum", "_min", "_max"],
   AggregatePokemonRegion: ["_count", "_avg", "_sum", "_min", "_max"],
@@ -625,11 +660,13 @@ const outputsInfo = {
   UseCountGroupBy: ["id", "totalCount", "todayCount", "_count", "_avg", "_sum", "_min", "_max"],
   AggregateVisitLog: ["_count", "_avg", "_sum", "_min", "_max"],
   VisitLogGroupBy: ["id", "logDate", "visitCount", "_count", "_avg", "_sum", "_min", "_max"],
+  AggregatePokemonAbilities: ["_count", "_avg", "_sum", "_min", "_max"],
+  PokemonAbilitiesGroupBy: ["id", "abilityId", "name", "descirption", "_count", "_avg", "_sum", "_min", "_max"],
   AffectedRowsOutput: ["count"],
-  PokemonCount: ["PokemonMega", "PokemonNormalForm", "PokemonRegion"],
-  PokemonCountAggregate: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "_all"],
-  PokemonAvgAggregate: ["id", "number", "evolutionId", "generation"],
-  PokemonSumAggregate: ["id", "number", "evolutionId", "generation"],
+  PokemonCount: ["PokemonMega", "PokemonNormalForm", "PokemonRegion", "PokemonAbilities"],
+  PokemonCountAggregate: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "_all"],
+  PokemonAvgAggregate: ["id", "number", "evolutionId", "generation", "abilityId"],
+  PokemonSumAggregate: ["id", "number", "evolutionId", "generation", "abilityId"],
   PokemonMinAggregate: ["id", "number", "name", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "generation", "isForm"],
   PokemonMaxAggregate: ["id", "number", "name", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "generation", "isForm"],
   PokemonNormalFormCount: ["FormStats"],
@@ -684,7 +721,12 @@ const outputsInfo = {
   VisitLogAvgAggregate: ["id", "visitCount"],
   VisitLogSumAggregate: ["id", "visitCount"],
   VisitLogMinAggregate: ["id", "logDate", "visitCount"],
-  VisitLogMaxAggregate: ["id", "logDate", "visitCount"]
+  VisitLogMaxAggregate: ["id", "logDate", "visitCount"],
+  PokemonAbilitiesCountAggregate: ["id", "abilityId", "name", "descirption", "_all"],
+  PokemonAbilitiesAvgAggregate: ["id", "abilityId"],
+  PokemonAbilitiesSumAggregate: ["id", "abilityId"],
+  PokemonAbilitiesMinAggregate: ["id", "abilityId", "name", "descirption"],
+  PokemonAbilitiesMaxAggregate: ["id", "abilityId", "name", "descirption"]
 };
 
 type OutputTypesNames = keyof typeof outputTypes;
@@ -725,11 +767,11 @@ export function applyOutputTypesEnhanceMap(
 }
 
 const inputsInfo = {
-  PokemonWhereInput: ["AND", "OR", "NOT", "id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
-  PokemonOrderByWithRelationInput: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
+  PokemonWhereInput: ["AND", "OR", "NOT", "id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion", "PokemonAbilities"],
+  PokemonOrderByWithRelationInput: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion", "PokemonAbilities"],
   PokemonWhereUniqueInput: ["id", "number"],
-  PokemonOrderByWithAggregationInput: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "_count", "_avg", "_max", "_min", "_sum"],
-  PokemonScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm"],
+  PokemonOrderByWithAggregationInput: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "_count", "_avg", "_max", "_min", "_sum"],
+  PokemonScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId"],
   PokemonNormalFormWhereInput: ["AND", "OR", "NOT", "id", "pokemonId", "name", "type", "typeSingle1", "typeSingle2", "imagePath", "statCode", "FormStats", "pokemon"],
   PokemonNormalFormOrderByWithRelationInput: ["id", "pokemonId", "name", "type", "typeSingle1", "typeSingle2", "imagePath", "statCode", "FormStats", "pokemon"],
   PokemonNormalFormWhereUniqueInput: ["id", "statCode"],
@@ -780,10 +822,15 @@ const inputsInfo = {
   VisitLogWhereUniqueInput: ["id"],
   VisitLogOrderByWithAggregationInput: ["id", "logDate", "visitCount", "_count", "_avg", "_max", "_min", "_sum"],
   VisitLogScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "logDate", "visitCount"],
-  PokemonCreateInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
-  PokemonUpdateInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
-  PokemonCreateManyInput: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm"],
-  PokemonUpdateManyMutationInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm"],
+  PokemonAbilitiesWhereInput: ["AND", "OR", "NOT", "id", "abilityId", "name", "descirption", "Pokemon"],
+  PokemonAbilitiesOrderByWithRelationInput: ["id", "abilityId", "name", "descirption", "Pokemon"],
+  PokemonAbilitiesWhereUniqueInput: ["id"],
+  PokemonAbilitiesOrderByWithAggregationInput: ["id", "abilityId", "name", "descirption", "_count", "_avg", "_max", "_min", "_sum"],
+  PokemonAbilitiesScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "abilityId", "name", "descirption"],
+  PokemonCreateInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion", "PokemonAbilities"],
+  PokemonUpdateInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion", "PokemonAbilities"],
+  PokemonCreateManyInput: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId"],
+  PokemonUpdateManyMutationInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId"],
   PokemonNormalFormCreateInput: ["name", "type", "typeSingle1", "typeSingle2", "imagePath", "statCode", "FormStats", "pokemon"],
   PokemonNormalFormUpdateInput: ["name", "type", "typeSingle1", "typeSingle2", "imagePath", "statCode", "FormStats", "pokemon"],
   PokemonNormalFormCreateManyInput: ["id", "pokemonId", "name", "type", "typeSingle1", "typeSingle2", "imagePath", "statCode"],
@@ -824,6 +871,10 @@ const inputsInfo = {
   VisitLogUpdateInput: ["logDate", "visitCount"],
   VisitLogCreateManyInput: ["id", "logDate", "visitCount"],
   VisitLogUpdateManyMutationInput: ["logDate", "visitCount"],
+  PokemonAbilitiesCreateInput: ["name", "descirption", "Pokemon"],
+  PokemonAbilitiesUpdateInput: ["name", "descirption", "Pokemon"],
+  PokemonAbilitiesCreateManyInput: ["id", "abilityId", "name", "descirption"],
+  PokemonAbilitiesUpdateManyMutationInput: ["name", "descirption"],
   IntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   StringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
   StringNullableListFilter: ["equals", "has", "hasEvery", "hasSome", "isEmpty"],
@@ -835,14 +886,16 @@ const inputsInfo = {
   PokemonMegaListRelationFilter: ["every", "some", "none"],
   PokemonNormalFormListRelationFilter: ["every", "some", "none"],
   PokemonRegionListRelationFilter: ["every", "some", "none"],
+  PokemonAbilitiesListRelationFilter: ["every", "some", "none"],
   PokemonMegaOrderByRelationAggregateInput: ["_count"],
   PokemonNormalFormOrderByRelationAggregateInput: ["_count"],
   PokemonRegionOrderByRelationAggregateInput: ["_count"],
-  PokemonCountOrderByAggregateInput: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm"],
-  PokemonAvgOrderByAggregateInput: ["id", "number", "evolutionId", "generation"],
+  PokemonAbilitiesOrderByRelationAggregateInput: ["_count"],
+  PokemonCountOrderByAggregateInput: ["id", "number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId"],
+  PokemonAvgOrderByAggregateInput: ["id", "number", "evolutionId", "generation", "abilityId"],
   PokemonMaxOrderByAggregateInput: ["id", "number", "name", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "generation", "isForm"],
   PokemonMinOrderByAggregateInput: ["id", "number", "name", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "generation", "isForm"],
-  PokemonSumOrderByAggregateInput: ["id", "number", "evolutionId", "generation"],
+  PokemonSumOrderByAggregateInput: ["id", "number", "evolutionId", "generation", "abilityId"],
   IntWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
   StringWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not", "_count", "_min", "_max"],
   BoolNullableWithAggregatesFilter: ["equals", "not", "_count", "_min", "_max"],
@@ -910,12 +963,19 @@ const inputsInfo = {
   VisitLogMinOrderByAggregateInput: ["id", "logDate", "visitCount"],
   VisitLogSumOrderByAggregateInput: ["id", "visitCount"],
   DateTimeWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_min", "_max"],
+  PokemonAbilitiesCountOrderByAggregateInput: ["id", "abilityId", "name", "descirption"],
+  PokemonAbilitiesAvgOrderByAggregateInput: ["id", "abilityId"],
+  PokemonAbilitiesMaxOrderByAggregateInput: ["id", "abilityId", "name", "descirption"],
+  PokemonAbilitiesMinOrderByAggregateInput: ["id", "abilityId", "name", "descirption"],
+  PokemonAbilitiesSumOrderByAggregateInput: ["id", "abilityId"],
   PokemonCreatetypeInput: ["set"],
   PokemonCreateevolutionIdInput: ["set"],
+  PokemonCreateabilityIdInput: ["set"],
   NormalStatsCreateNestedOneWithoutPokemonInput: ["create", "connectOrCreate", "connect"],
   PokemonMegaCreateNestedManyWithoutPokemonInput: ["create", "connectOrCreate", "createMany", "connect"],
   PokemonNormalFormCreateNestedManyWithoutPokemonInput: ["create", "connectOrCreate", "createMany", "connect"],
   PokemonRegionCreateNestedManyWithoutPokemonInput: ["create", "connectOrCreate", "createMany", "connect"],
+  PokemonAbilitiesCreateNestedManyWithoutPokemonInput: ["create", "connectOrCreate", "createMany", "connect"],
   IntFieldUpdateOperationsInput: ["set", "increment", "decrement", "multiply", "divide"],
   StringFieldUpdateOperationsInput: ["set"],
   PokemonUpdatetypeInput: ["set", "push"],
@@ -923,10 +983,12 @@ const inputsInfo = {
   NullableStringFieldUpdateOperationsInput: ["set"],
   BoolFieldUpdateOperationsInput: ["set"],
   PokemonUpdateevolutionIdInput: ["set", "push"],
+  PokemonUpdateabilityIdInput: ["set", "push"],
   NormalStatsUpdateOneWithoutPokemonNestedInput: ["create", "connectOrCreate", "upsert", "disconnect", "delete", "connect", "update"],
   PokemonMegaUpdateManyWithoutPokemonNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   PokemonNormalFormUpdateManyWithoutPokemonNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   PokemonRegionUpdateManyWithoutPokemonNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
+  PokemonAbilitiesUpdateManyWithoutPokemonNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   PokemonNormalFormCreatetypeInput: ["set"],
   FormStatsCreateNestedManyWithoutNormalFormPokemonInput: ["create", "connectOrCreate", "createMany", "connect"],
   PokemonCreateNestedOneWithoutPokemonNormalFormInput: ["create", "connectOrCreate", "connect"],
@@ -954,6 +1016,8 @@ const inputsInfo = {
   PokemonNormalFormCreateNestedOneWithoutFormStatsInput: ["create", "connectOrCreate", "connect"],
   PokemonNormalFormUpdateOneRequiredWithoutFormStatsNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
   DateTimeFieldUpdateOperationsInput: ["set"],
+  PokemonCreateNestedOneWithoutPokemonAbilitiesInput: ["create", "connectOrCreate", "connect"],
+  PokemonUpdateOneWithoutPokemonAbilitiesNestedInput: ["create", "connectOrCreate", "upsert", "disconnect", "delete", "connect", "update"],
   NestedIntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedStringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
   NestedBoolNullableFilter: ["equals", "not"],
@@ -979,6 +1043,9 @@ const inputsInfo = {
   PokemonRegionCreateWithoutPokemonInput: ["pokemonNumber", "region", "type", "typeSingle1", "typeSingle2", "statCode", "RegionStats"],
   PokemonRegionCreateOrConnectWithoutPokemonInput: ["where", "create"],
   PokemonRegionCreateManyPokemonInputEnvelope: ["data", "skipDuplicates"],
+  PokemonAbilitiesCreateWithoutPokemonInput: ["name", "descirption"],
+  PokemonAbilitiesCreateOrConnectWithoutPokemonInput: ["where", "create"],
+  PokemonAbilitiesCreateManyPokemonInputEnvelope: ["data", "skipDuplicates"],
   NormalStatsUpsertWithoutPokemonInput: ["update", "create"],
   NormalStatsUpdateWithoutPokemonInput: ["hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   PokemonMegaUpsertWithWhereUniqueWithoutPokemonInput: ["where", "update", "create"],
@@ -993,24 +1060,28 @@ const inputsInfo = {
   PokemonRegionUpdateWithWhereUniqueWithoutPokemonInput: ["where", "data"],
   PokemonRegionUpdateManyWithWhereWithoutPokemonInput: ["where", "data"],
   PokemonRegionScalarWhereInput: ["AND", "OR", "NOT", "id", "pokemonId", "pokemonNumber", "region", "type", "typeSingle1", "typeSingle2", "statCode"],
+  PokemonAbilitiesUpsertWithWhereUniqueWithoutPokemonInput: ["where", "update", "create"],
+  PokemonAbilitiesUpdateWithWhereUniqueWithoutPokemonInput: ["where", "data"],
+  PokemonAbilitiesUpdateManyWithWhereWithoutPokemonInput: ["where", "data"],
+  PokemonAbilitiesScalarWhereInput: ["AND", "OR", "NOT", "id", "abilityId", "name", "descirption"],
   FormStatsCreateWithoutNormalFormPokemonInput: ["hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   FormStatsCreateOrConnectWithoutNormalFormPokemonInput: ["where", "create"],
   FormStatsCreateManyNormalFormPokemonInputEnvelope: ["data", "skipDuplicates"],
-  PokemonCreateWithoutPokemonNormalFormInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonRegion"],
+  PokemonCreateWithoutPokemonNormalFormInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonMega", "PokemonRegion", "PokemonAbilities"],
   PokemonCreateOrConnectWithoutPokemonNormalFormInput: ["where", "create"],
   FormStatsUpsertWithWhereUniqueWithoutNormalFormPokemonInput: ["where", "update", "create"],
   FormStatsUpdateWithWhereUniqueWithoutNormalFormPokemonInput: ["where", "data"],
   FormStatsUpdateManyWithWhereWithoutNormalFormPokemonInput: ["where", "data"],
   FormStatsScalarWhereInput: ["AND", "OR", "NOT", "id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   PokemonUpsertWithoutPokemonNormalFormInput: ["update", "create"],
-  PokemonUpdateWithoutPokemonNormalFormInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonRegion"],
-  PokemonCreateWithoutPokemonRegionInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonNormalForm"],
+  PokemonUpdateWithoutPokemonNormalFormInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonMega", "PokemonRegion", "PokemonAbilities"],
+  PokemonCreateWithoutPokemonRegionInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonAbilities"],
   PokemonCreateOrConnectWithoutPokemonRegionInput: ["where", "create"],
   RegionStatsCreateWithoutRegionPokemonInput: ["hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   RegionStatsCreateOrConnectWithoutRegionPokemonInput: ["where", "create"],
   RegionStatsCreateManyRegionPokemonInputEnvelope: ["data", "skipDuplicates"],
   PokemonUpsertWithoutPokemonRegionInput: ["update", "create"],
-  PokemonUpdateWithoutPokemonRegionInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonMega", "PokemonNormalForm"],
+  PokemonUpdateWithoutPokemonRegionInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonAbilities"],
   RegionStatsUpsertWithWhereUniqueWithoutRegionPokemonInput: ["where", "update", "create"],
   RegionStatsUpdateWithWhereUniqueWithoutRegionPokemonInput: ["where", "data"],
   RegionStatsUpdateManyWithWhereWithoutRegionPokemonInput: ["where", "data"],
@@ -1018,18 +1089,18 @@ const inputsInfo = {
   MegaStatsCreateWithoutMegaPokemonInput: ["hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   MegaStatsCreateOrConnectWithoutMegaPokemonInput: ["where", "create"],
   MegaStatsCreateManyMegaPokemonInputEnvelope: ["data", "skipDuplicates"],
-  PokemonCreateWithoutPokemonMegaInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonNormalForm", "PokemonRegion"],
+  PokemonCreateWithoutPokemonMegaInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonNormalForm", "PokemonRegion", "PokemonAbilities"],
   PokemonCreateOrConnectWithoutPokemonMegaInput: ["where", "create"],
   MegaStatsUpsertWithWhereUniqueWithoutMegaPokemonInput: ["where", "update", "create"],
   MegaStatsUpdateWithWhereUniqueWithoutMegaPokemonInput: ["where", "data"],
   MegaStatsUpdateManyWithWhereWithoutMegaPokemonInput: ["where", "data"],
   MegaStatsScalarWhereInput: ["AND", "OR", "NOT", "id", "statCode", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   PokemonUpsertWithoutPokemonMegaInput: ["update", "create"],
-  PokemonUpdateWithoutPokemonMegaInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "NormalStats", "PokemonNormalForm", "PokemonRegion"],
-  PokemonCreateWithoutNormalStatsInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
+  PokemonUpdateWithoutPokemonMegaInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonNormalForm", "PokemonRegion", "PokemonAbilities"],
+  PokemonCreateWithoutNormalStatsInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "PokemonMega", "PokemonNormalForm", "PokemonRegion", "PokemonAbilities"],
   PokemonCreateOrConnectWithoutNormalStatsInput: ["where", "create"],
   PokemonUpsertWithoutNormalStatsInput: ["update", "create"],
-  PokemonUpdateWithoutNormalStatsInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
+  PokemonUpdateWithoutNormalStatsInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "PokemonMega", "PokemonNormalForm", "PokemonRegion", "PokemonAbilities"],
   PokemonMegaCreateWithoutMegaStatsInput: ["pokemonNumber", "type", "typeSingle1", "typeSingle2", "statCode", "pokemon"],
   PokemonMegaCreateOrConnectWithoutMegaStatsInput: ["where", "create"],
   PokemonMegaUpsertWithoutMegaStatsInput: ["update", "create"],
@@ -1042,12 +1113,18 @@ const inputsInfo = {
   PokemonNormalFormCreateOrConnectWithoutFormStatsInput: ["where", "create"],
   PokemonNormalFormUpsertWithoutFormStatsInput: ["update", "create"],
   PokemonNormalFormUpdateWithoutFormStatsInput: ["name", "type", "typeSingle1", "typeSingle2", "imagePath", "statCode", "pokemon"],
+  PokemonCreateWithoutPokemonAbilitiesInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
+  PokemonCreateOrConnectWithoutPokemonAbilitiesInput: ["where", "create"],
+  PokemonUpsertWithoutPokemonAbilitiesInput: ["update", "create"],
+  PokemonUpdateWithoutPokemonAbilitiesInput: ["number", "name", "type", "isRegion", "isMega", "typeSingle1", "typeSingle2", "isEvolution", "evolutionId", "generation", "isForm", "abilityId", "NormalStats", "PokemonMega", "PokemonNormalForm", "PokemonRegion"],
   PokemonMegaCreateManyPokemonInput: ["id", "pokemonNumber", "type", "typeSingle1", "typeSingle2", "statCode"],
   PokemonNormalFormCreateManyPokemonInput: ["id", "name", "type", "typeSingle1", "typeSingle2", "imagePath", "statCode"],
   PokemonRegionCreateManyPokemonInput: ["id", "pokemonNumber", "region", "type", "typeSingle1", "typeSingle2", "statCode"],
+  PokemonAbilitiesCreateManyPokemonInput: ["id", "name", "descirption"],
   PokemonMegaUpdateWithoutPokemonInput: ["pokemonNumber", "type", "typeSingle1", "typeSingle2", "statCode", "MegaStats"],
   PokemonNormalFormUpdateWithoutPokemonInput: ["name", "type", "typeSingle1", "typeSingle2", "imagePath", "statCode", "FormStats"],
   PokemonRegionUpdateWithoutPokemonInput: ["pokemonNumber", "region", "type", "typeSingle1", "typeSingle2", "statCode", "RegionStats"],
+  PokemonAbilitiesUpdateWithoutPokemonInput: ["name", "descirption"],
   FormStatsCreateManyNormalFormPokemonInput: ["id", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   FormStatsUpdateWithoutNormalFormPokemonInput: ["hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],
   RegionStatsCreateManyRegionPokemonInput: ["id", "hp", "attack", "defense", "specialAttack", "specialDefense", "speed", "total"],

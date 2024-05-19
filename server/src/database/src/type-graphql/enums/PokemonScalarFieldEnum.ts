@@ -12,7 +12,8 @@ export enum PokemonScalarFieldEnum {
   isEvolution = "isEvolution",
   evolutionId = "evolutionId",
   generation = "generation",
-  isForm = "isForm"
+  isForm = "isForm",
+  abilityId = "abilityId"
 }
 TypeGraphQL.registerEnumType(PokemonScalarFieldEnum, {
   name: "PokemonScalarFieldEnum",

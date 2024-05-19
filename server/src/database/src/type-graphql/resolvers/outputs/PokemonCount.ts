@@ -22,4 +22,9 @@ export class PokemonCount {
     nullable: false
   })
   PokemonRegion!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  PokemonAbilities!: number;
 }

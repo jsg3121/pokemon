@@ -2,6 +2,7 @@ export { FormStatsCrudResolver } from "./FormStats/FormStatsCrudResolver";
 export { MegaStatsCrudResolver } from "./MegaStats/MegaStatsCrudResolver";
 export { NormalStatsCrudResolver } from "./NormalStats/NormalStatsCrudResolver";
 export { PokemonCrudResolver } from "./Pokemon/PokemonCrudResolver";
+export { PokemonAbilitiesCrudResolver } from "./PokemonAbilities/PokemonAbilitiesCrudResolver";
 export { PokemonMegaCrudResolver } from "./PokemonMega/PokemonMegaCrudResolver";
 export { PokemonNormalFormCrudResolver } from "./PokemonNormalForm/PokemonNormalFormCrudResolver";
 export { PokemonRegionCrudResolver } from "./PokemonRegion/PokemonRegionCrudResolver";
