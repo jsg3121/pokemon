@@ -4,6 +4,10 @@ import { Router } from 'express'
 import fs from 'fs'
 import { getTime } from '../../common'
 
+import abilityList from '../../../json/pokemon_ability_list.json'
+import abilityName from '../../../json/pokemon_ability_name.json'
+import abilityDescription from '../../../json/pokemon_ability_description.json'
+
 const prisma = new PrismaClient()
 
 export const listRouter = Router()
@@ -341,5 +345,90 @@ listRouter.get('/get/info', async (req, res) => {
   console.log(list.length)
   console.log('success! ')
 
+  res.end()
+})
+
+listRouter.post('/change/ability', async (req, res) => {
+  try {
+    const data = await prisma.pokemon.findMany()
+    console.log('get pokemon complete')
+    data.forEach(async (pokemon) => {
+      const ids = [
+        ...new Set(
+          abilityList.data.pokemon_v2_pokemon[
+            pokemon.id - 1
+          ].pokemon_v2_pokemonabilities.map((item) => item.ability_id)
+        ),
+      ]
+
+      if (pokemon.id % 100 === 0) {
+        console.log(`...${pokemon.id} complate`)
+      }
+      await prisma.pokemon.update({
+        where: {
+          id: pokemon.id,
+        },
+        data: {
+          abilityId: ids,
+        },
+      })
+    })
+    res.send(abilityList.data.pokemon_v2_pokemon)
+  } catch (error) {
+    console.log(error)
+  }
+  res.end()
+})
+
+listRouter.post('/change/ability/detail', async (req, res) => {
+  try {
+    const data = await prisma.pokemon.findMany()
+    console.log('get pokemon complete')
+
+    data.forEach(async (pokemon) => {
+      pokemon.abilityId.forEach(async (ability, index) => {
+        const pokemonId = pokemon.id
+
+        const isHidden =
+          abilityList.data.pokemon_v2_pokemon[pokemon.number - 1]
+            .pokemon_v2_pokemonabilities[index].is_hidden
+
+        await prisma.pokemonAbilityList.create({
+          data: {
+            pokemonId,
+            abilityId: ability,
+            isHidden,
+          },
+        })
+      })
+    })
+
+    res.send('finish')
+  } catch (error) {
+    console.log(error)
+  }
+  res.end()
+})
+
+listRouter.post('/change/ability/list', async (req, res) => {
+  try {
+    abilityName.data.pokemon_v2_ability.forEach(async (ability, index) => {
+      const name = ability.pokemon_v2_abilitynames[0].name
+      const description =
+        abilityDescription.data.pokemon_v2_ability[index]
+          .pokemon_v2_abilityflavortexts[0].flavor_text
+
+      await prisma.pokemonAbilities.create({
+        data: {
+          abilityId: ability.id,
+          name,
+          description,
+        },
+      })
+    })
+    res.send('finish')
+  } catch (error) {
+    console.log(error)
+  }
   res.end()
 })

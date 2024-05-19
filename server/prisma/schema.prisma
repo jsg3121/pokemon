@@ -169,24 +169,23 @@ model VisitLog {
 }
 
 model PokemonAbilities {
-  id          Int    @id @unique @default(autoincrement())
-  name        String @map("ability_name") @db.VarChar(50)
-  descirption String @map("descirption") @db.Text
-  abilityId   Int    @map("ability_id")
+  id                 Int                  @id @unique @default(autoincrement())
+  abilityId          Int                  @unique @map("ability_id")
+  name               String               @map("ability_name") @db.VarChar(50)
+  description        String               @map("description") @db.Text
+  PokemonAbilityList PokemonAbilityList[]
 
-  PokemonAbilityList PokemonAbilityList? @relation(fields: [abilityId], references: [abilityId])
-
-  @@map("abilities")
+  @@map("pokemon_abilities")
 }
 
 model PokemonAbilityList {
   id        Int     @id @unique @default(autoincrement())
   isHidden  Boolean @default(false) @map("is_hidden")
-  abilityId Int     @unique @map("ability_id")
   pokemonId Int     @map("pokemon_id")
+  abilityId Int     @map("ability_id")
 
-  Pokemon          Pokemon?           @relation(fields: [pokemonId], references: [number])
-  PokemonAbilities PokemonAbilities[]
+  Pokemon          Pokemon?         @relation(fields: [pokemonId], references: [number])
+  PokemonAbilities PokemonAbilities @relation(fields: [abilityId], references: [abilityId])
 
   @@map("pokemon_ability_list")
 }
