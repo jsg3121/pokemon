@@ -7,7 +7,7 @@ import { BoolNullableFilter } from "../inputs/BoolNullableFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableListFilter } from "../inputs/IntNullableListFilter";
 import { NormalStatsRelationFilter } from "../inputs/NormalStatsRelationFilter";
-import { PokemonAbilitiesListRelationFilter } from "../inputs/PokemonAbilitiesListRelationFilter";
+import { PokemonAbilityListListRelationFilter } from "../inputs/PokemonAbilityListListRelationFilter";
 import { PokemonMegaListRelationFilter } from "../inputs/PokemonMegaListRelationFilter";
 import { PokemonNormalFormListRelationFilter } from "../inputs/PokemonNormalFormListRelationFilter";
 import { PokemonRegionListRelationFilter } from "../inputs/PokemonRegionListRelationFilter";
@@ -119,8 +119,8 @@ export class PokemonWhereInput {
   })
   PokemonRegion?: PokemonRegionListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonAbilitiesListRelationFilter, {
+  @TypeGraphQL.Field(_type => PokemonAbilityListListRelationFilter, {
     nullable: true
   })
-  PokemonAbilities?: PokemonAbilitiesListRelationFilter | undefined;
+  PokemonAbilityList?: PokemonAbilityListListRelationFilter | undefined;
 }

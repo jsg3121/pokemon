@@ -26,5 +26,5 @@ export class PokemonCount {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  PokemonAbilities!: number;
+  PokemonAbilityList!: number;
 }

@@ -3,6 +3,7 @@ export * from "./MegaStats/args";
 export * from "./NormalStats/args";
 export * from "./Pokemon/args";
 export * from "./PokemonAbilities/args";
+export * from "./PokemonAbilityList/args";
 export * from "./PokemonMega/args";
 export * from "./PokemonNormalForm/args";
 export * from "./PokemonRegion/args";

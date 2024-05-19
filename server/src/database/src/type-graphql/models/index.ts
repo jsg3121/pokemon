@@ -3,6 +3,7 @@ export { MegaStats } from "./MegaStats";
 export { NormalStats } from "./NormalStats";
 export { Pokemon } from "./Pokemon";
 export { PokemonAbilities } from "./PokemonAbilities";
+export { PokemonAbilityList } from "./PokemonAbilityList";
 export { PokemonMega } from "./PokemonMega";
 export { PokemonNormalForm } from "./PokemonNormalForm";
 export { PokemonRegion } from "./PokemonRegion";

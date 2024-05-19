@@ -3,7 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { NormalStatsOrderByWithRelationInput } from "../inputs/NormalStatsOrderByWithRelationInput";
-import { PokemonAbilitiesOrderByRelationAggregateInput } from "../inputs/PokemonAbilitiesOrderByRelationAggregateInput";
+import { PokemonAbilityListOrderByRelationAggregateInput } from "../inputs/PokemonAbilityListOrderByRelationAggregateInput";
 import { PokemonMegaOrderByRelationAggregateInput } from "../inputs/PokemonMegaOrderByRelationAggregateInput";
 import { PokemonNormalFormOrderByRelationAggregateInput } from "../inputs/PokemonNormalFormOrderByRelationAggregateInput";
 import { PokemonRegionOrderByRelationAggregateInput } from "../inputs/PokemonRegionOrderByRelationAggregateInput";
@@ -98,8 +98,8 @@ export class PokemonOrderByWithRelationInput {
   })
   PokemonRegion?: PokemonRegionOrderByRelationAggregateInput | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonAbilitiesOrderByRelationAggregateInput, {
+  @TypeGraphQL.Field(_type => PokemonAbilityListOrderByRelationAggregateInput, {
     nullable: true
   })
-  PokemonAbilities?: PokemonAbilitiesOrderByRelationAggregateInput | undefined;
+  PokemonAbilityList?: PokemonAbilityListOrderByRelationAggregateInput | undefined;
 }

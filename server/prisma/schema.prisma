@@ -16,24 +16,24 @@ datasource db {
 }
 
 model Pokemon {
-  id                Int                 @id @unique @default(autoincrement())
-  number            Int                 @unique
-  name              String              @db.VarChar(50)
-  type              String[]
-  isRegion          Boolean?            @default(false) @map("is_region")
-  isMega            Boolean?            @default(false) @map("is_mega")
-  typeSingle1       String              @map("type_single1") @db.VarChar(20)
-  typeSingle2       String?             @map("type_single2") @db.VarChar(20)
-  isEvolution       Boolean             @default(false) @map("is_evolution")
-  evolutionId       Int[]               @map("evolution_id")
-  generation        Int                 @map("generation")
-  isForm            Boolean             @default(false) @map("is_form")
-  abilityId         Int[]               @map("ability_id")
-  NormalStats       NormalStats?
-  PokemonMega       PokemonMega[]
-  PokemonNormalForm PokemonNormalForm[]
-  PokemonRegion     PokemonRegion[]
-  PokemonAbilities  PokemonAbilities[]
+  id                 Int                  @id @unique @default(autoincrement())
+  number             Int                  @unique
+  name               String               @db.VarChar(50)
+  type               String[]
+  isRegion           Boolean?             @default(false) @map("is_region")
+  isMega             Boolean?             @default(false) @map("is_mega")
+  typeSingle1        String               @map("type_single1") @db.VarChar(20)
+  typeSingle2        String?              @map("type_single2") @db.VarChar(20)
+  isEvolution        Boolean              @default(false) @map("is_evolution")
+  evolutionId        Int[]                @map("evolution_id")
+  generation         Int                  @map("generation")
+  isForm             Boolean              @default(false) @map("is_form")
+  abilityId          Int[]                @map("ability_id")
+  NormalStats        NormalStats?
+  PokemonMega        PokemonMega[]
+  PokemonNormalForm  PokemonNormalForm[]
+  PokemonRegion      PokemonRegion[]
+  PokemonAbilityList PokemonAbilityList[]
 
   @@map("pokemon")
 }
@@ -170,11 +170,23 @@ model VisitLog {
 
 model PokemonAbilities {
   id          Int    @id @unique @default(autoincrement())
-  abilityId   Int
   name        String @map("ability_name") @db.VarChar(50)
   descirption String @map("descirption") @db.Text
+  abilityId   Int    @map("ability_id")
 
-  Pokemon Pokemon? @relation(fields: [abilityId], references: [id])
+  PokemonAbilityList PokemonAbilityList? @relation(fields: [abilityId], references: [abilityId])
 
   @@map("abilities")
+}
+
+model PokemonAbilityList {
+  id        Int     @id @unique @default(autoincrement())
+  isHidden  Boolean @default(false) @map("is_hidden")
+  abilityId Int     @unique @map("ability_id")
+  pokemonId Int     @map("pokemon_id")
+
+  Pokemon          Pokemon?           @relation(fields: [pokemonId], references: [number])
+  PokemonAbilities PokemonAbilities[]
+
+  @@map("pokemon_ability_list")
 }

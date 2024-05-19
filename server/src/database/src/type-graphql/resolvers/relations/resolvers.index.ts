@@ -3,6 +3,7 @@ export { MegaStatsRelationsResolver } from "./MegaStats/MegaStatsRelationsResolv
 export { NormalStatsRelationsResolver } from "./NormalStats/NormalStatsRelationsResolver";
 export { PokemonRelationsResolver } from "./Pokemon/PokemonRelationsResolver";
 export { PokemonAbilitiesRelationsResolver } from "./PokemonAbilities/PokemonAbilitiesRelationsResolver";
+export { PokemonAbilityListRelationsResolver } from "./PokemonAbilityList/PokemonAbilityListRelationsResolver";
 export { PokemonMegaRelationsResolver } from "./PokemonMega/PokemonMegaRelationsResolver";
 export { PokemonNormalFormRelationsResolver } from "./PokemonNormalForm/PokemonNormalFormRelationsResolver";
 export { PokemonRegionRelationsResolver } from "./PokemonRegion/PokemonRegionRelationsResolver";
