@@ -39,14 +39,19 @@ export default class PokemonResolver {
   public async getSinglePokemon(
     @Arg('number') number: number
   ): Promise<Pokemon> {
-    return await prisma.pokemon.findUnique({
+    const pokemonData = await prisma.pokemon.findUnique({
       include: {
         NormalStats: true,
+        PokemonAbilityList: true,
       },
       where: {
         number,
       },
     })
+
+    return {
+      ...pokemonData,
+    }
   }
 
   /**
