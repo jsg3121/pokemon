@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { MegaStats } from "../models/MegaStats";
 import { Pokemon } from "../models/Pokemon";
+import { PokemonAbilityList } from "../models/PokemonAbilityList";
 import { PokemonMegaCount } from "../resolvers/outputs/PokemonMegaCount";
 
 @TypeGraphQL.ObjectType("PokemonMega", {
@@ -26,6 +27,11 @@ export class PokemonMega {
   })
   pokemonNumber!: number;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  name!: string;
+
   @TypeGraphQL.Field(_type => [String], {
     nullable: false
   })
@@ -46,9 +52,16 @@ export class PokemonMega {
   })
   statCode!: string;
 
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: false
+  })
+  abilityId!: number[];
+
   MegaStats?: MegaStats[];
 
   pokemon?: Pokemon;
+
+  PokemonAbilityList?: PokemonAbilityList[];
 
   @TypeGraphQL.Field(_type => PokemonMegaCount, {
     nullable: true

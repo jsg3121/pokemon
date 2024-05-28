@@ -12,6 +12,11 @@ export class PokemonRegionCreateManyPokemonInput {
   })
   id?: number | undefined;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  name?: string | undefined;
+
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
@@ -41,4 +46,9 @@ export class PokemonRegionCreateManyPokemonInput {
     nullable: false
   })
   statCode!: string;
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  abilityId?: number[] | undefined;
 }

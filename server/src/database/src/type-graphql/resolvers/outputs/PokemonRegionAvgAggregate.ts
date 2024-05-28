@@ -22,4 +22,9 @@ export class PokemonRegionAvgAggregate {
     nullable: true
   })
   pokemonNumber!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  abilityId!: number | null;
 }

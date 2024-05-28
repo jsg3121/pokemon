@@ -7,6 +7,7 @@ import { getTime } from '../../common'
 import abilityList from '../../../json/pokemon_ability_list.json'
 import abilityName from '../../../json/pokemon_ability_name.json'
 import abilityDescription from '../../../json/pokemon_ability_description.json'
+import megaAbilityList from '../../../json/pokemon_mega_ablility.json'
 
 const prisma = new PrismaClient()
 
@@ -426,6 +427,33 @@ listRouter.post('/change/ability/list', async (req, res) => {
         },
       })
     })
+    res.send('finish')
+  } catch (error) {
+    console.log(error)
+  }
+  res.end()
+})
+
+listRouter.post('/change/ability/mega', async (req, res) => {
+  try {
+    megaAbilityList.pokemon_v2_pokemon.forEach(async (pokemon, index) => {
+      const pokemonName =
+        pokemon.pokemon_v2_pokemonforms[0].pokemon_v2_pokemonformnames[0].name
+      const abilityId =
+        pokemon.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon
+          .pokemon_v2_pokemonabilities[0].pokemon_v2_ability.id
+
+      await prisma.pokemonMega.update({
+        where: {
+          id: index + 4,
+        },
+        data: {
+          name: pokemonName,
+          abilityId,
+        },
+      })
+    })
+
     res.send('finish')
   } catch (error) {
     console.log(error)

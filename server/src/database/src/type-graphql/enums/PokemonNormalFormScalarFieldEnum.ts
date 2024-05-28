@@ -8,7 +8,8 @@ export enum PokemonNormalFormScalarFieldEnum {
   typeSingle1 = "typeSingle1",
   typeSingle2 = "typeSingle2",
   imagePath = "imagePath",
-  statCode = "statCode"
+  statCode = "statCode",
+  abilityId = "abilityId"
 }
 TypeGraphQL.registerEnumType(PokemonNormalFormScalarFieldEnum, {
   name: "PokemonNormalFormScalarFieldEnum",

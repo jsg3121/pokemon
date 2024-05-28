@@ -23,6 +23,11 @@ export class PokemonRegionGroupBy {
   })
   pokemonId!: number;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  name!: string;
+
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
@@ -52,6 +57,11 @@ export class PokemonRegionGroupBy {
     nullable: false
   })
   statCode!: string;
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  abilityId!: number[] | null;
 
   @TypeGraphQL.Field(_type => PokemonRegionCountAggregate, {
     nullable: true

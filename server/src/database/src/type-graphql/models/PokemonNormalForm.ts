@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { FormStats } from "../models/FormStats";
 import { Pokemon } from "../models/Pokemon";
+import { PokemonAbilityList } from "../models/PokemonAbilityList";
 import { PokemonNormalFormCount } from "../resolvers/outputs/PokemonNormalFormCount";
 
 @TypeGraphQL.ObjectType("PokemonNormalForm", {
@@ -51,9 +52,16 @@ export class PokemonNormalForm {
   })
   statCode!: string;
 
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: false
+  })
+  abilityId!: number[];
+
   FormStats?: FormStats[];
 
   pokemon?: Pokemon;
+
+  PokemonAbilityList?: PokemonAbilityList[];
 
   @TypeGraphQL.Field(_type => PokemonNormalFormCount, {
     nullable: true

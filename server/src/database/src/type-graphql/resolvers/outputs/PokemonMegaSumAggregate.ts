@@ -22,4 +22,9 @@ export class PokemonMegaSumAggregate {
     nullable: true
   })
   pokemonNumber!: number | null;
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  abilityId!: number[] | null;
 }

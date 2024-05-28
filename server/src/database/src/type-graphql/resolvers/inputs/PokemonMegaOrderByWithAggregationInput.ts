@@ -31,6 +31,11 @@ export class PokemonMegaOrderByWithAggregationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  name?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   type?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
@@ -47,6 +52,11 @@ export class PokemonMegaOrderByWithAggregationInput {
     nullable: true
   })
   statCode?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  abilityId?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => PokemonMegaCountOrderByAggregateInput, {
     nullable: true

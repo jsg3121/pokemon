@@ -26,6 +26,11 @@ export class PokemonMegaMinAggregate {
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
+  name!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
   typeSingle1!: string | null;
 
   @TypeGraphQL.Field(_type => String, {

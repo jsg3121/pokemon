@@ -17,4 +17,9 @@ export class PokemonNormalFormAvgAggregate {
     nullable: true
   })
   pokemonId!: number | null;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
+    nullable: true
+  })
+  abilityId!: number | null;
 }

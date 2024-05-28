@@ -1,7 +1,9 @@
 import * as TypeGraphQL from "type-graphql";
 import { Pokemon } from "../../../models/Pokemon";
+import { PokemonAbilityList } from "../../../models/PokemonAbilityList";
 import { PokemonRegion } from "../../../models/PokemonRegion";
 import { RegionStats } from "../../../models/RegionStats";
+import { PokemonRegionPokemonAbilityListArgs } from "./args/PokemonRegionPokemonAbilityListArgs";
 import { PokemonRegionRegionStatsArgs } from "./args/PokemonRegionRegionStatsArgs";
 import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
@@ -27,5 +29,16 @@ export class PokemonRegionRelationsResolver {
         id: pokemonRegion.id,
       },
     }).RegionStats(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [PokemonAbilityList], {
+    nullable: false
+  })
+  async PokemonAbilityList(@TypeGraphQL.Root() pokemonRegion: PokemonRegion, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PokemonRegionPokemonAbilityListArgs): Promise<PokemonAbilityList[]> {
+    return getPrismaFromContext(ctx).pokemonRegion.findUnique({
+      where: {
+        id: pokemonRegion.id,
+      },
+    }).PokemonAbilityList(args);
   }
 }

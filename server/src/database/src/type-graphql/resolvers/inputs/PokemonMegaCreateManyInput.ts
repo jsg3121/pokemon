@@ -22,6 +22,11 @@ export class PokemonMegaCreateManyInput {
   })
   pokemonNumber!: number;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  name?: string | undefined;
+
   @TypeGraphQL.Field(_type => [String], {
     nullable: true
   })
@@ -41,4 +46,9 @@ export class PokemonMegaCreateManyInput {
     nullable: false
   })
   statCode!: string;
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  abilityId?: number[] | undefined;
 }

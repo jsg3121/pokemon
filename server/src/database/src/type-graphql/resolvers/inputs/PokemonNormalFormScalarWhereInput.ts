@@ -3,6 +3,7 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFilter } from "../inputs/IntFilter";
+import { IntNullableListFilter } from "../inputs/IntNullableListFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
 import { StringNullableListFilter } from "../inputs/StringNullableListFilter";
@@ -65,4 +66,9 @@ export class PokemonNormalFormScalarWhereInput {
     nullable: true
   })
   statCode?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IntNullableListFilter, {
+    nullable: true
+  })
+  abilityId?: IntNullableListFilter | undefined;
 }

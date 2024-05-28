@@ -53,6 +53,11 @@ export class PokemonNormalFormGroupBy {
   })
   statCode!: string;
 
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  abilityId!: number[] | null;
+
   @TypeGraphQL.Field(_type => PokemonNormalFormCountAggregate, {
     nullable: true
   })

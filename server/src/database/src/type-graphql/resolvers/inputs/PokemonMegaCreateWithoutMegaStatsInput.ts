@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { PokemonAbilityListCreateNestedManyWithoutPokemonMegaInput } from "../inputs/PokemonAbilityListCreateNestedManyWithoutPokemonMegaInput";
 import { PokemonCreateNestedOneWithoutPokemonMegaInput } from "../inputs/PokemonCreateNestedOneWithoutPokemonMegaInput";
 
 @TypeGraphQL.InputType("PokemonMegaCreateWithoutMegaStatsInput", {
@@ -12,6 +13,11 @@ export class PokemonMegaCreateWithoutMegaStatsInput {
     nullable: false
   })
   pokemonNumber!: number;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  name?: string | undefined;
 
   @TypeGraphQL.Field(_type => [String], {
     nullable: true
@@ -33,8 +39,18 @@ export class PokemonMegaCreateWithoutMegaStatsInput {
   })
   statCode!: string;
 
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  abilityId?: number[] | undefined;
+
   @TypeGraphQL.Field(_type => PokemonCreateNestedOneWithoutPokemonMegaInput, {
     nullable: false
   })
   pokemon!: PokemonCreateNestedOneWithoutPokemonMegaInput;
+
+  @TypeGraphQL.Field(_type => PokemonAbilityListCreateNestedManyWithoutPokemonMegaInput, {
+    nullable: true
+  })
+  PokemonAbilityList?: PokemonAbilityListCreateNestedManyWithoutPokemonMegaInput | undefined;
 }

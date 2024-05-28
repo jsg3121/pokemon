@@ -4,6 +4,8 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { FormStatsListRelationFilter } from "../inputs/FormStatsListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
+import { IntNullableListFilter } from "../inputs/IntNullableListFilter";
+import { PokemonAbilityListListRelationFilter } from "../inputs/PokemonAbilityListListRelationFilter";
 import { PokemonRelationFilter } from "../inputs/PokemonRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
@@ -68,6 +70,11 @@ export class PokemonNormalFormWhereInput {
   })
   statCode?: StringFilter | undefined;
 
+  @TypeGraphQL.Field(_type => IntNullableListFilter, {
+    nullable: true
+  })
+  abilityId?: IntNullableListFilter | undefined;
+
   @TypeGraphQL.Field(_type => FormStatsListRelationFilter, {
     nullable: true
   })
@@ -77,4 +84,9 @@ export class PokemonNormalFormWhereInput {
     nullable: true
   })
   pokemon?: PokemonRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonAbilityListListRelationFilter, {
+    nullable: true
+  })
+  PokemonAbilityList?: PokemonAbilityListListRelationFilter | undefined;
 }

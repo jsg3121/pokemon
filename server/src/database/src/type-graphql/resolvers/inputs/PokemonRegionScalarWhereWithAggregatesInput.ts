@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
+import { IntNullableListFilter } from "../inputs/IntNullableListFilter";
 import { IntWithAggregatesFilter } from "../inputs/IntWithAggregatesFilter";
 import { StringNullableListFilter } from "../inputs/StringNullableListFilter";
 import { StringNullableWithAggregatesFilter } from "../inputs/StringNullableWithAggregatesFilter";
@@ -36,6 +37,11 @@ export class PokemonRegionScalarWhereWithAggregatesInput {
   })
   pokemonId?: IntWithAggregatesFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
+  })
+  name?: StringWithAggregatesFilter | undefined;
+
   @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
     nullable: true
   })
@@ -65,4 +71,9 @@ export class PokemonRegionScalarWhereWithAggregatesInput {
     nullable: true
   })
   statCode?: StringWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => IntNullableListFilter, {
+    nullable: true
+  })
+  abilityId?: IntNullableListFilter | undefined;
 }

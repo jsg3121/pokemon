@@ -20,7 +20,7 @@ export class GroupByPokemonMegaArgs {
   @TypeGraphQL.Field(_type => [PokemonMegaScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "pokemonId" | "pokemonNumber" | "type" | "typeSingle1" | "typeSingle2" | "statCode">;
+  by!: Array<"id" | "pokemonId" | "pokemonNumber" | "name" | "type" | "typeSingle1" | "typeSingle2" | "statCode" | "abilityId">;
 
   @TypeGraphQL.Field(_type => PokemonMegaScalarWhereWithAggregatesInput, {
     nullable: true

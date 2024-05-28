@@ -41,4 +41,9 @@ export class PokemonNormalFormCreateManyPokemonInput {
     nullable: false
   })
   statCode!: string;
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  abilityId?: number[] | undefined;
 }

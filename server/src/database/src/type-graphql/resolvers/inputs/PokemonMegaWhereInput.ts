@@ -3,7 +3,9 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFilter } from "../inputs/IntFilter";
+import { IntNullableListFilter } from "../inputs/IntNullableListFilter";
 import { MegaStatsListRelationFilter } from "../inputs/MegaStatsListRelationFilter";
+import { PokemonAbilityListListRelationFilter } from "../inputs/PokemonAbilityListListRelationFilter";
 import { PokemonRelationFilter } from "../inputs/PokemonRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
@@ -43,6 +45,11 @@ export class PokemonMegaWhereInput {
   })
   pokemonNumber?: IntFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  name?: StringFilter | undefined;
+
   @TypeGraphQL.Field(_type => StringNullableListFilter, {
     nullable: true
   })
@@ -63,6 +70,11 @@ export class PokemonMegaWhereInput {
   })
   statCode?: StringFilter | undefined;
 
+  @TypeGraphQL.Field(_type => IntNullableListFilter, {
+    nullable: true
+  })
+  abilityId?: IntNullableListFilter | undefined;
+
   @TypeGraphQL.Field(_type => MegaStatsListRelationFilter, {
     nullable: true
   })
@@ -72,4 +84,9 @@ export class PokemonMegaWhereInput {
     nullable: true
   })
   pokemon?: PokemonRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonAbilityListListRelationFilter, {
+    nullable: true
+  })
+  PokemonAbilityList?: PokemonAbilityListListRelationFilter | undefined;
 }

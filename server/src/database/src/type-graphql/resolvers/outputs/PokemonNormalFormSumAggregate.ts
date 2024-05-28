@@ -17,4 +17,9 @@ export class PokemonNormalFormSumAggregate {
     nullable: true
   })
   pokemonId!: number | null;
+
+  @TypeGraphQL.Field(_type => [TypeGraphQL.Int], {
+    nullable: true
+  })
+  abilityId!: number[] | null;
 }

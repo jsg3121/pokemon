@@ -26,6 +26,11 @@ export class PokemonRegionOrderByWithAggregationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  name?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   pokemonNumber?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
@@ -52,6 +57,11 @@ export class PokemonRegionOrderByWithAggregationInput {
     nullable: true
   })
   statCode?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  abilityId?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => PokemonRegionCountOrderByAggregateInput, {
     nullable: true
