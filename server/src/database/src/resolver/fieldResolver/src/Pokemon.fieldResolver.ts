@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { Arg, FieldResolver, Resolver, Root } from 'type-graphql'
+import { FieldResolver, Resolver, Root } from 'type-graphql'
 import { PokemonAbiltyInfo } from '../../../objects'
 import { NormalStats, Pokemon } from '../../../type-graphql'
 
