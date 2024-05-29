@@ -1,2 +1,2 @@
-export { PokemonRegionPokemonAbilityListArgs } from "./PokemonRegionPokemonAbilityListArgs";
+export { PokemonRegionPokemonRegionFormAbilityListArgs } from "./PokemonRegionPokemonRegionFormAbilityListArgs";
 export { PokemonRegionRegionStatsArgs } from "./PokemonRegionRegionStatsArgs";

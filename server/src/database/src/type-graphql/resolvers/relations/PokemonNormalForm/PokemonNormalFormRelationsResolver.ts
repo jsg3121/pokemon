@@ -1,10 +1,10 @@
 import * as TypeGraphQL from "type-graphql";
 import { FormStats } from "../../../models/FormStats";
 import { Pokemon } from "../../../models/Pokemon";
-import { PokemonAbilityList } from "../../../models/PokemonAbilityList";
 import { PokemonNormalForm } from "../../../models/PokemonNormalForm";
+import { PokemonNormalFormAbilityList } from "../../../models/PokemonNormalFormAbilityList";
 import { PokemonNormalFormFormStatsArgs } from "./args/PokemonNormalFormFormStatsArgs";
-import { PokemonNormalFormPokemonAbilityListArgs } from "./args/PokemonNormalFormPokemonAbilityListArgs";
+import { PokemonNormalFormPokemonNormalFormAbilityListArgs } from "./args/PokemonNormalFormPokemonNormalFormAbilityListArgs";
 import { transformInfoIntoPrismaArgs, getPrismaFromContext, transformCountFieldIntoSelectRelationsCount } from "../../../helpers";
 
 @TypeGraphQL.Resolver(_of => PokemonNormalForm)
@@ -31,14 +31,14 @@ export class PokemonNormalFormRelationsResolver {
     }).pokemon({});
   }
 
-  @TypeGraphQL.FieldResolver(_type => [PokemonAbilityList], {
+  @TypeGraphQL.FieldResolver(_type => [PokemonNormalFormAbilityList], {
     nullable: false
   })
-  async PokemonAbilityList(@TypeGraphQL.Root() pokemonNormalForm: PokemonNormalForm, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PokemonNormalFormPokemonAbilityListArgs): Promise<PokemonAbilityList[]> {
+  async PokemonNormalFormAbilityList(@TypeGraphQL.Root() pokemonNormalForm: PokemonNormalForm, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PokemonNormalFormPokemonNormalFormAbilityListArgs): Promise<PokemonNormalFormAbilityList[]> {
     return getPrismaFromContext(ctx).pokemonNormalForm.findUnique({
       where: {
         id: pokemonNormalForm.id,
       },
-    }).PokemonAbilityList(args);
+    }).PokemonNormalFormAbilityList(args);
   }
 }

@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableListFilter } from "../inputs/IntNullableListFilter";
-import { PokemonAbilityListListRelationFilter } from "../inputs/PokemonAbilityListListRelationFilter";
+import { PokemonRegionFormAbilityListListRelationFilter } from "../inputs/PokemonRegionFormAbilityListListRelationFilter";
 import { PokemonRelationFilter } from "../inputs/PokemonRelationFilter";
 import { RegionStatsListRelationFilter } from "../inputs/RegionStatsListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
@@ -90,8 +90,8 @@ export class PokemonRegionWhereInput {
   })
   RegionStats?: RegionStatsListRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonAbilityListListRelationFilter, {
+  @TypeGraphQL.Field(_type => PokemonRegionFormAbilityListListRelationFilter, {
     nullable: true
   })
-  PokemonAbilityList?: PokemonAbilityListListRelationFilter | undefined;
+  PokemonRegionFormAbilityList?: PokemonRegionFormAbilityListListRelationFilter | undefined;
 }

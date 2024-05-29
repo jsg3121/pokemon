@@ -8,6 +8,7 @@ import abilityList from '../../../json/pokemon_ability_list.json'
 import abilityName from '../../../json/pokemon_ability_name.json'
 import abilityDescription from '../../../json/pokemon_ability_description.json'
 import megaAbilityList from '../../../json/pokemon_mega_ablility.json'
+import formAbilityList from '../../../json/pokemon_form_ability.json'
 
 const prisma = new PrismaClient()
 
@@ -436,23 +437,69 @@ listRouter.post('/change/ability/list', async (req, res) => {
 
 listRouter.post('/change/ability/mega', async (req, res) => {
   try {
-    megaAbilityList.pokemon_v2_pokemon.forEach(async (pokemon, index) => {
+    const data = megaAbilityList.pokemon_v2_pokemon.map((pokemon, index) => {
       const pokemonName =
         pokemon.pokemon_v2_pokemonforms[0].pokemon_v2_pokemonformnames[0].name
+      const pokemonNumber = pokemon.pokemon_species_id
       const abilityId =
         pokemon.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon
           .pokemon_v2_pokemonabilities[0].pokemon_v2_ability.id
 
-      await prisma.pokemonMega.update({
-        where: {
-          id: index + 4,
-        },
-        data: {
-          name: pokemonName,
-          abilityId,
-        },
-      })
+      return {
+        abilityId,
+        pokemonName,
+        pokemonNumber,
+      }
     })
+
+    data
+      .sort(
+        (
+          { pokemonNumber: pokemonNumberA },
+          { pokemonNumber: pokemonNumberB }
+        ) => pokemonNumberA - pokemonNumberB
+      )
+      .forEach(async (info, index) => {
+        await prisma.pokemonMega.update({
+          where: {
+            id: index + 1,
+          },
+          data: {
+            abilityId: info.abilityId,
+            name: info.pokemonName,
+          },
+        })
+      })
+
+    res.send('finish')
+  } catch (error) {
+    console.log(error)
+  }
+  res.end()
+})
+
+listRouter.post('/change/ability/forms', async (req, res) => {
+  try {
+    const data =
+      formAbilityList.pokemon_v2_language[0].pokemon_v2_pokemonformnames.forEach(
+        (info) => {
+          const infoList =
+            info.pokemon_v2_pokemonform.pokemon_v2_pokemon.pokemon_v2_pokemonabilities.map(
+              (ability) => {
+                return {
+                  isHidden: ability.is_hidden,
+                  abilityId: ability.ability_id,
+                }
+              }
+            )
+
+          return {
+            formName: info.name,
+            pokemonId:
+              info.pokemon_v2_pokemonform.pokemon_v2_pokemon.pokemon_species_id,
+          }
+        }
+      )
 
     res.send('finish')
   } catch (error) {

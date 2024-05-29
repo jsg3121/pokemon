@@ -5,7 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { FormStatsListRelationFilter } from "../inputs/FormStatsListRelationFilter";
 import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableListFilter } from "../inputs/IntNullableListFilter";
-import { PokemonAbilityListListRelationFilter } from "../inputs/PokemonAbilityListListRelationFilter";
+import { PokemonNormalFormAbilityListListRelationFilter } from "../inputs/PokemonNormalFormAbilityListListRelationFilter";
 import { PokemonRelationFilter } from "../inputs/PokemonRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
@@ -85,8 +85,8 @@ export class PokemonNormalFormWhereInput {
   })
   pokemon?: PokemonRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => PokemonAbilityListListRelationFilter, {
+  @TypeGraphQL.Field(_type => PokemonNormalFormAbilityListListRelationFilter, {
     nullable: true
   })
-  PokemonAbilityList?: PokemonAbilityListListRelationFilter | undefined;
+  PokemonNormalFormAbilityList?: PokemonNormalFormAbilityListListRelationFilter | undefined;
 }

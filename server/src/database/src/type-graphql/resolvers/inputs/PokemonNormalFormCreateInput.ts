@@ -3,8 +3,8 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { FormStatsCreateNestedManyWithoutNormalFormPokemonInput } from "../inputs/FormStatsCreateNestedManyWithoutNormalFormPokemonInput";
-import { PokemonAbilityListCreateNestedManyWithoutPokemonNormalFormInput } from "../inputs/PokemonAbilityListCreateNestedManyWithoutPokemonNormalFormInput";
 import { PokemonCreateNestedOneWithoutPokemonNormalFormInput } from "../inputs/PokemonCreateNestedOneWithoutPokemonNormalFormInput";
+import { PokemonNormalFormAbilityListCreateNestedManyWithoutPokemonNormalFormInput } from "../inputs/PokemonNormalFormAbilityListCreateNestedManyWithoutPokemonNormalFormInput";
 
 @TypeGraphQL.InputType("PokemonNormalFormCreateInput", {
   isAbstract: true
@@ -55,8 +55,8 @@ export class PokemonNormalFormCreateInput {
   })
   pokemon!: PokemonCreateNestedOneWithoutPokemonNormalFormInput;
 
-  @TypeGraphQL.Field(_type => PokemonAbilityListCreateNestedManyWithoutPokemonNormalFormInput, {
+  @TypeGraphQL.Field(_type => PokemonNormalFormAbilityListCreateNestedManyWithoutPokemonNormalFormInput, {
     nullable: true
   })
-  PokemonAbilityList?: PokemonAbilityListCreateNestedManyWithoutPokemonNormalFormInput | undefined;
+  PokemonNormalFormAbilityList?: PokemonNormalFormAbilityListCreateNestedManyWithoutPokemonNormalFormInput | undefined;
 }

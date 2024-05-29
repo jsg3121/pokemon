@@ -3,7 +3,6 @@ import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { MegaStatsUpdateManyWithoutMegaPokemonNestedInput } from "../inputs/MegaStatsUpdateManyWithoutMegaPokemonNestedInput";
-import { PokemonAbilityListUpdateManyWithoutPokemonMegaNestedInput } from "../inputs/PokemonAbilityListUpdateManyWithoutPokemonMegaNestedInput";
 import { PokemonUpdateOneRequiredWithoutPokemonMegaNestedInput } from "../inputs/PokemonUpdateOneRequiredWithoutPokemonMegaNestedInput";
 
 @TypeGraphQL.InputType("PokemonMegaUpdateInput", {
@@ -54,9 +53,4 @@ export class PokemonMegaUpdateInput {
     nullable: true
   })
   pokemon?: PokemonUpdateOneRequiredWithoutPokemonMegaNestedInput | undefined;
-
-  @TypeGraphQL.Field(_type => PokemonAbilityListUpdateManyWithoutPokemonMegaNestedInput, {
-    nullable: true
-  })
-  PokemonAbilityList?: PokemonAbilityListUpdateManyWithoutPokemonMegaNestedInput | undefined;
 }

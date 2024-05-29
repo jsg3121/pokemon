@@ -16,5 +16,5 @@ export class PokemonNormalFormCount {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  PokemonAbilityList!: number;
+  PokemonNormalFormAbilityList!: number;
 }

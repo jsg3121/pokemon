@@ -12,9 +12,4 @@ export class PokemonMegaCount {
     nullable: false
   })
   MegaStats!: number;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
-  PokemonAbilityList!: number;
 }

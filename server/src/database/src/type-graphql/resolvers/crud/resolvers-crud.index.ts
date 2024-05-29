@@ -6,7 +6,9 @@ export { PokemonAbilitiesCrudResolver } from "./PokemonAbilities/PokemonAbilitie
 export { PokemonAbilityListCrudResolver } from "./PokemonAbilityList/PokemonAbilityListCrudResolver";
 export { PokemonMegaCrudResolver } from "./PokemonMega/PokemonMegaCrudResolver";
 export { PokemonNormalFormCrudResolver } from "./PokemonNormalForm/PokemonNormalFormCrudResolver";
+export { PokemonNormalFormAbilityListCrudResolver } from "./PokemonNormalFormAbilityList/PokemonNormalFormAbilityListCrudResolver";
 export { PokemonRegionCrudResolver } from "./PokemonRegion/PokemonRegionCrudResolver";
+export { PokemonRegionFormAbilityListCrudResolver } from "./PokemonRegionFormAbilityList/PokemonRegionFormAbilityListCrudResolver";
 export { RegionStatsCrudResolver } from "./RegionStats/RegionStatsCrudResolver";
 export { TypeRelationCrudResolver } from "./TypeRelation/TypeRelationCrudResolver";
 export { UseCountCrudResolver } from "./UseCount/UseCountCrudResolver";

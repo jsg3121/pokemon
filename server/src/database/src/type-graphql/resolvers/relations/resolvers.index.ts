@@ -6,5 +6,7 @@ export { PokemonAbilitiesRelationsResolver } from "./PokemonAbilities/PokemonAbi
 export { PokemonAbilityListRelationsResolver } from "./PokemonAbilityList/PokemonAbilityListRelationsResolver";
 export { PokemonMegaRelationsResolver } from "./PokemonMega/PokemonMegaRelationsResolver";
 export { PokemonNormalFormRelationsResolver } from "./PokemonNormalForm/PokemonNormalFormRelationsResolver";
+export { PokemonNormalFormAbilityListRelationsResolver } from "./PokemonNormalFormAbilityList/PokemonNormalFormAbilityListRelationsResolver";
 export { PokemonRegionRelationsResolver } from "./PokemonRegion/PokemonRegionRelationsResolver";
+export { PokemonRegionFormAbilityListRelationsResolver } from "./PokemonRegionFormAbilityList/PokemonRegionFormAbilityListRelationsResolver";
 export { RegionStatsRelationsResolver } from "./RegionStats/RegionStatsRelationsResolver";
