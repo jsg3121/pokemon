@@ -191,6 +191,9 @@ export default class PokemonResolver {
       where: {
         pokemonId: number,
       },
+      include: {
+        PokemonNormalFormAbilityList: true,
+      },
       orderBy: {
         id: 'asc',
       },

@@ -8,6 +8,7 @@ import {
   PokemonRegion,
   RegionStats,
 } from '../../../type-graphql'
+import { PokemonNormalFormAbilityInfo } from '../../../objects/src/pokemon.object'
 
 const prisma = new PrismaClient()
 
@@ -56,6 +57,41 @@ class FormFieldResover {
         statCode: pokemon.statCode,
       },
     })
+  }
+
+  @FieldResolver(() => [PokemonNormalFormAbilityInfo], {
+    name: 'abilities',
+    description: 'pokemonList fieldResover',
+  })
+  public async getAilities(
+    @Root() pokemon: PokemonNormalForm
+  ): Promise<Array<PokemonNormalFormAbilityInfo>> {
+    const abilityIds = pokemon.PokemonNormalFormAbilityList.map(
+      (item) => item.abilityId
+    )
+
+    const abilityInfo = await prisma.pokemonAbilities.findMany({
+      where: {
+        abilityId: {
+          in: abilityIds,
+        },
+      },
+    })
+
+    const abilities: Array<PokemonNormalFormAbilityInfo> = abilityIds.map(
+      (_, index) => {
+        const abilitData = pokemon.PokemonNormalFormAbilityList[index]
+        return {
+          statCode: abilitData.statCode,
+          abilityId: abilitData.abilityId,
+          name: abilityInfo[index].name,
+          description: abilityInfo[index].description,
+          isHidden: abilitData.isHidden,
+        }
+      }
+    )
+
+    return abilities
   }
 }
 
