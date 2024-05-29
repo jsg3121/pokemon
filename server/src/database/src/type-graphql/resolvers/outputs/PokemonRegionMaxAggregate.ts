@@ -18,11 +18,6 @@ export class PokemonRegionMaxAggregate {
   })
   pokemonId!: number | null;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  name!: string | null;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })
@@ -47,4 +42,9 @@ export class PokemonRegionMaxAggregate {
     nullable: true
   })
   statCode!: string | null;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  name!: string | null;
 }

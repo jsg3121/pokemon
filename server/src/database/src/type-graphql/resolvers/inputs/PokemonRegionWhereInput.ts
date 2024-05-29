@@ -40,11 +40,6 @@ export class PokemonRegionWhereInput {
   })
   pokemonId?: IntFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringFilter, {
-    nullable: true
-  })
-  name?: StringFilter | undefined;
-
   @TypeGraphQL.Field(_type => IntFilter, {
     nullable: true
   })
@@ -80,18 +75,23 @@ export class PokemonRegionWhereInput {
   })
   abilityId?: IntNullableListFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  name?: StringFilter | undefined;
+
   @TypeGraphQL.Field(_type => PokemonRelationFilter, {
     nullable: true
   })
   pokemon?: PokemonRelationFilter | undefined;
 
-  @TypeGraphQL.Field(_type => RegionStatsListRelationFilter, {
-    nullable: true
-  })
-  RegionStats?: RegionStatsListRelationFilter | undefined;
-
   @TypeGraphQL.Field(_type => PokemonRegionFormAbilityListListRelationFilter, {
     nullable: true
   })
   PokemonRegionFormAbilityList?: PokemonRegionFormAbilityListListRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => RegionStatsListRelationFilter, {
+    nullable: true
+  })
+  RegionStats?: RegionStatsListRelationFilter | undefined;
 }

@@ -83,6 +83,11 @@ export class PokemonOrderByWithRelationInput {
   })
   NormalStats?: NormalStatsOrderByWithRelationInput | undefined;
 
+  @TypeGraphQL.Field(_type => PokemonAbilityListOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  PokemonAbilityList?: PokemonAbilityListOrderByRelationAggregateInput | undefined;
+
   @TypeGraphQL.Field(_type => PokemonMegaOrderByRelationAggregateInput, {
     nullable: true
   })
@@ -97,9 +102,4 @@ export class PokemonOrderByWithRelationInput {
     nullable: true
   })
   PokemonRegion?: PokemonRegionOrderByRelationAggregateInput | undefined;
-
-  @TypeGraphQL.Field(_type => PokemonAbilityListOrderByRelationAggregateInput, {
-    nullable: true
-  })
-  PokemonAbilityList?: PokemonAbilityListOrderByRelationAggregateInput | undefined;
 }

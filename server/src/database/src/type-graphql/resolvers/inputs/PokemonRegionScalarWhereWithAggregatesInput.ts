@@ -37,11 +37,6 @@ export class PokemonRegionScalarWhereWithAggregatesInput {
   })
   pokemonId?: IntWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
-    nullable: true
-  })
-  name?: StringWithAggregatesFilter | undefined;
-
   @TypeGraphQL.Field(_type => IntWithAggregatesFilter, {
     nullable: true
   })
@@ -76,4 +71,9 @@ export class PokemonRegionScalarWhereWithAggregatesInput {
     nullable: true
   })
   abilityId?: IntNullableListFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
+  })
+  name?: StringWithAggregatesFilter | undefined;
 }

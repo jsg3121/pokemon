@@ -24,11 +24,6 @@ export class PokemonRegionOrderByWithRelationInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  name?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
   pokemonNumber?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
@@ -61,18 +56,23 @@ export class PokemonRegionOrderByWithRelationInput {
   })
   abilityId?: "asc" | "desc" | undefined;
 
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  name?: "asc" | "desc" | undefined;
+
   @TypeGraphQL.Field(_type => PokemonOrderByWithRelationInput, {
     nullable: true
   })
   pokemon?: PokemonOrderByWithRelationInput | undefined;
 
-  @TypeGraphQL.Field(_type => RegionStatsOrderByRelationAggregateInput, {
-    nullable: true
-  })
-  RegionStats?: RegionStatsOrderByRelationAggregateInput | undefined;
-
   @TypeGraphQL.Field(_type => PokemonRegionFormAbilityListOrderByRelationAggregateInput, {
     nullable: true
   })
   PokemonRegionFormAbilityList?: PokemonRegionFormAbilityListOrderByRelationAggregateInput | undefined;
+
+  @TypeGraphQL.Field(_type => RegionStatsOrderByRelationAggregateInput, {
+    nullable: true
+  })
+  RegionStats?: RegionStatsOrderByRelationAggregateInput | undefined;
 }

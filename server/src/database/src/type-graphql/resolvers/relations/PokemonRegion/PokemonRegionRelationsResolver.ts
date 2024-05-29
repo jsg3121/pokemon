@@ -20,17 +20,6 @@ export class PokemonRegionRelationsResolver {
     }).pokemon({});
   }
 
-  @TypeGraphQL.FieldResolver(_type => [RegionStats], {
-    nullable: false
-  })
-  async RegionStats(@TypeGraphQL.Root() pokemonRegion: PokemonRegion, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PokemonRegionRegionStatsArgs): Promise<RegionStats[]> {
-    return getPrismaFromContext(ctx).pokemonRegion.findUnique({
-      where: {
-        id: pokemonRegion.id,
-      },
-    }).RegionStats(args);
-  }
-
   @TypeGraphQL.FieldResolver(_type => [PokemonRegionFormAbilityList], {
     nullable: false
   })
@@ -40,5 +29,16 @@ export class PokemonRegionRelationsResolver {
         id: pokemonRegion.id,
       },
     }).PokemonRegionFormAbilityList(args);
+  }
+
+  @TypeGraphQL.FieldResolver(_type => [RegionStats], {
+    nullable: false
+  })
+  async RegionStats(@TypeGraphQL.Root() pokemonRegion: PokemonRegion, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PokemonRegionRegionStatsArgs): Promise<RegionStats[]> {
+    return getPrismaFromContext(ctx).pokemonRegion.findUnique({
+      where: {
+        id: pokemonRegion.id,
+      },
+    }).RegionStats(args);
   }
 }

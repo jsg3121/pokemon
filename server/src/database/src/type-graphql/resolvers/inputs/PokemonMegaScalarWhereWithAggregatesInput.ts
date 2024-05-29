@@ -42,11 +42,6 @@ export class PokemonMegaScalarWhereWithAggregatesInput {
   })
   pokemonNumber?: IntWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
-    nullable: true
-  })
-  name?: StringWithAggregatesFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringNullableListFilter, {
     nullable: true
   })
@@ -71,4 +66,9 @@ export class PokemonMegaScalarWhereWithAggregatesInput {
     nullable: true
   })
   abilityId?: IntNullableListFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
+  })
+  name?: StringWithAggregatesFilter | undefined;
 }

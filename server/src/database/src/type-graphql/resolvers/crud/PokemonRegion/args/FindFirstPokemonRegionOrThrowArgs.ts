@@ -35,5 +35,5 @@ export class FindFirstPokemonRegionOrThrowArgs {
   @TypeGraphQL.Field(_type => [PokemonRegionScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "pokemonId" | "name" | "pokemonNumber" | "region" | "type" | "typeSingle1" | "typeSingle2" | "statCode" | "abilityId"> | undefined;
+  distinct?: Array<"id" | "pokemonId" | "pokemonNumber" | "region" | "type" | "typeSingle1" | "typeSingle2" | "statCode" | "abilityId" | "name"> | undefined;
 }

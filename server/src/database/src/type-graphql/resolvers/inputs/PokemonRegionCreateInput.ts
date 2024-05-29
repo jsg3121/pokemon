@@ -10,11 +10,6 @@ import { RegionStatsCreateNestedManyWithoutRegionPokemonInput } from "../inputs/
   isAbstract: true
 })
 export class PokemonRegionCreateInput {
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  name?: string | undefined;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
@@ -50,18 +45,23 @@ export class PokemonRegionCreateInput {
   })
   abilityId?: number[] | undefined;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  name?: string | undefined;
+
   @TypeGraphQL.Field(_type => PokemonCreateNestedOneWithoutPokemonRegionInput, {
     nullable: false
   })
   pokemon!: PokemonCreateNestedOneWithoutPokemonRegionInput;
 
-  @TypeGraphQL.Field(_type => RegionStatsCreateNestedManyWithoutRegionPokemonInput, {
-    nullable: true
-  })
-  RegionStats?: RegionStatsCreateNestedManyWithoutRegionPokemonInput | undefined;
-
   @TypeGraphQL.Field(_type => PokemonRegionFormAbilityListCreateNestedManyWithoutPokemonRegionInput, {
     nullable: true
   })
   PokemonRegionFormAbilityList?: PokemonRegionFormAbilityListCreateNestedManyWithoutPokemonRegionInput | undefined;
+
+  @TypeGraphQL.Field(_type => RegionStatsCreateNestedManyWithoutRegionPokemonInput, {
+    nullable: true
+  })
+  RegionStats?: RegionStatsCreateNestedManyWithoutRegionPokemonInput | undefined;
 }

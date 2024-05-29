@@ -7,11 +7,6 @@ import { DecimalJSScalar } from "../../scalars";
   isAbstract: true
 })
 export class PokemonRegionUpdateManyMutationInput {
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  name?: string | undefined;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true
   })
@@ -46,4 +41,9 @@ export class PokemonRegionUpdateManyMutationInput {
     nullable: true
   })
   abilityId?: number[] | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  name?: string | undefined;
 }

@@ -26,11 +26,6 @@ export class PokemonMega {
   })
   pokemonNumber!: number;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
-  })
-  name!: string;
-
   @TypeGraphQL.Field(_type => [String], {
     nullable: false
   })
@@ -55,6 +50,11 @@ export class PokemonMega {
     nullable: false
   })
   abilityId!: number[];
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  name!: string;
 
   MegaStats?: MegaStats[];
 

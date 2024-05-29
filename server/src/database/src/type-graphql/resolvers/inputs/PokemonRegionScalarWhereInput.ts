@@ -37,11 +37,6 @@ export class PokemonRegionScalarWhereInput {
   })
   pokemonId?: IntFilter | undefined;
 
-  @TypeGraphQL.Field(_type => StringFilter, {
-    nullable: true
-  })
-  name?: StringFilter | undefined;
-
   @TypeGraphQL.Field(_type => IntFilter, {
     nullable: true
   })
@@ -76,4 +71,9 @@ export class PokemonRegionScalarWhereInput {
     nullable: true
   })
   abilityId?: IntNullableListFilter | undefined;
+
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  name?: StringFilter | undefined;
 }

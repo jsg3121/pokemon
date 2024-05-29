@@ -22,11 +22,6 @@ export class PokemonRegion {
   })
   pokemonId!: number;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: false
-  })
-  name!: string;
-
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
@@ -62,11 +57,16 @@ export class PokemonRegion {
   })
   abilityId!: number[];
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  name!: string;
+
   pokemon?: Pokemon;
 
-  RegionStats?: RegionStats[];
-
   PokemonRegionFormAbilityList?: PokemonRegionFormAbilityList[];
+
+  RegionStats?: RegionStats[];
 
   @TypeGraphQL.Field(_type => PokemonRegionCount, {
     nullable: true

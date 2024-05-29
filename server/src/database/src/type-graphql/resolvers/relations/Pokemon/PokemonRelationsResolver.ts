@@ -24,6 +24,17 @@ export class PokemonRelationsResolver {
     }).NormalStats({});
   }
 
+  @TypeGraphQL.FieldResolver(_type => [PokemonAbilityList], {
+    nullable: false
+  })
+  async PokemonAbilityList(@TypeGraphQL.Root() pokemon: Pokemon, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PokemonPokemonAbilityListArgs): Promise<PokemonAbilityList[]> {
+    return getPrismaFromContext(ctx).pokemon.findUnique({
+      where: {
+        id: pokemon.id,
+      },
+    }).PokemonAbilityList(args);
+  }
+
   @TypeGraphQL.FieldResolver(_type => [PokemonMega], {
     nullable: false
   })
@@ -55,16 +66,5 @@ export class PokemonRelationsResolver {
         id: pokemon.id,
       },
     }).PokemonRegion(args);
-  }
-
-  @TypeGraphQL.FieldResolver(_type => [PokemonAbilityList], {
-    nullable: false
-  })
-  async PokemonAbilityList(@TypeGraphQL.Root() pokemon: Pokemon, @TypeGraphQL.Ctx() ctx: any, @TypeGraphQL.Args() args: PokemonPokemonAbilityListArgs): Promise<PokemonAbilityList[]> {
-    return getPrismaFromContext(ctx).pokemon.findUnique({
-      where: {
-        id: pokemon.id,
-      },
-    }).PokemonAbilityList(args);
   }
 }

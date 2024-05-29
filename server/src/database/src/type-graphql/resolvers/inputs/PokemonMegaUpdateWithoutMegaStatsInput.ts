@@ -13,11 +13,6 @@ export class PokemonMegaUpdateWithoutMegaStatsInput {
   })
   pokemonNumber?: number | undefined;
 
-  @TypeGraphQL.Field(_type => String, {
-    nullable: true
-  })
-  name?: string | undefined;
-
   @TypeGraphQL.Field(_type => [String], {
     nullable: true
   })
@@ -42,6 +37,11 @@ export class PokemonMegaUpdateWithoutMegaStatsInput {
     nullable: true
   })
   abilityId?: number[] | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  name?: string | undefined;
 
   @TypeGraphQL.Field(_type => PokemonUpdateOneRequiredWithoutPokemonMegaNestedInput, {
     nullable: true

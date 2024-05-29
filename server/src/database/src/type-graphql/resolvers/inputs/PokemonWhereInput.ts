@@ -104,6 +104,11 @@ export class PokemonWhereInput {
   })
   NormalStats?: NormalStatsRelationFilter | undefined;
 
+  @TypeGraphQL.Field(_type => PokemonAbilityListListRelationFilter, {
+    nullable: true
+  })
+  PokemonAbilityList?: PokemonAbilityListListRelationFilter | undefined;
+
   @TypeGraphQL.Field(_type => PokemonMegaListRelationFilter, {
     nullable: true
   })
@@ -118,9 +123,4 @@ export class PokemonWhereInput {
     nullable: true
   })
   PokemonRegion?: PokemonRegionListRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => PokemonAbilityListListRelationFilter, {
-    nullable: true
-  })
-  PokemonAbilityList?: PokemonAbilityListListRelationFilter | undefined;
 }

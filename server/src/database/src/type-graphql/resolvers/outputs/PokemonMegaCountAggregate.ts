@@ -26,11 +26,6 @@ export class PokemonMegaCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  name!: number;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: false
-  })
   type!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
@@ -52,6 +47,11 @@ export class PokemonMegaCountAggregate {
     nullable: false
   })
   abilityId!: number;
+
+  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
+    nullable: false
+  })
+  name!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
