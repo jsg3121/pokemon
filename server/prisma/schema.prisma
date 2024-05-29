@@ -176,23 +176,20 @@ model VisitLog {
 }
 
 model PokemonAbilities {
-  id                           Int                            @id @unique @default(autoincrement())
-  name                         String                         @map("ability_name") @db.VarChar(50)
-  abilityId                    Int                            @unique @map("ability_id")
-  description                  String                         @map("description")
-  PokemonAbilityList           PokemonAbilityList[]
-  PokemonRegionFormAbilityList PokemonRegionFormAbilityList[]
+  id          Int    @id @unique @default(autoincrement())
+  name        String @map("ability_name") @db.VarChar(50)
+  abilityId   Int    @unique @map("ability_id")
+  description String @map("description")
 
   @@map("pokemon_abilities")
 }
 
 model PokemonAbilityList {
-  id               Int              @id @unique @default(autoincrement())
-  isHidden         Boolean          @default(false) @map("is_hidden")
-  abilityId        Int              @map("ability_id")
-  pokemonId        Int              @map("pokemon_id")
-  PokemonAbilities PokemonAbilities @relation(fields: [abilityId], references: [abilityId])
-  Pokemon          Pokemon          @relation(fields: [pokemonId], references: [number])
+  id        Int     @id @unique @default(autoincrement())
+  isHidden  Boolean @default(false) @map("is_hidden")
+  abilityId Int     @map("ability_id")
+  pokemonId Int     @map("pokemon_id")
+  Pokemon   Pokemon @relation(fields: [pokemonId], references: [number])
 
   @@map("pokemon_ability_list")
 }
@@ -208,12 +205,11 @@ model PokemonNormalFormAbilityList {
 }
 
 model PokemonRegionFormAbilityList {
-  id               Int              @id @unique @default(autoincrement())
-  isHidden         Boolean          @default(false) @map("is_hidden")
-  statCode         String           @map("stat_code")
-  abilityId        Int              @map("ability_id")
-  PokemonAbilities PokemonAbilities @relation(fields: [abilityId], references: [abilityId])
-  PokemonRegion    PokemonRegion    @relation(fields: [statCode], references: [statCode])
+  id            Int           @id @unique @default(autoincrement())
+  isHidden      Boolean       @default(false) @map("is_hidden")
+  statCode      String        @map("stat_code")
+  abilityId     Int           @map("ability_id")
+  PokemonRegion PokemonRegion @relation(fields: [statCode], references: [statCode])
 
   @@map("pokemon_region_form_ability_list")
 }

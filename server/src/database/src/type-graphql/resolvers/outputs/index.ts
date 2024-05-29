@@ -33,7 +33,6 @@ export { NormalStatsMaxAggregate } from "./NormalStatsMaxAggregate";
 export { NormalStatsMinAggregate } from "./NormalStatsMinAggregate";
 export { NormalStatsSumAggregate } from "./NormalStatsSumAggregate";
 export { PokemonAbilitiesAvgAggregate } from "./PokemonAbilitiesAvgAggregate";
-export { PokemonAbilitiesCount } from "./PokemonAbilitiesCount";
 export { PokemonAbilitiesCountAggregate } from "./PokemonAbilitiesCountAggregate";
 export { PokemonAbilitiesGroupBy } from "./PokemonAbilitiesGroupBy";
 export { PokemonAbilitiesMaxAggregate } from "./PokemonAbilitiesMaxAggregate";
