@@ -3,6 +3,7 @@ export { MegaStatsScalarFieldEnum } from "./MegaStatsScalarFieldEnum";
 export { NormalStatsScalarFieldEnum } from "./NormalStatsScalarFieldEnum";
 export { PokemonAbilitiesScalarFieldEnum } from "./PokemonAbilitiesScalarFieldEnum";
 export { PokemonAbilityListScalarFieldEnum } from "./PokemonAbilityListScalarFieldEnum";
+export { PokemonMegaAbilityListScalarFieldEnum } from "./PokemonMegaAbilityListScalarFieldEnum";
 export { PokemonMegaScalarFieldEnum } from "./PokemonMegaScalarFieldEnum";
 export { PokemonNormalFormAbilityListScalarFieldEnum } from "./PokemonNormalFormAbilityListScalarFieldEnum";
 export { PokemonNormalFormScalarFieldEnum } from "./PokemonNormalFormScalarFieldEnum";

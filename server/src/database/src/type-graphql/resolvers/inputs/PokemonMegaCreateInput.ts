@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
 import { MegaStatsCreateNestedManyWithoutMegaPokemonInput } from "../inputs/MegaStatsCreateNestedManyWithoutMegaPokemonInput";
 import { PokemonCreateNestedOneWithoutPokemonMegaInput } from "../inputs/PokemonCreateNestedOneWithoutPokemonMegaInput";
+import { PokemonMegaAbilityListCreateNestedManyWithoutPokemonMegaInput } from "../inputs/PokemonMegaAbilityListCreateNestedManyWithoutPokemonMegaInput";
 
 @TypeGraphQL.InputType("PokemonMegaCreateInput", {
   isAbstract: true
@@ -53,4 +54,9 @@ export class PokemonMegaCreateInput {
     nullable: false
   })
   pokemon!: PokemonCreateNestedOneWithoutPokemonMegaInput;
+
+  @TypeGraphQL.Field(_type => PokemonMegaAbilityListCreateNestedManyWithoutPokemonMegaInput, {
+    nullable: true
+  })
+  PokemonMegaAbilityList?: PokemonMegaAbilityListCreateNestedManyWithoutPokemonMegaInput | undefined;
 }

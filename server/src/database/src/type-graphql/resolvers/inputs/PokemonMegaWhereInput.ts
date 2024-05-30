@@ -5,6 +5,7 @@ import { DecimalJSScalar } from "../../scalars";
 import { IntFilter } from "../inputs/IntFilter";
 import { IntNullableListFilter } from "../inputs/IntNullableListFilter";
 import { MegaStatsListRelationFilter } from "../inputs/MegaStatsListRelationFilter";
+import { PokemonMegaAbilityListListRelationFilter } from "../inputs/PokemonMegaAbilityListListRelationFilter";
 import { PokemonRelationFilter } from "../inputs/PokemonRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 import { StringNullableFilter } from "../inputs/StringNullableFilter";
@@ -83,4 +84,9 @@ export class PokemonMegaWhereInput {
     nullable: true
   })
   pokemon?: PokemonRelationFilter | undefined;
+
+  @TypeGraphQL.Field(_type => PokemonMegaAbilityListListRelationFilter, {
+    nullable: true
+  })
+  PokemonMegaAbilityList?: PokemonMegaAbilityListListRelationFilter | undefined;
 }

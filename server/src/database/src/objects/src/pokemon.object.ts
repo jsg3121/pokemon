@@ -2,6 +2,8 @@ import { Field, ObjectType } from 'type-graphql'
 import {
   PokemonAbilities,
   PokemonAbilityList,
+  PokemonMega,
+  PokemonMegaAbilityList,
   PokemonNormalFormAbilityList,
   PokemonRegionFormAbilityList,
 } from '../../type-graphql'
@@ -17,6 +19,28 @@ export class PokemonAbiltyInfo
 
   @Field(() => String)
   public abilityId: PokemonAbilityList['abilityId']
+
+  @Field(() => String)
+  public name: string
+
+  @Field(() => String)
+  public description: string
+
+  @Field(() => Boolean)
+  public isHidden: boolean
+}
+
+@ObjectType('PokemonMegaInfoInfo')
+export class PokemonMegaAbilityInfo
+  implements
+    Pick<PokemonAbilities, 'name' | 'description'>,
+    Pick<PokemonMegaAbilityList, 'isHidden' | 'abilityId' | 'statCode'>
+{
+  @Field(() => String)
+  public statCode: PokemonMegaAbilityList['statCode']
+
+  @Field(() => String)
+  public abilityId: PokemonMegaAbilityList['abilityId']
 
   @Field(() => String)
   public name: string

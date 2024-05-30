@@ -74,17 +74,18 @@ model PokemonRegion {
 }
 
 model PokemonMega {
-  id            Int         @id @unique @default(autoincrement())
-  pokemonId     Int         @map("pokemon_id")
-  pokemonNumber Int         @map("pokemon_number")
-  type          String[]
-  typeSingle1   String      @map("type_single1") @db.VarChar(20)
-  typeSingle2   String?     @map("type_single2") @db.VarChar(20)
-  statCode      String      @unique @map("stat_code") @db.VarChar(10)
-  abilityId     Int[]       @map("ability_id")
-  name          String      @default("") @map("name") @db.VarChar(50)
-  MegaStats     MegaStats[]
-  pokemon       Pokemon     @relation(fields: [pokemonId], references: [number])
+  id                     Int                      @id @unique @default(autoincrement())
+  pokemonId              Int                      @map("pokemon_id")
+  pokemonNumber          Int                      @map("pokemon_number")
+  type                   String[]
+  typeSingle1            String                   @map("type_single1") @db.VarChar(20)
+  typeSingle2            String?                  @map("type_single2") @db.VarChar(20)
+  statCode               String                   @unique @map("stat_code") @db.VarChar(10)
+  abilityId              Int[]                    @map("ability_id")
+  name                   String                   @default("") @map("name") @db.VarChar(50)
+  MegaStats              MegaStats[]
+  pokemon                Pokemon                  @relation(fields: [pokemonId], references: [number])
+  PokemonMegaAbilityList PokemonMegaAbilityList[]
 
   @@map("pokemon_mega")
 }
@@ -202,6 +203,16 @@ model PokemonNormalFormAbilityList {
   PokemonNormalForm PokemonNormalForm @relation(fields: [statCode], references: [statCode])
 
   @@map("pokemon_normal_form_ability_list")
+}
+
+model PokemonMegaAbilityList {
+  id          Int         @id @unique @default(autoincrement())
+  isHidden    Boolean     @default(false) @map("is_hidden")
+  statCode    String      @map("stat_code")
+  abilityId   Int         @map("ability_id")
+  PokemonMega PokemonMega @relation(fields: [statCode], references: [statCode])
+
+  @@map("pokemon_mega_ability_list")
 }
 
 model PokemonRegionFormAbilityList {

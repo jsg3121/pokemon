@@ -97,6 +97,9 @@ export default class PokemonResolver {
       where: {
         pokemonNumber: number,
       },
+      include: {
+        PokemonMegaAbilityList: true,
+      },
       orderBy: {
         id: 'asc',
       },

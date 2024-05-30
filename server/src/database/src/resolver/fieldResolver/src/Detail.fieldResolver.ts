@@ -1,6 +1,11 @@
 import { PrismaClient } from '@prisma/client'
 import { FieldResolver, Resolver, Root } from 'type-graphql'
 import {
+  PokemonMegaAbilityInfo,
+  PokemonNormalFormAbilityInfo,
+  PokemonRegionFormAbilityInfo,
+} from '../../../objects/src/pokemon.object'
+import {
   FormStats,
   MegaStats,
   PokemonMega,
@@ -8,10 +13,6 @@ import {
   PokemonRegion,
   RegionStats,
 } from '../../../type-graphql'
-import {
-  PokemonNormalFormAbilityInfo,
-  PokemonRegionFormAbilityInfo,
-} from '../../../objects/src/pokemon.object'
 
 const prisma = new PrismaClient()
 
@@ -28,6 +29,41 @@ class MegaFieldResover {
         statCode: pokemon.statCode,
       },
     })
+  }
+
+  @FieldResolver(() => [PokemonMegaAbilityInfo], {
+    name: 'abilities',
+    description: 'pokemonList fieldResover',
+  })
+  public async getAilities(
+    @Root() pokemon: PokemonMega
+  ): Promise<Array<PokemonMegaAbilityInfo>> {
+    const abilityIds = pokemon.PokemonMegaAbilityList.map(
+      (item) => item.abilityId
+    )
+
+    const abilityInfo = await prisma.pokemonAbilities.findMany({
+      where: {
+        abilityId: {
+          in: abilityIds,
+        },
+      },
+    })
+
+    const abilities: Array<PokemonMegaAbilityInfo> = abilityIds.map(
+      (_, index) => {
+        const abilitData = pokemon.PokemonMegaAbilityList[index]
+        return {
+          statCode: abilitData.statCode,
+          abilityId: abilitData.abilityId,
+          name: abilityInfo[index].name,
+          description: abilityInfo[index].description,
+          isHidden: abilitData.isHidden,
+        }
+      }
+    )
+
+    return abilities
   }
 }
 

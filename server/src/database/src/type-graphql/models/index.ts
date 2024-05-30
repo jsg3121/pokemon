@@ -5,6 +5,7 @@ export { Pokemon } from "./Pokemon";
 export { PokemonAbilities } from "./PokemonAbilities";
 export { PokemonAbilityList } from "./PokemonAbilityList";
 export { PokemonMega } from "./PokemonMega";
+export { PokemonMegaAbilityList } from "./PokemonMegaAbilityList";
 export { PokemonNormalForm } from "./PokemonNormalForm";
 export { PokemonNormalFormAbilityList } from "./PokemonNormalFormAbilityList";
 export { PokemonRegion } from "./PokemonRegion";
