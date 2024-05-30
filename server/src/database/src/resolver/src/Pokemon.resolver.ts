@@ -68,6 +68,9 @@ export default class PokemonResolver {
       where: {
         pokemonNumber: number,
       },
+      include: {
+        PokemonRegionFormAbilityList: true,
+      },
       orderBy: {
         id: 'asc',
       },

@@ -3,6 +3,7 @@ import {
   PokemonAbilities,
   PokemonAbilityList,
   PokemonNormalFormAbilityList,
+  PokemonRegionFormAbilityList,
 } from '../../type-graphql'
 
 @ObjectType('PokemonAbiltyInfo')
@@ -38,6 +39,28 @@ export class PokemonNormalFormAbilityInfo
 
   @Field(() => String)
   public abilityId: PokemonNormalFormAbilityList['abilityId']
+
+  @Field(() => String)
+  public name: string
+
+  @Field(() => String)
+  public description: string
+
+  @Field(() => Boolean)
+  public isHidden: boolean
+}
+
+@ObjectType('PokemonRegionFormAbilityInfo')
+export class PokemonRegionFormAbilityInfo
+  implements
+    Pick<PokemonAbilities, 'name' | 'description'>,
+    Pick<PokemonRegionFormAbilityList, 'isHidden' | 'abilityId' | 'statCode'>
+{
+  @Field(() => String)
+  public statCode: PokemonRegionFormAbilityList['statCode']
+
+  @Field(() => String)
+  public abilityId: PokemonRegionFormAbilityList['abilityId']
 
   @Field(() => String)
   public name: string
