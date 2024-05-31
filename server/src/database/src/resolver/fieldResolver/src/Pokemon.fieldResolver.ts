@@ -32,16 +32,22 @@ export default class PokemonFieldResolver {
       },
     })
 
-    const abilities: Array<PokemonAbiltyInfo> = abilityIds.map((_, index) => {
-      const abilitData = pokemon.PokemonAbilityList[index]
-      return {
-        pokemonId: abilitData.pokemonId,
-        abilityId: abilitData.abilityId,
-        name: abilityInfo[index].name,
-        description: abilityInfo[index].description,
-        isHidden: abilitData.isHidden,
+    const abilities: Array<PokemonAbiltyInfo> = abilityIds.map(
+      (abilityId, index) => {
+        const pokemonInfoData = pokemon.PokemonAbilityList[index]
+        const abilityInfoData = abilityInfo.find(
+          (item) => item.abilityId === abilityId
+        )
+
+        return {
+          pokemonId: pokemonInfoData.pokemonId,
+          abilityId: pokemonInfoData.abilityId,
+          name: abilityInfoData.name,
+          description: abilityInfoData.description,
+          isHidden: pokemonInfoData.isHidden,
+        }
       }
-    })
+    )
 
     return abilities
   }

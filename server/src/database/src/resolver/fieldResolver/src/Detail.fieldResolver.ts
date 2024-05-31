@@ -51,14 +51,18 @@ class MegaFieldResover {
     })
 
     const abilities: Array<PokemonMegaAbilityInfo> = abilityIds.map(
-      (_, index) => {
-        const abilitData = pokemon.PokemonMegaAbilityList[index]
+      (abilityId, index) => {
+        const pokemonInfoData = pokemon.PokemonMegaAbilityList[index]
+        const abilityInfoData = abilityInfo.find(
+          (item) => item.abilityId === abilityId
+        )
+
         return {
-          statCode: abilitData.statCode,
-          abilityId: abilitData.abilityId,
-          name: abilityInfo[index].name,
-          description: abilityInfo[index].description,
-          isHidden: abilitData.isHidden,
+          statCode: pokemonInfoData.statCode,
+          abilityId: pokemonInfoData.abilityId,
+          name: abilityInfoData.name,
+          description: abilityInfoData.description,
+          isHidden: pokemonInfoData.isHidden,
         }
       }
     )
@@ -102,14 +106,18 @@ class RegionFieldResover {
     })
 
     const abilities: Array<PokemonRegionFormAbilityInfo> = abilityIds.map(
-      (_, index) => {
-        const abilitData = pokemon.PokemonRegionFormAbilityList[index]
+      (abilityId, index) => {
+        const pokemonInfoData = pokemon.PokemonRegionFormAbilityList[index]
+        const abilityInfoData = abilityInfo.find(
+          (item) => item.abilityId === abilityId
+        )
+
         return {
-          statCode: abilitData.statCode,
-          abilityId: abilitData.abilityId,
-          name: abilityInfo[index].name,
-          description: abilityInfo[index].description,
-          isHidden: abilitData.isHidden,
+          statCode: pokemonInfoData.statCode,
+          abilityId: pokemonInfoData.abilityId,
+          name: abilityInfoData.name,
+          description: abilityInfoData.description,
+          isHidden: pokemonInfoData.isHidden,
         }
       }
     )
@@ -153,14 +161,18 @@ class FormFieldResover {
     })
 
     const abilities: Array<PokemonNormalFormAbilityInfo> = abilityIds.map(
-      (_, index) => {
-        const abilitData = pokemon.PokemonNormalFormAbilityList[index]
+      (abilityId, index) => {
+        const pokemonInfoData = pokemon.PokemonNormalFormAbilityList[index]
+        const abilityInfoData = abilityInfo.find(
+          (item) => item.abilityId === abilityId
+        )
+
         return {
-          statCode: abilitData.statCode,
-          abilityId: abilitData.abilityId,
-          name: abilityInfo[index].name,
-          description: abilityInfo[index].description,
-          isHidden: abilitData.isHidden,
+          statCode: pokemonInfoData.statCode,
+          abilityId: pokemonInfoData.abilityId,
+          name: abilityInfoData.name,
+          description: abilityInfoData.description,
+          isHidden: pokemonInfoData.isHidden,
         }
       }
     )
