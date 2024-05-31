@@ -50,8 +50,8 @@ class MegaFieldResover {
       },
     })
 
-    const abilities: Array<PokemonMegaAbilityInfo> = abilityIds.map(
-      (abilityId, index) => {
+    const abilities: Array<PokemonMegaAbilityInfo> = abilityIds
+      .map((abilityId, index) => {
         const pokemonInfoData = pokemon.PokemonMegaAbilityList[index]
         const abilityInfoData = abilityInfo.find(
           (item) => item.abilityId === abilityId
@@ -64,8 +64,8 @@ class MegaFieldResover {
           description: abilityInfoData.description,
           isHidden: pokemonInfoData.isHidden,
         }
-      }
-    )
+      })
+      .sort((a, b) => Number(a.isHidden) - Number(b.isHidden))
 
     return abilities
   }
@@ -105,8 +105,8 @@ class RegionFieldResover {
       },
     })
 
-    const abilities: Array<PokemonRegionFormAbilityInfo> = abilityIds.map(
-      (abilityId, index) => {
+    const abilities: Array<PokemonRegionFormAbilityInfo> = abilityIds
+      .map((abilityId, index) => {
         const pokemonInfoData = pokemon.PokemonRegionFormAbilityList[index]
         const abilityInfoData = abilityInfo.find(
           (item) => item.abilityId === abilityId
@@ -119,8 +119,8 @@ class RegionFieldResover {
           description: abilityInfoData.description,
           isHidden: pokemonInfoData.isHidden,
         }
-      }
-    )
+      })
+      .sort((a, b) => Number(a.isHidden) - Number(b.isHidden))
 
     return abilities
   }
@@ -160,8 +160,8 @@ class FormFieldResover {
       },
     })
 
-    const abilities: Array<PokemonNormalFormAbilityInfo> = abilityIds.map(
-      (abilityId, index) => {
+    const abilities: Array<PokemonNormalFormAbilityInfo> = abilityIds
+      .map((abilityId, index) => {
         const pokemonInfoData = pokemon.PokemonNormalFormAbilityList[index]
         const abilityInfoData = abilityInfo.find(
           (item) => item.abilityId === abilityId
@@ -174,8 +174,8 @@ class FormFieldResover {
           description: abilityInfoData.description,
           isHidden: pokemonInfoData.isHidden,
         }
-      }
-    )
+      })
+      .sort((a, b) => Number(a.isHidden) - Number(b.isHidden))
 
     return abilities
   }

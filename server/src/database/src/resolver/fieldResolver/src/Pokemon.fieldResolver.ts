@@ -32,8 +32,8 @@ export default class PokemonFieldResolver {
       },
     })
 
-    const abilities: Array<PokemonAbiltyInfo> = abilityIds.map(
-      (abilityId, index) => {
+    const abilities: Array<PokemonAbiltyInfo> = abilityIds
+      .map((abilityId, index) => {
         const pokemonInfoData = pokemon.PokemonAbilityList[index]
         const abilityInfoData = abilityInfo.find(
           (item) => item.abilityId === abilityId
@@ -46,8 +46,8 @@ export default class PokemonFieldResolver {
           description: abilityInfoData.description,
           isHidden: pokemonInfoData.isHidden,
         }
-      }
-    )
+      })
+      .sort((a, b) => Number(a.isHidden) - Number(b.isHidden))
 
     return abilities
   }
