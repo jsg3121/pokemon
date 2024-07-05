@@ -1,9 +1,9 @@
-import 'reflect-metadata'
 import cors from 'cors'
 import express from 'express'
-import { listRouter, resetCount } from '../../router'
-import { createApolloServer } from '../../database'
 import cron from 'node-cron'
+import 'reflect-metadata'
+import { createApolloServer } from '../../database'
+import { resetCount } from '../../router'
 
 export const runServer = async () => {
   const app = express()
@@ -18,7 +18,7 @@ export const runServer = async () => {
       maxAge: 31536000000,
     })
   )
-  app.use('/api/v1/pokemon', listRouter)
+  // app.use('/api/v1/pokemon', listRouter)
   await createApolloServer({ app })
 
   app.listen(PORT, () => {

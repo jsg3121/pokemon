@@ -4,12 +4,6 @@ import { Router } from 'express'
 import fs from 'fs'
 import { getTime } from '../../common'
 
-import abilityList from '../../../json/pokemon_ability_list.json'
-import abilityName from '../../../json/pokemon_ability_name.json'
-import abilityDescription from '../../../json/pokemon_ability_description.json'
-import megaAbilityList from '../../../json/pokemon_mega_ablility.json'
-import formAbilityList from '../../../json/pokemon_form_ability.json'
-
 const prisma = new PrismaClient()
 
 export const listRouter = Router()
@@ -182,328 +176,328 @@ listRouter.post('/update/normalForm', async (req, res) => {
   res.end()
 })
 
-listRouter.get('/get/stat', async (req, res) => {
-  const data = []
+// listRouter.get('/get/stat', async (req, res) => {
+//   const data = []
 
-  const cnt = 35
-  const startNumb = 10229
+//   const cnt = 35
+//   const startNumb = 10229
 
-  for (let i = 0; i < cnt; i++) {
-    await http
-      .request({
-        url: `https://pokeapi.co/api/v2/pokemon/${i + startNumb}`,
-        method: 'GET',
-      })
-      .then((res) => {
-        const stats = res.data.stats
+//   for (let i = 0; i < cnt; i++) {
+//     await http
+//       .request({
+//         url: `https://pokeapi.co/api/v2/pokemon/${i + startNumb}`,
+//         method: 'GET',
+//       })
+//       .then((res) => {
+//         const stats = res.data.stats
 
-        const statInfo = []
+//         const statInfo = []
 
-        for (let j = 0; j < stats.length; j++) {
-          const form = {
-            statName: res.data.stats[j].stat.name,
-            statPoint: res.data.stats[j].base_stat,
-          }
-          statInfo.push(form)
-        }
-        data.push(statInfo)
-      })
-    console.log(`insert ${i}.....`)
-  }
+//         for (let j = 0; j < stats.length; j++) {
+//           const form = {
+//             statName: res.data.stats[j].stat.name,
+//             statPoint: res.data.stats[j].base_stat,
+//           }
+//           statInfo.push(form)
+//         }
+//         data.push(statInfo)
+//       })
+//     console.log(`insert ${i}.....`)
+//   }
 
-  console.log('format list...')
+//   console.log('format list...')
 
-  const list = data.map((statInfo, index) => {
-    return {
-      number: index + startNumb,
-      [`${statInfo[0].statName}`]: statInfo[0].statPoint,
-      [`${statInfo[1].statName}`]: statInfo[1].statPoint,
-      [`${statInfo[2].statName}`]: statInfo[2].statPoint,
-      [`${statInfo[3].statName}`]: statInfo[3].statPoint,
-      [`${statInfo[4].statName}`]: statInfo[4].statPoint,
-      [`${statInfo[5].statName}`]: statInfo[5].statPoint,
-      total:
-        statInfo[0].statPoint +
-        statInfo[1].statPoint +
-        statInfo[2].statPoint +
-        statInfo[3].statPoint +
-        statInfo[4].statPoint +
-        statInfo[5].statPoint,
-    }
-  })
+//   const list = data.map((statInfo, index) => {
+//     return {
+//       number: index + startNumb,
+//       [`${statInfo[0].statName}`]: statInfo[0].statPoint,
+//       [`${statInfo[1].statName}`]: statInfo[1].statPoint,
+//       [`${statInfo[2].statName}`]: statInfo[2].statPoint,
+//       [`${statInfo[3].statName}`]: statInfo[3].statPoint,
+//       [`${statInfo[4].statName}`]: statInfo[4].statPoint,
+//       [`${statInfo[5].statName}`]: statInfo[5].statPoint,
+//       total:
+//         statInfo[0].statPoint +
+//         statInfo[1].statPoint +
+//         statInfo[2].statPoint +
+//         statInfo[3].statPoint +
+//         statInfo[4].statPoint +
+//         statInfo[5].statPoint,
+//     }
+//   })
 
-  fs.writeFileSync('./json/stats_gen9.json', JSON.stringify(list))
+//   fs.writeFileSync('./json/stats_gen9.json', JSON.stringify(list))
 
-  res.send(list)
+//   res.send(list)
 
-  console.log('list info')
-  console.log(list.length)
-  console.log('success! ')
+//   console.log('list info')
+//   console.log(list.length)
+//   console.log('success! ')
 
-  res.end()
-})
+//   res.end()
+// })
 
-listRouter.post('/change/db', async (req, res) => {
-  try {
-    const data = await prisma.pokemonNormalForm
-      .findMany({
-        orderBy: {
-          id: 'asc',
-        },
-      })
-      .then((res) => {
-        return res.map((item) => {
-          return {
-            id: item.id,
-            number: item.pokemonId,
-          }
-        })
-      })
+// listRouter.post('/change/db', async (req, res) => {
+//   try {
+//     const data = await prisma.pokemonNormalForm
+//       .findMany({
+//         orderBy: {
+//           id: 'asc',
+//         },
+//       })
+//       .then((res) => {
+//         return res.map((item) => {
+//           return {
+//             id: item.id,
+//             number: item.pokemonId,
+//           }
+//         })
+//       })
 
-    const list = []
+//     const list = []
 
-    data.forEach(async (item, index) => {
-      if (index > 150) {
-        const str = `M${item.number.toString().padStart(4, '0')}${(index + 1)
-          .toString()
-          .padStart(3, '0')}`
-        list.push(
-          await prisma.pokemonNormalForm.update({
-            where: {
-              id: item.id,
-            },
-            data: {
-              statCode: `${str}`,
-            },
-          })
-        )
-      }
-    })
+//     data.forEach(async (item, index) => {
+//       if (index > 150) {
+//         const str = `M${item.number.toString().padStart(4, '0')}${(index + 1)
+//           .toString()
+//           .padStart(3, '0')}`
+//         list.push(
+//           await prisma.pokemonNormalForm.update({
+//             where: {
+//               id: item.id,
+//             },
+//             data: {
+//               statCode: `${str}`,
+//             },
+//           })
+//         )
+//       }
+//     })
 
-    await Promise.all(list).then(() => {
-      res.send(data)
-    })
-  } catch (error) {
-    console.log(error)
-  }
-  res.end()
-})
+//     await Promise.all(list).then(() => {
+//       res.send(data)
+//     })
+//   } catch (error) {
+//     console.log(error)
+//   }
+//   res.end()
+// })
 
-listRouter.get('/get/info', async (req, res) => {
-  const data = []
+// listRouter.get('/get/info', async (req, res) => {
+//   const data = []
 
-  const cnt = 35
-  const startNumb = 10229
+//   const cnt = 35
+//   const startNumb = 10229
 
-  for (let i = 0; i < cnt; i++) {
-    await http
-      .request({
-        url: `https://pokeapi.co/api/v2/pokemon/${i + startNumb}`,
-        method: 'GET',
-      })
-      .then((res) => {
-        const stats = res.data.stats
+//   for (let i = 0; i < cnt; i++) {
+//     await http
+//       .request({
+//         url: `https://pokeapi.co/api/v2/pokemon/${i + startNumb}`,
+//         method: 'GET',
+//       })
+//       .then((res) => {
+//         const stats = res.data.stats
 
-        const statInfo = []
+//         const statInfo = []
 
-        for (let j = 0; j < stats.length; j++) {
-          const form = {
-            statName: res.data.stats[j].stat.name,
-            statPoint: res.data.stats[j].base_stat,
-          }
-          statInfo.push(form)
-        }
-        data.push(statInfo)
-      })
-    console.log(`insert ${i}.....`)
-  }
+//         for (let j = 0; j < stats.length; j++) {
+//           const form = {
+//             statName: res.data.stats[j].stat.name,
+//             statPoint: res.data.stats[j].base_stat,
+//           }
+//           statInfo.push(form)
+//         }
+//         data.push(statInfo)
+//       })
+//     console.log(`insert ${i}.....`)
+//   }
 
-  console.log('format list...')
+//   console.log('format list...')
 
-  const list = data.map((statInfo, index) => {
-    return {
-      number: index + startNumb,
-      [`${statInfo[0].statName}`]: statInfo[0].statPoint,
-      [`${statInfo[1].statName}`]: statInfo[1].statPoint,
-      [`${statInfo[2].statName}`]: statInfo[2].statPoint,
-      [`${statInfo[3].statName}`]: statInfo[3].statPoint,
-      [`${statInfo[4].statName}`]: statInfo[4].statPoint,
-      [`${statInfo[5].statName}`]: statInfo[5].statPoint,
-      total:
-        statInfo[0].statPoint +
-        statInfo[1].statPoint +
-        statInfo[2].statPoint +
-        statInfo[3].statPoint +
-        statInfo[4].statPoint +
-        statInfo[5].statPoint,
-    }
-  })
+//   const list = data.map((statInfo, index) => {
+//     return {
+//       number: index + startNumb,
+//       [`${statInfo[0].statName}`]: statInfo[0].statPoint,
+//       [`${statInfo[1].statName}`]: statInfo[1].statPoint,
+//       [`${statInfo[2].statName}`]: statInfo[2].statPoint,
+//       [`${statInfo[3].statName}`]: statInfo[3].statPoint,
+//       [`${statInfo[4].statName}`]: statInfo[4].statPoint,
+//       [`${statInfo[5].statName}`]: statInfo[5].statPoint,
+//       total:
+//         statInfo[0].statPoint +
+//         statInfo[1].statPoint +
+//         statInfo[2].statPoint +
+//         statInfo[3].statPoint +
+//         statInfo[4].statPoint +
+//         statInfo[5].statPoint,
+//     }
+//   })
 
-  fs.writeFileSync('./json/stats_gen9.json', JSON.stringify(list))
+//   fs.writeFileSync('./json/stats_gen9.json', JSON.stringify(list))
 
-  res.send(list)
+//   res.send(list)
 
-  console.log('list info')
-  console.log(list.length)
-  console.log('success! ')
+//   console.log('list info')
+//   console.log(list.length)
+//   console.log('success! ')
 
-  res.end()
-})
+//   res.end()
+// })
 
-listRouter.post('/change/ability', async (req, res) => {
-  try {
-    const data = await prisma.pokemon.findMany()
-    console.log('get pokemon complete')
-    data.forEach(async (pokemon) => {
-      const ids = [
-        ...new Set(
-          abilityList.data.pokemon_v2_pokemon[
-            pokemon.id - 1
-          ].pokemon_v2_pokemonabilities.map((item) => item.ability_id)
-        ),
-      ]
+// listRouter.post('/change/ability', async (req, res) => {
+//   try {
+//     const data = await prisma.pokemon.findMany()
+//     console.log('get pokemon complete')
+//     data.forEach(async (pokemon) => {
+//       const ids = [
+//         ...new Set(
+//           abilityList.data.pokemon_v2_pokemon[
+//             pokemon.id - 1
+//           ].pokemon_v2_pokemonabilities.map((item) => item.ability_id)
+//         ),
+//       ]
 
-      if (pokemon.id % 100 === 0) {
-        console.log(`...${pokemon.id} complate`)
-      }
-      await prisma.pokemon.update({
-        where: {
-          id: pokemon.id,
-        },
-        data: {
-          abilityId: ids,
-        },
-      })
-    })
-    res.send(abilityList.data.pokemon_v2_pokemon)
-  } catch (error) {
-    console.log(error)
-  }
-  res.end()
-})
+//       if (pokemon.id % 100 === 0) {
+//         console.log(`...${pokemon.id} complate`)
+//       }
+//       await prisma.pokemon.update({
+//         where: {
+//           id: pokemon.id,
+//         },
+//         data: {
+//           abilityId: ids,
+//         },
+//       })
+//     })
+//     res.send(abilityList.data.pokemon_v2_pokemon)
+//   } catch (error) {
+//     console.log(error)
+//   }
+//   res.end()
+// })
 
-listRouter.post('/change/ability/detail', async (req, res) => {
-  try {
-    const data = await prisma.pokemon.findMany()
-    console.log('get pokemon complete')
+// listRouter.post('/change/ability/detail', async (req, res) => {
+//   try {
+//     const data = await prisma.pokemon.findMany()
+//     console.log('get pokemon complete')
 
-    data.forEach(async (pokemon) => {
-      pokemon.abilityId.forEach(async (ability, index) => {
-        const pokemonId = pokemon.id
+//     data.forEach(async (pokemon) => {
+//       pokemon.abilityId.forEach(async (ability, index) => {
+//         const pokemonId = pokemon.id
 
-        const isHidden =
-          abilityList.data.pokemon_v2_pokemon[pokemon.number - 1]
-            .pokemon_v2_pokemonabilities[index].is_hidden
+//         const isHidden =
+//           abilityList.data.pokemon_v2_pokemon[pokemon.number - 1]
+//             .pokemon_v2_pokemonabilities[index].is_hidden
 
-        await prisma.pokemonAbilityList.create({
-          data: {
-            pokemonId,
-            abilityId: ability,
-            isHidden,
-          },
-        })
-      })
-    })
+//         await prisma.pokemonAbilityList.create({
+//           data: {
+//             pokemonId,
+//             abilityId: ability,
+//             isHidden,
+//           },
+//         })
+//       })
+//     })
 
-    res.send('finish')
-  } catch (error) {
-    console.log(error)
-  }
-  res.end()
-})
+//     res.send('finish')
+//   } catch (error) {
+//     console.log(error)
+//   }
+//   res.end()
+// })
 
-listRouter.post('/change/ability/list', async (req, res) => {
-  try {
-    abilityName.data.pokemon_v2_ability.forEach(async (ability, index) => {
-      const name = ability.pokemon_v2_abilitynames[0].name
-      const description =
-        abilityDescription.data.pokemon_v2_ability[index]
-          .pokemon_v2_abilityflavortexts[0].flavor_text
+// listRouter.post('/change/ability/list', async (req, res) => {
+//   try {
+//     abilityName.data.pokemon_v2_ability.forEach(async (ability, index) => {
+//       const name = ability.pokemon_v2_abilitynames[0].name
+//       const description =
+//         abilityDescription.data.pokemon_v2_ability[index]
+//           .pokemon_v2_abilityflavortexts[0].flavor_text
 
-      await prisma.pokemonAbilities.create({
-        data: {
-          abilityId: ability.id,
-          name,
-          description,
-        },
-      })
-    })
-    res.send('finish')
-  } catch (error) {
-    console.log(error)
-  }
-  res.end()
-})
+//       await prisma.pokemonAbilities.create({
+//         data: {
+//           abilityId: ability.id,
+//           name,
+//           description,
+//         },
+//       })
+//     })
+//     res.send('finish')
+//   } catch (error) {
+//     console.log(error)
+//   }
+//   res.end()
+// })
 
-listRouter.post('/change/ability/mega', async (req, res) => {
-  try {
-    const data = megaAbilityList.pokemon_v2_pokemon.map((pokemon, index) => {
-      const pokemonName =
-        pokemon.pokemon_v2_pokemonforms[0].pokemon_v2_pokemonformnames[0].name
-      const pokemonNumber = pokemon.pokemon_species_id
-      const abilityId =
-        pokemon.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon
-          .pokemon_v2_pokemonabilities[0].pokemon_v2_ability.id
+// listRouter.post('/change/ability/mega', async (req, res) => {
+//   try {
+//     const data = megaAbilityList.pokemon_v2_pokemon.map((pokemon, index) => {
+//       const pokemonName =
+//         pokemon.pokemon_v2_pokemonforms[0].pokemon_v2_pokemonformnames[0].name
+//       const pokemonNumber = pokemon.pokemon_species_id
+//       const abilityId =
+//         pokemon.pokemon_v2_pokemonforms[0].pokemon_v2_pokemon
+//           .pokemon_v2_pokemonabilities[0].pokemon_v2_ability.id
 
-      return {
-        abilityId,
-        pokemonName,
-        pokemonNumber,
-      }
-    })
+//       return {
+//         abilityId,
+//         pokemonName,
+//         pokemonNumber,
+//       }
+//     })
 
-    data
-      .sort(
-        (
-          { pokemonNumber: pokemonNumberA },
-          { pokemonNumber: pokemonNumberB }
-        ) => pokemonNumberA - pokemonNumberB
-      )
-      .forEach(async (info, index) => {
-        await prisma.pokemonMega.update({
-          where: {
-            id: index + 1,
-          },
-          data: {
-            abilityId: info.abilityId,
-            name: info.pokemonName,
-          },
-        })
-      })
+//     data
+//       .sort(
+//         (
+//           { pokemonNumber: pokemonNumberA },
+//           { pokemonNumber: pokemonNumberB }
+//         ) => pokemonNumberA - pokemonNumberB
+//       )
+//       .forEach(async (info, index) => {
+//         await prisma.pokemonMega.update({
+//           where: {
+//             id: index + 1,
+//           },
+//           data: {
+//             abilityId: info.abilityId,
+//             name: info.pokemonName,
+//           },
+//         })
+//       })
 
-    res.send('finish')
-  } catch (error) {
-    console.log(error)
-  }
-  res.end()
-})
+//     res.send('finish')
+//   } catch (error) {
+//     console.log(error)
+//   }
+//   res.end()
+// })
 
-listRouter.post('/change/ability/forms', async (req, res) => {
-  try {
-    const data =
-      formAbilityList.pokemon_v2_language[0].pokemon_v2_pokemonformnames.forEach(
-        (info) => {
-          const infoList =
-            info.pokemon_v2_pokemonform.pokemon_v2_pokemon.pokemon_v2_pokemonabilities.map(
-              (ability) => {
-                return {
-                  isHidden: ability.is_hidden,
-                  abilityId: ability.ability_id,
-                }
-              }
-            )
+// listRouter.post('/change/ability/forms', async (req, res) => {
+//   try {
+//     const data =
+//       formAbilityList.pokemon_v2_language[0].pokemon_v2_pokemonformnames.forEach(
+//         (info) => {
+//           const infoList =
+//             info.pokemon_v2_pokemonform.pokemon_v2_pokemon.pokemon_v2_pokemonabilities.map(
+//               (ability) => {
+//                 return {
+//                   isHidden: ability.is_hidden,
+//                   abilityId: ability.ability_id,
+//                 }
+//               }
+//             )
 
-          return {
-            formName: info.name,
-            pokemonId:
-              info.pokemon_v2_pokemonform.pokemon_v2_pokemon.pokemon_species_id,
-          }
-        }
-      )
+//           return {
+//             formName: info.name,
+//             pokemonId:
+//               info.pokemon_v2_pokemonform.pokemon_v2_pokemon.pokemon_species_id,
+//           }
+//         }
+//       )
 
-    res.send('finish')
-  } catch (error) {
-    console.log(error)
-  }
-  res.end()
-})
+//     res.send('finish')
+//   } catch (error) {
+//     console.log(error)
+//   }
+//   res.end()
+// })
