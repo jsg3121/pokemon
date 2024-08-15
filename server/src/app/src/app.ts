@@ -1,9 +1,8 @@
 import cors from 'cors'
 import express from 'express'
-import cron from 'node-cron'
 import 'reflect-metadata'
 import { createApolloServer } from '../../database'
-import { resetCount } from '../../router'
+import { listRouter } from '../../router'
 
 export const runServer = async () => {
   const app = express()
@@ -18,7 +17,7 @@ export const runServer = async () => {
       maxAge: 31536000000,
     })
   )
-  // app.use('/api/v1/pokemon', listRouter)
+  app.use('/api/v1/pokemon', listRouter)
   await createApolloServer({ app })
 
   app.listen(PORT, () => {
@@ -26,17 +25,4 @@ export const runServer = async () => {
     console.log('server running...')
     console.log('start!!!')
   })
-
-  cron.schedule(
-    '0 0 * * *',
-    () => {
-      if (process.env.NODE_ENV === 'production') {
-        resetCount()
-      }
-    },
-    {
-      scheduled: true,
-      timezone: 'Asia/Seoul',
-    }
-  )
 }

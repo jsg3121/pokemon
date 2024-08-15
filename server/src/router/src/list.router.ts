@@ -1,96 +1,121 @@
 import { PrismaClient } from '@prisma/client'
-import http from 'axios'
 import { Router } from 'express'
-import fs from 'fs'
-import { getTime } from '../../common'
+import gen9Form from '../../../json/pokemon_gen9_dlc_form.json'
 
 const prisma = new PrismaClient()
 
 export const listRouter = Router()
 
-export const resetCount = async () => {
-  const date = getTime()
+/**
+ *
+ * 일반 기본 형태 포켓몬 추가 api
+ *
+ */
+// listRouter.post('/update/add/pokemon', async (req, res) => {
+//   try {
+//     gen9.forEach(async (item) => {
+//       await prisma.pokemon.create({
+//         data: {
+//           id: item.number,
+//           name: item.name,
+//           number: item.number,
+//           isEvolution: item.is_evolution ?? false,
+//           evolutionId: item.evolution_id,
+//           type: item.type,
+//           typeSingle1: item.type_single1,
+//           typeSingle2: item.type_single2,
+//           generation: 9,
+//           abilityId: item.ability_id,
+//         },
+//       })
+//     })
 
-  const { todayCount } = await prisma.useCount.findFirst({
-    where: {
-      id: 1,
-    },
-  })
+//     res.send({
+//       response: '9세대 확장 추가 성공',
+//     })
+//   } catch (err) {
+//     res.send('fail')
+//   }
+//   res.end()
+// })
 
-  await prisma.visitLog.create({
-    data: {
-      visitCount: todayCount,
-      logDate: date,
-    },
-  })
+// listRouter.post('/update/add/pokemonAbility', async (req, res) => {
+//   try {
+//     gen9Abilities.forEach(async (item, index) => {
+//       await prisma.pokemonAbilityList.create({
+//         data: {
+//           id: index + 2451,
+//           abilityId: item.ability_id,
+//           isHidden: item.is_hidden,
+//           pokemonId: item.pokemon_id,
+//         },
+//       })
+//     })
 
-  await prisma.useCount.update({
-    where: {
-      id: 1,
-    },
-    data: {
-      todayCount: 0,
-    },
-  })
-  console.log(
-    new Date().toLocaleString('ko-KR', {
-      timeZone: 'Asia/Seoul',
-    })
-  )
-  console.log(`today count reset`)
-}
+//     res.send({
+//       response: '9세대 확장 특성 추가 성공',
+//     })
+//   } catch (err) {
+//     res.send('fail')
+//   }
+//   res.end()
+// })
 
-listRouter.post('/count', async (req, res) => {
-  const { todayCount, totalCount } = await prisma.useCount.findFirst({
-    where: {
-      id: 1,
-    },
-  })
+// listRouter.post('/update/add/stats', async (req, res) => {
+//   try {
+//     gen9Stats.forEach(async (item, index) => {
+//       await prisma.normalStats.create({
+//         data: {
+//           id: index + 1012,
+//           attack: item.attack,
+//           hp: item.hp,
+//           defense: item.defense,
+//           specialAttack: item['special-attack'],
+//           specialDefense: item['special-defense'],
+//           speed: item.speed,
+//           total: item.total,
+//           pokemonId: item.number,
+//         },
+//       })
+//     })
 
-  await prisma.useCount.update({
-    where: {
-      id: 1,
-    },
-    data: {
-      todayCount: todayCount + 1,
-      totalCount: totalCount + 1,
-    },
-  })
+//     res.send({
+//       response: '9세대 확장 스텟 추가 성공',
+//     })
+//   } catch (err) {
+//     res.send('fail')
+//   }
+//   res.end()
+// })
+// 일반 기본 형태 포켓몬 추가 api 끝
 
-  res.send()
-  res.end()
-})
-
-listRouter.get('/list', async (req, res) => {
-  res.send('asdf')
-  res.end()
-})
-
-listRouter.post('/update', async (req, res) => {
-  const dataList = await prisma.pokemon.findMany({
-    where: {
-      generation: {
-        equals: parseInt(req.body.generation, 10),
-      },
-    },
-  })
-
+/**
+ *
+ * 노말 폼 형태 포켓몬 추가 api
+ *
+ */
+listRouter.post('/update/add/formPokemon', async (req, res) => {
   try {
-    dataList.map(async (data) => {
-      return await prisma.pokemon.update({
-        where: {
-          number: data.number,
-        },
+    const formList = await prisma.pokemonNormalForm.count()
+
+    gen9Form.forEach(async (item, index) => {
+      await prisma.pokemonNormalForm.create({
         data: {
-          type: data.typeSingle2
-            ? [data.typeSingle1, data.typeSingle2]
-            : [data.typeSingle1],
+          id: 311 + index,
+          imagePath: `1024_${index}`,
+          name: item.formName,
+          statCode: `F1024${formList + index + 1}`,
+          type: item.types,
+          typeSingle1: item.types[0],
+          typeSingle2: item.types[1] ?? null,
+          abilityId: item.abilities,
+          pokemonId: 1017,
         },
       })
     })
+
     res.send({
-      response: 'success',
-      data: [...dataList],
+      response: '9세대 확장 노말폼 추가 완료',
     })
   } catch (err) {
     res.send('fail')
@@ -98,25 +123,21 @@ listRouter.post('/update', async (req, res) => {
   res.end()
 })
 
-listRouter.post('/update/region', async (req, res) => {
-  const dataList = await prisma.pokemonRegion.findMany()
-
+listRouter.post('/update/add/formPokemonAbility', async (req, res) => {
   try {
-    dataList.map(async (data) => {
-      return await prisma.pokemonRegion.update({
-        where: {
-          id: data.id,
-        },
+    gen9Form.forEach(async (item, index) => {
+      await prisma.pokemonNormalFormAbilityList.create({
         data: {
-          type: data.typeSingle2
-            ? [data.typeSingle1, data.typeSingle2]
-            : [data.typeSingle1],
+          id: index + 426,
+          abilityId: item.abilities,
+          isHidden: false,
+          statCode: 'F1024269',
         },
       })
     })
+
     res.send({
-      response: 'success',
-      data: [...dataList],
+      response: '9세대 확장 특성 추가 성공',
     })
   } catch (err) {
     res.send('fail')
@@ -124,51 +145,26 @@ listRouter.post('/update/region', async (req, res) => {
   res.end()
 })
 
-listRouter.post('/update/mega', async (req, res) => {
-  const dataList = await prisma.pokemonMega.findMany()
-
+listRouter.post('/update/add/formPokemonStat', async (req, res) => {
   try {
-    dataList.map(async (data) => {
-      return await prisma.pokemonMega.update({
-        where: {
-          id: data.id,
-        },
+    gen9Form.forEach(async (item, index) => {
+      await prisma.formStats.create({
         data: {
-          type: data.typeSingle2
-            ? [data.typeSingle1, data.typeSingle2]
-            : [data.typeSingle1],
+          id: index + 88,
+          statCode: 'F1024269',
+          attack: item.stats.attack,
+          defense: item.stats.defense,
+          hp: item.stats.hp,
+          specialAttack: item.stats['special-attack'],
+          specialDefense: item.stats['special-defense'],
+          speed: item.stats.speed,
+          total: item.stats.total,
         },
       })
     })
-    res.send({
-      response: 'success',
-      data: [...dataList],
-    })
-  } catch (err) {
-    res.send('fail')
-  }
-  res.end()
-})
 
-listRouter.post('/update/normalForm', async (req, res) => {
-  const dataList = await prisma.pokemonNormalForm.findMany()
-
-  try {
-    dataList.map(async (data) => {
-      return await prisma.pokemonNormalForm.update({
-        where: {
-          id: data.id,
-        },
-        data: {
-          type: data.typeSingle2
-            ? [data.typeSingle1, data.typeSingle2]
-            : [data.typeSingle1],
-        },
-      })
-    })
     res.send({
-      response: 'success',
-      data: [...dataList],
+      response: '9세대 확장 노말폼 스텟 추가 완료',
     })
   } catch (err) {
     res.send('fail')
@@ -286,8 +282,8 @@ listRouter.post('/update/normalForm', async (req, res) => {
 // listRouter.get('/get/info', async (req, res) => {
 //   const data = []
 
-//   const cnt = 35
-//   const startNumb = 10229
+//   const cnt = 15
+//   const startNumb = 1011
 
 //   for (let i = 0; i < cnt; i++) {
 //     await http
@@ -333,7 +329,7 @@ listRouter.post('/update/normalForm', async (req, res) => {
 //     }
 //   })
 
-//   fs.writeFileSync('./json/stats_gen9.json', JSON.stringify(list))
+//   fs.writeFileSync('./json/stats_gen9_dlc_stats.json', JSON.stringify(list))
 
 //   res.send(list)
 
