@@ -89,88 +89,88 @@ export const listRouter = Router()
 // })
 // 일반 기본 형태 포켓몬 추가 api 끝
 
-/**
- *
- * 노말 폼 형태 포켓몬 추가 api
- *
- */
-listRouter.post('/update/add/formPokemon', async (req, res) => {
-  try {
-    const formList = await prisma.pokemonNormalForm.count()
+// /**
+//  *
+//  * 노말 폼 형태 포켓몬 추가 api
+//  *
+//  */
+// listRouter.post('/update/add/formPokemon', async (req, res) => {
+//   try {
+//     const formList = await prisma.pokemonNormalForm.count()
 
-    gen9Form.forEach(async (item, index) => {
-      await prisma.pokemonNormalForm.create({
-        data: {
-          id: 311 + index,
-          imagePath: `1024_${index}`,
-          name: item.formName,
-          statCode: `F1024${formList + index + 1}`,
-          type: item.types,
-          typeSingle1: item.types[0],
-          typeSingle2: item.types[1] ?? null,
-          abilityId: item.abilities,
-          pokemonId: 1017,
-        },
-      })
-    })
+//     gen9Form.forEach(async (item, index) => {
+//       await prisma.pokemonNormalForm.create({
+//         data: {
+//           id: 311 + index,
+//           imagePath: `1024_${index}`,
+//           name: item.formName,
+//           statCode: `F1024${formList + index + 1}`,
+//           type: item.types,
+//           typeSingle1: item.types[0],
+//           typeSingle2: item.types[1] ?? null,
+//           abilityId: item.abilities,
+//           pokemonId: 1017,
+//         },
+//       })
+//     })
 
-    res.send({
-      response: '9세대 확장 노말폼 추가 완료',
-    })
-  } catch (err) {
-    res.send('fail')
-  }
-  res.end()
-})
+//     res.send({
+//       response: '9세대 확장 노말폼 추가 완료',
+//     })
+//   } catch (err) {
+//     res.send('fail')
+//   }
+//   res.end()
+// })
 
-listRouter.post('/update/add/formPokemonAbility', async (req, res) => {
-  try {
-    gen9Form.forEach(async (item, index) => {
-      await prisma.pokemonNormalFormAbilityList.create({
-        data: {
-          id: index + 426,
-          abilityId: item.abilities,
-          isHidden: false,
-          statCode: 'F1024269',
-        },
-      })
-    })
+// listRouter.post('/update/add/formPokemonAbility', async (req, res) => {
+//   try {
+//     gen9Form.forEach(async (item, index) => {
+//       await prisma.pokemonNormalFormAbilityList.create({
+//         data: {
+//           id: index + 426,
+//           abilityId: item.abilities,
+//           isHidden: false,
+//           statCode: 'F1024269',
+//         },
+//       })
+//     })
 
-    res.send({
-      response: '9세대 확장 특성 추가 성공',
-    })
-  } catch (err) {
-    res.send('fail')
-  }
-  res.end()
-})
+//     res.send({
+//       response: '9세대 확장 특성 추가 성공',
+//     })
+//   } catch (err) {
+//     res.send('fail')
+//   }
+//   res.end()
+// })
 
-listRouter.post('/update/add/formPokemonStat', async (req, res) => {
-  try {
-    gen9Form.forEach(async (item, index) => {
-      await prisma.formStats.create({
-        data: {
-          id: index + 88,
-          statCode: 'F1024269',
-          attack: item.stats.attack,
-          defense: item.stats.defense,
-          hp: item.stats.hp,
-          specialAttack: item.stats['special-attack'],
-          specialDefense: item.stats['special-defense'],
-          speed: item.stats.speed,
-          total: item.stats.total,
-        },
-      })
-    })
+// listRouter.post('/update/add/formPokemonStat', async (req, res) => {
+//   try {
+//     gen9Form.forEach(async (item, index) => {
+//       await prisma.formStats.create({
+//         data: {
+//           id: index + 88,
+//           statCode: 'F1024269',
+//           attack: item.stats.attack,
+//           defense: item.stats.defense,
+//           hp: item.stats.hp,
+//           specialAttack: item.stats['special-attack'],
+//           specialDefense: item.stats['special-defense'],
+//           speed: item.stats.speed,
+//           total: item.stats.total,
+//         },
+//       })
+//     })
 
-    res.send({
-      response: '9세대 확장 노말폼 스텟 추가 완료',
-    })
-  } catch (err) {
-    res.send('fail')
-  }
-  res.end()
-})
+//     res.send({
+//       response: '9세대 확장 노말폼 스텟 추가 완료',
+//     })
+//   } catch (err) {
+//     res.send('fail')
+//   }
+//   res.end()
+// })
 
 // listRouter.get('/get/stat', async (req, res) => {
 //   const data = []
