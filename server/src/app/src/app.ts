@@ -6,6 +6,7 @@ import { listRouter } from '../../router'
 
 export const runServer = async () => {
   const app = express()
+
   const PORT = process.env.PORT || 4000
 
   app.use(cors())

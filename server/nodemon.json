@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": "ts",
   "ignore": ["src/**/*.spec.ts", "src/**/*.test.ts"],
-  "exec": "npm run swc-build && cross-env NODE_ENV=development node build/index.js"
+  "exec": "npm run swc-build && cross-env NODE_ENV=development env-cmd -f .env.development node build/index.js"
 }
