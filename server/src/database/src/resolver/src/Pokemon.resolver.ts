@@ -10,6 +10,10 @@ import {
   PokemonRegion,
   RegionStats,
 } from '../../type-graphql'
+import dayjs from 'dayjs'
+import locale from 'dayjs/locale/ko'
+
+dayjs.locale(locale)
 
 const prisma = new PrismaClient()
 @Resolver()
@@ -132,15 +136,12 @@ export default class PokemonResolver {
     @Arg('type', () => [String], { nullable: true })
     type: string[]
   ): Promise<Pokemon[]> {
-    console.table({
-      pokemonNumber,
-      generation,
-      name,
-      type,
-      isEvolution,
-      isRegion,
-      isMega,
-    })
+    console.log()
+    console.log('-------------------------------------')
+    console.log(dayjs(new Date()))
+    console.log('request getPokemonFilter')
+    console.log('-------------------------------------')
+    console.log()
 
     const changeNumber = []
 
