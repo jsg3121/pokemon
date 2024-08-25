@@ -138,7 +138,7 @@ export default class PokemonResolver {
   ): Promise<Pokemon[]> {
     console.log()
     console.log('-------------------------------------')
-    console.log(dayjs(new Date()))
+    console.log(dayjs().format('YYYY/MM/DD_HH:mm'))
     console.log('request getPokemonFilter')
     console.log('-------------------------------------')
     console.log()
