@@ -12,8 +12,11 @@ import {
 } from '../../type-graphql'
 import dayjs from 'dayjs'
 import locale from 'dayjs/locale/ko'
+import { CacheControl } from '../../module/cacheControl'
 
 dayjs.locale(locale)
+
+const cacheTtl = 60 * 60 * 12 // 초 단위 기준 12시간
 
 const prisma = new PrismaClient()
 @Resolver()
@@ -24,6 +27,7 @@ export default class PokemonResolver {
    * @returns {Array<Pokemon>}
    */
   @Query(() => [Pokemon])
+  @CacheControl({ maxAge: cacheTtl })
   public async getList(): Promise<Array<Pokemon>> {
     return await prisma.pokemon.findMany({
       include: {
@@ -40,6 +44,7 @@ export default class PokemonResolver {
    * @returns {Pokemon}
    */
   @Query(() => Pokemon)
+  @CacheControl({ maxAge: cacheTtl })
   public async getSinglePokemon(
     @Arg('number') number: number
   ): Promise<Pokemon> {
@@ -65,6 +70,7 @@ export default class PokemonResolver {
    * @returns {PokemonRegion}
    */
   @Query(() => [PokemonRegion])
+  @CacheControl({ maxAge: cacheTtl })
   public async getRegionForm(
     @Arg('number') number: number
   ): Promise<Array<PokemonRegion>> {
@@ -94,6 +100,7 @@ export default class PokemonResolver {
    * @returns {PokemonMega}
    */
   @Query(() => [PokemonMega])
+  @CacheControl({ maxAge: cacheTtl })
   public async getMegaEvolution(
     @Arg('number') number: number
   ): Promise<Array<PokemonMega>> {
@@ -125,6 +132,7 @@ export default class PokemonResolver {
   @Query(() => [Pokemon], {
     nullable: true,
   })
+  @CacheControl({ maxAge: cacheTtl })
   public async getPokemonFilter(
     @Arg('generation', () => [String], { nullable: true })
     generation: string[],
@@ -136,12 +144,16 @@ export default class PokemonResolver {
     @Arg('type', () => [String], { nullable: true })
     type: string[]
   ): Promise<Pokemon[]> {
-    console.log()
-    console.log('-------------------------------------')
     console.log(dayjs().format('YYYY/MM/DD_HH:mm:ss'))
-    console.log('request getPokemonFilter')
-    console.log('-------------------------------------')
-    console.log()
+    console.table({
+      pokemonNumber,
+      generation,
+      name,
+      type,
+      isEvolution,
+      isRegion,
+      isMega,
+    })
 
     const changeNumber = []
 
@@ -191,6 +203,7 @@ export default class PokemonResolver {
    * @returns {Promise<PokemonNormalForm[]>}
    */
   @Query(() => [PokemonNormalForm])
+  @CacheControl({ maxAge: cacheTtl })
   public async getNormalForm(
     @Arg('number') number: number
   ): Promise<Array<PokemonNormalForm>> {
@@ -219,6 +232,7 @@ export default class PokemonResolver {
    * @returns {Promise<NormalStats[]>}
    */
   @Query(() => [NormalStats])
+  @CacheControl({ maxAge: cacheTtl })
   public async getNormalStats(): Promise<NormalStats[]> {
     const data = await prisma.normalStats.findMany({
       orderBy: {
@@ -241,6 +255,7 @@ export default class PokemonResolver {
    * @returns {Promise<NormalStats>}
    */
   @Query(() => NormalStats)
+  @CacheControl({ maxAge: cacheTtl })
   public async getSingleNormalStats(
     @Arg('id') id: number
   ): Promise<NormalStats> {
@@ -263,6 +278,7 @@ export default class PokemonResolver {
    * @returns {Promise<FormStats | MegaStats | RegionStats>}
    */
   @Query(() => FormStats || MegaStats || RegionStats)
+  @CacheControl({ maxAge: cacheTtl })
   public async getPokemonStats(
     @Arg('type') type: 'mega' | 'form' | 'region',
     @Arg('statCode') statCode: string
